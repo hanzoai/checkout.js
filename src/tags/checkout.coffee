@@ -1,0 +1,199 @@
+View = require '../view'
+checkoutHTML = require '../../templates/checkout'
+
+require 'crowdstart.js/src/index'
+require '../../vendor/js/select2'
+
+form = require '../utils/form'
+currency = require '../utils/currency'
+Card = require 'card'
+Order = require '../models/order'
+
+progressBar = require './progressbar'
+
+checkoutCSS = require '../../css/checkout'
+loaderCSS = require '../../css/loader'
+select2CSS = require '../../vendor/css/select2'
+
+$ ()->
+  $('head')
+    .append($("<style>#{ select2CSS }</style>"))
+    .append($("<style>#{ checkoutCSS }</style>"))
+    .append($("<style>#{ loaderCSS }</style>"))
+
+class CheckoutView extends View
+  tag: 'checkout'
+  html: checkoutHTML
+  checkingOut: false
+  taxRate: 0
+  constructor: ()->
+    super(@tag, @html, @js)
+  js: (opts, view)->
+    self = @
+
+    screenIndex = view.screenIndex = 0
+    screens = view.screens = opts.config.screens
+    screenCount = screens.length
+
+    items = (screen.name for screen in screens)
+    items.push 'Done!'
+
+    view.api = opts.api
+
+    progressBar.setItems items
+
+    @callToActions = opts.config.callToActions
+
+    @showSocial = opts.config.facebook != '' || opts.config.googlePlus != '' || opts.config.twitter != ''
+    @user = opts.model.user
+    @payment = opts.model.payment
+    @order = opts.model.order
+
+    @currency = currency
+
+    $ ()->
+      requestAnimationFrame ()->
+        screenCountPlus1 = screenCount + 1
+        $('.crowdstart-pages').css(width: '' + (screenCountPlus1 * 105) + '%')
+          .find('form')
+          .parent()
+          .css(
+            width: '' + ((100/105 * 100) / screenCountPlus1) + '%'
+            'margin-right': '' + ((5/105 * 100) / screenCountPlus1) + '%')
+          .last()
+          .css
+            'margin-right': 0
+
+        $('.crowdstart-checkout .crowdstart-quantity-select')
+          .select2(minimumResultsForSearch: Infinity)
+          .on 'change', ()->
+            $el = $(@)
+            i = parseInt $el.attr('data-index'), 10
+            items = self.order.items
+            if items? && items[i]?
+              items[i].quantity = parseInt $el.val(), 10
+              if items[i].quantity == 0
+                for j in [i..items.length-2] by 1
+                  items[j] = items[j+1]
+                items.length--
+            self.update()
+
+        view.reset()
+
+    @close = (event) => @view.close(event)
+    @next = (event) => @view.next(event)
+    @back = (event) => @view.back(event)
+
+  updateIndex: (i)->
+    @screenIndex = i
+    screenCount = @screens.length
+    screenCountPlus1 = screenCount + 1
+
+    progressBar.setIndex i
+
+    $forms = $('.crowdstart-pages form')
+    $forms
+      .find('input, select, .select2-selection, a')
+      .attr('tabindex', '-1')
+
+    if $forms[i]?
+      $form = $($forms[i])
+      $form.find('input, select, a').removeAttr('tabindex')
+      $form.find('.select2-selection').attr('tabindex', '0')
+
+    $('.crowdstart-pages')
+      .css
+        '-ms-transform': 'translateX(-' + (100 / screenCountPlus1 * i) + '%)'
+        '-webkit-transform': 'translateX(-' + (100 / screenCountPlus1 * i) + '%)'
+        transform: 'translateX(-' + (100 / screenCountPlus1 * i) + '%)'
+
+  reset: ()->
+    @updateIndex(0)
+    @checkingOut = false
+    @finished = false
+    @ctx.error = false
+
+  subtotal: ()->
+    items = @ctx.order.items
+    subtotal = 0
+    for item in items
+      subtotal += item.price * item.quantity
+
+    @ctx.order.subtotal = subtotal
+    return subtotal
+
+  shipping: ()->
+    items = @ctx.order.items
+    shipping = 0
+    for item in items
+      shipping += item.shipping * item.quantity
+
+    @ctx.order.shipping = shipping
+    return shipping
+
+  tax: ()->
+    tax = 0
+
+    @ctx.order.tax = 0
+    return tax
+
+  total: ()->
+    total = @subtotal() + @shipping()
+
+    @ctx.order.total = total
+    return total
+
+  close: ()->
+    if @finished
+      setTimeout ()=>
+        @ctx.order = new Order()
+      , 500
+    setTimeout ()=>
+      @ctx.error = false
+      @update()
+      @reset()
+    , 500
+    window.history.back()
+
+  back: ()->
+    if @screenIndex <= 0
+      @close()
+    else
+      @updateIndex @screenIndex - 1
+
+  next: ()->
+    if @locked
+      return
+
+    @locked = true
+    if !@checkingOut
+      terms = $ '.crowdstart-terms #terms'
+      if !terms.prop('checked')
+        form.showError terms, 'You should read and agree to these terms.'
+        removeTermError = (event)->
+          if terms.prop('checked')
+            form.removeError event
+            terms.off 'change', removeTermError
+        terms.on 'change', removeTermError
+        @locked = false
+        return
+
+      @screens[@screenIndex].validate ()=>
+        if @screenIndex >= @screens.length - 1
+          @checkingOut = true
+          @ctx.opts.api.charge @ctx.opts.model, ()=>
+            @updateIndex @screenIndex + 1
+            @locked = false
+            @finished = true
+            @update()
+          , ()=>
+            @checkingOut = false
+            @locked = false
+            @ctx.error = true
+            @update()
+        else
+          @updateIndex @screenIndex + 1
+          @locked = false
+        @update()
+
+module.exports = new CheckoutView

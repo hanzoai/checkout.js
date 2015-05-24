@@ -1,0 +1,39 @@
+<form id="crowdstart-checkout">
+  <div class="crowdstart-form-control">
+    <label class="crowdstart-col-1-1">Name</label>
+    <div class="crowdstart-col-1-1 crowdstart-form-control">
+      <input value="{ user.firstName + ' ' + user.lastName }" id="crowdstart-name" name="name" type="text" onchange="{ updateName }" onblur="{ updateName }" onfocus="{ removeError }" placeholder="Full Name" />
+    </div>
+  </div>
+  <div class="crowdstart-form-control">
+    <label class="crowdstart-col-1-1">Email</label>
+    <div class="crowdstart-col-1-1 crowdstart-form-control">
+      <input value="{ user.email }" id="crowdstart-email" name="email" type="text" onchange="{ updateEmail }" onblur="{ updateEmail }" onfocus="{ removeError }" placeholder="youremail@somewhere.com" />
+    </div>
+  </div>
+  <div class="crowdstart-form-control">
+    <label class="crowdstart-col-1-1">Credit Card<br/><span class="crowdstart-fine-print">(Visa, Mastercard, American Express,, Discover, Diners Club, JCB)</span></label>
+  </div>
+  <div class="crowdstart-form-control">
+    <div class="crowdstart-col-1-2 crowdstart-form-control">
+      <input id="crowdstart-credit-card" name="number" type="text" onchange="{ updateCreditCard }" onblur="{ updateCreditCard }" onfocus="{ removeError }" placeholder="XXXX XXXX XXXX XXXX" />
+    </div>
+    <div class="crowdstart-card" style="position:absolute;"></div>
+  </div>
+  <div class="crowdstart-form-control">
+    <div class="crowdstart-col-1-2 crowdstart-form-control" >
+      <label class="crowdstart-col-1-2">Expiration</label>
+      <label class="crowdstart-col-1-2">CVC Code</label>
+    </div>
+  </div>
+  <div class="crowdstart-form-control">
+    <div class="crowdstart-col-1-2" >
+      <div class="crowdstart-col-1-2 crowdstart-form-control">
+        <input id="crowdstart-expiry" name="expiry" type="text" onchange="{ updateExpiry }" onblur="{ updateExpiry }" onfocus="{ removeError }" maxlength="7" placeholder="MM/YY" />
+      </div>
+      <div class="crowdstart-col-1-2 crowdstart-form-control">
+        <input id="crowdstart-cvc" name="cvc" type="text" onchange="{ updateCVC }" onblur="{ updateCVC }" onfocus="{ removeError }" placeholder="CVC" />
+      </div>
+    </div>
+  </div>
+</form>

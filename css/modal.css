@@ -1,0 +1,25 @@
+.crowdstart-modal {
+  position: absolute;
+}
+
+.crowdstart-modal:before {
+  content: "";
+  height: 0;
+  opacity: 0;
+  background: rgba(0,0,0,.6);
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 10;
+  -webkit-transition: opacity 0.5s ease-in-out, height 0.5s step-end;
+  -ms-transition: opacity 0.5s ease-in-out, height 0.5s step-end;
+  transition: opacity 0.5s ease-in-out, height 0.5s step-end;
+}
+
+.crowdstart-modal:target:before {
+  height: 5000px;
+  opacity: 1;
+
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -ms-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
+}
