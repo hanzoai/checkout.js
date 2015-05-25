@@ -9,4 +9,4 @@ It even looks nice:
 
 And is fully customizable for your products and your situation.
 
-Give it a shot in our example, [here](examples/basic/index.html)!
+Take a look at our simplest example, [here](examples/basic/index.html)!
