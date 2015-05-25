@@ -15,24 +15,23 @@ Payment = require './models/payment'
 theme = require './utils/theme'
 
 # checkout
-#  id: the id refered to by a anchor tag button
-#  api: object of API Class
-#  order: object of Order Class
+#  id:     the id refered to by a anchor tag button
+#  api:    object of API Class
+#  order:  object of Order Class
 #  config: config object such as:
 #    {
 #      screens: [screens.card],
-#      callToActions: ['Pre-order'],  #Put what you want the button to say here
+#      callToActions: ['Pre-order'],
 #    }
 #
-checkout = (id, api, order, user = new User(), config = {})->
-  config.callToActions   = config.callToActions || ['Pre-Order', 'Confirm']
+checkout = (id, api, order, user = new User(), config = {}) ->
+  config.callToActions  = config.callToActions  || ['Pre-Order', 'Confirm']
   config.thankYouHeader = config.thankYouHeader || 'Thank You'
   config.thankYouBody   = config.thankYouBody   || 'You will receive a confirmation email for your preorder.'
   config.shareHeader    = config.shareHeader    || 'Follow us to get the latest updates'
   config.screens        = config.screens        || [screens.card, screens.shipping]
 
-  # config.screens        = config.screens.append()
-
+  # Configure social sharing
   config.facebook   = config.facebook   || ''
   config.googlePlus = config.googlePlus || ''
   config.twitter    = config.twitter    || ''
