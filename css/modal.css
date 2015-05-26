@@ -1,5 +1,6 @@
 .crowdstart-modal {
   position: absolute;
+  z-index: 9999;
 }
 
 .crowdstart-modal:before {
@@ -9,7 +10,7 @@
   background: rgba(0,0,0,.6);
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  z-index: 10;
+  z-index: 9998;
   -webkit-transition: opacity 0.5s ease-in-out, height 0.5s step-end;
   -ms-transition: opacity 0.5s ease-in-out, height 0.5s step-end;
   transition: opacity 0.5s ease-in-out, height 0.5s step-end;
