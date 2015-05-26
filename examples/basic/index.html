@@ -21,7 +21,7 @@
 
         <!-- Button triggers checkout -->
         <div style="margin-top: 25%; display:flex; justify-content:center; align-items:center;">
-          <a class="btn" href="#checkout">Pre-order Now</a>
+          <a class="btn" href="#checkout">Buy Now</a>
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -32,14 +32,14 @@
           // Create a new client for Crowdstart API.
           var api = new Crowdstart.API('eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJiaXQiOjI0LCJqdGkiOiJVMDc0RlU3MHVhWSIsInN1YiI6IkVxVEdveHA1dTMifQ.g_MqPv2s0DnyFdhkUMzYn9mtKaXNwmlEM14WcFq_s5Yd2eqH16TB9thxOdDE8ylcoBMgyI3eimSHJxGq7oj-EA')
 
-          // Create default order, should match whatever the user is trying to pre-order
+          // Create default order, should match whatever the user is trying to pay for
           var order = new Crowdstart.Order('usd',[
             new Crowdstart.ItemRef('84cRXBYs9jX7w', -1),
             new Crowdstart.ItemRef('doge-shirt', 100)
           ]);
 
           // Create default user (pre-populated in form fields)
-          var user = new Crowdstart.User('testuser@email.ema', 'Test', 'User')
+          var user = new Crowdstart.User('joe@fan.com', 'Joe', 'Fan')
 
           // Social sharing settings
           var config = {
