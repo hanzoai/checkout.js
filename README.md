@@ -47,4 +47,6 @@ Configure the checkout widget however you'd like.
 ```
 
 ## Examples
-You can find examples in [examples/](examples/basic/index.html).
+You can find examples in [examples/](examples/basic/index.html). You can also
+see it in action in the [Crowdstart
+documentation](http://www.crowdstart.com/docs/checkout).
