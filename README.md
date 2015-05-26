@@ -15,7 +15,7 @@ Set the `href` of your button to `#checkout`.
 Configure the checkout widget however you'd like.
 
 ```javascript
-<script src="https://cdn.rawgit.com/crowdstart/checkout/master/checkout.js"></script>
+<script src="https://rawgit.com/crowdstart/checkout/master/checkout.js"></script>
 <script>
   // Create a new client for Crowdstart API.
   var api = new Crowdstart.API('eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJiaXQiOjI0LCJqdGkiOiJVMDc0RlU3MHVhWSIsInN1YiI6IkVxVEdveHA1dTMifQ.g_MqPv2s0DnyFdhkUMzYn9mtKaXNwmlEM14WcFq_s5Yd2eqH16TB9thxOdDE8ylcoBMgyI3eimSHJxGq7oj-EA')
