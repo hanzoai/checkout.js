@@ -13,6 +13,7 @@ Set the `href` of your button to `#checkout`.
 ```
 
 Configure the checkout widget however you'd like.
+
 ```javascript
 <script src="https://cdn.rawgit.com/crowdstart/checkout/master/checkout.js"></script>
 <script>
@@ -45,4 +46,5 @@ Configure the checkout widget however you'd like.
 </script>
 ```
 
-There are examples in [examples/](examples/basic/index.html).
+## Examples
+You can find examples in [examples/](examples/basic/index.html).
