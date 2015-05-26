@@ -24,7 +24,7 @@ theme = require './utils/theme'
 #      callToActions: ['Pre-order'],
 #    }
 #
-checkout = (id, api, order, user = new User(), config = {}) ->
+checkout = (id, api, order, user = (new User), config = {}) ->
   config.callToActions  = config.callToActions  || ['Pre-Order', 'Confirm']
   config.thankYouHeader = config.thankYouHeader || 'Thank You'
   config.thankYouBody   = config.thankYouBody   || 'You will receive a confirmation email for your preorder.'
@@ -36,7 +36,7 @@ checkout = (id, api, order, user = new User(), config = {}) ->
   config.googlePlus = config.googlePlus || ''
   config.twitter    = config.twitter    || ''
 
-  api.getItems order, (order)->
+  api.getItems order, (order) ->
     $modal = $('modal').remove()
     $modal = $ '''
       <modal>
@@ -44,7 +44,8 @@ checkout = (id, api, order, user = new User(), config = {}) ->
         </checkout>
       </modal>
       '''
-    $(window).off('.crowdstart-modal').on('scroll.crowdstart-modal', ()->
+
+    $(window).off('.crowdstart-modal').on('scroll.crowdstart-modal', ->
       $modal.children().last().css('top', $(@).scrollTop() + 'px'))
 
     for screen in config.screens
@@ -57,23 +58,23 @@ checkout = (id, api, order, user = new User(), config = {}) ->
     $('head').append($('<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">'))
 
     model =
-      payment: new Payment()
-      order: order
-      user: user
+      payment: (new Payment)
+      order:   order
+      user:    user
 
     riot.mount 'modal',
-      id: id
-      api: api
-      model: model
+      id:     id
+      api:    api
+      model:  model
       config: config
 
 if window?
   window.Crowdstart =
-    setTheme: theme.setTheme
+    API:      API
     Checkout: checkout
-    ItemRef: ItemRef
-    Order: Order
-    User: User
-    API: API
+    ItemRef:  ItemRef
+    Order:    Order
+    User:     User
+    setTheme: theme.setTheme
 
 module.exports = checkout
