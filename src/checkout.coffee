@@ -15,10 +15,11 @@ Payment = require './models/payment'
 theme = require './utils/theme'
 
 search = /([^&=]+)=?([^&]*)/g
-q = window.location.href.split('?')[1].split('&')
+q = window.location.href.split('?')[1]
 qs = {}
-while (match = search.exec(q))
-  qs[decodeURIComponent(match[1])] = decodeURIComponent(match[2])
+if q?
+  while (match = search.exec(q))
+    qs[decodeURIComponent(match[1])] = decodeURIComponent(match[2])
 
 # checkout
 #  id:     the id refered to by a anchor tag button
