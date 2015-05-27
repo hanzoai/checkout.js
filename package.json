@@ -4,7 +4,8 @@
   "description": "One Click Checkout for Crowdstart",
   "main": "checkout.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepublish": "cake build && cake build-min",
+    "test": "cake test"
   },
   "keywords": [
     "checkout",
