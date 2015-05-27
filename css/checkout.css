@@ -9,7 +9,7 @@
 }
 
 .crowdstart-checkout {
-  position: relative;
+  position: fixed;
   left: 50%;
   top: 5%;
   -webkit-transform: translate(0, -200%);
@@ -24,6 +24,7 @@
 }
 
 :target .crowdstart-checkout {
+  position: relative;
   -webkit-transform: translate(0, 0);
   -ms-transform: translate(0, 0);
   transform: translate(0, 0);
