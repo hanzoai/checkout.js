@@ -1,3 +1,4 @@
+riot = require 'riot'
 View = require '../view'
 shippingHTML = require '../../templates/shipping'
 
@@ -67,9 +68,12 @@ class ShippingView extends View
     state = event.target.value
     if form.isRequired state
       @ctx.order.shippingAddress.state = state
+      @setDomesticTaxRate()
       return true
 
     form.showError event.target, 'Enter a State'
+
+    riot.update()
     return false
 
   updatePostalCode: (event)->
@@ -84,7 +88,22 @@ class ShippingView extends View
   updateCountry: (event)->
     c = event.target.value
     @ctx.order.shippingAddress.country = c
+    if c == 'us'
+      @ctx.order.shipping = 0
+    else
+      @ctx.order.shipping = @ctx.opts.config.internationalShipping
+
+    @setDomesticTaxRate()
+    riot.update()
     return true
+
+  setDomesticTaxRate: ()->
+    state = @ctx.order.shippingAddress.state.toLowerCase()
+    if @ctx.order.shippingAddress.country == 'us' && (state == 'ca' || state == 'california')
+      @ctx.order.taxRate = .075
+    else
+      @ctx.order.taxRate = 0
+    riot.update()
 
   validate: (success=(()->), fail=(()->))->
     if @updateLine1(target: $('#crowdstart-line1')[0]) &&

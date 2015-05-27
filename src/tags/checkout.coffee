@@ -26,7 +26,6 @@ class CheckoutView extends View
   html: checkoutHTML
   checkingOut: false
   checkingPromoCode: false
-  taxRate: 0
   constructor: ()->
     super(@tag, @html, @js)
   js: (opts, view)->
@@ -49,6 +48,7 @@ class CheckoutView extends View
     @user = opts.model.user
     @payment = opts.model.payment
     @order = opts.model.order
+    @order.taxRate = 0
 
     @coupon = {}
     @showPromoCode = false
@@ -138,12 +138,7 @@ class CheckoutView extends View
 
   shipping: ()->
     items = @ctx.order.items
-    shipping = 0
-    for item in items
-      shipping += item.shipping * item.quantity
-
-    @ctx.order.shipping = shipping
-    return shipping
+    return @ctx.order.shipping || 0
 
   updatePromoCode: (event)->
     @ctx.coupon.code = event.target.value
@@ -176,13 +171,10 @@ class CheckoutView extends View
     return 0
 
   tax: ()->
-    tax = 0
-
-    @ctx.order.tax = 0
-    return tax
+    return Math.ceil((@ctx.order.taxRate || 0) * @subtotal())
 
   total: ()->
-    total = @subtotal() + @shipping()
+    total = @subtotal() + @shipping() + @tax() + @shipping()
 
     @ctx.order.total = total
     return total
