@@ -57,6 +57,7 @@ class CheckoutView extends View
 
     $ ()->
       requestAnimationFrame ()->
+        window.location.hash = ''
         screenCountPlus1 = screenCount + 1
         $('.crowdstart-screen-strip').css(width: '' + (screenCountPlus1 * 105) + '%')
           .find('form')

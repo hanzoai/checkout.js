@@ -2,7 +2,7 @@
   <div class="crowdstart-form-control">
     <label class="crowdstart-col-1-1">Name</label>
     <div class="crowdstart-col-1-1 crowdstart-form-control">
-      <input value="{ user.firstName + ' ' + user.lastName }" id="crowdstart-name" name="name" type="text" onchange="{ updateName }" onblur="{ updateName }" onfocus="{ removeError }" placeholder="Full Name" />
+      <input value="{ (user.firstName + ' ' + user.lastName).trim() }" id="crowdstart-name" name="name" type="text" onchange="{ updateName }" onblur="{ updateName }" onfocus="{ removeError }" placeholder="Full Name" />
     </div>
   </div>
   <div class="crowdstart-form-control">
