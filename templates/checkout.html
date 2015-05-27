@@ -75,7 +75,7 @@
 
       <div class="{ crowdstart-form-control: true, crowdstart-promocode: true, crowdstart-hidden: !showPromoCode, crowdstart-collapsed: !showPromoCode}">
         <div class="crowdstart-col-1-2 crowdstart-text-right">
-          <input value="{ promoCode }" id="crowdstart-promocode" name="promocode" type="text" onchange="{ updatePromoCode }" onblur="{ updatePromoCode }" onfocus="{ removeError }" placeholder="Coupon/Promo Code" />
+          <input value="{ promoCode }" id="crowdstart-promocode" name="promocode" type="text" onchange="{ updatePromoCode }" onblur="{ updatePromoCode }" onfocus="{ removeError }" onkeyup="{ toUpper }" placeholder="Coupon/Promo Code" />
         </div>
         <div class="crowdstart-col-1-2 crowdstart-text-right">
           <div class="crowdstart-col-1-2 crowdstart-text-right">

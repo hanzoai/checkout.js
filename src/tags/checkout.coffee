@@ -95,6 +95,9 @@ class CheckoutView extends View
     @close = (event) => @view.close(event)
     @next = (event) => @view.next(event)
     @back = (event) => @view.back(event)
+    @toUpper = (event)=>
+      $el = $(event.target)
+      $el.val($el.val().toUpperCase())
 
     @togglePromoCode = ()=> @showPromoCode = !@showPromoCode
 

@@ -271,6 +271,10 @@ checkout {
   -ms-transition: all .4s ease-in-out;
   transition: all .4s ease-in-out;
 }
+
+#crowdstart-promocode {
+  text-transform: uppercase;
+}
 /* END Forms */
 
 /* Widgets */
