@@ -89,9 +89,9 @@ class ShippingView extends View
     c = event.target.value
     @ctx.order.shippingAddress.country = c
     if c == 'us'
-      @ctx.order.shipping = 0
+      @ctx.order.shippingRate = 0
     else
-      @ctx.order.shipping = @ctx.opts.config.internationalShipping
+      @ctx.order.shippingRate = @ctx.opts.config.internationalShipping
 
     @setDomesticTaxRate()
     riot.update()
