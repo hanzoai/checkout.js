@@ -45,6 +45,17 @@ module.exports = class API
       order.items = []
       success order
 
+  getCouponCode: (code, success, fail)->
+    $.ajax
+      url: @url + '/coupon/' + code
+      type: 'GET'
+      headers:
+        Authorization: @key
+      contentType: 'application/json; charset=utf-8'
+      dataType: 'json'
+      success: success
+      error: fail
+
   charge: (model, success, fail)->
     $.ajax
       url: if @store == '' then @url + '/charge' else @url + '/#{ @store }/charge'
