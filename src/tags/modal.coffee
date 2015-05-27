@@ -11,10 +11,14 @@ module.exports = new View 'modal', modalHTML, (opts)->
     if window.location.hash == '#' + opts.id
       window.history.back()
 
-  closeOnEscape = (event)=>
+  @closeOnClickOff = (event)->
+    if $(event.target).hasClass('crowdstart-modal')
+      close()
+
+  @closeOnEscape = (event)->
     if event.which == 27
       close()
 
-  $(document).on('keydown', closeOnEscape)
+  $(document).on('keydown', @closeOnEscape)
 
 

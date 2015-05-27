@@ -79,6 +79,7 @@ class CheckoutView extends View
             self.update()
 
         view.reset()
+        view.updateIndex(0)
 
     @close = (event) => @view.close(event)
     @next = (event) => @view.next(event)
@@ -108,10 +109,11 @@ class CheckoutView extends View
         transform: 'translateX(-' + (100 / screenCountPlus1 * i) + '%)'
 
   reset: ()->
-    @updateIndex(0)
     @checkingOut = false
     @finished = false
-    @ctx.error = false
+    if @ctx.error == true
+      @updateIndex(0)
+      @ctx.error = false
 
   subtotal: ()->
     items = @ctx.order.items
@@ -149,7 +151,6 @@ class CheckoutView extends View
         @ctx.order = new Order()
       , 500
     setTimeout ()=>
-      @ctx.error = false
       @update()
       @reset()
     , 500

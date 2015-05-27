@@ -2,7 +2,7 @@
   position: absolute;
 }
 
-.crowdstart-modal:before {
+.crowdstart-modal {
   content: "";
   height: 0;
   opacity: 0;
@@ -15,7 +15,7 @@
   transition: opacity 0.5s ease-in-out, height 0.5s step-end;
 }
 
-.crowdstart-modal:target:before {
+.crowdstart-modal:target {
   height: 5000px;
   opacity: 1;
 
