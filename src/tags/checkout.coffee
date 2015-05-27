@@ -168,7 +168,7 @@ class CheckoutView extends View
         return (@ctx.coupon.amount || 0)
       else
         discount = 0
-        for i, item in @ctx.order.items
+        for item in @ctx.order.items
           if item.productId == @ctx.coupon.productId
             discount += (@ctx.coupon.amount || 0) * item.quantity
         return discount
