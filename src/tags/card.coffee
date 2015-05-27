@@ -23,10 +23,11 @@ class CardView extends View
 
         $('.crowdstart-card')
           .css(
-            'margin-top': '-43px'
+            'margin-top': '-93px'
             'margin-left': '103px')
           .children()
           .css
+            top: '50px'
             height: '192px'
             '-webkit-transform': 'scale(0.514285714285714)'
             '-ms-transform': 'scale(0.514285714285714)'
