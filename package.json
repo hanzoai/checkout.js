@@ -2,7 +2,7 @@
   "name": "crowdstart-checkout",
   "version": "1.0.0",
   "description": "One Click Checkout for Crowdstart",
-  "main": "lib/checkout.js",
+  "main": "checkout.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
