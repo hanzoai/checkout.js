@@ -236,7 +236,7 @@ class CheckoutView extends View
                 @update()
             else
               @update()
-            events.track @ctx.opts.pixels?.checkout
+            events.track @ctx.opts.config.pixels?.checkout
           , =>
             @checkingOut = false
             @locked = false
