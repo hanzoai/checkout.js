@@ -228,7 +228,7 @@ class CheckoutView extends View
             @locked = false
             @finished = true
             if @ctx.opts.config.referralProgram?
-              api.referrer order, @ctx.opts.config.referralProgram, (referrer)=>
+              @ctx.opts.api.referrer order, @ctx.opts.config.referralProgram, (referrer) =>
                 @ctx.referrerId = referrer.id
                 @update()
               , ()=>
