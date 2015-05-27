@@ -92,7 +92,7 @@
       </div>
 
       <div class="crowdstart-form-control crowdstart-receipt">
-        <div class="crowdstart-col-1-2 crowdstart-text-left">Taxes ({ view.taxRate }%)</div>
+        <div class="crowdstart-col-1-2 crowdstart-text-left">Taxes ({ (order.taxRate || 0) * 100 }%)</div>
         <div class="crowdstart-col-1-2 crowdstart-text-right crowdstart-money">{ currency.renderUICurrencyFromJSON(order.currency, view.tax()) }</div>
       </div>
 
