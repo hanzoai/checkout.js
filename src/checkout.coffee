@@ -30,6 +30,7 @@ checkout = (id, api, order, user = (new User), config = {}) ->
   config.thankYouBody   = config.thankYouBody   || 'You will receive a confirmation email for your preorder.'
   config.shareHeader    = config.shareHeader    || 'Follow us to get the latest updates'
   config.screens        = config.screens        || [screens.card, screens.shipping]
+  config.termsUrl       = config.termsUrl       || 'http://www.crowdstart.com/terms'
 
   # Configure social sharing
   config.facebook   = config.facebook   || ''

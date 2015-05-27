@@ -14,6 +14,8 @@ module.exports = new View 'modal', modalHTML, (opts)->
   @closeOnClickOff = (event)->
     if $(event.target).hasClass('crowdstart-modal')
       close()
+    else
+      return true #bubble
 
   @closeOnEscape = (event)->
     if event.which == 27

@@ -14,6 +14,14 @@ theme =
         background-color: #{ theme.currentTheme.background } !important;
       }
 
+      .crowdstart-checkout a {
+        color: #{ theme.currentTheme.dark };
+      }
+
+      .crowdstart-checkout a:visited {
+        color: #{ theme.currentTheme.dark };
+      }
+
       .crowdstart-promocode-button {
         background-color: #{ theme.currentTheme.promoCodeBackground } !important;
         color: #{ theme.currentTheme.promoCodeForeground } !important;

@@ -1,12 +1,14 @@
 <div class="crowdstart-checkbox-control">
   <input id="{ opts.name }" name="{ opts.name }" type="checkbox" __checked="{ checked }" onfocus="{ removeError }"/>
-  <label for="{ opts.name }" onclick="{ toggle }">
-    <span class="crowdstart-checkbox">
+  <label for="{ opts.name }">
+    <span class="crowdstart-checkbox" onclick="{ toggle }">
       <div class="crowdstart-checkbox-parts">
         <div class="crowdstart-checkbox-short-part"></div>
         <div class="crowdstart-checkbox-long-part"></div>
       </div>
     </span>
-    <span>{ opts.text }</span>
+    <span>
+      <yield/>
+    </span>
   </label>
 </div>

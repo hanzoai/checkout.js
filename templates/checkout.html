@@ -107,7 +107,9 @@
     <div class="{ crowdstart-paging: true, crowdstart-collapsed: view.screenIndex >= callToActions.length, crowdstart-hidden: view.screenIndex >= callToActions.length }">
       <div class="crowdstart-form-control">
         <div class="crowdstart-col-1-1 crowdstart-terms">
-          <checkbox name="terms" text="I have read and agree to these terms and conditions." config="opts.config"/>
+          <checkbox name="terms" config="opts.config">
+          I have read and agree to <a target="_blank" href="{ this.parent.opts.config.termsUrl }">these terms and conditions</a>.
+          </checkbox>
         </div>
       </div>
 
