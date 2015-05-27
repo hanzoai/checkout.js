@@ -9,7 +9,7 @@
   -webkit-transition: transform 0.5s ease-in-out, max-height 0.5s ease-in-out;
   -ms-transition: transform 0.5s ease-in-out, max-height 0.5s ease-in-out;
   transition: transform 0.5s ease-in-out, max-height 0.5s ease-in-out;
-  z-index: 100;
+  z-index: 9999;
 
   max-height: 95%;
 }
