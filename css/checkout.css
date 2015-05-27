@@ -128,6 +128,10 @@
   font-variant: normal;
 }
 
+.select2-container {
+  z-index: 10000;
+}
+
 .crowdstart-form-control {
   display: table;
   position: relative;
