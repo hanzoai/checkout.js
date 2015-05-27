@@ -140,7 +140,12 @@ class CheckoutView extends View
 
   shipping: ->
     items = @ctx.order.items
-    return @ctx.order.shipping || 0
+    shippingRate = @ctx.order.shippingRate || 0
+    shipping = 0
+    for item in items
+      shipping += shippingRate * item.quantity
+
+    return @ctx.order.shipping = shipping
 
   updatePromoCode: (event)->
     @ctx.coupon.code = event.target.value
@@ -176,7 +181,7 @@ class CheckoutView extends View
     return @ctx.order.tax = Math.ceil((@ctx.order.taxRate || 0) * @subtotal())
 
   total: ->
-    total = @subtotal() + @shipping() + @tax() + @shipping()
+    total = @subtotal() + @shipping() + @tax()
 
     @ctx.order.total = total
     return total
@@ -218,11 +223,18 @@ class CheckoutView extends View
       @screens[@screenIndex].validate =>
         if @screenIndex >= @screens.length - 1
           @checkingOut = true
-          @ctx.opts.api.charge @ctx.opts.model, =>
+          @ctx.opts.api.charge @ctx.opts.model, (order)=>
             @updateIndex @screenIndex + 1
             @locked = false
             @finished = true
-            @update()
+            if @ctx.opts.config.referralProgram?
+              api.referrer order, @ctx.opts.config.referralProgram, (referrer)=>
+                @ctx.referrerId = referrer.id
+                @update()
+              , ()=>
+                @update()
+            else
+              @update()
             events.track @ctx.opts.pixels?.checkout
           , =>
             @checkingOut = false
