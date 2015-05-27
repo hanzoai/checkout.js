@@ -5,27 +5,29 @@
   </div>
   <div class="crowdstart-close" onclick="{ close }"></div>
   <div if="{ order.items && order.items.length > 0 && !error }" class="crowdstart-forms">
-    <div class="crowdstart-pages">
-      <yield/>
-      <div class="crowdstart-thankyou">
-        <form style="margin-top:80px">
-          <h1>{ opts.config.thankYouHeader }</h1>
-          <p>{ opts.config.thankYouBody }</p>
-          <h3 if="{ showSocial }">
-            { opts.config.shareHeader }
-          </h3>
-          <div if="{ showSocial }">
-            <a class="crowdstart-fb" href="" if="{ opts.config.facebook != '' }">
-              <i class="fa fa-facebook-square fa-3x"></i>
-            </a>
-            <a class="crowdstart-gp" href="" if="{ opts.config.googlePlus != '' }">
-              <i class="fa fa-google-plus-square fa-3x"></i>
-            </a>
-            <a class="crowdstart-tw" href="" if="{ opts.config.twitter != '' }">
-              <i class="fa fa-twitter-square fa-3x"></i>
-            </a>
-          </div>
-        </form>
+    <div class="crowdstart-screens">
+      <div class="crowdstart-screen-strip">
+        <yield/>
+        <div class="crowdstart-thankyou">
+          <form style="margin-top:80px">
+            <h1>{ opts.config.thankYouHeader }</h1>
+            <p>{ opts.config.thankYouBody }</p>
+            <h3 if="{ showSocial }">
+              { opts.config.shareHeader }
+            </h3>
+            <div if="{ showSocial }">
+              <a class="crowdstart-fb" href="" if="{ opts.config.facebook != '' }">
+                <i class="fa fa-facebook-square fa-3x"></i>
+              </a>
+              <a class="crowdstart-gp" href="" if="{ opts.config.googlePlus != '' }">
+                <i class="fa fa-google-plus-square fa-3x"></i>
+              </a>
+              <a class="crowdstart-tw" href="" if="{ opts.config.twitter != '' }">
+                <i class="fa fa-twitter-square fa-3x"></i>
+              </a>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
 

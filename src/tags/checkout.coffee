@@ -54,7 +54,7 @@ class CheckoutView extends View
     $ ()->
       requestAnimationFrame ()->
         screenCountPlus1 = screenCount + 1
-        $('.crowdstart-pages').css(width: '' + (screenCountPlus1 * 105) + '%')
+        $('.crowdstart-screen-strip').css(width: '' + (screenCountPlus1 * 105) + '%')
           .find('form')
           .parent()
           .css(
@@ -92,7 +92,7 @@ class CheckoutView extends View
 
     progressBar.setIndex i
 
-    $forms = $('.crowdstart-pages form')
+    $forms = $('.crowdstart-screens form')
     $forms
       .find('input, select, .select2-selection, a')
       .attr('tabindex', '-1')
@@ -102,7 +102,7 @@ class CheckoutView extends View
       $form.find('input, select, a').removeAttr('tabindex')
       $form.find('.select2-selection').attr('tabindex', '0')
 
-    $('.crowdstart-pages')
+    $('.crowdstart-screen-strip')
       .css
         '-ms-transform': 'translateX(-' + (100 / screenCountPlus1 * i) + '%)'
         '-webkit-transform': 'translateX(-' + (100 / screenCountPlus1 * i) + '%)'

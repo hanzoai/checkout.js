@@ -90,8 +90,12 @@
 .crowdstart-checkout {
   font-weight: 400;
 }
+.crowdstart-screens {
+  width: 100%;
+  display: table;
+}
 
-.crowdstart-pages > * {
+.crowdstart-screen-strip > * {
   float: left;
   display: block;
   position: relative;
@@ -204,7 +208,7 @@
   overflow: scroll;
 }
 
-.crowdstart-pages {
+.crowdstart-screen-strip {
   display: table;
 
   -webkit-transition: all .4s ease-in-out;
