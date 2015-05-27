@@ -17,7 +17,7 @@ checkoutCSS = require '../../css/checkout'
 loaderCSS = require '../../css/loader'
 select2CSS = require '../../vendor/css/select2'
 
-$ ()->
+$ ->
   $('head')
     .append($("<style>#{ select2CSS }</style>"))
     .append($("<style>#{ checkoutCSS }</style>"))
