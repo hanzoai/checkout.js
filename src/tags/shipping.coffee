@@ -98,7 +98,7 @@ class ShippingView extends View
     return true
 
   setDomesticTaxRate: ()->
-    state = @ctx.order.shippingAddress.state.toLowerCase()
+    state = (@ctx.order.shippingAddress.state || '').toLowerCase()
     if @ctx.order.shippingAddress.country == 'us' && (state == 'ca' || state == 'california')
       @ctx.order.taxRate = .075
     else
