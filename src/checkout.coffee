@@ -14,6 +14,12 @@ Payment = require './models/payment'
 
 theme = require './utils/theme'
 
+search = /([^&=]+)=?([^&]*)/g
+q = window.location.href.split('?')[1].split('&')
+qs = {}
+while (match = search.exec(q))
+  qs[decodeURIComponent(match[1])] = decodeURIComponent(match[2])
+
 # checkout
 #  id:     the id refered to by a anchor tag button
 #  api:    object of API Class
@@ -63,6 +69,9 @@ checkout = (id, api, order, user = (new User), config = {}) ->
 
     $('body').prepend $modal
     $('head').append($('<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">'))
+
+    if qs.referrer?
+      order.referrerId = qs.referrer
 
     model =
       payment: (new Payment)

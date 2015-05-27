@@ -141,11 +141,12 @@ class CheckoutView extends View
   shipping: ->
     items = @ctx.order.items
     shippingRate = @ctx.order.shippingRate || 0
-    shipping = 0
-    for item in items
-      shipping += shippingRate * item.quantity
+    # shipping = 0
+    # for item in items
+    #   shipping += shippingRate * item.quantity
 
-    return @ctx.order.shipping = shipping
+    # return @ctx.order.shipping = shipping
+    return @ctx.order.shipping = shippingRate
 
   updatePromoCode: (event)->
     @ctx.coupon.code = event.target.value
