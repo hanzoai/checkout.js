@@ -196,5 +196,7 @@ class CheckoutView extends View
           @updateIndex @screenIndex + 1
           @locked = false
         @update()
+      , ()=>
+        @locked = false
 
 module.exports = new CheckoutView

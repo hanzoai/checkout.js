@@ -86,13 +86,16 @@ class ShippingView extends View
     @ctx.order.shippingAddress.country = c
     return true
 
-  validate: (cb)->
-    cb() if @updateLine1(target: $('#crowdstart-line1')[0]) &&
+  validate: (success=(()->), fail=(()->))->
+    if @updateLine1(target: $('#crowdstart-line1')[0]) &&
     @updateLine2(target: $('#crowdstart-line2')[0]) &&
     @updateCity(target: $('#crowdstart-city')[0]) &&
     @updateState(target: $('#crowdstart-state')[0]) &&
     @updatePostalCode(target: $('#crowdstart-postalCode')[0]) &&
     @updateCountry(target: $('#crowdstart-country-select')[0])
+      success()
+    else
+      fail()
 
 module.exports = new ShippingView
 

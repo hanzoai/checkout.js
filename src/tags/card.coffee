@@ -103,13 +103,18 @@ class CardView extends View
       form.showError event.target, 'Enter a valid CVC number', width: '140px'
       return false
 
-  validate: (cb)->
+  validate: (success=(()->), fail=(()->))->
     if @updateEmail(target: $('#crowdstart-email')[0]) &&
     @updateName(target: $('#crowdstart-name')[0]) &&
     @updateCreditCard(target: $('#crowdstart-credit-card')[0]) &&
     @updateExpiry(target: $('#crowdstart-expiry')[0]) &&
     @updateCVC(target: $('#crowdstart-cvc')[0])
       requestAnimationFrame ()->
-        cb() if $('.jp-card-invalid').length == 0
+        if $('.jp-card-invalid').length == 0
+          success()
+        else
+          fail()
+    else
+      fail()
 
 module.exports = new CardView
