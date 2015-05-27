@@ -171,7 +171,7 @@ class CheckoutView extends View
     return 0
 
   tax: ()->
-    return Math.ceil((@ctx.order.taxRate || 0) * @subtotal())
+    return @ctx.order.tax = Math.ceil((@ctx.order.taxRate || 0) * @subtotal())
 
   total: ()->
     total = @subtotal() + @shipping() + @tax() + @shipping()
