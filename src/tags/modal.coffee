@@ -12,7 +12,7 @@ module.exports = new View 'modal', modalHTML, (opts)->
       window.history.back()
 
   @closeOnClickOff = (event)->
-    if $(event.target).hasClass('crowdstart-modal')
+    if $(event.target).hasClass('crowdstart-modal') || $(event.target).parent().hasClass('crowdstart-modal-target')
       close()
     else
       return true #bubble
