@@ -1,9 +1,4 @@
 .crowdstart-modal {
-  position: absolute;
-  z-index: 9999;
-}
-
-.crowdstart-modal {
   content: "";
   height: 0;
   opacity: 0;
@@ -14,6 +9,11 @@
   -webkit-transition: opacity 0.5s ease-in-out, height 0.5s step-end;
   -ms-transition: opacity 0.5s ease-in-out, height 0.5s step-end;
   transition: opacity 0.5s ease-in-out, height 0.5s step-end;
+}
+
+.crowdstart-modal-target {
+  z-index: 9999;
+  position: fixed;
 }
 
 .crowdstart-modal-target:target + .crowdstart-modal {
