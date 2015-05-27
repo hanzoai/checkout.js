@@ -1,17 +1,12 @@
 /* MEDIAQUERY and TRANSITIONS */
-:target checkout {
+checkout {
   position: fixed;
   width: 100%;
   height: 100%;
   overflow: auto;
   display: block;
   top: 0;
-}
 
-.crowdstart-checkout {
-  position: fixed;
-  left: 50%;
-  top: 5%;
   -webkit-transform: translate(0, -200%);
   -ms-transform: translate(0, -200%);
   transform: translate(0, -200%);
@@ -19,12 +14,17 @@
   -ms-transition: transform 0.5s ease-in-out, max-height 0.5s ease-in-out;
   transition: transform 0.5s ease-in-out, max-height 0.5s ease-in-out;
   z-index: 9999;
+}
+
+.crowdstart-checkout {
+  position: relative;
+  left: 50%;
+  top: 5%;
 
   max-height: 95%;
 }
 
-:target .crowdstart-checkout {
-  position: relative;
+:target checkout {
   -webkit-transform: translate(0, 0);
   -ms-transform: translate(0, 0);
   transform: translate(0, 0);
@@ -33,6 +33,9 @@
 @media all and (max-width: 400px) {
   :target .crowdstart-checkout {
     top: -2%;
+  }
+
+  :target checkout {
     -webkit-transform: translate(0, 0) scale(0.9, 0.9);
     -ms-transform: translate(0, 0) scale(0.9, 0.9);
     transform: translate(0, 0) scale(0.9, 0.9);
@@ -42,6 +45,9 @@
 @media all and (max-width: 350px) {
   :target .crowdstart-checkout {
     top: -20%;
+  }
+
+  :target checkout {
     -webkit-transform: translate(0, 0) scale(0.6, 0.6);
     -ms-transform: translate(0, 0) scale(0.6, 0.6);
     transform: translate(0, 0) scale(0.6, 0.6);
