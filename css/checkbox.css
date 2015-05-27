@@ -10,6 +10,7 @@
     height: 12px;
     position: relative;
     top: 2px;
+    margin-right: 5px;
   }
 
   .crowdstart-checkbox-control input[type="checkbox"] + label {

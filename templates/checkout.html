@@ -9,23 +9,32 @@
       <div class="crowdstart-screen-strip">
         <yield/>
         <div class="crowdstart-thankyou">
-          <form style="margin-top:80px">
+          <form style="margin-top:20px">
             <h1>{ opts.config.thankYouHeader }</h1>
-            <p>{ opts.config.thankYouBody }</p>
-            <h3 if="{ showSocial }">
-              { opts.config.shareHeader }
-            </h3>
-            <div if="{ showSocial }">
-              <a class="crowdstart-fb" href="" if="{ opts.config.facebook != '' }">
-                <i class="fa fa-facebook-square fa-3x"></i>
-              </a>
-              <a class="crowdstart-gp" href="" if="{ opts.config.googlePlus != '' }">
-                <i class="fa fa-google-plus-square fa-3x"></i>
-              </a>
-              <a class="crowdstart-tw" href="" if="{ opts.config.twitter != '' }">
-                <i class="fa fa-twitter-square fa-3x"></i>
-              </a>
+            <p style="margin-top:10px;">{ opts.config.thankYouBody }</p>
+            <div class="content_part_social1555">
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbellabeat.com" class="share_thing555 share_thing_fb" target="_blank">
+                    <img src="/static/img/fac.png" alt="Facebook">
+                </a>
             </div>
+            <div class="content_part_social1555">
+                <a href="https://twitter.com/intent/tweet?url=www.bellabeat.com&amp;text=Track+your+sleep,+stress+and+movement+with+%23LEAF+-+the+world's+smartest+fashion+jewelry&amp;via=GetBellaBeat" class="share_thing555 share_thing_twit" target="_blank">
+                    <img src="/static/img/tw.png" alt="Twitter">
+                </a>
+            </div>
+            <div class="content_part_social1555">
+                <a href="javascript:void((function()%7Bvar%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','https://assets.pinterest.com/js/pinmarklet.js?r='+Math.random()*99999999);document.body.appendChild(e)%7D)());">
+				  <img src="/static/img/pin.png" alt="Pinterest">
+				</a>
+            </div>
+            <div class="content_part_social1555">
+                <a href="mailto:%20?Subject=LEAF%20By%20Bellabeat%20<3&amp;body=Track%20your%20sleep,%20stress%20and%20movement%20with%20LEAF%20-%20the%20world's%20smartest%20fashion%20jewelry%20www.bellabeat.com" class="share_thing555 share_thing_fb" target="_blank">
+                    <img src="/static/img/em.png" alt="E-mail">
+                </a>
+            </div>
+            <h3 style="margin-top:70px;margin-bottom:0px">Or Use Your Personal Invite Link</h3>
+            <h4 style="margin-top:0px" class="copy_and_paste">Copy &amp; paste the URL below wherever you want</h4>
+            <input style="width: 100%; margin-bottom:0px" readonly="" class="link_for_share" value="http://www.bellabeat.com/?referrer={ referrerId }">
           </form>
         </div>
       </div>
