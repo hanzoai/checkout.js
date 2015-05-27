@@ -218,11 +218,18 @@ class CheckoutView extends View
       @screens[@screenIndex].validate =>
         if @screenIndex >= @screens.length - 1
           @checkingOut = true
-          @ctx.opts.api.charge @ctx.opts.model, =>
+          @ctx.opts.api.charge @ctx.opts.model, (order)=>
             @updateIndex @screenIndex + 1
             @locked = false
             @finished = true
-            @update()
+            if @ctx.opts.config.referralProgram?
+              api.referrer order, @ctx.opts.config.referralProgram, (referrer)=>
+                @ctx.referrerId = referrer.id
+                @update()
+              , ()=>
+                @update()
+            else
+              @update()
             events.track @ctx.opts.pixels?.checkout
           , =>
             @checkingOut = false

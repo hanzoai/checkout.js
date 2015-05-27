@@ -48,6 +48,15 @@
             twitter: 'suchtees',
             internationalShipping: 2000,
             showPromoCode: true,
+            referralProgram: {
+              name: "$15 off each referral",
+              triggers: [0],
+              actions: [{
+                type: "Credit",
+                currency: "usd",
+                amount: 1500,
+              }],
+            }
           }
 
           // Customize theme
