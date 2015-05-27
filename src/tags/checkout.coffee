@@ -25,6 +25,7 @@ class CheckoutView extends View
   tag: 'checkout'
   html: checkoutHTML
   checkingOut: false
+  checkingPromoCode: false
   taxRate: 0
   constructor: ()->
     super(@tag, @html, @js)
@@ -48,6 +49,9 @@ class CheckoutView extends View
     @user = opts.model.user
     @payment = opts.model.payment
     @order = opts.model.order
+
+    @coupon = {}
+    @showPromoCode = false
 
     @currency = currency
 
@@ -81,9 +85,15 @@ class CheckoutView extends View
         view.reset()
         view.updateIndex(0)
 
+    @invalidCode = false
+
+    @updatePromoCode = (event) => @view.updatePromoCode(event)
+    @submitPromoCode = (event) => @view.submitPromoCode(event)
     @close = (event) => @view.close(event)
     @next = (event) => @view.next(event)
     @back = (event) => @view.back(event)
+
+    @togglePromoCode = ()=> @showPromoCode = !@showPromoCode
 
   updateIndex: (i)->
     @screenIndex = i
@@ -120,6 +130,7 @@ class CheckoutView extends View
     subtotal = 0
     for item in items
       subtotal += item.price * item.quantity
+    subtotal -= @discount()
 
     @ctx.order.subtotal = subtotal
     return subtotal
@@ -132,6 +143,36 @@ class CheckoutView extends View
 
     @ctx.order.shipping = shipping
     return shipping
+
+  updatePromoCode: (event)->
+    @ctx.coupon.code = event.target.value
+
+  submitPromoCode: ()->
+    if @ctx.coupon.code?
+      if @checkingPromoCode
+        return
+      @checkingPromoCode = true
+      @ctx.opts.api.getCouponCode @ctx.coupon.code, (coupon)=>
+        @ctx.coupon = coupon
+        @ctx.order.couponCodes = [coupon.code]
+        @checkingPromoCode = false
+        @update()
+      , ()=>
+        @checkingPromoCode = false
+        @ctx.invalidCode = true
+        @update()
+
+  discount: ()->
+    if @ctx.coupon.type == 'flat'
+      if @ctx.coupon.productId == ''
+        return (@ctx.coupon.amount || 0)
+      else
+        discount = 0
+        for i, item in @ctx.order.items
+          if item.productId == @ctx.coupon.productId
+            discount += (@ctx.coupon.amount || 0) * item.quantity
+        return discount
+    return 0
 
   tax: ()->
     tax = 0

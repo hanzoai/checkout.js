@@ -14,6 +14,11 @@ theme =
         background-color: #{ theme.currentTheme.background } !important;
       }
 
+      .crowdstart-promocode-button {
+        background-color: #{ theme.currentTheme.promoCodeBackground } !important;
+        color: #{ theme.currentTheme.promoCodeForeground } !important;
+      }
+
       .crowdstart-checkout-button {
         background-color: #{ theme.currentTheme.calloutBackground } !important;
         color: #{ theme.currentTheme.calloutForeground } !important;
@@ -75,6 +80,10 @@ theme =
         background-color: #{ theme.currentTheme.error } !important;
       }
 
+      .crowdstart-show-promocode {
+        color: #{ theme.currentTheme.showPromoCode } !important;
+      }
+
       .crowdstart-loader {
         border-top: 1.1em solid #{ theme.currentTheme.spinnerTrail } !important;
         border-right: 1.1em solid #{ theme.currentTheme.spinnerTrail } !important;
@@ -131,6 +140,10 @@ theme =
         border-radius: #{ theme.currentTheme.borderRadius }px !important;
       }
 
+      .crowdstart-promocode-button {
+        border-radius: #{ theme.currentTheme.borderRadius }px !important;
+      }
+
       .crowdstart-checkout-button {
         border-radius: #{ theme.currentTheme.borderRadius }px !important;
       }
@@ -157,8 +170,11 @@ theme.setTheme(
   dark: 'lightslategray'
   medium: '#DDDDDD'
   error: 'red'
+  promoCodeForeground: 'white'
+  promoCodeBackground: 'lightslategray'
   calloutForeground: 'white'
   calloutBackground: '#27AE60'
+  showPromoCode: 'steelblue'
   progress: '#27AE60'
   spinner: 'rgb(255,255,255)'
   spinnerTrail: 'rgba(255,255,255,0.2)'
