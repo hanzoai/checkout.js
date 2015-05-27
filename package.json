@@ -1,6 +1,6 @@
 {
   "name": "crowdstart-checkout",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "One Click Checkout for Crowdstart",
   "main": "checkout.js",
   "scripts": {
