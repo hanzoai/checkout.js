@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "order.js",
+  "sourceRoot": "../..",
+  "sources": [
+    "src/models/order.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAmBA,IAAA,KAAA;;AAAA,MAAM,CAAC,OAAP,GAAuB;AACR,EAAA,eAAC,QAAD,EAAY,QAAZ,EAAuB,eAAvB,GAAA;AACX,IADY,IAAC,CAAA,WAAD,QACZ,CAAA;AAAA,IADuB,IAAC,CAAA,WAAD,QACvB,CAAA;AAAA,IADkC,IAAC,CAAA,4CAAD,kBAAiB;AAAA,MAAC,OAAA,EAAS,IAAV;KACnD,CAAA;AAAA,IAAA,IAAC,CAAA,KAAD,GAAO,EAAP,CADW;EAAA,CAAb;;eAAA;;IADF,CAAA"
+}
