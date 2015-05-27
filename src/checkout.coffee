@@ -38,6 +38,9 @@ checkout = (id, api, order, user = (new User), config = {}) ->
   config.googlePlus = config.googlePlus || ''
   config.twitter    = config.twitter    || ''
 
+  # Configure analytics/conversion tracking
+  config.pixels     = config.pixels || {}
+
   api.getItems order, (order) ->
     $modal = $('modal').remove()
     $modal = $ '''

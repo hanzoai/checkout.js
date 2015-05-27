@@ -9,6 +9,8 @@ currency = require '../utils/currency'
 Card = require 'card'
 Order = require '../models/order'
 
+events = require '../events'
+
 progressBar = require './progressbar'
 
 checkoutCSS = require '../../css/checkout'
@@ -55,8 +57,8 @@ class CheckoutView extends View
 
     @currency = currency
 
-    $ ()->
-      requestAnimationFrame ()->
+    $ ->
+      requestAnimationFrame ->
         window.location.hash = ''
         screenCountPlus1 = screenCount + 1
         $('.crowdstart-screen-strip').css(width: '' + (screenCountPlus1 * 105) + '%')
@@ -119,14 +121,14 @@ class CheckoutView extends View
         '-webkit-transform': 'translateX(-' + (100 / screenCountPlus1 * i) + '%)'
         transform: 'translateX(-' + (100 / screenCountPlus1 * i) + '%)'
 
-  reset: ()->
+  reset: ->
     @checkingOut = false
     @finished = false
     if @ctx.error == true
       @updateIndex(0)
       @ctx.error = false
 
-  subtotal: ()->
+  subtotal: ->
     items = @ctx.order.items
     subtotal = 0
     for item in items
@@ -136,14 +138,14 @@ class CheckoutView extends View
     @ctx.order.subtotal = subtotal
     return subtotal
 
-  shipping: ()->
+  shipping: ->
     items = @ctx.order.items
     return @ctx.order.shipping || 0
 
   updatePromoCode: (event)->
     @ctx.coupon.code = event.target.value
 
-  submitPromoCode: ()->
+  submitPromoCode: ->
     if @ctx.coupon.code?
       if @checkingPromoCode
         return
@@ -170,16 +172,16 @@ class CheckoutView extends View
         return discount
     return 0
 
-  tax: ()->
+  tax: ->
     return @ctx.order.tax = Math.ceil((@ctx.order.taxRate || 0) * @subtotal())
 
-  total: ()->
+  total: ->
     total = @subtotal() + @shipping() + @tax() + @shipping()
 
     @ctx.order.total = total
     return total
 
-  close: ()->
+  close: ->
     if @finished
       setTimeout ()=>
         @ctx.order = new Order()
@@ -190,13 +192,13 @@ class CheckoutView extends View
     , 500
     window.history.back()
 
-  back: ()->
+  back: ->
     if @screenIndex <= 0
       @close()
     else
       @updateIndex @screenIndex - 1
 
-  next: ()->
+  next: ->
     if @locked
       return
 
@@ -213,15 +215,16 @@ class CheckoutView extends View
         @locked = false
         return
 
-      @screens[@screenIndex].validate ()=>
+      @screens[@screenIndex].validate =>
         if @screenIndex >= @screens.length - 1
           @checkingOut = true
-          @ctx.opts.api.charge @ctx.opts.model, ()=>
+          @ctx.opts.api.charge @ctx.opts.model, =>
             @updateIndex @screenIndex + 1
             @locked = false
             @finished = true
             @update()
-          , ()=>
+            events.track @ctx.opts.pixels?.checkout
+          , =>
             @checkingOut = false
             @locked = false
             @ctx.error = true
@@ -230,7 +233,7 @@ class CheckoutView extends View
           @updateIndex @screenIndex + 1
           @locked = false
         @update()
-      , ()=>
+      , =>
         @locked = false
 
 module.exports = new CheckoutView
