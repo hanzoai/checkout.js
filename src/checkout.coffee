@@ -45,8 +45,8 @@ checkout = (id, api, order, user = (new User), config = {}) ->
       </modal>
       '''
 
-    $(window).off('.crowdstart-modal').on('scroll.crowdstart-modal', ->
-      $modal.children().last().css('top', $(@).scrollTop() + 'px'))
+    $(window).off('.crowdstart-modal-target').on('scroll.crowdstart-modal-target', ->
+      $modal.children().first().css('top', $(@).scrollTop() + 'px'))
 
     for screen in config.screens
       $modal.find('checkout').append $ """
