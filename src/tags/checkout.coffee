@@ -53,7 +53,7 @@ class CheckoutView extends View
     @order.taxRate = 0
 
     @coupon = {}
-    @showPromoCode = false
+    @showPromoCode = opts.config.showPromoCode == true
 
     @currency = currency
 
@@ -162,7 +162,7 @@ class CheckoutView extends View
 
   discount: ()->
     if @ctx.coupon.type == 'flat'
-      if @ctx.coupon.productId == ''
+      if !@ctx.coupon.productId? || @ctx.coupon.productId == ''
         return (@ctx.coupon.amount || 0)
       else
         discount = 0
