@@ -28,6 +28,8 @@ class CardView extends View
           .children()
           .css
             height: '192px'
+            '-webkit-transform': 'scale(0.514285714285714)'
+            '-ms-transform': 'scale(0.514285714285714)'
             transform: 'scale(0.514285714285714)'
 
     @user = opts.model.user

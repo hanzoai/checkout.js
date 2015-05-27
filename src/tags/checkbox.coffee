@@ -7,3 +7,7 @@ $ ()->
     .append($("<style>#{ checkboxCSS }</style>"))
 
 module.exports = new View 'checkbox', checkboxHTML, ()->
+  @checked = false
+  # This is to fix safari
+  @toggle = ()=>
+    @checked = !@checked

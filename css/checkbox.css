@@ -99,6 +99,8 @@
   .crowdstart-checkbox-short-part {
     width: 11px;
     height: 4px;
+    -webkit-transform: rotate(60deg);
+    -ms-transform: rotate(60deg);
     transform: rotate(60deg);
     position: relative;
     top: 8px;
@@ -108,6 +110,8 @@
   .crowdstart-checkbox-long-part {
     width: 22px;
     height: 4px;
+    -webkit-transform: rotate(130deg);
+    -ms-transform: rotate(130deg);
     transform: rotate(130deg);
     position: relative;
     top: 2px;
