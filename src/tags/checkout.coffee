@@ -192,7 +192,7 @@ class CheckoutView extends View
             for item in @ctx.order.items
               if item.productId == @ctx.coupon.productId
                 discount += (@ctx.coupon.amount || 0) * item.quantity * 0.01
-        return discount
+        return Math.floor discount
 
     return 0
 
