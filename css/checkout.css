@@ -514,3 +514,8 @@ checkout {
   width: 67%;
 }
 /* END Columns */
+
+.crowdstart-estimated-delivery {
+  width: 100%;
+  text-align: right;
+}
