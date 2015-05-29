@@ -29,43 +29,45 @@
 
         <script src="js/checkout.js"></script>
         <script>
-          // Create a new client for Crowdstart API.
-          var api = new Crowdstart.API('eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJiaXQiOjI0LCJqdGkiOiJVMDc0RlU3MHVhWSIsInN1YiI6IkVxVEdveHA1dTMifQ.g_MqPv2s0DnyFdhkUMzYn9mtKaXNwmlEM14WcFq_s5Yd2eqH16TB9thxOdDE8ylcoBMgyI3eimSHJxGq7oj-EA')
+          (function() {
+            // Create a new client for Crowdstart API.
+            var api = new Crowdstart.API('eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJiaXQiOjI0LCJqdGkiOiJVMDc0RlU3MHVhWSIsInN1YiI6IkVxVEdveHA1dTMifQ.g_MqPv2s0DnyFdhkUMzYn9mtKaXNwmlEM14WcFq_s5Yd2eqH16TB9thxOdDE8ylcoBMgyI3eimSHJxGq7oj-EA')
 
-          // Create default order, should match whatever the user is trying to pay for
-          var order = new Crowdstart.Order('usd',[
-            new Crowdstart.ItemRef('84cRXBYs9jX7w', -1),
-            new Crowdstart.ItemRef('doge-shirt', 100)
-          ]);
+            // Create default order, should match whatever the user is trying to pay for
+            var order = new Crowdstart.Order('usd',[
+              new Crowdstart.ItemRef('84cRXBYs9jX7w', -1),
+              new Crowdstart.ItemRef('doge-shirt', 100)
+            ]);
 
-          // Create default user (pre-populated in form fields)
-          var user = new Crowdstart.User('joe@fan.com', 'Joe', 'Fan')
+            // Create default user (pre-populated in form fields)
+            var user = new Crowdstart.User('joe@fan.com', 'Joe', 'Fan')
 
-          // Social sharing settings
-          var config = {
-            facebook: 'suchtees',
-            googlePlus: 'suchtees',
-            twitter: 'suchtees',
-            internationalShipping: 2000,
-            showPromoCode: true,
-            referralProgram: {
-              name: "$15 off each referral",
-              triggers: [0],
-              actions: [{
-                type: "Credit",
-                currency: "usd",
-                amount: 1500,
-              }],
+            // Social sharing settings
+            var config = {
+              facebook: 'suchtees',
+              googlePlus: 'suchtees',
+              twitter: 'suchtees',
+              internationalShipping: 2000,
+              showPromoCode: true,
+              referralProgram: {
+                name: "$15 off each referral",
+                triggers: [0],
+                actions: [{
+                  type: "Credit",
+                  currency: "usd",
+                  amount: 1500,
+                }],
+              }
             }
-          }
 
-          // Customize theme
-          Crowdstart.setTheme({
-            borderRadius: 5,
-          })
+            // Customize theme
+            Crowdstart.setTheme({
+              borderRadius: 5,
+            })
 
-          // Instantiate widget, can be called multiple times, overriding order in widget.
-          Crowdstart.Checkout('checkout', api, order, user, config);
+            // Instantiate widget, can be called multiple times, overriding order in widget.
+            Crowdstart.Checkout('checkout', api, order, user, config);
+          })()
         </script>
     </body>
 </html>
