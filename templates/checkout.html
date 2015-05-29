@@ -9,21 +9,22 @@
       <div class="crowdstart-screen-strip">
         <yield/>
         <div class="crowdstart-thankyou">
-          <form style="margin-top:20px">
+          <form style="margin-top:50px">
             <h1>{ opts.config.thankYouHeader }</h1>
             <p style="margin-top:10px;">{ opts.config.thankYouBody }</p>
-            <div style="padding-top:0px; padding-bottom: 0px" class="owed0">
-              <h1>Earn $15 For Each Invite</h1>
-              <p>Each friend that you invite, you earn! After 7 successful referrals get a 2nd LEAF FREE.</p>
+            <div style="padding-top:20px; padding-bottom: 0px" class="owed0">
+              <h1>Share health with your friends</h1>
+              <!-- <h1>Earn $15 For Each Invite</h1> -->
+              <!-- <p>Each friend that you invite, you earn! After 7 successful referrals get a 2nd LEAF FREE.</p> -->
             </div>
 
             <div class="content_part_social1555">
-                <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbellabeat.com%2F%3Freferrer%3D{ referrerId }" class="share_thing555 share_thing_fb" target="_blank">
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbellabeat.com" class="share_thing555 share_thing_fb" target="_blank">
                     <img src="/static/img/fac.png" alt="Facebook">
                 </a>
             </div>
             <div class="content_part_social1555">
-              <a href="https://twitter.com/intent/tweet?url=www.bellabeat.com&amp;text=Track+your+sleep,+stress+and+movement+with+%23LEAF+-+the+world's+smartest+fashion+jewelry.+http%3A%2F%2Fwww.bellabeat.com%2F%3Freferrer%3D{ referrerId }&amp;via=GetBellaBeat" class="share_thing555 share_thing_twit" target="_blank">
+              <a href="https://twitter.com/intent/tweet?url=www.bellabeat.com&amp;text=Track+your+sleep,+stress+and+movement+with+%23LEAF+-+the+world's+smartest+fashion+jewelry.+http%3A%2F%2Fwww.bellabeat.com&amp;via=GetBellaBeat" class="share_thing555 share_thing_twit" target="_blank">
                     <img src="/static/img/tw.png" alt="Twitter">
                 </a>
             </div>
@@ -33,12 +34,32 @@
 				</a>
             </div>
             <div class="content_part_social1555">
-              <a href="mailto:%20?Subject=LEAF%20By%20Bellabeat%20<3&amp;body=Track%20your%20sleep,%20stress%20and%20movement%20with%20LEAF%20-%20the%20world's%20smartest%20fashion%20jewelry.%20http%3A%2F%2Fwww.bellabeat.com%2F%3Freferrer%3D{ referrerId }" class="share_thing555 share_thing_fb" target="_blank">
+              <a href="mailto:%20?Subject=LEAF%20By%20Bellabeat%20<3&amp;body=Track%20your%20sleep,%20stress%20and%20movement%20with%20LEAF%20-%20the%20world's%20smartest%20fashion%20jewelry.%20http%3A%2F%2Fwww.bellabeat.com" class="share_thing555 share_thing_fb" target="_blank">
                     <img src="/static/img/em.png" alt="E-mail">
                 </a>
             </div>
-            <h3 style="margin-top:80px;margin-bottom:0px">Your Personal Referral Link</h3>
-            <input style="width: 100%; margin-bottom:0px" readonly="" class="link_for_share" value="http://www.bellabeat.com/?referrer={ referrerId }">
+            <!-- <div class="content_part_social1555"> -->
+            <!--     <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbellabeat.com%2F%3Freferrer%3D{ referrerId }" class="share_thing555 share_thing_fb" target="_blank"> -->
+            <!--         <img src="/static/img/fac.png" alt="Facebook"> -->
+            <!--     </a> -->
+            <!-- </div> -->
+            <!-- <div class="content_part_social1555"> -->
+            <!--   <a href="https://twitter.com/intent/tweet?url=www.bellabeat.com&amp;text=Track+your+sleep,+stress+and+movement+with+%23LEAF+-+the+world's+smartest+fashion+jewelry.+http%3A%2F%2Fwww.bellabeat.com%2F%3Freferrer%3D{ referrerId }&amp;via=GetBellaBeat" class="share_thing555 share_thing_twit" target="_blank"> -->
+            <!--         <img src="/static/img/tw.png" alt="Twitter"> -->
+            <!--     </a> -->
+            <!-- </div> -->
+            <!-- <div class="content_part_social1555"> -->
+            <!--     <a href="javascript:void((function()%7Bvar%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','https://assets.pinterest.com/js/pinmarklet.js?r='+Math.random()*99999999);document.body.appendChild(e)%7D)());"> -->
+				  <!-- <img src="/static/img/pin.png" alt="Pinterest"> -->
+				<!-- </a> -->
+            <!-- </div> -->
+            <!-- <div class="content_part_social1555"> -->
+            <!--   <a href="mailto:%20?Subject=LEAF%20By%20Bellabeat%20<3&amp;body=Track%20your%20sleep,%20stress%20and%20movement%20with%20LEAF%20-%20the%20world's%20smartest%20fashion%20jewelry.%20http%3A%2F%2Fwww.bellabeat.com%2F%3Freferrer%3D{ referrerId }" class="share_thing555 share_thing_fb" target="_blank"> -->
+            <!--         <img src="/static/img/em.png" alt="E-mail"> -->
+            <!--     </a> -->
+            <!-- </div> -->
+            <!-- <h3 style="margin-top:80px;margin-bottom:0px">Your Personal Referral Link</h3> -->
+            <!-- <input style="width: 100%; margin-bottom:0px" readonly="" class="link_for_share" value="http://www.bellabeat.com/?referrer={ referrerId }"> -->
           </form>
         </div>
       </div>
@@ -116,7 +137,7 @@
         <div class="crowdstart-col-1-2 crowdstart-text-right crowdstart-money">{ currency.renderUICurrencyFromJSON(order.currency, view.total()) } ({order.currency.toUpperCase()})</div>
       </div>
 
-      <div class="crowdstart-col-1-1 crowdstart-text-right">Ships Late June 2015</div>
+      <div class="crowdstart-col-1-1 crowdstart-text-right">2nd Batch Ships July 2015</div>
     </div>
 
     <div class="{ crowdstart-paging: true, crowdstart-collapsed: view.screenIndex >= callToActions.length, crowdstart-hidden: view.screenIndex >= callToActions.length }">
