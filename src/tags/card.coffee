@@ -49,6 +49,10 @@ class CardView extends View
     name = event.target.value
     if form.isRequired name
       @ctx.user.name = name
+
+      i = name.indexOf ' '
+      @ctx.user.firstName = name.slice(0, i)
+      @ctx.user.lastName = name.slice(i+1)
       return true
     else
       form.showError event.target, 'Enter the name on your credit card'
