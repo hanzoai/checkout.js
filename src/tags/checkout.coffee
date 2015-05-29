@@ -17,7 +17,7 @@ checkoutCSS = require '../../css/checkout'
 loaderCSS = require '../../css/loader'
 select2CSS = require '../../vendor/css/select2'
 
-$ ()->
+$ ->
   $('head')
     .append($("<style>#{ select2CSS }</style>"))
     .append($("<style>#{ checkoutCSS }</style>"))
@@ -164,21 +164,36 @@ class CheckoutView extends View
         @ctx.order.couponCodes = [coupon.code]
         @checkingPromoCode = false
         @update()
-      , ()=>
+      , =>
         @checkingPromoCode = false
         @ctx.invalidCode = true
         @update()
 
-  discount: ()->
-    if @ctx.coupon.type == 'flat'
-      if !@ctx.coupon.productId? || @ctx.coupon.productId == ''
-        return (@ctx.coupon.amount || 0)
-      else
+  discount: ->
+    console.log 'discount'
+
+    switch @ctx.coupon.type
+      when 'flat'
+        if !@ctx.coupon.productId? || @ctx.coupon.productId == ''
+          return (@ctx.coupon.amount || 0)
+        else
+          discount = 0
+          for item in @ctx.order.items
+            if item.productId == @ctx.coupon.productId
+              discount += (@ctx.coupon.amount || 0) * item.quantity
+          return discount
+
+      when 'percent'
         discount = 0
-        for item in @ctx.order.items
-          if item.productId == @ctx.coupon.productId
-            discount += (@ctx.coupon.amount || 0) * item.quantity
-        return discount
+        if !@ctx.coupon.productId? || @ctx.coupon.productId == ''
+          for item in @ctx.order.items
+            discount += (@ctx.coupon.amount || 0) * item.price * item.quantity * 0.01
+        else
+            for item in @ctx.order.items
+              if item.productId == @ctx.coupon.productId
+                discount += (@ctx.coupon.amount || 0) * item.quantity * 0.01
+        return Math.floor discount
+
     return 0
 
   tax: ->

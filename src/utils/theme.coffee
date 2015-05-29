@@ -148,6 +148,14 @@ theme =
         border-radius: #{ theme.currentTheme.borderRadius }px !important;
       }
 
+      .select2-dropdown {
+        border-radius: #{ theme.currentTheme.borderRadius }px !important;
+      }
+
+      .select2-selection {
+        border-radius: #{ theme.currentTheme.borderRadius }px !important;
+      }
+
       .crowdstart-promocode-button {
         border-radius: #{ theme.currentTheme.borderRadius }px !important;
       }
