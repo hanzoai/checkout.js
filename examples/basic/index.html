@@ -21,7 +21,7 @@
 
         <!-- Button triggers checkout -->
         <div style="margin-top: 25%; text-align:center;">
-          <a class="btn" href="#checkout">Buy Now</a>
+          <a class="btn">Buy Now</a>
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -65,8 +65,9 @@
               borderRadius: 5,
             })
 
+            Crowdstart.Button('.btn')
             // Instantiate widget, can be called multiple times, overriding order in widget.
-            Crowdstart.Checkout('checkout', api, order, user, config);
+            Crowdstart.Checkout(api, order, user, config);
           })()
         </script>
     </body>

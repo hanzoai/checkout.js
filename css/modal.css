@@ -1,3 +1,10 @@
+modal {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .crowdstart-modal {
   content: "";
   height: 0;
@@ -13,10 +20,12 @@
 
 .crowdstart-modal-target {
   z-index: 9999;
-  position: fixed;
+  position: absolute;
+  width: 0%;
+  left: 50%;
 }
 
-.crowdstart-modal-target:target + .crowdstart-modal {
+.crowdstart-active .crowdstart-modal {
   height: 5000px;
   opacity: 1;
 

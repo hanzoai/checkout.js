@@ -22,7 +22,6 @@ if q?
     qs[decodeURIComponent(match[1])] = decodeURIComponent(match[2])
 
 # checkout
-#  id:     the id refered to by a anchor tag button
 #  api:    object of API Class
 #  order:  object of Order Class
 #  config: config object such as:
@@ -31,7 +30,7 @@ if q?
 #      callToActions: ['Pre-order'],
 #    }
 #
-checkout = (id, api, order, user = (new User), config = {}) ->
+checkout = (api, order, user = (new User), config = {}) ->
   config.callToActions  = config.callToActions  || ['Pre-Order', 'Confirm']
   config.thankYouHeader = config.thankYouHeader || 'Thank You'
   config.thankYouBody   = config.thankYouBody   || 'You will receive a confirmation email for your preorder.'
@@ -59,8 +58,15 @@ checkout = (id, api, order, user = (new User), config = {}) ->
       </modal>
       '''
 
-    $(window).off('.crowdstart-modal-target').on('scroll.crowdstart-modal-target', ->
-      $modal.children().first().css('top', $(@).scrollTop() + 'px'))
+    $(window).off('.crowdstart-modal-target')
+      .on('scroll.crowdstart-modal-target', ->
+        if !$modal.hasClass 'crowdstart-active'
+          $modal.children().first().css('top', $(@).scrollTop() + 'px'))
+      .on('resize.crowdstart-modal-target', ->
+        $modal.children().first().css('height', $(window).height() + 'px'))
+
+    requestAnimationFrame ->
+      $modal.children().first().css('height', $(window).height() + 'px')
 
     for screen in config.screens
       $modal.find('checkout').append $ """
@@ -80,15 +86,21 @@ checkout = (id, api, order, user = (new User), config = {}) ->
       user:    user
 
     riot.mount 'modal',
-      id:     id
       api:    api
       model:  model
       config: config
+
+button = (sel)->
+  $el = $(sel)
+  $el.off('.crowdstart-button').on('click.crowdstart-button', ()->
+    $('modal').addClass('crowdstart-active')
+    return false)
 
 if window?
   window.Crowdstart =
     API:      API
     Checkout: checkout
+    Button:   button
     ItemRef:  ItemRef
     Order:    Order
     User:     User

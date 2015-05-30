@@ -1,9 +1,8 @@
 /* MEDIAQUERY and TRANSITIONS */
 checkout {
-  position: fixed;
+  position: relative;
   width: 100%;
   height: 100%;
-  overflow: auto;
   display: block;
   top: 0;
 
@@ -17,7 +16,7 @@ checkout {
 }
 
 .crowdstart-checkout {
-  position: relative;
+  position: absolute;
   left: 50%;
   top: 5%;
   z-index: 9999;
@@ -25,14 +24,14 @@ checkout {
   max-height: 95%;
 }
 
-:target checkout {
+.crowdstart-active checkout {
   -webkit-transform: translate(0, 0);
   -ms-transform: translate(0, 0);
   transform: translate(0, 0);
 }
 
 @media all and (max-width: 400px) {
-  :target .crowdstart-checkout {
+  .crowdstart-active .crowdstart-checkout {
     top: -2%;
     -webkit-transform: scale(0.9, 0.9);
     -ms-transform: scale(0.9, 0.9);
@@ -41,7 +40,7 @@ checkout {
 }
 
 @media all and (max-width: 350px) {
-  :target .crowdstart-checkout {
+  .crowdstart-active .crowdstart-checkout {
     top: -2%;
     -webkit-transform: scale(0.6, 0.6);
     -ms-transform: scale(0.6, 0.6);
@@ -257,9 +256,9 @@ checkout {
 .crowdstart-screen-strip {
   display: table;
 
-  -webkit-transition: left .4s ease-in-out;
-  -ms-transition: left .4s ease-in-out;
-  transition: left .4s ease-in-out;
+  -webkit-transition: transform .4s ease-in-out;
+  -ms-transition: transform .4s ease-in-out;
+  transition: transform .4s ease-in-out;
 
   z-index: 1000;
   position: relative;

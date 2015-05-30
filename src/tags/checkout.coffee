@@ -194,9 +194,9 @@ class CheckoutView extends View
           for item in @ctx.order.items
             discount += (@ctx.coupon.amount || 0) * item.price * item.quantity * 0.01
         else
-            for item in @ctx.order.items
-              if item.productId == @ctx.coupon.productId
-                discount += (@ctx.coupon.amount || 0) * item.quantity * 0.01
+          for item in @ctx.order.items
+            if item.productId == @ctx.coupon.productId
+              discount += (@ctx.coupon.amount || 0) * item.quantity * 0.01
         return Math.floor discount
 
     return 0
@@ -219,7 +219,7 @@ class CheckoutView extends View
       @update()
       @reset()
     , 500
-    window.history.back()
+    $('modal').removeClass('crowdstart-active')
 
   back: ->
     if @screenIndex <= 0

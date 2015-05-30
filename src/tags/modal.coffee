@@ -8,8 +8,7 @@ $ ()->
 
 module.exports = new View 'modal', modalHTML, (opts)->
   close = ()->
-    if window.location.hash == '#' + opts.id
-      window.history.back()
+    $('modal').removeClass('crowdstart-active')
 
   # @closeOnClickOff = (event)->
   #   if $(event.target).hasClass('crowdstart-modal') || $(event.target).parent().hasClass('crowdstart-modal-target')
@@ -22,5 +21,3 @@ module.exports = new View 'modal', modalHTML, (opts)->
       close()
 
   $(document).on('keydown', @closeOnEscape)
-
-
