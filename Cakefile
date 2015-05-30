@@ -12,6 +12,7 @@ task 'deploy', 'deploy new version', ->
   exec [
     'cake build'
     'git commit -am "Updated generated files"'
+    'git pull --tags'
     'npm version patch'
     'git push'
     'git push --tags'
