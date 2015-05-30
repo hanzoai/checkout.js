@@ -18,9 +18,9 @@
   position: relative;
   text-align: center;
 
-  -webkit-transition: all .4s ease-in-out;
-  -ms-transition: all .4s ease-in-out;
-  transition: all .4s ease-in-out;
+  -webkit-transition: background .4s ease-in-out;
+  -ms-transition: background .4s ease-in-out;
+  transition: background .4s ease-in-out;
 }
 
 .crowdstart-progress li:before {
@@ -33,9 +33,9 @@
   border-radius: 3px;
   margin: 0 auto 5px auto;
 
-  -webkit-transition: all .4s ease-in-out;
-  -ms-transition: all .4s ease-in-out;
-  transition: all .4s ease-in-out;
+  -webkit-transition: background .4s ease-in-out;
+  -ms-transition: background .4s ease-in-out;
+  transition: background .4s ease-in-out;
 }
 
 .crowdstart-progress li:after {
@@ -47,9 +47,9 @@
   top: 9px;
   z-index: -1;
 
-  -webkit-transition: all .4s ease-in-out;
-  -ms-transition: all .4s ease-in-out;
-  transition: all .4s ease-in-out;
+  -webkit-transition: background .4s ease-in-out;
+  -ms-transition: background .4s ease-in-out;
+  transition: background .4s ease-in-out;
 }
 
 .crowdstart-progress li:first-child:after {

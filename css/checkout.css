@@ -166,9 +166,9 @@ checkout {
 
   z-index: 200;
 
-  -webkit-transition: all 0.3s ease-out;
-  -ms-transition: all 0.3s ease-out;
-  transition: all 0.3s ease-out;
+  -webkit-transition: border 0.3s ease-out;
+  -ms-transition: border 0.3s ease-out;
+  transition: border 0.3s ease-out;
 }
 
 .select2 *, .select2-results * {
@@ -184,9 +184,9 @@ checkout {
 }
 
 .crowdstart-promocode {
-  -webkit-transition: all .4s ease-in-out;
-  -ms-transition: all .4s ease-in-out;
-  transition: all .4s ease-in-out;
+  -webkit-transition: opacity .4s ease-in-out; max-height .4s ease-in-out;
+  -ms-transition: opacity .4s ease-in-out; max-height .4s ease-in-out;
+  transition: opacity .4s ease-in-out; max-height .4s ease-in-out;
 }
 
 .crowdstart-show-promocode {
@@ -213,7 +213,7 @@ checkout {
   cursor: pointer;
 }
 
-.crowdstart-checkout-button {
+.crowdstart-checkout-button, .crowdstart-error-button {
   text-align: center;
   width: 100%;
   display: block;
@@ -225,6 +225,7 @@ checkout {
   font-weight: 600;
   position: relative;
   box-sizing: border-box;
+  cursor: pointer;
 }
 
 .crowdstart-checkout-button .crowdstart-loader {
@@ -256,9 +257,9 @@ checkout {
 .crowdstart-screen-strip {
   display: table;
 
-  -webkit-transition: all .4s ease-in-out;
-  -ms-transition: all .4s ease-in-out;
-  transition: all .4s ease-in-out;
+  -webkit-transition: left .4s ease-in-out;
+  -ms-transition: left .4s ease-in-out;
+  transition: left .4s ease-in-out;
 
   z-index: 1000;
   position: relative;
@@ -267,9 +268,9 @@ checkout {
 .crowdstart-paging {
   max-height: 200px;
   overflow: hidden;
-  -webkit-transition: all .4s ease-in-out;
-  -ms-transition: all .4s ease-in-out;
-  transition: all .4s ease-in-out;
+  -webkit-transition: left .4s ease-in-out;
+  -ms-transition: left .4s ease-in-out;
+  transition: left .4s ease-in-out;
 }
 
 #crowdstart-promocode {
@@ -321,9 +322,9 @@ checkout {
   font-size: 12px;
   cursor: pointer;
 
-  -webkit-transition: all .4s ease-in-out;
-  -ms-transition: all .4s ease-in-out;
-  transition: all .4s ease-in-out;
+  -webkit-transition: opacity .4s ease-in-out;
+  -ms-transition: opacity .4s ease-in-out;
+  transition: opacity .4s ease-in-out;
 }
 
 .crowdstart-close {
@@ -344,9 +345,9 @@ checkout {
   width: 100%;
   z-index: 100;
 
-  -webkit-transition: all 0.3s ease-out;
-  -ms-transition: all 0.3s ease-out;
-  transition: all 0.3s ease-out;
+  -webkit-transition: opacity 0.3s ease-out;
+  -ms-transition: opacity 0.3s ease-out;
+  transition: opacity 0.3s ease-out;
 }
 
 .crowdstart-message::before {
@@ -418,9 +419,9 @@ checkout {
   opacity: 0;
   cursor: default;
 
-  -webkit-transition: all .4s ease-in-out;
-  -ms-transition: all .4s ease-in-out;
-  transition: all .4s ease-in-out;
+  -webkit-transition: opacity .4s ease-in-out;
+  -ms-transition: opacity .4s ease-in-out;
+  transition: opacity .4s ease-in-out;
 }
 
 .crowdstart-collapsed {

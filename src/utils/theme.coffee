@@ -27,7 +27,7 @@ theme =
         color: #{ theme.currentTheme.promoCodeForeground } !important;
       }
 
-      .crowdstart-checkout-button {
+      .crowdstart-checkout-button, .crowdstart-error-button {
         background-color: #{ theme.currentTheme.calloutBackground } !important;
         color: #{ theme.currentTheme.calloutForeground } !important;
       }
@@ -160,7 +160,7 @@ theme =
         border-radius: #{ theme.currentTheme.borderRadius }px !important;
       }
 
-      .crowdstart-checkout-button {
+      .crowdstart-checkout-button, .crowdstart-error-button {
         border-radius: #{ theme.currentTheme.borderRadius }px !important;
       }
 

@@ -149,18 +149,36 @@
         </div>
       </div>
 
-      <a class="crowdstart-checkout-button" name="checkout" href="#checkout" onclick="{ next }">
+      <a class="crowdstart-checkout-button" onclick="{ next }">
         <div if="{ view.checkingOut }" class="crowdstart-loader"></div>
         <div if="{ view.checkingOut }">Processing</div>
         <div if="{ !view.checkingOut }">{ callToActions[view.screenIndex] }</div>
       </a>
     </div>
   </div>
-  <div class="crowdstart-error-message" if="{ error }">
+  <div class="crowdstart-error-message" if="{ error === 'failed' }">
     <h1>Sorry, Unable to Complete Your Transaction</h1>
-    <p>Please try again later</p>
+    <p>Please try again later.</p>
+    <div class="crowdstart-col-1-3-bl">&nbsp;</div>
+    <div class="crowdstart-col-1-3-bl">
+      <a class="crowdstart-error-button" onclick="{ escapeError }">
+        &lt;&lt; Back
+      </a>
+    </div>
+    <div class="crowdstart-col-1-3-bl">&nbsp;</div>
   </div>
-  <div class="crowdstart-empty-cart-message" if="{ order.items && order.items.length == 0 }">
+  <div class="crowdstart-error-message" if="{ error === 'declined' }">
+    <h1>Sorry, Your Card Was Declined</h1>
+    <p>Please check your credit card information.</p>
+    <div class="crowdstart-col-1-3-bl">&nbsp;</div>
+    <div class="crowdstart-col-1-3-bl">
+      <a class="crowdstart-error-button" onclick="{ escapeError }">
+        &lt;&lt; Back
+      </a>
+    </div>
+    <div class="crowdstart-col-1-3-bl">&nbsp;</div>
+  </div>
+  <div class="crowdstart-empty-cart-message" if="{ order.items && order.items.length === 0 }">
     <h1>Your Cart is Empty</h1>
     <p>Add something to your cart.</p>
   </div>

@@ -92,6 +92,11 @@ class CheckoutView extends View
 
     @updatePromoCode = (event) => @view.updatePromoCode(event)
     @submitPromoCode = (event) => @view.submitPromoCode(event)
+    @escapeError = () =>
+      @error = false
+      requestAnimationFrame ()=>
+        @view.updateIndex(0)
+        @update()
     @close = (event) => @view.close(event)
     @next = (event) => @view.next(event)
     @back = (event) => @view.back(event)
@@ -255,10 +260,13 @@ class CheckoutView extends View
             else
               @update()
             events.track @ctx.opts.config.pixels?.checkout
-          , =>
+          , (xhr) =>
             @checkingOut = false
             @locked = false
-            @ctx.error = true
+            if xhr.status == 402 && xhr.responseJSON.error.code == 'card-declined'
+              @ctx.error = "declined"
+            else
+              @ctx.error = "failed"
             @update()
         else
           @updateIndex @screenIndex + 1
