@@ -1,11 +1,16 @@
 exec = require('executive').interactive
 
 task 'build', 'Build module and bundled checkout.js', ->
-  exec 'node_modules/.bin/bebop --compile-only'
   exec 'node_modules/.bin/coffee -bcm -o lib/ src/'
+  exec 'node_modules/.bin/requisite src/checkout.coffee -o checkout.js'
+  exec 'node_modules/.bin/requisite src/checkout.coffee -m -o checkout.min.js'
 
 task 'watch', 'watch for changes and recompile', ->
   exec 'node_modules/.bin/bebop'
 
-task 'build-min', 'Build minified checkout.min.js', ->
-  exec 'node_modules/.bin/requisite src/checkout.coffee -m -o checkout.min.js'
+task 'deploy', 'deploy new version', ->
+  exec [
+    'npm version patch'
+    'git push'
+    'git push --tags'
+  ]
