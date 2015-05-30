@@ -24,9 +24,7 @@
           <a class="btn">Buy Now</a>
         </div>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
-
+        <script src="js/jquery-1.11.3.js"></script>
         <script src="js/checkout.js"></script>
         <script>
           (function() {
@@ -39,8 +37,13 @@
               new Crowdstart.ItemRef('doge-shirt', 100)
             ]);
 
+<<<<<<< HEAD
+          // Create default user (pre-populated in form fields)
+          var user = new Crowdstart.User('bar@fan.com', 'Joe', 'Fan')
+=======
             // Create default user (pre-populated in form fields)
             var user = new Crowdstart.User('joe@fan.com', 'Joe', 'Fan')
+>>>>>>> d9717f73bf3a06078a989fa15d9ca6b7acd2d9d9
 
             // Social sharing settings
             var config = {

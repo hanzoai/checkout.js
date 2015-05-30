@@ -1,12 +1,13 @@
 fs   = require 'fs'
 path = require 'path'
+exec = require('executive').interactive
 
 requisite = 'node_modules/.bin/requisite -g'
 
-files =
-  js:
-    in:  'src/checkout.coffee'
-    out: 'checkout.js'
+compile = ->
+  exec 'node_modules/.bin/coffee -bcm -o lib/ src/'
+  exec 'node_modules/.bin/requisite src/checkout.coffee -o checkout.js'
+  exec 'node_modules/.bin/requisite src/checkout.coffee -m -o checkout.min.js'
 
 module.exports =
   port: 4242
@@ -15,7 +16,6 @@ module.exports =
 
   exclude: [
     /css/
-    /examples/
     /lib/
     /node_modules/
     /vendor/
@@ -24,7 +24,7 @@ module.exports =
   compilers:
     coffee: (src) ->
       if /^src/.test src
-        return "#{requisite} #{files.js.in} -o #{files.js.out}"
+        compile()
 
       if /src\/checkout.coffee/.test src
-        return "#{requisite} #{files.js.in} -o #{files.js.out}"
+        compile()
