@@ -183,6 +183,7 @@ checkout {
 }
 
 .crowdstart-promocode {
+  z-index: 1000;
   -webkit-transition: opacity .4s ease-in-out; max-height .4s ease-in-out;
   -ms-transition: opacity .4s ease-in-out; max-height .4s ease-in-out;
   transition: opacity .4s ease-in-out; max-height .4s ease-in-out;
@@ -368,6 +369,7 @@ checkout {
   top: 2px;
   left: 5px;
   font-size: 12px;
+  text-align: left;
 }
 
 .crowdstart-card {

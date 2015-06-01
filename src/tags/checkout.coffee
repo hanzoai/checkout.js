@@ -27,6 +27,7 @@ class CheckoutView extends View
   tag: 'checkout'
   html: checkoutHTML
   checkingOut: false
+  clickedApplyPromoCode: false
   checkingPromoCode: false
   constructor: ()->
     super(@tag, @html, @js)
@@ -56,6 +57,7 @@ class CheckoutView extends View
     @showPromoCode = opts.config.showPromoCode == true
 
     @currency = currency
+    @removeError = form.removeError
 
     $ ->
       requestAnimationFrame ->
@@ -100,7 +102,7 @@ class CheckoutView extends View
     @close = (event) => @view.close(event)
     @next = (event) => @view.next(event)
     @back = (event) => @view.back(event)
-    @toUpper = (event)=>
+    @toUpper = (event)->
       $el = $(event.target)
       $el.val($el.val().toUpperCase())
 
@@ -157,10 +159,18 @@ class CheckoutView extends View
     return @ctx.order.shipping = shippingRate
 
   updatePromoCode: (event)->
-    @ctx.coupon.code = event.target.value
+    if event.target.value.length > 0
+      @ctx.coupon.code = event.target.value
+      @clickedApplyPromoCode = false
+      setTimeout ()=>
+        if !@clickedApplyPromoCode
+          form.showError $('#crowdstart-promocode'), 'Don\'t forget to apply your coupon'
+      , 1000
 
   submitPromoCode: ->
     if @ctx.coupon.code?
+      @clickedApplyPromoCode = true
+      form.removeError target: $('#crowdstart-promocode')[0]
       if @checkingPromoCode
         return
       @checkingPromoCode = true

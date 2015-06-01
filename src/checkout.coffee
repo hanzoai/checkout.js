@@ -21,6 +21,9 @@ if q?
   while (match = search.exec(q))
     qs[decodeURIComponent(match[1])] = decodeURIComponent(match[2])
 
+waitRef =
+  waitId: 0
+
 # checkout
 #  api:    object of API Class
 #  order:  object of Order Class
@@ -45,6 +48,8 @@ checkout = (api, order, user = (new User), config = {}) ->
   config.twitter    = config.twitter    || ''
 
   config.showPromoCode = config.showPromoCode || false
+
+  config.waitRef = waitRef
 
   # Configure analytics/conversion tracking
   config.pixels     = config.pixels || {}
@@ -94,6 +99,10 @@ button = (sel)->
   $el = $(sel)
   $el.off('.crowdstart-button').on('click.crowdstart-button', ()->
     $('modal').addClass('crowdstart-active')
+    clearTimeout waitRef.waitId
+    waitRef.waitId = setTimeout ()->
+      waitRef.waitId = 0
+    , 500
     return false)
 
 if window?
