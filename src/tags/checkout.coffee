@@ -175,13 +175,16 @@ class CheckoutView extends View
         return
       @checkingPromoCode = true
       @ctx.opts.api.getCouponCode @ctx.coupon.code, (coupon)=>
-        @ctx.coupon = coupon
-        @ctx.order.couponCodes = [coupon.code]
+        if coupon.enabled
+          @ctx.coupon = coupon
+          @ctx.order.couponCodes = [coupon.code]
+        else
+          @ctx.invalidCode = true
         @checkingPromoCode = false
         @update()
       , =>
-        @checkingPromoCode = false
         @ctx.invalidCode = true
+        @checkingPromoCode = false
         @update()
 
   discount: ->
