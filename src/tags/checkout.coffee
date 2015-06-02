@@ -179,11 +179,11 @@ class CheckoutView extends View
           @ctx.coupon = coupon
           @ctx.order.couponCodes = [coupon.code]
         else
-          @ctx.invalidCode = true
+          @ctx.invalidCode = 'expired'
         @checkingPromoCode = false
         @update()
       , =>
-        @ctx.invalidCode = true
+        @ctx.invalidCode = 'invalid'
         @checkingPromoCode = false
         @update()
 

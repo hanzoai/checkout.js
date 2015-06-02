@@ -106,7 +106,8 @@
             </a>
           </div>
           <div class="crowdstart-col-1-2 crowdstart-text-right crowdstart-money" if="{ view.discount() > 0 }">-{ currency.renderUICurrencyFromJSON(order.currency, view.discount()) }</div>
-          <div class="crowdstart-col-1-2 crowdstart-text-right crowdstart-money" if="{ view.discount() == 0 && invalidCode}">Invalid Code</div>
+          <div class="crowdstart-col-1-2 crowdstart-text-right crowdstart-money" if="{ view.discount() == 0 && invalidCode == 'invalid'}">Invalid Code</div>
+          <div class="crowdstart-col-1-2 crowdstart-text-right crowdstart-money" if="{ view.discount() == 0 && invalidCode == 'expired'}">Expired</div>
         </div>
       </div>
       <div class="crowdstart-form-control crowdstart-promocode crowdstart-text-right" if="{ !showPromoCode }">
