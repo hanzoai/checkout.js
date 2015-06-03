@@ -250,10 +250,6 @@ checkout {
   max-height: 350px;
 }
 
-.crowdstart-invoice {
-  overflow: scroll;
-}
-
 .crowdstart-screen-strip {
   display: table;
 
