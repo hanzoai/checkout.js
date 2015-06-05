@@ -263,7 +263,6 @@ checkout {
 
 .crowdstart-paging {
   max-height: 200px;
-  overflow: hidden;
   -webkit-transition: left .4s ease-in-out;
   -ms-transition: left .4s ease-in-out;
   transition: left .4s ease-in-out;
