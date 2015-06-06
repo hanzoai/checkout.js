@@ -20,7 +20,10 @@
     "cake": "^0.1.1",
     "coffee-script": "^1.9.2",
     "executive": "^0.4.7",
-    "requisite": "^1.9.4"
+    "requisite": "^1.9.4",
+    "webdriverio": "^2.4.5",
+    "phantomjs": "^1.9.17",
+    "selenium-standalone": "^4.4.2"
   },
   "dependencies": {
     "card": "^1.0.0",
