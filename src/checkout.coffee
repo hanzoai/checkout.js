@@ -5,6 +5,7 @@ require './tags/checkout'
 require './tags/modal'
 require './tags/progressbar'
 screens = require './screens'
+countries = require './data/countries'
 
 API = require './models/api'
 ItemRef = require './models/itemRef'
@@ -113,6 +114,7 @@ if window?
     ItemRef:  ItemRef
     Order:    Order
     User:     User
+    ShippingCountries: countries
     setTheme: theme.setTheme
 
 module.exports = checkout
