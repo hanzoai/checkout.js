@@ -12,7 +12,7 @@ function run(seleniumParams) {
     var staticServer = null;
     var server = null;
     var client = null;
-    var port = Math.floor(Math.random() * (1000-1+1)+1);
+    var port = currentPort + Math.floor(Math.random() * (1000-1+1)+1);
 
     before(function(done) {
       // console.log(process.env.ChromeBinary);
@@ -21,7 +21,7 @@ function run(seleniumParams) {
         req.addListener('end', function() {
           staticServer.serve(req, res);
         }).resume();
-      }).listen(currentPort + port);
+      }).listen(port);
 
       selenium.start(function(err, child) {
         if (err) throw err;
