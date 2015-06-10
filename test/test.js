@@ -55,10 +55,8 @@ function run(seleniumParams) {
 
           // Select 2 for 'Such T-shirt'
           .click('/html/body/modal/div[1]/checkout/div/div[3]/div[2]/div[2]/div[1]/div[1]/span/span[1]/span', function() {
-            sleep(2);
           })
           .click('/html/body/span/span/span[2]/ul/li[3]', function() {
-            sleep(2);
           })
 
           .getText('body > modal > div.crowdstart-modal-target > checkout > div > div.crowdstart-forms > div.crowdstart-invoice > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > span', function(err, res) {
@@ -76,16 +74,12 @@ function run(seleniumParams) {
       it('should work', function(done) {
         client
           .setValue('#crowdstart-credit-card', '4242424242424242', function() {
-            sleep(1);
           })
           .setValue('#crowdstart-expiry', '1122', function() {
-            sleep(1);
           })
           .setValue('#crowdstart-cvc', '424', function() {
-            sleep(1);
           })
           .click('span.crowdstart-checkbox', function() {
-            sleep(1);
           })
           .click('a.crowdstart-checkout-button', function() {
             // next
@@ -93,20 +87,15 @@ function run(seleniumParams) {
           })
 
           .setValue('#crowdstart-line1', '1234 fake street', function() {
-            sleep(1);
           })
           .setValue('#crowdstart-city', 'fake city', function() {
-            sleep(1);
           })
           .setValue('#crowdstart-state', 'fake state', function() {
-            sleep(1);
           })
           .setValue('#crowdstart-postalCode', '55555', function() {
-            sleep(1);
           })
 
           .click('a.crowdstart-checkout-button', function() {
-            sleep(1);
           })
 
           .waitForVisible('body > modal > div.crowdstart-modal-target > checkout > div > div.crowdstart-forms > div.crowdstart-screens > div > div > form > h1', 20000, false, function() {
@@ -156,7 +145,7 @@ if (Boolean(process.env.CI) && Boolean(process.env.TRAVIS)) {
 } else {
   run({
     desiredCapabilities: {
-      browserName: 'phantomjs'
+      browserName: 'firefox'
     }
   })
 }
