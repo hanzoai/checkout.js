@@ -21,6 +21,7 @@
     "cake": "^0.1.1",
     "coffee-script": "^1.9.2",
     "executive": "^0.4.7",
+    "mocha": "^2.2.5",
     "node-static": "^0.7.6",
     "phantomjs": "^1.9.17",
     "q": "^1.4.1",
