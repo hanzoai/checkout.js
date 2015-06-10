@@ -23,7 +23,7 @@
     "executive": "^0.4.7",
     "mocha": "^2.2.5",
     "node-static": "^0.7.6",
-    "phantomjs2": "^2.0.0",
+    "phantomjs": "^1.9.8",
     "q": "^1.4.1",
     "requisite": "^1.9.4",
     "selenium-standalone": "^4.4.2",
