@@ -49,8 +49,6 @@ function run(seleniumParams) {
             sleep(3);
           })
 
-          .saveScreenshot('./ss.png')
-
           // Click the Buy button
           .click('a.btn', function() {
             sleep(3);

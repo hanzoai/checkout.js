@@ -1,5 +1,5 @@
 before-install:
-  - "export TRAVIS_COMMIT_MSG=\"$(git log --format=%B --no-merges -n 1)\""
+- export TRAVIS_COMMIT_MSG="$(git log --format=%B --no-merges -n 1)"
 env:
   global:
   - secure: nmJKkHXADOoPQfEjaGo+oN0aJ9ysJ9phVp4cW0RgceM+MnwXduUdaFIc3hrP2RhdJhxj1yji+8dm5Cr0vr4HvKZs21Ng4dHX+x2KTCFaxKX4qh+Xr7KA4dTToLMGit6liKJtO9OMk8O0co0NK7RVUMfaIH8+C5M6O1G1ysuy3gMchtFG2Lnmi0FKGeLKuenKLk1Wgb8EiYH4l9OanyV3NQ4Ea2/l3r0XgYjaWHvEu+Fr9q4IdS7a+c2AwztDJmvs3rAnaG2yTeyquOWyTCRVNi5yMm9/xnocOz7i1dqW7MSFU1NPUUPaYZGwPnVIjYoDTgtkR0S80Zpm4qqLtr/Qv9A0MfWi+3ftqZtAE9jjxhrMe4bEFVK1iBnE+xGpwrIrAQv4nevoM7OK6RJ/8rqvdfLD8sNOLsyXTlwILIXluMbZX93kpdVl9tcyUkOCeeoGzSY/i74Y+gnHtKozioeP6BX/O3Ov+V+NRqtaXxPCrEUk7QW1UTk5R1lNtJQHipr5Nze2QjEbbGaOYKU0kFkynlFvRvoXw2hZfdMAUIjKmqBA5UxARYWXve2UNRPcFHrfNiESpV0L4fHxqpHGPp0UGuirzwgKYJWIJId+7vd3e5rGS+JtBRiwfx4H/1H8tjKE4XLTIORXRJLWVrBDEbkf7Z5XYyyohLMd2XH+YlEw6kk=
@@ -8,13 +8,15 @@ addons:
   sauce_connect: true
 language: node_js
 node_js:
-  - 0.12
-script: >
+- 0.12
+script: |
   ./node_modules/.bin/mocha test/test.js
 cache:
   directories:
-    - node_modules
+  - node_modules
 notifications:
   email:
     on_success: change
     on_failure: always
+  slack:
+    secure: rh3aLhMvUrugv+V1w3ZJxvRQlMH62zGQz02PZDLJFS9k9qe99J/KRIHvsPFw7cQXzDO7uWpX3KKKk+q5qYRF6bskD7n9S10OYnjNe9aDm/rWbiEbjmuWOm1K56C9EjqUCNLygx26Xz9G75qxMqoJDSOMRmwdhbbrwZRo188Pa9OoDuxxHQ7NSSR8MnqRpOXbDBKU1Maxye5WzP3jXxXKmRWP+yx8B76B+74M/NkXrFAyEM0kbJsqBXONeF+WNydftZHwJ1BXPLG3tIzV0PjLcVpBT3HRjgX8aA4775vWurcAwiAgyM6fWRZJRkQnxjPVzY5Ncm2UZMWQFXbd71LB/IzfUIJ5TqdmcVmEQfPOkrhd+eLYoiVte1/lB5Oxg6u4qlMdUVdceWZQfcjQ437q5ZuKKWYn33uFasqAyGOQwhPXdKeOT9lx4uLJ+vCnboRJKmOkx648TrdD9l8/Tl9u0x2Ol3XZPBh1Dj3Xajn5dH4NbQlttH070yvg2xQiWqNVnbqtiGU0uvXbMDJGC2VVFStYCY9k7rOktgSnb0g+sJse/rW63EHr29lSv1/nY/4XYzORQUtrNUMQ2fWWz4OHWAwQ08FvQ9gzLF/oxY5IyTi0UEu5xN8eqZs6cv1Bv4NHQ9M1TWctbQHiEUcBhPV2GQEsjbJZLBXbS2x5Z/ntKSI=
