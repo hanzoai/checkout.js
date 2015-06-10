@@ -121,7 +121,7 @@ if (Boolean(process.env.CI) && Boolean(process.env.TRAVIS)) {
   var browsers = [
     'firefox'
     , 'chrome'
-    , 'iphone'
+    // , 'iphone'
     // , 'opera'
   ];
   browsers.forEach(function(browser) {
