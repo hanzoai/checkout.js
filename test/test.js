@@ -146,7 +146,7 @@ if (Boolean(process.env.CI) && Boolean(process.env.TRAVIS)) {
 } else {
   run({
     desiredCapabilities: {
-      browserName: 'firefox'
+      browserName: 'phantomjs'
     }
   })
 }
