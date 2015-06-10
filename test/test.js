@@ -38,6 +38,9 @@ function run(seleniumParams) {
     }
 
     describe('Changing the quantity of a line item', function() {
+      it('should fail', function() {
+        assert.equals(true, false);
+      })
       it("should update line item cost", function(done) {
         var unitPrice = 0;
         function parsePrice(str) {
