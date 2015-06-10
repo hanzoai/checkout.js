@@ -19,9 +19,6 @@ describe("Checkout widget", function() {
       }).resume();
     }).listen(9000);
 
-    console.log(process.env.SAUCE_USERNAME);
-    console.log(process.env.SAUCE_ACCESS_KEY);
-
     selenium.start(function(err, child) {
       if (err) throw err;
       selenium.proc = child;
