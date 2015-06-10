@@ -51,9 +51,6 @@ describe("Checkout widget", function() {
   }
 
   describe('Changing the quantity of a line item', function() {
-    it("should fail", function() {
-      assert.equal(true, false);
-    })
     it("should update line item cost", function(done) {
       var unitPrice = 0;
       function parsePrice(str) {
