@@ -1,3 +1,5 @@
+before-install:
+  - "export TRAVIS_COMMIT_MSG=\"$(git log --format=%B --no-merges -n 1)\""
 env:
   global:
   - secure: nmJKkHXADOoPQfEjaGo+oN0aJ9ysJ9phVp4cW0RgceM+MnwXduUdaFIc3hrP2RhdJhxj1yji+8dm5Cr0vr4HvKZs21Ng4dHX+x2KTCFaxKX4qh+Xr7KA4dTToLMGit6liKJtO9OMk8O0co0NK7RVUMfaIH8+C5M6O1G1ysuy3gMchtFG2Lnmi0FKGeLKuenKLk1Wgb8EiYH4l9OanyV3NQ4Ea2/l3r0XgYjaWHvEu+Fr9q4IdS7a+c2AwztDJmvs3rAnaG2yTeyquOWyTCRVNi5yMm9/xnocOz7i1dqW7MSFU1NPUUPaYZGwPnVIjYoDTgtkR0S80Zpm4qqLtr/Qv9A0MfWi+3ftqZtAE9jjxhrMe4bEFVK1iBnE+xGpwrIrAQv4nevoM7OK6RJ/8rqvdfLD8sNOLsyXTlwILIXluMbZX93kpdVl9tcyUkOCeeoGzSY/i74Y+gnHtKozioeP6BX/O3Ov+V+NRqtaXxPCrEUk7QW1UTk5R1lNtJQHipr5Nze2QjEbbGaOYKU0kFkynlFvRvoXw2hZfdMAUIjKmqBA5UxARYWXve2UNRPcFHrfNiESpV0L4fHxqpHGPp0UGuirzwgKYJWIJId+7vd3e5rGS+JtBRiwfx4H/1H8tjKE4XLTIORXRJLWVrBDEbkf7Z5XYyyohLMd2XH+YlEw6kk=

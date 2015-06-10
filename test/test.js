@@ -25,7 +25,7 @@ describe("Checkout widget", function() {
       client = webdriver.remote({
         desiredCapabilities: {
           browserName: 'firefox',
-          name: process.env.TRAVIS_COMMIT,
+          name: process.env.TRAVIS_COMMIT_MSG,
           tags: [
                  process.env.TRAVIS_PULL_REQUEST,
                  process.env.TRAVIS_BRANCH,
