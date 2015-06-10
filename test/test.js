@@ -15,7 +15,6 @@ function run(seleniumParams) {
     var port = currentPort + Math.floor(Math.random() * (1000-1+1)+1);
 
     before(function(done) {
-      // console.log(process.env.ChromeBinary);
       staticServer = new static.Server('./test')
       server = http.createServer(function(req, res) {
         req.addListener('end', function() {
@@ -111,7 +110,6 @@ function run(seleniumParams) {
           })
 
           .waitForVisible('body > modal > div.crowdstart-modal-target > checkout > div > div.crowdstart-forms > div.crowdstart-screens > div > div > form > h1', 20000, false, function() {
-            console.log(arguments);
             client.getText('body > modal > div.crowdstart-modal-target > checkout > div > div.crowdstart-forms > div.crowdstart-screens > div > div > form > h1', function(err, res) {
               assert.strictEqual(res, 'Thank You');
             })
