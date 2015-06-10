@@ -133,7 +133,11 @@ function run(seleniumParams) {
 }
 
 if (Boolean(process.env.CI) && Boolean(process.env.TRAVIS)) {
-  var browsers = ['firefox', 'chrome', 'opera'];
+  var browsers = [
+    'firefox'
+    , 'chrome'
+    // , 'opera'
+  ];
   browsers.forEach(function(browser) {
     run({
       desiredCapabilities: {
