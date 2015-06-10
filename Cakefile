@@ -34,7 +34,4 @@ task 'install-selenium', 'installs chromedriver for selenium', ->
   )
 
 task 'test', 'run checkout widget test', ->
-  exec [
-    'mocha test/test.js'
-  ]
-
+  exec 'mocha test/test.js', (err) -> throw err if err?
