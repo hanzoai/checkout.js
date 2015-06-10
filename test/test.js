@@ -29,7 +29,8 @@ describe("Checkout widget", function() {
                  process.env.TRAVIS_PULL_REQUEST,
                  process.env.TRAVIS_BRANCH,
                  process.env.TRAVIS_BUILD_NUMBER
-                ]
+                ],
+          'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER
         },
         host: 'ondemand.saucelabs.com',
         port: 80,
