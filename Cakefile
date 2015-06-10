@@ -22,8 +22,8 @@ task 'deploy', 'deploy new version', ->
 
 task 'install-selenium', 'installs chromedriver for selenium', ->
   selenium.install(
-    version: '2.46.0',
-    baseURL: 'http://selenium-release.storage.googleapis.com',
+    version: '2.46.0'
+    baseURL: 'http://selenium-release.storage.googleapis.com'
     drivers:
       chrome:
         version: '2.9'
@@ -35,6 +35,6 @@ task 'install-selenium', 'installs chromedriver for selenium', ->
 
 task 'test', 'run checkout widget test', ->
   exec [
-    'mocha'
+    'mocha test/test.js'
   ]
 
