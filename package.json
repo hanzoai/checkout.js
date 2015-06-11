@@ -4,7 +4,7 @@
   "description": "One Click Checkout for Crowdstart",
   "main": "checkout.js",
   "scripts": {
-    "prepublish": "cake build && cake build-min",
+    "prepublish": "cake build",
     "test": "cake test"
   },
   "keywords": [
@@ -15,12 +15,23 @@
   ],
   "author": "Crowdstart, LLC",
   "license": "MIT",
+  "optionalDependencies": {
+    "phantomjs2": "^2.0.0"
+  },
   "devDependencies": {
     "bebop": "^1.3.6",
+    "browser-sync": "^2.7.6",
     "cake": "^0.1.1",
     "coffee-script": "^1.9.2",
     "executive": "^0.4.7",
-    "requisite": "^1.9.4"
+    "mocha": "^2.2.5",
+    "node-static": "^0.7.6",
+    "q": "^1.4.1",
+    "requisite": "^1.9.4",
+    "selenium-standalone": "^4.4.2",
+    "selenium-webdriver": "^2.45.1",
+    "uglify-js": "^2.4.23",
+    "webdriverio": "^2.4.5"
   },
   "dependencies": {
     "card": "^1.0.0",

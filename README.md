@@ -50,3 +50,6 @@ Configure the checkout widget however you'd like.
 You can find examples in [examples/](examples/basic/index.html). You can also
 see it in action in the [Crowdstart
 documentation](http://www.crowdstart.com/docs/checkout).
+
+## Testing
+To test locally, [phantomjs2](https://www.npmjs.com/package/phantomjs2) must be installed.
