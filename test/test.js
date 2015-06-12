@@ -88,7 +88,7 @@ function run(seleniumParams) {
 
           // Complete order and wait for form to be processed
           .click('a.crowdstart-checkout-button', function() {
-            sleep(5);
+            sleep(10);
           })
 
           .getText('div.crowdstart-screens > div > div > form > h1', function(err, res) {
