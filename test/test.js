@@ -95,15 +95,6 @@ function run(seleniumParams) {
           .setValue('#crowdstart-postalCode', '55555', function() {
           })
 
-<<<<<<< HEAD
-          // Complete order and wait for form to be processed
-          .click('a.crowdstart-checkout-button', function() {
-            sleep(10);
-          })
-
-          .getText('div.crowdstart-screens > div > div > form > h1', function(err, res) {
-            assert.strictEqual(res, 'Thank You');
-=======
           .click('a.crowdstart-checkout-button', function() {
           })
 
@@ -111,7 +102,6 @@ function run(seleniumParams) {
             client.getText('body > modal > div.crowdstart-modal-target > checkout > div > div.crowdstart-forms > div.crowdstart-screens > div > div > form > h1', function(err, res) {
               assert.strictEqual(res, 'Thank You');
             })
->>>>>>> parent of dce2e2b... Clean up and comment
           })
           .call(done);
       })
