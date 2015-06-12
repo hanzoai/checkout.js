@@ -57,10 +57,10 @@ function run(seleniumParams) {
           .click('/html/body/modal/div[1]/checkout/div/div[3]/div[2]/div[2]/div[1]/div[1]/span/span[1]/span')
           .click('/html/body/span/span/span[2]/ul/li[3]')
 
-          .getText('body > modal > div.crowdstart-modal-target > checkout > div > div.crowdstart-forms > div.crowdstart-invoice > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > span', function(err, res) {
+          .getText('div.crowdstart-invoice > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > span', function(err, res) {
             unitPrice = parsePrice(res);
           })
-          .getText('body > modal > div.crowdstart-modal-target > checkout > div > div.crowdstart-forms > div.crowdstart-invoice > div:nth-child(2) > div:nth-child(2) > div.crowdstart-col-1-3-bl.crowdstart-text-right.crowdstart-money', function(err, res) {
+          .getText('div.crowdstart-invoice > div:nth-child(2) > div:nth-child(2) > div.crowdstart-col-1-3-bl.crowdstart-text-right.crowdstart-money', function(err, res) {
             lineItemPrice = parsePrice(res);
             assert.strictEqual(lineItemPrice, unitPrice * 2);
           })
@@ -86,14 +86,13 @@ function run(seleniumParams) {
           .setValue('#crowdstart-state', 'fake state')
           .setValue('#crowdstart-postalCode', '55555')
 
-          // Complete order
-          .click('a.crowdstart-checkout-button')
+          // Complete order and wait for form to be processed
+          .click('a.crowdstart-checkout-button', function() {
+            sleep(5);
+          })
 
-          // Wait for form to be processed
-          .waitForVisible('body > modal > div.crowdstart-modal-target > checkout > div > div.crowdstart-forms > div.crowdstart-screens > div > div > form > h1', 20000, false, function() {
-            client.getText('body > modal > div.crowdstart-modal-target > checkout > div > div.crowdstart-forms > div.crowdstart-screens > div > div > form > h1', function(err, res) {
-              assert.strictEqual(res, 'Thank You');
-            })
+          .getText('div.crowdstart-screens > div > div > form > h1', function(err, res) {
+            assert.strictEqual(res, 'Thank You');
           })
           .call(done);
       })
@@ -136,18 +135,6 @@ if (Boolean(process.env.CI) && Boolean(process.env.TRAVIS)) {
     })
   });
 } else {
-  selenium.install(
-    version: '2.46.0'
-    baseURL: 'http://selenium-release.storage.googleapis.com'
-    drivers:
-      chrome:
-        version: '2.9'
-        arch: process.arch
-        baseURL: 'http://chromedriver.storage.googleapis.com'
-    logger: console.log
-    , (err) -> throw err if err?
-  );
-
   run({
     desiredCapabilities: {
       browserName: 'phantomjs'
