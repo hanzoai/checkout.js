@@ -259,9 +259,13 @@ class CheckoutView extends View
         if @screenIndex >= @screens.length - 1
           @checkingOut = true
           @ctx.opts.api.charge @ctx.opts.model, (order)=>
+
             @updateIndex @screenIndex + 1
             @locked = false
             @finished = true
+
+            window.Crowdstart.Events.trigger('checkout', order)
+
             if @ctx.opts.config.referralProgram?
               @ctx.opts.api.referrer order, @ctx.opts.config.referralProgram, (referrer) =>
                 @ctx.referrerId = referrer.id

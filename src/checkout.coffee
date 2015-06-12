@@ -116,5 +116,8 @@ if window?
     User:     User
     ShippingCountries: countries
     setTheme: theme.setTheme
+    Events: {}
+
+  riot.observable window.Crowdstart.Events
 
 module.exports = checkout
