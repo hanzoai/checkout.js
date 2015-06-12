@@ -10,13 +10,13 @@ function run(seleniumParams) {
   describe('['+ seleniumParams.desiredCapabilities.browserName + '] Checkout widget', function() {
     this.timeout(0);
     var staticServer = null;
-    var server = null;
+    var httpServer = null;
     var client = null;
     var port = currentPort + Math.floor(Math.random() * (1000-1+1)+1);
 
     before(function(done) {
       staticServer = new static.Server('./test')
-      server = http.createServer(function(req, res) {
+      httpServer = http.createServer(function(req, res) {
         req.addListener('end', function() {
           staticServer.serve(req, res);
         }).resume();
@@ -54,10 +54,8 @@ function run(seleniumParams) {
           })
 
           // Select 2 for 'Such T-shirt'
-          .click('/html/body/modal/div[1]/checkout/div/div[3]/div[2]/div[2]/div[1]/div[1]/span/span[1]/span', function() {
-          })
-          .click('/html/body/span/span/span[2]/ul/li[3]', function() {
-          })
+          .click('/html/body/modal/div[1]/checkout/div/div[3]/div[2]/div[2]/div[1]/div[1]/span/span[1]/span')
+          .click('/html/body/span/span/span[2]/ul/li[3]')
 
           .getText('body > modal > div.crowdstart-modal-target > checkout > div > div.crowdstart-forms > div.crowdstart-invoice > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > span', function(err, res) {
             unitPrice = parsePrice(res);
@@ -73,31 +71,25 @@ function run(seleniumParams) {
     describe('Completing the form', function() {
       it('should work', function(done) {
         client
-          .setValue('#crowdstart-credit-card', '4242424242424242', function() {
-          })
-          .setValue('#crowdstart-expiry', '1122', function() {
-          })
-          .setValue('#crowdstart-cvc', '424', function() {
-          })
-          .click('span.crowdstart-checkbox', function() {
-          })
+          .setValue('#crowdstart-credit-card', '4242424242424242')
+          .setValue('#crowdstart-expiry', '1122')
+          .setValue('#crowdstart-cvc', '424')
+          .click('span.crowdstart-checkbox')
+
+          // Proceed to shipping portion
           .click('a.crowdstart-checkout-button', function() {
-            // next
             sleep(1);
           })
 
-          .setValue('#crowdstart-line1', '1234 fake street', function() {
-          })
-          .setValue('#crowdstart-city', 'fake city', function() {
-          })
-          .setValue('#crowdstart-state', 'fake state', function() {
-          })
-          .setValue('#crowdstart-postalCode', '55555', function() {
-          })
+          .setValue('#crowdstart-line1', '1234 fake street')
+          .setValue('#crowdstart-city', 'fake city')
+          .setValue('#crowdstart-state', 'fake state')
+          .setValue('#crowdstart-postalCode', '55555')
 
-          .click('a.crowdstart-checkout-button', function() {
-          })
+          // Complete order
+          .click('a.crowdstart-checkout-button')
 
+          // Wait for form to be processed
           .waitForVisible('body > modal > div.crowdstart-modal-target > checkout > div > div.crowdstart-forms > div.crowdstart-screens > div > div > form > h1', 20000, false, function() {
             client.getText('body > modal > div.crowdstart-modal-target > checkout > div > div.crowdstart-forms > div.crowdstart-screens > div > div > form > h1', function(err, res) {
               assert.strictEqual(res, 'Thank You');
@@ -109,7 +101,7 @@ function run(seleniumParams) {
 
     after(function(done) {
       client.end(function() {
-        server.close();
+        httpServer.close();
         selenium.proc.kill();
         done();
       });
@@ -144,9 +136,21 @@ if (Boolean(process.env.CI) && Boolean(process.env.TRAVIS)) {
     })
   });
 } else {
+  selenium.install(
+    version: '2.46.0'
+    baseURL: 'http://selenium-release.storage.googleapis.com'
+    drivers:
+      chrome:
+        version: '2.9'
+        arch: process.arch
+        baseURL: 'http://chromedriver.storage.googleapis.com'
+    logger: console.log
+    , (err) -> throw err if err?
+  );
+
   run({
     desiredCapabilities: {
       browserName: 'phantomjs'
     }
-  })
+  });
 }
