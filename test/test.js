@@ -59,10 +59,10 @@ function run(seleniumParams) {
           .click('/html/body/span/span/span[2]/ul/li[3]', function() {
           })
 
-          .getText('body > modal > div.crowdstart-modal-target > checkout > div > div.crowdstart-forms > div.crowdstart-invoice > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > span', function(err, res) {
+          .getText('div.crowdstart-invoice > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > span', function(err, res) {
             unitPrice = parsePrice(res);
           })
-          .getText('body > modal > div.crowdstart-modal-target > checkout > div > div.crowdstart-forms > div.crowdstart-invoice > div:nth-child(2) > div:nth-child(2) > div.crowdstart-col-1-3-bl.crowdstart-text-right.crowdstart-money', function(err, res) {
+          .getText('div.crowdstart-invoice > div:nth-child(2) > div:nth-child(2) > div.crowdstart-col-1-3-bl.crowdstart-text-right.crowdstart-money', function(err, res) {
             lineItemPrice = parsePrice(res);
             assert.strictEqual(lineItemPrice, unitPrice * 2);
           })
