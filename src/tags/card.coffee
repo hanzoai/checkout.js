@@ -7,14 +7,14 @@ class CardView extends View
   tag: 'card'
   name: 'Payment Info'
   html: cardHTML
-  constructor: ()->
+  constructor: ->
     super(@tag, @html, @js)
 
-  js: (opts, view)->
+  js: (opts, view) ->
     view.model = opts.model
 
-    $ ()->
-      requestAnimationFrame ()->
+    $ ->
+      requestAnimationFrame ->
         if $('.crowdstart-card')[0]?
           card = new Card
             form: 'form#crowdstart-checkout'
@@ -48,7 +48,7 @@ class CardView extends View
     @updateExpiry       = (event) => @view.updateExpiry(event)
     @updateCVC          = (event) => @view.updateCVC(event)
 
-  updateName: (event)->
+  updateName: (event) ->
     name = event.target.value
     if form.isRequired name
       @ctx.user.name = name
@@ -61,15 +61,15 @@ class CardView extends View
       form.showError event.target, 'Enter the name on your credit card'
       return false
 
-  updateEmail: (event)->
+  updateEmail: (event) ->
     email = event.target.value
     if form.isEmail email
       if @ctx.user.email != email
-        @ctx.api.exists email, (data)=>
+        @ctx.api.emailExists email, (data)=>
           @ctx.login = data.exists
           @update()
           if @ctx.login
-            requestAnimationFrame ()=>
+            requestAnimationFrame ()->
               form.showError $('#crowdstart-password')[0], 'Enter the password for this account'
 
       @ctx.user.email = email
@@ -92,12 +92,12 @@ class CardView extends View
       form.showError event.target, 'Enter a valid password'
       return false
 
-  updateCreditCard: (event)->
+  updateCreditCard: (event) ->
     cardNumber = event.target.value
     if form.isRequired cardNumber
       @ctx.payment.account.number = cardNumber
 
-      requestAnimationFrame ()->
+      requestAnimationFrame ->
         if $(event.target).hasClass('jp-card-invalid')
           form.showError event.target, 'Enter a valid card number'
       return true
@@ -105,14 +105,14 @@ class CardView extends View
       form.showError event.target, 'Enter a valid card number'
       return false
 
-  updateExpiry: (event)->
+  updateExpiry: (event) ->
     expiry = event.target.value
     if form.isRequired expiry
       date = expiry.split '/'
       @ctx.payment.account.month = (date[0]).trim()
       @ctx.payment.account.year = ('' + (new Date()).getFullYear()).substr(0, 2) + (date[1]).trim()
 
-      requestAnimationFrame ()->
+      requestAnimationFrame ->
         if $(event.target).hasClass('jp-card-invalid')
           form.showError event.target, 'Enter a valid expiration date', width: '150px'
       return true
@@ -120,12 +120,12 @@ class CardView extends View
       form.showError event.target, 'Enter a valid expiration date', width: '150px'
       return false
 
-  updateCVC: (event)->
+  updateCVC: (event) ->
     cvc = event.target.value
     if form.isRequired cvc
       @ctx.payment.account.cvc = cvc
 
-      requestAnimationFrame ()->
+      requestAnimationFrame ->
         if $(event.target).hasClass('jp-card-invalid')
           form.showError event.target, 'Enter a valid CVC number', width: '140px'
       return true
@@ -133,7 +133,7 @@ class CardView extends View
       form.showError event.target, 'Enter a valid CVC number', width: '140px'
       return false
 
-  validate: (success=(()->), fail=(()->))->
+  validate: (success=(->), fail=(->))->
     if @updateEmail(target: $('#crowdstart-email')[0]) &&
     @updateName(target: $('#crowdstart-name')[0]) &&
     @updatePassword(target: $('#crowdstart-password')[0]) &&

@@ -6,9 +6,9 @@
 #
 
 module.exports = class API
-  constructor: (@key, @store='', @cb=((order)->), @url='https://api.crowdstart.com')->
+  constructor: (@key, @store='', @cb=((order)->), @url='https://api.crowdstart.com') ->
 
-  getItems: (order, success, fail)->
+  getItems: (order, success, fail) ->
     itemRefs = order.itemRefs
     if itemRefs? && itemRefs.length > 0
       waitCount = order.itemRefs.length
@@ -27,7 +27,7 @@ module.exports = class API
         if !failed && waitCount == order.items.length
           success order
 
-      isFailed = ()->
+      isFailed = ->
         failed = true
         fail.apply this, arguments if fail?
 
@@ -45,7 +45,7 @@ module.exports = class API
       order.items = []
       success order
 
-  getCouponCode: (code, success, fail)->
+  getCouponCode: (code, success, fail) ->
     $.ajax
       url: @url + '/coupon/' + code
       type: 'GET'
@@ -56,7 +56,7 @@ module.exports = class API
       success: success
       error: fail
 
-  charge: (model, success, fail)->
+  charge: (model, success, fail) ->
     $.ajax
       url: if @store == '' then @url + '/charge' else @url + '/#{ @store }/charge'
       type: 'POST'
@@ -65,7 +65,7 @@ module.exports = class API
       contentType: 'application/json; charset=utf-8'
       data: JSON.stringify(model)
       dataType: 'json'
-      success: (order)=>
+      success: (order) =>
         success order
         @cb order
       error: fail
@@ -82,16 +82,7 @@ module.exports = class API
       success: success
       error: fail
 
-  exists: (email, success, fail)->
-    $.ajax
-      url: @url + '/account/exists/' + email,
-      type: 'GET',
-      headers:
-        Authorization: @key
-      success: success
-      error: fail
-
-  referrer: (order, program, success, fail)->
+  referrer: (order, program, success, fail) ->
     $.ajax
       url: @url + '/referrer',
       type: 'POST',
@@ -106,3 +97,13 @@ module.exports = class API
       success: success
       error: fail
 
+  emailExists: (email, success, fail) ->
+    $.ajax
+      url: @url + '/account/exists/' + email
+      type: 'GET'
+      headers:
+        Authorization: @key
+      contentType: 'application/json; charset=utf-8'
+      dataType: 'json'
+      success: success
+      error: fail
