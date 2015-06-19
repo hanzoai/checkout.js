@@ -145,7 +145,7 @@ class CardView extends View
           @ctx.user.email
           @ctx.password
           (token)=>
-            @ctx.user.id = JSON.parse(atob(token.split('.')[1]))['user-id']
+            @ctx.user.id = JSON.parse(atob(token.token.split('.')[1]))['user-id']
             success()
           ()->
             form.showError $('#crowdstart-password')[0], 'Email or password was invalid'

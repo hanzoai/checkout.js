@@ -233,6 +233,9 @@ class CheckoutView extends View
     $('modal').removeClass('crowdstart-active')
 
   back: ->
+    if @locked
+      return
+
     if @screenIndex <= 0
       @close()
     else
@@ -253,6 +256,7 @@ class CheckoutView extends View
             terms.off 'change', removeTermError
         terms.on 'change', removeTermError
         @locked = false
+        @update()
         return
 
       @screens[@screenIndex].validate =>
@@ -289,5 +293,6 @@ class CheckoutView extends View
         @update()
       , =>
         @locked = false
+        @update()
 
 module.exports = new CheckoutView
