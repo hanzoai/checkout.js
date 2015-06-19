@@ -240,7 +240,7 @@ checkout {
 }
 
 .crowdstart-checkout {
-  max-height: 800px;
+  max-height: 900px;
   overflow: hidden;
   box-sizing: border-box;
   box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
