@@ -47,6 +47,7 @@ checkout = (api, order, user = (new User), config = {}) ->
   config.facebook   = config.facebook   || ''
   config.googlePlus = config.googlePlus || ''
   config.twitter    = config.twitter    || ''
+  config.forgotPasswordUrl    = config.forgotPasswordUrl || ''
 
   config.showPromoCode = config.showPromoCode || false
 
@@ -77,7 +78,7 @@ checkout = (api, order, user = (new User), config = {}) ->
     for screen in config.screens
       $modal.find('checkout').append $ """
         <#{ screen.tag } api="{ opts.api }" model="{ opts.model }" config="{ opts.config }">
-        <#{ screen.tag }/card>
+        </#{ screen.tag }>
         """
 
     $('body').prepend $modal

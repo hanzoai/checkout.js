@@ -32,6 +32,9 @@ module.exports =
       $el.remove()
     , 500
 
+  isPassword: (text)->
+    return text.length >= 6
+
   isRequired: (text)->
     return text.length > 0
 

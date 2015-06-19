@@ -1,14 +1,23 @@
 <form id="crowdstart-checkout">
   <div class="crowdstart-form-control">
-    <label class="crowdstart-col-1-1">Name</label>
-    <div class="crowdstart-col-1-1 crowdstart-form-control">
-      <input value="{ (user.firstName + ' ' + user.lastName).trim() }" id="crowdstart-name" name="name" type="text" onchange="{ updateName }" onblur="{ updateName }" onfocus="{ removeError }" placeholder="Full Name" />
-    </div>
-  </div>
-  <div class="crowdstart-form-control">
     <label class="crowdstart-col-1-1">Email</label>
     <div class="crowdstart-col-1-1 crowdstart-form-control">
       <input value="{ user.email }" id="crowdstart-email" name="email" type="text" onchange="{ updateEmail }" onblur="{ updateEmail }" onfocus="{ removeError }" placeholder="youremail@somewhere.com" />
+    </div>
+  </div>
+  <div class="crowdstart-form-control" if={login}>
+    <label class="crowdstart-col-1-1">Password</label>
+    <div class="crowdstart-col-1-1 crowdstart-form-control">
+      <input id="crowdstart-password" name="crowdstart-password" type="password" onchange="{ updatePassword }" onblur="{ updatePassword }" onfocus="{ removeError }" placeholder="Password" />
+    </div>
+    <div class="crowdstart-col-1-1 crowdstart-form-control">
+      <a class="crowdstart-fine-print" href="{opts.config.forgotPasswordUrl}" if={opts.config.forgotPasswordUrl}>Forgot Pasword?</a>
+    </div>
+  </div>
+  <div class="crowdstart-form-control">
+    <label class="crowdstart-col-1-1">Name</label>
+    <div class="crowdstart-col-1-1 crowdstart-form-control">
+      <input value="{ (user.firstName + ' ' + user.lastName).trim() }" id="crowdstart-name" name="name" type="text" onchange="{ updateName }" onblur="{ updateName }" onfocus="{ removeError }" placeholder="Full Name" />
     </div>
   </div>
   <div class="crowdstart-form-control">

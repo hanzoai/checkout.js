@@ -70,10 +70,31 @@ module.exports = class API
         @cb order
       error: fail
 
+  login: (email, password, success, fail)->
+    $.ajax
+      url: @url + '/account/login',
+      type: 'POST',
+      headers:
+        Authorization: @key
+      contentType: 'application/json; charset=utf-8'
+      data: JSON.stringify({ email: email, password: password })
+      dataType: 'json'
+      success: success
+      error: fail
+
+  exists: (email, success, fail)->
+    $.ajax
+      url: @url + '/account/exists/' + email,
+      type: 'GET',
+      headers:
+        Authorization: @key
+      success: success
+      error: fail
+
   referrer: (order, program, success, fail)->
     $.ajax
-      url: "https://api.crowdstart.com/referrer",
-      type: "POST",
+      url: @url + '/referrer',
+      type: 'POST',
       headers:
         Authorization: @key
       contentType: 'application/json; charset=utf-8'

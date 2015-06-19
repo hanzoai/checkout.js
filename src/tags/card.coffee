@@ -33,9 +33,12 @@ class CardView extends View
             '-ms-transform': 'scale(0.514285714285714)'
             transform: 'scale(0.514285714285714)'
 
+    @api = opts.api
     @user = opts.model.user
     @payment = opts.model.payment
     @order = opts.model.order
+    @login = false
+    @password = ''
 
     @removeError = form.removeError
 
@@ -61,10 +64,32 @@ class CardView extends View
   updateEmail: (event)->
     email = event.target.value
     if form.isEmail email
+      if @ctx.user.email != email
+        @ctx.api.exists email, (data)=>
+          @ctx.login = data.exists
+          @update()
+          if @ctx.login
+            requestAnimationFrame ()=>
+              form.showError $('#crowdstart-password')[0], 'Enter the password for this account'
+
       @ctx.user.email = email
+
       return true
     else
       form.showError event.target, 'Enter a valid email'
+      return false
+
+  updatePassword: (event)->
+    if !@ctx.login
+      return true
+
+    password = event.target.value
+    if form.isPassword password
+      @ctx.password = password
+
+      return true
+    else
+      form.showError event.target, 'Enter a valid password'
       return false
 
   updateCreditCard: (event)->
@@ -111,9 +136,20 @@ class CardView extends View
   validate: (success=(()->), fail=(()->))->
     if @updateEmail(target: $('#crowdstart-email')[0]) &&
     @updateName(target: $('#crowdstart-name')[0]) &&
+    @updatePassword(target: $('#crowdstart-password')[0]) &&
     @updateCreditCard(target: $('#crowdstart-credit-card')[0]) &&
     @updateExpiry(target: $('#crowdstart-expiry')[0]) &&
     @updateCVC(target: $('#crowdstart-cvc')[0])
+      if @ctx.login
+        @ctx.api.login(
+          @ctx.user.email
+          @ctx.password
+          ()->
+            success()
+          ()->
+            form.showError $('#crowdstart-password')[0], 'Email or password was invalid'
+            fail())
+        return
       requestAnimationFrame ()->
         if $('.jp-card-invalid').length == 0
           success()
