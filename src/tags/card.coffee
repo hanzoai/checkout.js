@@ -144,7 +144,7 @@ class CardView extends View
         @ctx.api.login(
           @ctx.user.email
           @ctx.password
-          (user)->
+          (user)=>
             @ctx.user.id = user.id
             success()
           ()->
