@@ -70,6 +70,5 @@ task 'test-ci', 'Run tests on CI server', ->
      test/test.coffee"
 
   exec tests, (err) ->
-    console.log err if err?
     process.exit 1 if err?
     process.exit 0
