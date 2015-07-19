@@ -29,7 +29,7 @@
     "mocha": "^2.2.5",
     "node-static": "^0.7.6",
     "q": "^1.4.1",
-    "requisite": "^1.9.4",
+    "requisite": "^1.9.16",
     "selenium-standalone": "^4.4.2",
     "selenium-webdriver": "^2.45.1",
     "serve-static": "^1.10.0",
