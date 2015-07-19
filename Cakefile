@@ -53,9 +53,13 @@ task 'test', 'Run tests', (options) ->
 task 'test-ci', 'Run tests on CI server', ->
   invoke 'static-server'
 
-  tests = for name in ['chrome', 'firefox']
+  tests = for cap in require './test/caps'
     "NODE_ENV=test
-     BROWSER=#{name}
+     BROWSER=#{cap.name}
+     PLATFORM=#{cap.platform}
+     VERSION=#{cap.version}
+     DEVICE_NAME=#{cap.deviceName}
+     DEVICE_ORIENTATION=#{cap.deviceOrientation}
      node_modules/.bin/mocha
      --compilers coffee:coffee-script/register
      --reporter spec
