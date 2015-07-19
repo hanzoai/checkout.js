@@ -1,4 +1,4 @@
-exec = require('shortcake').exec
+exec = require('shortcake').exec.interactive
 
 option '-b', '--browser [browserName]', 'browser to test with'
 
@@ -53,13 +53,15 @@ task 'test', 'Run tests', (options) ->
 task 'test-ci', 'Run tests on CI server', ->
   invoke 'static-server'
 
-  tests = for cap in require './test/caps'
+  browsers = require './test/ci-config'
+
+  tests = for {browserName, platform, version, deviceName, deviceOrientation} in browsers
     "NODE_ENV=test
-     BROWSER=#{cap.name}
-     PLATFORM=#{cap.platform}
-     VERSION=#{cap.version}
-     DEVICE_NAME=#{cap.deviceName}
-     DEVICE_ORIENTATION=#{cap.deviceOrientation}
+     BROWSER=\"#{browserName}\"
+     PLATFORM=\"#{platform}\"
+     VERSION=\"#{version}\"
+     DEVICE_NAME=\"#{deviceName ? ''}\"
+     DEVICE_ORIENTATION=\"#{deviceOrientation ? ''}\"
      node_modules/.bin/mocha
      --compilers coffee:coffee-script/register
      --reporter spec
@@ -68,5 +70,6 @@ task 'test-ci', 'Run tests on CI server', ->
      test/test.coffee"
 
   exec tests, (err) ->
+    console.log err if err?
     process.exit 1 if err?
     process.exit 0
