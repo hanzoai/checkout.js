@@ -10,7 +10,7 @@ language: node_js
 node_js:
 - 0.12
 script: |
-  ./node_modules/.bin/mocha test/test.js
+  ./node_modules/.bin/shortcake test-ci
 cache:
   directories:
   - node_modules
