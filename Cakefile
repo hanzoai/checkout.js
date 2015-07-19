@@ -1,4 +1,4 @@
-exec = require('shortcake').exec.interactive
+exec = require('shortcake').exec
 
 option '-b', '--browser [browserName]', 'browser to test with'
 
