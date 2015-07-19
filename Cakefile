@@ -1,5 +1,7 @@
 exec = require('shortcake').exec
 
+option '-b', '--browser [browserName]', 'browser to test with'
+
 task 'build', 'Build module and bundled checkout.js', ->
   exec 'node_modules/.bin/coffee -bcm -o lib/ src/'
   exec 'node_modules/.bin/requisite src/checkout.coffee -o checkout.js'
@@ -27,21 +29,23 @@ task 'static-server', 'Run static server for tests', ->
 task 'selenium-install', 'Install selenium standalone', ->
   exec 'node_modules/.bin/selenium-standalone install'
 
-task 'test', 'Run tests', ->
+task 'test', 'Run tests', (options) ->
+  browserName = options.browser ? 'phantomjs'
+
   invoke 'static-server'
 
   selenium = require 'selenium-standalone'
   selenium.start (err, child) ->
     throw err if err?
 
-    exec 'NODE_ENV=test
-          BROWSER=phantomjs
+    exec "NODE_ENV=test
+          BROWSER=#{browserName}
           node_modules/.bin/mocha
           --compilers coffee:coffee-script/register
           --reporter spec
           --colors
           --timeout 60000
-          test/test.coffee', (err) ->
+          test/test.coffee", (err) ->
       child.kill()
       process.exit 1 if err?
       process.exit 0
