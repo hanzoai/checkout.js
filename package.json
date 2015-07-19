@@ -22,7 +22,9 @@
     "bebop": "^1.3.6",
     "browser-sync": "^2.7.6",
     "cake": "^0.1.1",
+    "chai": "^3.1.0",
     "coffee-script": "^1.9.2",
+    "connect": "^3.4.0",
     "executive": "^0.4.7",
     "mocha": "^2.2.5",
     "node-static": "^0.7.6",
@@ -30,6 +32,7 @@
     "requisite": "^1.9.4",
     "selenium-standalone": "^4.4.2",
     "selenium-webdriver": "^2.45.1",
+    "serve-static": "^1.10.0",
     "uglify-js": "^2.4.23",
     "webdriverio": "^2.4.5"
   },
