@@ -13,6 +13,8 @@ sleep = (seconds) ->
     1
 
 describe "Checkout (#{process.env.BROWSER})", ->
+  @timeout 90000
+
   browser = getBrowser()
   testPage = "http://localhost:#{process.env.PORT ? 3333}/widget.html"
 
