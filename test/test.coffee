@@ -19,13 +19,19 @@ describe "Checkout (#{process.env.BROWSER})", ->
       browser
         .url testPage
 
+        .waitForExist 'modal'
+
         # Click the Buy button
         .click 'a.btn'
 
-        # Select 2 for 'Such T-shirt
-        .click '/html/body/modal/div[1]/checkout/div/div[3]/div[2]/div[2]/div[1]/div[1]/span/span[1]/span'
+        .waitForExist '.crowdstart-active'
 
-        .click '/html/body/span/span/span[2]/ul/li[3]'
+        .waitForExist '.crowdstart-line-item'
+
+        # Select 2 for 'Such T-shirt
+        .click '.crowdstart-line-item:nth-child(2) .select2'
+
+        .click '.select2-results__options > li:nth-child(3)'
 
         .getText 'div.crowdstart-invoice > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > span', (err, res) ->
           unitPrice = parsePrice res
@@ -39,17 +45,24 @@ describe "Checkout (#{process.env.BROWSER})", ->
   describe 'Completing the form', ->
     it 'should work', (done) ->
       browser
+        .url testPage
+        .waitForExist 'modal'
+        .click 'a.btn'
+        .waitForExist '.crowdstart-active'
+        .waitForExist '.crowdstart-line-item'
         .setValue '#crowdstart-credit-card', '4242424242424242'
         .setValue '#crowdstart-expiry', '1122'
         .setValue '#crowdstart-cvc', '424'
         .click 'span.crowdstart-checkbox'
         .click 'a.crowdstart-checkout-button'
+        .waitForEnabled '#crowdstart-line1'
         .setValue '#crowdstart-line1', '1234 fake street'
         .setValue '#crowdstart-city', 'fake city'
         .setValue '#crowdstart-state', 'fake state'
         .setValue '#crowdstart-postalCode', '55555'
         .click 'a.crowdstart-checkout-button'
-        .waitForVisible 'body > modal > div.crowdstart-modal-target > checkout > div > div.crowdstart-forms > div.crowdstart-screens > div > div > form > h1', 20000
-        .getText 'body > modal > div.crowdstart-modal-target > checkout > div > div.crowdstart-forms > div.crowdstart-screens > div > div > form > h1', (err, res) ->
-           assert.strictEqual res, 'Thank You'
+        .waitForExist '.crowdstart-loader', 10000, true
+        .getText '.crowdstart-thankyou > form > h1', (err, res) ->
+          console.log(arguments)
+          assert.strictEqual res, 'Thank You'
         .call done

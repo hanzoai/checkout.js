@@ -2,14 +2,16 @@ webdriver = require 'webdriverio'
 
 exports.getBrowser = ->
   caps =
-    browserName:       process.env.BROWSER ? 'phantomjs'
+    browserName:       process.env.BROWSER ? 'chrome'
     platform:          process.env.PLATFORM
     version:           process.env.VERSION
     deviceName:        process.env.DEVICE_NAME
     deviceOrientation: process.env.DEVICE_ORIENTATION
 
   opts =
-    desiredCapabilities: caps
+    desiredCapabilities:
+      browserName:  'chrome'
+      logLevel:     'verbose'
 
   if process.env.TRAVIS?
     opts =
