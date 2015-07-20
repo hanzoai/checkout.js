@@ -32,7 +32,9 @@ describe "Checkout (#{process.env.BROWSER})", ->
 
         .waitForExist '.crowdstart-active'
 
-        .waitForExist '.crowdstart-line-item', ->
+        .waitForExist '.crowdstart-line-item'
+
+        .waitForVisible '.crowdstart-line-item:nth-child(2) .select2', ->
           sleep 1
 
         # Select 2 for 'Such T-shirt
@@ -46,7 +48,6 @@ describe "Checkout (#{process.env.BROWSER})", ->
         .getText 'div.crowdstart-invoice > div:nth-child(2) > div:nth-child(2) > div.crowdstart-col-1-3-bl.crowdstart-text-right.crowdstart-money', (err, res) ->
           lineItemPrice = parsePrice res
           assert.strictEqual lineItemPrice, unitPrice * 2
-
         .call done
 
   describe 'Completing the form', ->
@@ -57,7 +58,8 @@ describe "Checkout (#{process.env.BROWSER})", ->
           sleep 1
         .click 'a.btn'
         .waitForExist '.crowdstart-active'
-        .waitForExist '.crowdstart-line-item', ->
+        .waitForExist '.crowdstart-line-item'
+        .waitForEnabled '#crowdstart-credit-card', ->
           sleep 1
         .setValue '#crowdstart-credit-card', '4242424242424242'
         .setValue '#crowdstart-expiry', '1122'
@@ -74,6 +76,5 @@ describe "Checkout (#{process.env.BROWSER})", ->
         .waitForExist '.crowdstart-loader', 10000, true, ->
           sleep 1
         .getText '.crowdstart-thankyou > form > h1', (err, res) ->
-          console.log(arguments)
           assert.strictEqual res, 'Thank You'
         .call done
