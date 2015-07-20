@@ -7,6 +7,11 @@ parsePrice = (str) ->
   str = str.substring(1, str.length) # strip $
   parseFloat str
 
+sleep = (seconds) ->
+  e = new Date().getTime() + (seconds * 1000)
+  while (new Date().getTime() <= e)
+    1
+
 describe "Checkout (#{process.env.BROWSER})", ->
   browser = getBrowser()
   testPage = "http://localhost:#{process.env.PORT ? 3333}/widget.html"
@@ -19,14 +24,16 @@ describe "Checkout (#{process.env.BROWSER})", ->
       browser
         .url testPage
 
-        .waitForExist 'modal'
+        .waitForExist 'modal', ->
+          sleep 1
 
         # Click the Buy button
         .click 'a.btn'
 
         .waitForExist '.crowdstart-active'
 
-        .waitForExist '.crowdstart-line-item'
+        .waitForExist '.crowdstart-line-item', ->
+          sleep 1
 
         # Select 2 for 'Such T-shirt
         .click '.crowdstart-line-item:nth-child(2) .select2'
@@ -46,22 +53,26 @@ describe "Checkout (#{process.env.BROWSER})", ->
     it 'should work', (done) ->
       browser
         .url testPage
-        .waitForExist 'modal'
+        .waitForExist 'modal', ->
+          sleep 1
         .click 'a.btn'
         .waitForExist '.crowdstart-active'
-        .waitForExist '.crowdstart-line-item'
+        .waitForExist '.crowdstart-line-item', ->
+          sleep 1
         .setValue '#crowdstart-credit-card', '4242424242424242'
         .setValue '#crowdstart-expiry', '1122'
         .setValue '#crowdstart-cvc', '424'
         .click 'span.crowdstart-checkbox'
         .click 'a.crowdstart-checkout-button'
-        .waitForEnabled '#crowdstart-line1'
+        .waitForEnabled '#crowdstart-line1', ->
+          sleep 1
         .setValue '#crowdstart-line1', '1234 fake street'
         .setValue '#crowdstart-city', 'fake city'
         .setValue '#crowdstart-state', 'fake state'
         .setValue '#crowdstart-postalCode', '55555'
         .click 'a.crowdstart-checkout-button'
-        .waitForExist '.crowdstart-loader', 10000, true
+        .waitForExist '.crowdstart-loader', 10000, true, ->
+          sleep 1
         .getText '.crowdstart-thankyou > form > h1', (err, res) ->
           console.log(arguments)
           assert.strictEqual res, 'Thank You'
