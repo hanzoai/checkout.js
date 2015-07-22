@@ -1,5 +1,6 @@
 exec = require('shortcake').exec
 
+option '-s', '--external-selenium',     'use external selenium'
 option '-b', '--browser [browserName]', 'browser to test with'
 
 task 'build', 'Build module and bundled checkout.js', ->
@@ -30,14 +31,12 @@ task 'selenium-install', 'Install selenium standalone', ->
   exec 'node_modules/.bin/selenium-standalone install'
 
 task 'test', 'Run tests', (options) ->
-  browserName = options.browser ? 'phantomjs'
+  browserName      = options.browser ? 'phantomjs'
+  externalSelenium = options.externalSelenium ? false
 
   invoke 'static-server'
 
-  selenium = require 'selenium-standalone'
-  selenium.start (err, child) ->
-    throw err if err?
-
+  runTest = (cb) ->
     exec "NODE_ENV=test
           BROWSER=#{browserName}
           node_modules/.bin/mocha
@@ -45,7 +44,18 @@ task 'test', 'Run tests', (options) ->
           --reporter spec
           --colors
           --timeout 60000
-          test/test.coffee", (err) ->
+          test/test.coffee", cb
+
+  if externalSelenium
+    runTest (err) ->
+      process.exit 1 if err?
+      process.exit 0
+
+  selenium = require 'selenium-standalone'
+  selenium.start (err, child) ->
+    throw err if err?
+
+    runTest (err) ->
       child.kill()
       process.exit 1 if err?
       process.exit 0
