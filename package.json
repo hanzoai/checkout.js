@@ -29,7 +29,7 @@
     "requisite": "^1.9.16",
     "selenium-standalone": "^4.5.3",
     "serve-static": "^1.10.0",
-    "shortcake": "^0.2.1",
+    "shortcake": "^0.2.2",
     "uglify-js": "^2.4.23",
     "webdriverio": "^3.1.0"
   },
