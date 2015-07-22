@@ -10,7 +10,7 @@ exports.getBrowser = ->
 
   opts =
     desiredCapabilities: caps
-    logLevel:            'verbose'
+    logLevel: 'verbose'
 
   if process.env.TRAVIS?
     # annotate tests with travis info
@@ -24,6 +24,7 @@ exports.getBrowser = ->
 
     opts =
       desiredCapabilities: caps
+      logLevel: 'verbose'
       host: 'ondemand.saucelabs.com'
       port: 80
       user: process.env.SAUCE_USERNAME

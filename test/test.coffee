@@ -13,9 +13,6 @@ sleep = (seconds) ->
     1
 
 describe "Checkout (#{process.env.BROWSER})", ->
-  @timeout 90000
-
-  browser = getBrowser()
   testPage = "http://localhost:#{process.env.PORT ? 3333}/widget.html"
 
   describe 'Changing the quantity of a line item', ->
@@ -23,7 +20,7 @@ describe "Checkout (#{process.env.BROWSER})", ->
       unitPrice = 0
 
       # Select 2 for 'Such T-shirt'
-      browser
+      getBrowser()
         .url testPage
 
         .waitForExist 'modal', ->
@@ -50,11 +47,11 @@ describe "Checkout (#{process.env.BROWSER})", ->
         .getText 'div.crowdstart-invoice > div:nth-child(2) > div:nth-child(2) > div.crowdstart-col-1-3-bl.crowdstart-text-right.crowdstart-money', (err, res) ->
           lineItemPrice = parsePrice res
           assert.strictEqual lineItemPrice, unitPrice * 2
-        .call done
+        .end done
 
   describe 'Completing the form', ->
     it 'should work', (done) ->
-      browser
+      getBrowser()
         .url testPage
         .waitForExist 'modal', ->
           sleep 1
@@ -79,4 +76,4 @@ describe "Checkout (#{process.env.BROWSER})", ->
           sleep 1
         .getText '.crowdstart-thankyou > form > h1', (err, res) ->
           assert.strictEqual res, 'Thank You'
-        .call done
+        .end done
