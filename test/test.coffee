@@ -18,7 +18,7 @@ describe "Checkout (#{process.env.BROWSER})", ->
       getBrowser()
         .url testPage
 
-        .waitForExist 'div.modal'
+        .waitForExist 'modal', 5000
 
         # Click the Buy button
         .click 'a.btn'
@@ -46,7 +46,7 @@ describe "Checkout (#{process.env.BROWSER})", ->
     it 'should work', (done) ->
       getBrowser()
         .url testPage
-        .waitForExist 'div.modal'
+        .waitForExist 'modal', 5000
         .click 'a.btn'
         .waitForExist '.crowdstart-active', 5000
         .waitForExist '.crowdstart-line-item'
