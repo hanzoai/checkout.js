@@ -8,9 +8,11 @@ exports.getBrowser = ->
     deviceName:        process.env.DEVICE_NAME
     deviceOrientation: process.env.DEVICE_ORIENTATION
 
+  logLevel = if process.env.VERBOSE == 'true' then 'verbose' else 'silent'
+
   opts =
     desiredCapabilities: caps
-    logLevel: 'silent'
+    logLevel: logLevel
 
   if process.env.TRAVIS?
     # annotate tests with travis info
@@ -24,7 +26,7 @@ exports.getBrowser = ->
 
     opts =
       desiredCapabilities: caps
-      logLevel: 'verbose'
+      logLevel: logLevel
       host: 'ondemand.saucelabs.com'
       port: 80
       user: process.env.SAUCE_USERNAME

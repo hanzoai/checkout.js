@@ -1,7 +1,8 @@
 exec = require('shortcake').exec
 
-option '-s', '--external-selenium',     'use external selenium'
-option '-b', '--browser [browserName]', 'browser to test with'
+option '-b', '--browser [browserName]', 'Browser to test with'
+option '-s', '--external-selenium',     'Use external selenium'
+option '-v', '--verbose',               'Enable verbose logging for tests'
 
 task 'build', 'Build module and bundled checkout.js', ->
   exec 'node_modules/.bin/coffee -bcm -o lib/ src/'
@@ -33,12 +34,14 @@ task 'selenium-install', 'Install selenium standalone', ->
 task 'test', 'Run tests', (options) ->
   browserName      = options.browser ? 'phantomjs'
   externalSelenium = options.externalSelenium ? false
+  verbose          = options.verbose ? false
 
   invoke 'static-server'
 
   runTest = (cb) ->
     exec "NODE_ENV=test
           BROWSER=#{browserName}
+          VERBOSE=#{verbose}
           node_modules/.bin/mocha
           --compilers coffee:coffee-script/register
           --reporter spec
@@ -72,6 +75,7 @@ task 'test-ci', 'Run tests on CI server', ->
      VERSION=\"#{version}\"
      DEVICE_NAME=\"#{deviceName ? ''}\"
      DEVICE_ORIENTATION=\"#{deviceOrientation ? ''}\"
+     VERBOSE=true
      node_modules/.bin/mocha
      --compilers coffee:coffee-script/register
      --reporter spec
