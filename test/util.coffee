@@ -10,7 +10,7 @@ exports.getBrowser = ->
 
   opts =
     desiredCapabilities: caps
-    logLevel: 'verbose'
+    logLevel: 'silent'
 
   if process.env.TRAVIS?
     # annotate tests with travis info
