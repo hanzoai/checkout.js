@@ -7,11 +7,6 @@ parsePrice = (str) ->
   str = str.substring(1, str.length) # strip $
   parseFloat str
 
-sleep = (seconds) ->
-  e = new Date().getTime() + (seconds * 1000)
-  while (new Date().getTime() <= e)
-    1
-
 describe "Checkout (#{process.env.BROWSER})", ->
   testPage = "http://localhost:#{process.env.PORT ? 3333}/widget.html"
 
@@ -23,8 +18,7 @@ describe "Checkout (#{process.env.BROWSER})", ->
       getBrowser()
         .url testPage
 
-        .waitForExist 'modal', ->
-          sleep 1
+        .waitForExist 'modal'
 
         # Click the Buy button
         .click 'a.btn'
@@ -33,8 +27,7 @@ describe "Checkout (#{process.env.BROWSER})", ->
 
         .waitForExist '.crowdstart-line-item'
 
-        .waitForVisible '.crowdstart-line-item:nth-child(2) .select2', ->
-          sleep 1
+        .waitForVisible '.crowdstart-line-item:nth-child(2) .select2'
 
         # Select 2 for 'Such T-shirt
         .click '.crowdstart-line-item:nth-child(2) .select2'
@@ -53,27 +46,23 @@ describe "Checkout (#{process.env.BROWSER})", ->
     it 'should work', (done) ->
       getBrowser()
         .url testPage
-        .waitForExist 'modal', ->
-          sleep 1
+        .waitForExist 'modal'
         .click 'a.btn'
         .waitForExist '.crowdstart-active'
         .waitForExist '.crowdstart-line-item'
-        .waitForEnabled '#crowdstart-credit-card', ->
-          sleep 1
+        .waitForEnabled '#crowdstart-credit-card'
         .setValue '#crowdstart-credit-card', '4242424242424242'
         .setValue '#crowdstart-expiry', '1122'
         .setValue '#crowdstart-cvc', '424'
         .click 'span.crowdstart-checkbox'
         .click 'a.crowdstart-checkout-button'
-        .waitForEnabled '#crowdstart-line1', ->
-          sleep 1
+        .waitForEnabled '#crowdstart-line1'
         .setValue '#crowdstart-line1', '1234 fake street'
         .setValue '#crowdstart-city', 'fake city'
         .setValue '#crowdstart-state', 'fake state'
         .setValue '#crowdstart-postalCode', '55555'
         .click 'a.crowdstart-checkout-button'
-        .waitForExist '.crowdstart-loader', 10000, true, ->
-          sleep 1
+        .waitForExist '.crowdstart-loader', 10000, true
         .getText '.crowdstart-thankyou > form > h1', (err, res) ->
           assert.strictEqual res, 'Thank You'
         .end done
