@@ -8,6 +8,7 @@ parsePrice = (str) ->
   parseFloat str
 
 describe "Checkout (#{process.env.BROWSER})", ->
+  @timeout 90000
   testPage = "http://localhost:#{process.env.PORT ? 3333}/widget.html"
 
   describe 'Changing the quantity of a line item', ->
@@ -45,16 +46,20 @@ describe "Checkout (#{process.env.BROWSER})", ->
   describe 'Completing the form', ->
     it 'should work', (done) ->
       getBrowser()
+        # Setup page and modal
         .url testPage
         .waitForExist 'modal', 5000
         .click 'a.btn'
         .waitForExist '.crowdstart-active', 5000
         .waitForExist '.crowdstart-line-item'
         .waitForEnabled '#crowdstart-credit-card'
-        .setValue '#crowdstart-credit-card', '4242424242424242'
-        .setValue '#crowdstart-expiry', '1122'
+        .waitForVisible '.crowdstart-line-item:nth-child(2) .select2'
+
+        # Payment information
+        .setValue 'input#crowdstart-credit-card', '4242424242424242'
+        .setValue 'input#crowdstart-expiry', '1122'
         .setValue '#crowdstart-cvc', '424'
-        .click 'span.crowdstart-checkbox'
+        .click 'label[for=terms]'
         .click 'a.crowdstart-checkout-button'
         .waitForEnabled '#crowdstart-line1'
         .setValue '#crowdstart-line1', '1234 fake street'
