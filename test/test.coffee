@@ -61,12 +61,15 @@ describe "Checkout (#{process.env.BROWSER})", ->
         .setValue '#crowdstart-cvc', '424'
         .click 'label[for=terms]'
         .click 'a.crowdstart-checkout-button'
+
+        # Billing information
         .waitForEnabled '#crowdstart-line1'
         .setValue '#crowdstart-line1', '1234 fake street'
         .setValue '#crowdstart-city', 'fake city'
         .setValue '#crowdstart-state', 'fake state'
         .setValue '#crowdstart-postalCode', '55555'
         .click 'a.crowdstart-checkout-button'
+
         .waitForExist '.crowdstart-loader', 10000, true
         .getText '.crowdstart-thankyou > form > h1', (err, res) ->
           assert.strictEqual res, 'Thank You'
