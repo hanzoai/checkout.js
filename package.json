@@ -22,7 +22,7 @@
     "chai": "^3.1.0",
     "coffee-script": "^1.9.3",
     "connect": "^3.4.0",
-    "executive": "^0.4.8",
+    "executive": "^0.5.0",
     "mocha": "^2.2.5",
     "node-static": "^0.7.6",
     "q": "^1.4.1",
