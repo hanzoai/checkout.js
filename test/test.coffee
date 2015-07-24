@@ -7,6 +7,10 @@ parsePrice = (str) ->
   str = str.substring(1, str.length) # strip $
   parseFloat str
 
+parseTotal = (str) ->
+  str = str.split(' ')[0] # strip USD
+  parsePrice str
+
 describe "Checkout (#{process.env.BROWSER})", ->
   testPage = "http://localhost:#{process.env.PORT ? 3333}/widget.html"
 
@@ -15,6 +19,10 @@ describe "Checkout (#{process.env.BROWSER})", ->
       quantity: '.crowdstart-invoice > div:nth-child(2) select'
       unitPrice: 'div.crowdstart-invoice > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > span'
       lineItemPrice: 'div.crowdstart-invoice > div:nth-child(2) > div:nth-child(2) > div.crowdstart-col-1-3-bl.crowdstart-text-right.crowdstart-money'
+
+      # Such T-shirt
+      quantity2: '.crowdstart-invoice > div:nth-child(3) select'
+      total: '.crowdstart-invoice > div:nth-child(9) .crowdstart-money'
 
     it 'should update line item cost and total cost', (done) ->
       unitPrice = 0
@@ -38,6 +46,12 @@ describe "Checkout (#{process.env.BROWSER})", ->
         .getText selectors.lineItemPrice, (err, res) ->
           lineItemPrice = parsePrice res
           assert.strictEqual lineItemPrice, unitPrice * 2
+
+        # Remove the first line item
+        .selectByValue selectors.quantity2, '0'
+        .getText selectors.total, (err, res) ->
+          total = parseTotal res
+          assert.strictEqual total, unitPrice * 2
 
         .end done
 
