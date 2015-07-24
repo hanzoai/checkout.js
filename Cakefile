@@ -28,7 +28,7 @@ task 'static-server', 'Run static server for tests', ->
   server.use (require 'serve-static') './test'
 
   port = process.env.PORT ? 3333
-  console.log 'Static server started at http://localhost:#{port}'
+  console.log "Static server started at http://localhost:#{port}"
   server.listen port
 
 task 'selenium-install', 'Install selenium standalone', ->
