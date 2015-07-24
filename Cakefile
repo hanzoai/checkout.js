@@ -1,6 +1,8 @@
 exec = require('shortcake').exec
 
-option '-b', '--browser [browserName]', 'browser to test with'
+option '-b', '--browser [browserName]', 'Browser to test with'
+option '-s', '--external-selenium',     'Use external selenium'
+option '-v', '--verbose',               'Enable verbose logging for tests'
 
 task 'build', 'Build module and bundled checkout.js', ->
   exec 'node_modules/.bin/coffee -bcm -o lib/ src/'
@@ -30,22 +32,33 @@ task 'selenium-install', 'Install selenium standalone', ->
   exec 'node_modules/.bin/selenium-standalone install'
 
 task 'test', 'Run tests', (options) ->
-  browserName = options.browser ? 'phantomjs'
+  browserName      = options.browser ? 'phantomjs'
+  externalSelenium = options.externalSelenium ? false
+  verbose          = options.verbose ? false
 
   invoke 'static-server'
+
+  runTest = (cb) ->
+    exec "NODE_ENV=test
+          BROWSER=#{browserName}
+          VERBOSE=#{verbose}
+          node_modules/.bin/mocha
+          --compilers coffee:coffee-script/register
+          --reporter spec
+          --colors
+          --timeout 30000
+          test/test.coffee", cb
+
+  if externalSelenium
+    runTest (err) ->
+      process.exit 1 if err?
+      process.exit 0
 
   selenium = require 'selenium-standalone'
   selenium.start (err, child) ->
     throw err if err?
 
-    exec "NODE_ENV=test
-          BROWSER=#{browserName}
-          node_modules/.bin/mocha
-          --compilers coffee:coffee-script/register
-          --reporter spec
-          --colors
-          --timeout 60000
-          test/test.coffee", (err) ->
+    runTest (err) ->
       child.kill()
       process.exit 1 if err?
       process.exit 0
@@ -62,6 +75,7 @@ task 'test-ci', 'Run tests on CI server', ->
      VERSION=\"#{version}\"
      DEVICE_NAME=\"#{deviceName ? ''}\"
      DEVICE_ORIENTATION=\"#{deviceOrientation ? ''}\"
+     VERBOSE=true
      node_modules/.bin/mocha
      --compilers coffee:coffee-script/register
      --reporter spec
