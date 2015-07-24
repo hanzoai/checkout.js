@@ -49,7 +49,7 @@ task 'test', 'Run tests', (options) ->
           --compilers coffee:coffee-script/register
           --reporter spec
           --colors
-          --timeout 30000
+          --timeout 90000
           test/test.coffee", cb
 
   if externalSelenium
