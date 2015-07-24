@@ -26,7 +26,10 @@ task 'static-server', 'Run static server for tests', ->
   connect = require 'connect'
   server = connect()
   server.use (require 'serve-static') './test'
-  server.listen process.env.PORT ? 3333
+
+  port = process.env.PORT ? 3333
+  console.log 'Static server started at http://localhost:#{port}'
+  server.listen port
 
 task 'selenium-install', 'Install selenium standalone', ->
   exec 'node_modules/.bin/selenium-standalone install'

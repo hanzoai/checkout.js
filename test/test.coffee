@@ -23,17 +23,19 @@ describe "Checkout (#{process.env.BROWSER})", ->
 
         # Click the Buy button
         .click 'a.btn'
-
         .waitForExist '.crowdstart-active', 5000
-
         .waitForExist '.crowdstart-line-item'
-
         .waitForVisible '.crowdstart-line-item:nth-child(2) .select2'
 
-        # Select 2 for 'Such T-shirt
-        .click '.crowdstart-line-item:nth-child(2) .select2'
 
-        .click '.select2-results__options > li:nth-child(3)'
+        # Select 2 for 'Such T-shirt
+        # TODO Use clicks instead
+        .selectByValue('.crowdstart-invoice > div:nth-child(2) select', '2')
+        # .click '.crowdstart-line-item:nth-child(2) .select2'
+
+        # .waitForVisible 'ul.select2-results__options > li:nth-child(3)'
+        # .moveToObject 'ul.select2-results__options > li:nth-child(3)'
+        # .click 'ul.select2-results__options > li:nth-child(3)'
 
         .getText 'div.crowdstart-invoice > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > span', (err, res) ->
           unitPrice = parsePrice res
@@ -41,6 +43,7 @@ describe "Checkout (#{process.env.BROWSER})", ->
         .getText 'div.crowdstart-invoice > div:nth-child(2) > div:nth-child(2) > div.crowdstart-col-1-3-bl.crowdstart-text-right.crowdstart-money', (err, res) ->
           lineItemPrice = parsePrice res
           assert.strictEqual lineItemPrice, unitPrice * 2
+          console.log lineItemPrice
         .end done
 
   describe 'Completing the form', ->
