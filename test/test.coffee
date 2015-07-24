@@ -11,13 +11,16 @@ describe "Checkout (#{process.env.BROWSER})", ->
   testPage = "http://localhost:#{process.env.PORT ? 3333}/widget.html"
 
   describe 'Changing the quantity of a line item', ->
-    it 'should update line item cost', (done) ->
+    selectors =
+      quantity: '.crowdstart-invoice > div:nth-child(2) select'
+      unitPrice: 'div.crowdstart-invoice > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > span'
+      lineItemPrice: 'div.crowdstart-invoice > div:nth-child(2) > div:nth-child(2) > div.crowdstart-col-1-3-bl.crowdstart-text-right.crowdstart-money'
+
+    it 'should update line item cost and total cost', (done) ->
       unitPrice = 0
 
-      # Select 2 for 'Such T-shirt'
       getBrowser()
         .url testPage
-
         .waitForExist 'modal', 5000
 
         # Click the Buy button
@@ -27,14 +30,15 @@ describe "Checkout (#{process.env.BROWSER})", ->
         .waitForVisible '.crowdstart-line-item:nth-child(2) .select2'
 
         # Select 2 for 'Such T-shirt
-        .selectByValue('.crowdstart-invoice > div:nth-child(2) select', '2')
+        .selectByValue selectors.quantity, '2'
 
-        .getText 'div.crowdstart-invoice > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > span', (err, res) ->
+        .getText selectors.unitPrice, (err, res) ->
           unitPrice = parsePrice res
 
-        .getText 'div.crowdstart-invoice > div:nth-child(2) > div:nth-child(2) > div.crowdstart-col-1-3-bl.crowdstart-text-right.crowdstart-money', (err, res) ->
+        .getText selectors.lineItemPrice, (err, res) ->
           lineItemPrice = parsePrice res
           assert.strictEqual lineItemPrice, unitPrice * 2
+
         .end done
 
   describe 'Completing the form', ->
