@@ -22,17 +22,12 @@ describe "Checkout (#{process.env.BROWSER})", ->
 
         # Click the Buy button
         .click 'a.btn'
-
         .waitForExist '.crowdstart-active', 5000
-
         .waitForExist '.crowdstart-line-item'
-
         .waitForVisible '.crowdstart-line-item:nth-child(2) .select2'
 
         # Select 2 for 'Such T-shirt
-        .click '.crowdstart-line-item:nth-child(2) .select2'
-
-        .click '.select2-results__options > li:nth-child(3)'
+        .selectByValue('.crowdstart-invoice > div:nth-child(2) select', '2')
 
         .getText 'div.crowdstart-invoice > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > span', (err, res) ->
           unitPrice = parsePrice res
@@ -45,23 +40,30 @@ describe "Checkout (#{process.env.BROWSER})", ->
   describe 'Completing the form', ->
     it 'should work', (done) ->
       getBrowser()
+        # Setup page and modal
         .url testPage
         .waitForExist 'modal', 5000
         .click 'a.btn'
         .waitForExist '.crowdstart-active', 5000
         .waitForExist '.crowdstart-line-item'
         .waitForEnabled '#crowdstart-credit-card'
-        .setValue '#crowdstart-credit-card', '4242424242424242'
-        .setValue '#crowdstart-expiry', '1122'
+        .waitForVisible '.crowdstart-line-item:nth-child(2) .select2'
+
+        # Payment information
+        .setValue 'input#crowdstart-credit-card', '4242424242424242'
+        .setValue 'input#crowdstart-expiry', '1122'
         .setValue '#crowdstart-cvc', '424'
-        .click 'span.crowdstart-checkbox'
+        .click 'label[for=terms]'
         .click 'a.crowdstart-checkout-button'
+
+        # Billing information
         .waitForEnabled '#crowdstart-line1'
         .setValue '#crowdstart-line1', '1234 fake street'
         .setValue '#crowdstart-city', 'fake city'
         .setValue '#crowdstart-state', 'fake state'
         .setValue '#crowdstart-postalCode', '55555'
         .click 'a.crowdstart-checkout-button'
+
         .waitForExist '.crowdstart-loader', 10000, true
         .getText '.crowdstart-thankyou > form > h1', (err, res) ->
           assert.strictEqual res, 'Thank You'
