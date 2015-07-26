@@ -3,25 +3,28 @@ should    = require('chai').should()
 
 {getBrowser} = require './util'
 
+# Removes the leading '$'
 parsePrice = (str) ->
-  str = str.substring(1, str.length) # strip $
+  str = str.substring(1, str.length)
   parseFloat str
 
 parseTotal = (str) ->
-  str = str.split(' ')[0] # strip USD
+  str = str.split(' ')[0] # strip currency ('$180.00 (USD)')
   parsePrice str
 
 describe "Checkout (#{process.env.BROWSER})", ->
   testPage = "http://localhost:#{process.env.PORT ? 3333}/widget.html"
 
   describe 'Changing the quantity of a line item', ->
+    # Long or undecipherable selectors
     selectors =
       quantity: '.crowdstart-invoice > div:nth-child(2) select'
       unitPrice: 'div.crowdstart-invoice > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > span'
       lineItemPrice: 'div.crowdstart-invoice > div:nth-child(2) > div:nth-child(2) > div.crowdstart-col-1-3-bl.crowdstart-text-right.crowdstart-money'
 
-      # Such T-shirt
+      # Such T-shirt (second line item)
       quantity2: '.crowdstart-invoice > div:nth-child(3) select'
+
       total: '.crowdstart-invoice > div:nth-child(9) .crowdstart-money'
 
     it 'should update line item cost and total cost', (done) ->
@@ -43,12 +46,15 @@ describe "Checkout (#{process.env.BROWSER})", ->
         .getText selectors.unitPrice, (err, res) ->
           unitPrice = parsePrice res
 
+        # Test if unitPrice is correct
         .getText selectors.lineItemPrice, (err, res) ->
           lineItemPrice = parsePrice res
           assert.strictEqual lineItemPrice, unitPrice * 2
 
         # Remove the first line item
         .selectByValue selectors.quantity2, '0'
+
+        # Test if total is correct
         .getText selectors.total, (err, res) ->
           total = parseTotal res
           assert.strictEqual total, unitPrice * 2
@@ -83,6 +89,7 @@ describe "Checkout (#{process.env.BROWSER})", ->
         .click 'a.crowdstart-checkout-button'
 
         .waitForExist '.crowdstart-loader', 10000, true
+
         .getText '.crowdstart-thankyou > form > h1', (err, res) ->
           assert.strictEqual res, 'Thank You'
         .end done
