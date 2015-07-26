@@ -85,6 +85,7 @@ class CheckoutView extends View
                 for j in [i..items.length-2] by 1
                   items[j] = items[j+1]
                 items.length--
+                $el.select2('val', items[i].quantity)
             self.update()
 
         view.reset()
