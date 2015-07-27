@@ -86,4 +86,42 @@ describe "Checkout (#{process.env.BROWSER})", ->
 
         .getText '.crowdstart-thankyou > form > h1', (err, res) ->
           assert.strictEqual res, 'Thank You'
+
+        .end done
+
+  describe 'Leaving fields empty', ->
+    it 'should display alerts', (done) ->
+      alerts =
+        creditCard: '//*[@id="crowdstart-checkout"]/div[4]/div[1]/div/span'
+        expiration: '//*[@id="crowdstart-checkout"]/div[6]/div/div[1]/div/span'
+        cvc: '//*[@id="crowdstart-checkout"]/div[6]/div/div[2]/div/span'
+
+      selectors =
+        checkoutButton: 'a.crowdstart-checkout-button'
+
+      setupModal(getBrowser())
+        # Agree to terms
+        .click 'label[for=terms]'
+
+        .click selectors.checkoutButton
+        .getText alerts.creditCard, (err, res) ->
+          assert.strictEqual res, 'Enter a valid card number'
+        .setValue 'input#crowdstart-credit-card', '4242424242424242'
+
+        .click selectors.checkoutButton
+        .getText alerts.expiration, (err, res) ->
+          assert.strictEqual res, 'Enter a valid expiration date'
+        .setValue 'input#crowdstart-expiry', '1122'
+
+        .click selectors.checkoutButton
+        .getText alerts.cvc, (err, res) ->
+          assert.strictEqual res, 'Enter a valid CVC number'
+        .setValue '#crowdstart-cvc', '424'
+
+        .click selectors.checkoutButton
+        # The text of the checkout button should change if our test
+        # was successful
+        .getText selectors.checkoutButton, (err, res) ->
+          assert.strictEqual res, 'CONFIRM'
+
         .end done
