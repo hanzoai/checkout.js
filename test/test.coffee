@@ -96,6 +96,11 @@ describe "Checkout (#{process.env.BROWSER})", ->
         expiration: '//*[@id="crowdstart-checkout"]/div[6]/div/div[1]/div/span'
         cvc: '//*[@id="crowdstart-checkout"]/div[6]/div/div[2]/div/span'
 
+        shipping: '//*[@id="crowdstart-shipping"]/div[2]/div[1]/div/span'
+        city: '//*[@id="crowdstart-shipping"]/div[3]/div/div/span'
+        state: '//*[@id="crowdstart-shipping"]/div[5]/div[1]/div/span'
+        postalCode: '//*[@id="crowdstart-shipping"]/div[5]/div[2]/div/span'
+
       selectors =
         checkoutButton: 'a.crowdstart-checkout-button'
 
@@ -103,17 +108,21 @@ describe "Checkout (#{process.env.BROWSER})", ->
         # Agree to terms
         .click 'label[for=terms]'
 
+        # Payment information
         .click selectors.checkoutButton
+        .waitForExist alerts.creditCard
         .getText alerts.creditCard, (err, res) ->
           assert.strictEqual res, 'Enter a valid card number'
         .setValue 'input#crowdstart-credit-card', '4242424242424242'
 
         .click selectors.checkoutButton
+        .waitForExist alerts.expiration
         .getText alerts.expiration, (err, res) ->
           assert.strictEqual res, 'Enter a valid expiration date'
         .setValue 'input#crowdstart-expiry', '1122'
 
         .click selectors.checkoutButton
+        .waitForExist alerts.cvc
         .getText alerts.cvc, (err, res) ->
           assert.strictEqual res, 'Enter a valid CVC number'
         .setValue '#crowdstart-cvc', '424'
@@ -123,5 +132,36 @@ describe "Checkout (#{process.env.BROWSER})", ->
         # was successful
         .getText selectors.checkoutButton, (err, res) ->
           assert.strictEqual res, 'CONFIRM'
+
+        # Shipping information
+        .click selectors.checkoutButton
+        .waitForExist alerts.shipping
+        .getText alerts.shipping, (err, res) ->
+          assert.strictEqual res, 'Enter a Address'
+        .setValue '#crowdstart-line1', '1234 fake street'
+
+        .click selectors.checkoutButton
+        .waitForExist alerts.city
+        .getText alerts.city, (err, res) ->
+          assert.strictEqual res, 'Enter a City'
+        .setValue '#crowdstart-city', 'fake city'
+
+        .click selectors.checkoutButton
+        .waitForExist alerts.state
+        .getText alerts.state, (err, res) ->
+          assert.strictEqual res, 'Enter a State'
+        .setValue '#crowdstart-city', 'fake state'
+
+        .click selectors.checkoutButton
+        .waitForExist alerts.postalCode
+        .getText alerts.postalCode, (err, res) ->
+          assert.strictEqual res, 'Enter a Postal Code'
+        .setValue '#crowdstart-state', 'fake state'
+
+        .click selectors.checkoutButton
+        .waitForExist '.crowdstart-loader', 10000, true
+
+        .getText '.crowdstart-thankyou > form > h1', (err, res) ->
+          assert.strictEqual res, 'Thank You'
 
         .end done
