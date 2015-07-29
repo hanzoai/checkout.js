@@ -78,11 +78,11 @@ task 'test-ci', 'Run tests on CI server', ->
       sslFlag: 0
     }]
     v: true # verbose
+    localIdentifier: process.env.TRAVIS_JOB_NUMBER
   #   osxBin: 'your_bin_dir'
   #   linux32Bin: 'your_bin_dir'
   #   linux64Bin: 'your_bin_dir'
   #   win32Bin: 'your_bin_dir'
-  #   localIdentifier: 'my_tunnel'
   #   proxyUser: PROXY_USER
   #   proxyPass: PROXY_PASS
   #   proxyPort: PROXY_PORT
