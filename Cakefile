@@ -91,6 +91,9 @@ task 'test-ci', 'Run tests on CI server', ->
   #   forcelocal: false
   #   onlyAutomate: false
 
+  bst.start (err) ->
+    console.log err if err?
+
   browsers = require './test/ci-config'
 
   tests = for {browserName, platform, version, deviceName, deviceOrientation} in browsers
@@ -111,3 +114,6 @@ task 'test-ci', 'Run tests on CI server', ->
   exec tests, (err) ->
     process.exit 1 if err?
     process.exit 0
+
+  bst.stop (err) ->
+    console.log err if err?
