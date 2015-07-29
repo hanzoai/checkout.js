@@ -89,7 +89,7 @@ task 'test-ci', 'Run tests on CI server', (options) ->
   browsers = require './test/ci-config'
 
   if (browserName = options.browser)?
-    browsers = (browsers.filter (v) -> v.browserName === browserName)[0]
+    browsers = (browsers.filter (v) -> v.browserName == browserName)[0]
 
   invoke 'browserstack-tunnel', ->
     invoke 'static-server'
