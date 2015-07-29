@@ -92,6 +92,7 @@ task 'test-ci', 'Run tests on CI server', ->
   #   onlyAutomate: false
 
   bst.start (err) ->
+    console.log 'BrowserStackTunnel started'
     console.log err if err?
 
   browsers = require './test/ci-config'
@@ -113,7 +114,9 @@ task 'test-ci', 'Run tests on CI server', ->
 
   exec tests, (err) ->
     process.exit 1 if err?
-    process.exit 0
 
-  bst.stop (err) ->
-    console.log err if err?
+    bst.stop (err) ->
+      console.log 'BrowserStackTunnel stopped'
+      console.log err if err?
+      process.exit 1 if err?
+      process.exit 0
