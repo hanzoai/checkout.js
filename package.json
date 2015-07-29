@@ -31,7 +31,8 @@
     "serve-static": "^1.10.0",
     "shortcake": "^0.2.2",
     "uglify-js": "^2.4.23",
-    "webdriverio": "^3.1.0"
+    "webdriverio": "^3.1.0",
+    "browserstacktunnel-wrapper": "^1.4.0"
   },
   "dependencies": {
     "card": "^1.0.0",

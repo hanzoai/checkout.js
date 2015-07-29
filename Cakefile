@@ -69,6 +69,28 @@ task 'test', 'Run tests', (options) ->
 task 'test-ci', 'Run tests on CI server', ->
   invoke 'static-server'
 
+  BrowserStackTunnel = require 'browserstacktunnel-wrapper'
+  bst = new BrowserStackTunnel
+    key: process.env.BS_AUTHKEY
+    hosts: [{
+      name: 'localhost'
+      port: 3333
+      sslFlag: 0
+    }]
+    v: true # verbose
+  #   osxBin: 'your_bin_dir'
+  #   linux32Bin: 'your_bin_dir'
+  #   linux64Bin: 'your_bin_dir'
+  #   win32Bin: 'your_bin_dir'
+  #   localIdentifier: 'my_tunnel'
+  #   proxyUser: PROXY_USER
+  #   proxyPass: PROXY_PASS
+  #   proxyPort: PROXY_PORT
+  #   proxyHost: PROXY_HOST
+  #   force: false
+  #   forcelocal: false
+  #   onlyAutomate: false
+
   browsers = require './test/ci-config'
 
   tests = for {browserName, platform, version, deviceName, deviceOrientation} in browsers
