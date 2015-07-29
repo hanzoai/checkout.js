@@ -46,4 +46,4 @@ exports.getBrowser = ->
       user: BROWSERSTACK_USERNAME
       key:  BROWSERSTACK_KEY
 
-  webdriver.remote(opts).init()
+  webdriver.remote(opts)

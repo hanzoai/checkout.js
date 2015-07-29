@@ -9,13 +9,21 @@ parsePrice = (str) ->
 
 describe "Checkout (#{process.env.BROWSER})", ->
   testPage = "http://localhost:#{process.env.PORT ? 3333}/widget.html"
+  browser  = null
+
+  before (done) ->
+    browser = getBrowser()
+    browser.init done
+
+  after (done) ->
+    browser.end done
 
   describe 'Changing the quantity of a line item', ->
     it 'should update line item cost', (done) ->
       unitPrice = 0
 
       # Select 2 for 'Such T-shirt'
-      getBrowser()
+      browser
         .url testPage
 
         .waitForExist 'modal', 5000
@@ -35,11 +43,11 @@ describe "Checkout (#{process.env.BROWSER})", ->
         .getText 'div.crowdstart-invoice > div:nth-child(2) > div:nth-child(2) > div.crowdstart-col-1-3-bl.crowdstart-text-right.crowdstart-money', (err, res) ->
           lineItemPrice = parsePrice res
           assert.strictEqual lineItemPrice, unitPrice * 2
-        .end done
+        .call done
 
   describe 'Completing the form', ->
     it 'should work', (done) ->
-      getBrowser()
+      browser
         # Setup page and modal
         .url testPage
         .waitForExist 'modal', 5000
@@ -67,4 +75,4 @@ describe "Checkout (#{process.env.BROWSER})", ->
         .waitForExist '.crowdstart-loader', 10000, true
         .getText '.crowdstart-thankyou > form > h1', (err, res) ->
           assert.strictEqual res, 'Thank You'
-        .end done
+        .call done
