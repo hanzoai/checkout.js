@@ -91,9 +91,8 @@ task 'test-ci', 'Run tests on CI server', (options) ->
   if (browserName = options.browser)?
     browsers = (browsers.filter (v) -> v.browserName == browserName)[0]
 
+  invoke 'static-server'
   invoke 'browserstack-tunnel', ->
-    invoke 'static-server'
-
     tests = for {browserName, platform, version, deviceName, deviceOrientation} in browsers
       "NODE_ENV=test
        TRAVIS=1
