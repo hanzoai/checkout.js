@@ -15,21 +15,35 @@ exports.getBrowser = ->
     logLevel: logLevel
 
   if process.env.TRAVIS?
+    { BS_AUTHKEY
+      BS_AUTOMATE_BUILD
+      BS_AUTOMATE_PROJECT
+      BS_USERNAME
+      TRAVIS_BRANCH
+      TRAVIS_BUILD_NUMBER
+      TRAVIS_COMMIT
+      TRAVIS_JOB_NUMBER
+      TRAVIS_PULL_REQUEST } = process.env
+
     # annotate tests with travis info
-    caps.name = process.env.TRAVIS_COMMIT
+    caps.name = TRAVIS_COMMIT
     caps.tags = [
-      process.env.TRAVIS_PULL_REQUEST
-      process.env.TRAVIS_BRANCH
-      process.env.TRAVIS_BUILD_NUMBER
+      TRAVIS_BRANCH
+      TRAVIS_BUILD_NUMBER
+      TRAVIS_PULL_REQUEST
     ]
-    caps['tunnel-identifier'] = process.env.TRAVIS_JOB_NUMBER
+
+    caps['tunnel-identifier'] = TRAVIS_JOB_NUMBER
+
+    caps.project = BS_AUTOMATE_PROJECT
+    caps.build = BS_AUTOMATE_BUILD
 
     opts =
       desiredCapabilities: caps
       logLevel: logLevel
-      host: 'ondemand.saucelabs.com'
+      host: 'hub.browserstack.com/wd/hub'
       port: 80
-      user: process.env.SAUCE_USERNAME
-      key: process.env.SAUCE_ACCESS_KEY
+      user: BS_USERAME
+      key:  BS_AUTHKEY
 
   webdriver.remote(opts).init()
