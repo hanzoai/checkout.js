@@ -23,12 +23,20 @@ task 'deploy', 'deploy new version', ->
   ]
 
 task 'browserstack-tunnel', 'Start tunnel for BrowserStack', (cb) ->
-  exec [
-    'wget http://www.browserstack.com/browserstack-local/BrowserStackLocal-linux-x64.zip'
-    'unzip BrowserStackLocal-linux-x64.zip'
-    "./BrowserStackLocal #{process.env.BS_AUTHKEY} localhost,3333,0"
-  ], ->
-    setTimeout cb, 10*1000
+  fs = require 'fs'
+  {spawn} = require 'child_process'
+
+  # Download the BrowserStack tunnel helper
+  unless fs.existsSync 'BrowserStackLocal'
+    platform = require('os').platform()
+    cmds = [
+      "wget http://www.browserstack.com/browserstack-local/BrowserStackLocal-#{platform}-x64.zip"
+      "unzip BrowserStackLocal-#{platform}-x64.zip"
+    ]
+    exec cmds, -> invoke 'browserstack-tunnel', cb
+
+  exec "./BrowserStackLocal #{process.env.BS_AUTHKEY} localhost,3333,0"
+  setTimeout cb, 10*1000
 
 task 'static-server', 'Run static server for tests', ->
   connect = require 'connect'
