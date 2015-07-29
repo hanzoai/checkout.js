@@ -1,5 +1,9 @@
 before-install:
 - export TRAVIS_COMMIT_MSG="$(git log --format=%B --no-merges -n 1)"
+- wget http://www.browserstack.com/browserstack-local/BrowserStackLocal-linux-x64.zip
+- unzip BrowserStackLocal-linux-x64.zip
+- ./BrowserStackLocal $BROWSERSTACK_KEY localhost,3333,0 > /dev/null &
+- sleep 10
 env:
   global:
   - SELENIUM_HOST=hub.browserstack.com

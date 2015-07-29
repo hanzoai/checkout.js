@@ -69,16 +69,16 @@ task 'test', 'Run tests', (options) ->
 task 'test-ci', 'Run tests on CI server', ->
   invoke 'static-server'
 
-  BrowserStackTunnel = require 'browserstacktunnel-wrapper'
-  bst = new BrowserStackTunnel
-    key: process.env.BS_AUTHKEY
-    hosts: [{
-      name: 'localhost'
-      port: 3333
-      sslFlag: 0
-    }]
-    v: true # verbose
-    localIdentifier: process.env.TRAVIS_JOB_NUMBER
+  # BrowserStackTunnel = require 'browserstacktunnel-wrapper'
+  # bst = new BrowserStackTunnel
+  #   key: process.env.BS_AUTHKEY
+  #   hosts: [{
+  #     name: 'localhost'
+  #     port: 3333
+  #     sslFlag: 0
+  #   }]
+  #   v: true # verbose
+  #   localIdentifier: process.env.TRAVIS_JOB_NUMBER
   #   osxBin: 'your_bin_dir'
   #   linux32Bin: 'your_bin_dir'
   #   linux64Bin: 'your_bin_dir'
@@ -91,9 +91,9 @@ task 'test-ci', 'Run tests on CI server', ->
   #   forcelocal: false
   #   onlyAutomate: false
 
-  bst.start (err) ->
-    console.log 'BrowserStackTunnel started'
-    console.log err if err?
+  # bst.start (err) ->
+  #   console.log 'BrowserStackTunnel started'
+  #   console.log err if err?
 
   browsers = require './test/ci-config'
 
@@ -115,8 +115,8 @@ task 'test-ci', 'Run tests on CI server', ->
   exec tests, (err) ->
     process.exit 1 if err?
 
-    bst.stop (err) ->
-      console.log 'BrowserStackTunnel stopped'
-      console.log err if err?
-      process.exit 1 if err?
-      process.exit 0
+    # bst.stop (err) ->
+    #   console.log 'BrowserStackTunnel stopped'
+    #   console.log err if err?
+    #   process.exit 1 if err?
+    #   process.exit 0
