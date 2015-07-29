@@ -26,7 +26,7 @@ task 'browserstack-tunnel', 'Start tunnel for BrowserStack', (cb) ->
   exec [
     'wget http://www.browserstack.com/browserstack-local/BrowserStackLocal-linux-x64.zip'
     'unzip BrowserStackLocal-linux-x64.zip'
-    './BrowserStackLocal $BS_AUTHKEY localhost,3333,0'
+    "./BrowserStackLocal #{process.env.BS_AUTHKEY} localhost,3333,0"
   ], ->
     setTimeout cb, 10*1000
 
