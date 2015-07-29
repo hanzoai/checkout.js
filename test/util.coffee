@@ -33,8 +33,8 @@ exports.getBrowser = ->
     ]
 
     caps['tunnel-identifier'] = TRAVIS_JOB_NUMBER
-    caps.project = TRAVIS_REPO_SLUG
-    caps.build = "Travis (#{TRAVIS_BUILD_NUMBER}) for #{TRAVIS_REPO_SLUG}"
+    caps.project = TRAVIS_REPO_SLUG.replace /\s/, '/'
+    caps.build = "Travis (#{TRAVIS_BUILD_NUMBER}) for #{caps.project}"
 
     caps['browserstack.debug'] = true
 
