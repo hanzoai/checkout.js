@@ -88,13 +88,8 @@ task 'test', 'Run tests', (options) ->
 task 'test-ci', 'Run tests on CI server', (options) ->
   browsers = require './test/ci-config'
 
-  if options.browser?
-    browsers = browsers.filter (cap) ->
-      if cap.browserName == options.browser
-        true
-      else
-        false
-    browsers = [browsers[0]]
+  if (browserName = options.browser)?
+    browsers = (browsers.filter (v) -> v.browserName === browserName)[0]
 
   invoke 'browserstack-tunnel', ->
     invoke 'static-server'
