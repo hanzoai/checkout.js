@@ -28,7 +28,7 @@ task 'browserstack-tunnel', 'Start tunnel for BrowserStack', (cb) ->
 
   startTunnel = ->
     exec "./BrowserStackLocal #{process.env.BS_AUTHKEY} localhost,3333,0 -localIdentifier #{process.env.TRAVIS_JOB_NUMBER}"
-    setTimeout cb, 10*1000
+    setTimeout cb, 20*1000
 
   # Download the BrowserStack tunnel helper
   unless fs.existsSync 'BrowserStackLocal'
@@ -103,7 +103,7 @@ task 'test-ci', 'Run tests on CI server', ->
        --compilers coffee:coffee-script/register
        --reporter spec
        --colors
-       --timeout 60000
+       --timeout 90000
        test/test.coffee"
 
     exec tests, (err) ->
