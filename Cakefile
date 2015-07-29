@@ -26,6 +26,10 @@ task 'browserstack-tunnel', 'Start tunnel for BrowserStack', (cb) ->
   fs = require 'fs'
   {spawn} = require 'child_process'
 
+  startTunnel = ->
+    exec "./BrowserStackLocal #{process.env.BS_AUTHKEY} localhost,3333,0"
+    setTimeout cb, 10*1000
+
   # Download the BrowserStack tunnel helper
   unless fs.existsSync 'BrowserStackLocal'
     platform = require('os').platform()
@@ -33,10 +37,9 @@ task 'browserstack-tunnel', 'Start tunnel for BrowserStack', (cb) ->
       "wget http://www.browserstack.com/browserstack-local/BrowserStackLocal-#{platform}-x64.zip"
       "unzip BrowserStackLocal-#{platform}-x64.zip"
     ]
-    exec cmds, -> invoke 'browserstack-tunnel', cb
-
-  exec "./BrowserStackLocal #{process.env.BS_AUTHKEY} localhost,3333,0"
-  setTimeout cb, 10*1000
+    exec cmds, startTunnel
+  else
+    startTunnel()
 
 task 'static-server', 'Run static server for tests', ->
   connect = require 'connect'
