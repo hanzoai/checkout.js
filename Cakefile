@@ -93,6 +93,7 @@ task 'test-ci', 'Run tests on CI server', ->
 
     tests = for {browserName, platform, version, deviceName, deviceOrientation} in browsers
       "NODE_ENV=test
+       TRAVIS=1
        BROWSER=\"#{browserName}\"
        PLATFORM=\"#{platform}\"
        VERSION=\"#{version}\"
