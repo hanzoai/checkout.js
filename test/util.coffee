@@ -37,6 +37,7 @@ exports.getBrowser = ->
 
     caps.project = BS_AUTOMATE_PROJECT
     caps.build = BS_AUTOMATE_BUILD
+    caps.browserstack.debug = true
 
     opts =
       desiredCapabilities: caps
