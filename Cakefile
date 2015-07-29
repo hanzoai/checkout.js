@@ -22,6 +22,14 @@ task 'deploy', 'deploy new version', ->
     'git push --tags'
   ]
 
+task 'browserstack-tunnel', 'Start tunnel for BrowserStack', (cb) ->
+  exec [
+    'wget http://www.browserstack.com/browserstack-local/BrowserStackLocal-linux-x64.zip'
+    'unzip BrowserStackLocal-linux-x64.zip'
+    './BrowserStackLocal $BS_AUTHKEY localhost,3333,0'
+  ], ->
+    setTimeout cb, 10*1000
+
 task 'static-server', 'Run static server for tests', ->
   connect = require 'connect'
   server = connect()
@@ -67,56 +75,25 @@ task 'test', 'Run tests', (options) ->
       process.exit 0
 
 task 'test-ci', 'Run tests on CI server', ->
-  invoke 'static-server'
-
-  # BrowserStackTunnel = require 'browserstacktunnel-wrapper'
-  # bst = new BrowserStackTunnel
-  #   key: process.env.BS_AUTHKEY
-  #   hosts: [{
-  #     name: 'localhost'
-  #     port: 3333
-  #     sslFlag: 0
-  #   }]
-  #   v: true # verbose
-  #   localIdentifier: process.env.TRAVIS_JOB_NUMBER
-  #   osxBin: 'your_bin_dir'
-  #   linux32Bin: 'your_bin_dir'
-  #   linux64Bin: 'your_bin_dir'
-  #   win32Bin: 'your_bin_dir'
-  #   proxyUser: PROXY_USER
-  #   proxyPass: PROXY_PASS
-  #   proxyPort: PROXY_PORT
-  #   proxyHost: PROXY_HOST
-  #   force: false
-  #   forcelocal: false
-  #   onlyAutomate: false
-
-  # bst.start (err) ->
-  #   console.log 'BrowserStackTunnel started'
-  #   console.log err if err?
-
   browsers = require './test/ci-config'
 
-  tests = for {browserName, platform, version, deviceName, deviceOrientation} in browsers
-    "NODE_ENV=test
-     BROWSER=\"#{browserName}\"
-     PLATFORM=\"#{platform}\"
-     VERSION=\"#{version}\"
-     DEVICE_NAME=\"#{deviceName ? ''}\"
-     DEVICE_ORIENTATION=\"#{deviceOrientation ? ''}\"
-     VERBOSE=true
-     node_modules/.bin/mocha
-     --compilers coffee:coffee-script/register
-     --reporter spec
-     --colors
-     --timeout 60000
-     test/test.coffee"
+  invoke 'browserstack-tunnel', ->
+    invoke 'static-server'
 
-  exec tests, (err) ->
-    process.exit 1 if err?
+    tests = for {browserName, platform, version, deviceName, deviceOrientation} in browsers
+      "NODE_ENV=test
+       BROWSER=\"#{browserName}\"
+       PLATFORM=\"#{platform}\"
+       VERSION=\"#{version}\"
+       DEVICE_NAME=\"#{deviceName ? ''}\"
+       DEVICE_ORIENTATION=\"#{deviceOrientation ? ''}\"
+       VERBOSE=true
+       node_modules/.bin/mocha
+       --compilers coffee:coffee-script/register
+       --reporter spec
+       --colors
+       --timeout 60000
+       test/test.coffee"
 
-    # bst.stop (err) ->
-    #   console.log 'BrowserStackTunnel stopped'
-    #   console.log err if err?
-    #   process.exit 1 if err?
-    #   process.exit 0
+    exec tests, (err) ->
+      process.exit 1 if err?
