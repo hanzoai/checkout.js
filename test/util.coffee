@@ -38,10 +38,6 @@ exports.getBrowser = ->
     caps.project = BS_AUTOMATE_PROJECT
     caps.build = BS_AUTOMATE_BUILD
     caps['browserstack.debug'] = true
-    caps['browserstack.tunnel'] = true
-    caps['browserstack.user'] = BS_USERNAME
-    caps['browserstack.key'] = BS_AUTHKEY
-    caps['browserstack.tunnelIdentifier'] = TRAVIS_JOB_NUMBER
 
     opts =
       desiredCapabilities: caps
