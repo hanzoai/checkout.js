@@ -27,7 +27,7 @@ task 'browserstack-tunnel', 'Start tunnel for BrowserStack', (cb) ->
   {spawn} = require 'child_process'
 
   startTunnel = ->
-    exec "./BrowserStackLocal #{process.env.BS_AUTHKEY} localhost,3333,0"
+    exec "./BrowserStackLocal #{process.env.BS_AUTHKEY} localhost,3333,0 -localIdentifier #{process.env.TRAVIS_JOB_NUMBER}"
     setTimeout cb, 10*1000
 
   # Download the BrowserStack tunnel helper
