@@ -85,8 +85,16 @@ task 'test', 'Run tests', (options) ->
       process.exit 1 if err?
       process.exit 0
 
-task 'test-ci', 'Run tests on CI server', ->
+task 'test-ci', 'Run tests on CI server', (options) ->
   browsers = require './test/ci-config'
+
+  if options.browser?
+    browsers = browsers.filter (cap) ->
+      if cap.browserName == options.browser
+        true
+      else
+        false
+    browsers = [browsers[0]]
 
   invoke 'browserstack-tunnel', ->
     invoke 'static-server'
@@ -95,8 +103,8 @@ task 'test-ci', 'Run tests on CI server', ->
       "NODE_ENV=test
        TRAVIS=1
        BROWSER=\"#{browserName}\"
-       PLATFORM=\"#{platform}\"
-       VERSION=\"#{version}\"
+       PLATFORM=\"#{platform ? ''}\"
+       VERSION=\"#{version ? ''}\"
        DEVICE_NAME=\"#{deviceName ? ''}\"
        DEVICE_ORIENTATION=\"#{deviceOrientation ? ''}\"
        VERBOSE=true
