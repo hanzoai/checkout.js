@@ -43,7 +43,7 @@ exports.getBrowser = ->
       logLevel: logLevel
       host: 'hub.browserstack.com/wd/hub'
       port: 80
-      user: BS_USERAME
+      user: BS_USERNAME
       key:  BS_AUTHKEY
 
   webdriver.remote(opts).init()
