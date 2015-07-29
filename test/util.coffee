@@ -41,7 +41,7 @@ exports.getBrowser = ->
     opts =
       desiredCapabilities: caps
       logLevel: logLevel
-      host: 'hub.browserstack.com/wd/hub'
+      host: 'hub.browserstack.com'
       port: 80
       user: BS_USERNAME
       key:  BS_AUTHKEY
