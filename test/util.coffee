@@ -16,14 +16,13 @@ exports.getBrowser = ->
 
   if process.env.TRAVIS?
     { BS_AUTHKEY
-      BS_AUTOMATE_BUILD
-      BS_AUTOMATE_PROJECT
       BS_USERNAME
       TRAVIS_BRANCH
       TRAVIS_BUILD_NUMBER
       TRAVIS_COMMIT
       TRAVIS_JOB_NUMBER
-      TRAVIS_PULL_REQUEST } = process.env
+      TRAVIS_PULL_REQUEST
+      TRAVIS_REPO_SLUG } = process.env
 
     # annotate tests with travis info
     caps.name = TRAVIS_COMMIT
@@ -34,9 +33,9 @@ exports.getBrowser = ->
     ]
 
     caps['tunnel-identifier'] = TRAVIS_JOB_NUMBER
+    caps.project = TRAVIS_REPO_SLUG
+    caps.build = "Travis (#{TRAVIS_BUILD_NUMBER}) for #{TRAVIS_REPO_SLUG}"
 
-    caps.project = BS_AUTOMATE_PROJECT
-    caps.build = BS_AUTOMATE_BUILD
     caps['browserstack.debug'] = true
 
     opts =
