@@ -15,8 +15,8 @@ exports.getBrowser = ->
     logLevel: logLevel
 
   if process.env.TRAVIS?
-    { BS_AUTHKEY
-      BS_USERNAME
+    { BROWSERSTACK_KEY
+      BROWSERSTACK_USERNAME
       TRAVIS_BRANCH
       TRAVIS_BUILD_NUMBER
       TRAVIS_COMMIT
@@ -43,7 +43,7 @@ exports.getBrowser = ->
       logLevel: logLevel
       host: 'hub.browserstack.com'
       port: 80
-      user: BS_USERNAME
-      key:  BS_AUTHKEY
+      user: BROWSERSTACK_USERNAME
+      key:  BROWSERSTACK_KEY
 
   webdriver.remote(opts).init()
