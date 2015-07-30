@@ -32,8 +32,9 @@ exports.getBrowser = ->
       TRAVIS_PULL_REQUEST
     ]
 
-    if TRAVIS_JOB_NUMBER
-      caps['tunnel-identifier'] = TRAVIS_JOB_NUMBER
+    caps['tunnel-identifier'] = TRAVIS_JOB_NUMBER
+
+    if TRAVIS_BUILD_NUMBER
       caps.project = TRAVIS_REPO_SLUG?.replace /\s/, '/'
       caps.build = "Travis (#{TRAVIS_BUILD_NUMBER}) for #{caps.project}"
 
