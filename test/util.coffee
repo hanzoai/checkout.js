@@ -32,13 +32,15 @@ exports.getBrowser = ->
       TRAVIS_PULL_REQUEST
     ]
 
-    caps['tunnel-identifier'] = TRAVIS_JOB_NUMBER
+    # caps['tunnel-identifier'] = TRAVIS_JOB_NUMBER
 
     if TRAVIS_BUILD_NUMBER
+      console.log TRAVIS_REPO_SLUG
       caps.project = TRAVIS_REPO_SLUG?.replace /\s/, '/'
       caps.build = "Travis (#{TRAVIS_BUILD_NUMBER}) for #{caps.project}"
 
     caps['browserstack.debug'] = true
+    caps['browserstack.local'] = true
 
     opts =
       desiredCapabilities: caps
