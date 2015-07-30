@@ -25,6 +25,11 @@ describe "Checkout (#{process.env.BROWSER})", ->
       # Select 2 for 'Such T-shirt'
       browser
         .url testPage
+        .url testPage
+        .url testPage
+        .url testPage
+        .url testPage
+        .url testPage
 
         .waitForExist 'modal', 50000
 
