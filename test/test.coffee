@@ -26,7 +26,7 @@ describe "Checkout (#{process.env.BROWSER})", ->
       browser
         .url testPage
 
-        .waitForExist 'modal', 5000
+        .waitForExist 'modal', 50000
 
         # Click the Buy button
         .click 'a.btn'
@@ -50,7 +50,7 @@ describe "Checkout (#{process.env.BROWSER})", ->
       browser
         # Setup page and modal
         .url testPage
-        .waitForExist 'modal', 5000
+        .waitForExist 'modal', 50000
         .click 'a.btn'
         .waitForExist '.crowdstart-active', 5000
         .waitForExist '.crowdstart-line-item'

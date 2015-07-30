@@ -88,19 +88,21 @@ task 'test-ci', 'Run tests on CI server', (options) ->
   browsers = require './test/ci-config'
 
   if (browser = options.browser)?
-    browsers = [b for b in browsers when b.browserName == browser]
+    browsers = (b for b in browsers when b.browserName == browser)
+
+  process.env.NODE_ENV           = 'test'
+  process.env.TRAVIS            ?= 1
+  process.env.TRAVIS_JOB_NUMBER ?= 1
+  process.env.VERBOSE            = true
 
   invoke 'static-server'
   invoke 'browserstack-tunnel', ->
     tests = for {browserName, platform, version, deviceName, deviceOrientation} in browsers
-      "NODE_ENV=test
-       TRAVIS=1
-       BROWSER=\"#{browserName}\"
+      "BROWSER=\"#{browserName}\"
        PLATFORM=\"#{platform ? ''}\"
        VERSION=\"#{version ? ''}\"
        DEVICE_NAME=\"#{deviceName ? ''}\"
        DEVICE_ORIENTATION=\"#{deviceOrientation ? ''}\"
-       VERBOSE=true
        node_modules/.bin/mocha
        --compilers coffee:coffee-script/register
        --reporter spec
