@@ -25,12 +25,7 @@ task 'deploy', 'deploy new version', ->
 task 'browserstack-tunnel', 'Start tunnel for BrowserStack', (cb) ->
   fs = require 'fs'
 
-  startTunnel = ->
-    exec ".browserstack/BrowserStackLocal #{process.env.BROWSERSTACK_KEY} localhost,3333,0 -forcelocal"
-    setTimeout cb, 10*1000
-
-  # Download the BrowserStack tunnel helper
-  unless fs.existsSync '.browserstack/BrowserStackLocal'
+  installTunnel = (cb) ->
     platform = require('os').platform()
     cmds = [
       "wget http://www.browserstack.com/browserstack-local/BrowserStackLocal-#{platform}-x64.zip"
@@ -38,7 +33,15 @@ task 'browserstack-tunnel', 'Start tunnel for BrowserStack', (cb) ->
       "mkdir -p .browserstack"
       "mv BrowserStackLocal .browserstack"
     ]
-    exec cmds, startTunnel
+    exec cmds, cb
+
+  startTunnel = ->
+    exec ".browserstack/BrowserStackLocal #{process.env.BROWSERSTACK_KEY} localhost,3333,0 -forcelocal"
+    setTimeout cb, 10*1000
+
+  # Download the BrowserStack tunnel helper
+  unless fs.existsSync '.browserstack/BrowserStackLocal'
+    installTunnel startTunnel
   else
     startTunnel()
 
@@ -59,8 +62,6 @@ task 'test', 'Run tests', (options) ->
   externalSelenium = options.externalSelenium ? false
   verbose          = options.verbose ? false
 
-  invoke 'static-server'
-
   runTest = (cb) ->
     exec "NODE_ENV=test
           BROWSER=#{browserName}
@@ -72,10 +73,13 @@ task 'test', 'Run tests', (options) ->
           --timeout 90000
           test/test.coffee", cb
 
+  invoke 'static-server'
+
   if externalSelenium
     runTest (err) ->
       process.exit 1 if err?
       process.exit 0
+    return
 
   selenium = require 'selenium-standalone'
   selenium.start (err, child) ->
@@ -92,11 +96,6 @@ task 'test-ci', 'Run tests on CI server', (options) ->
   if (browser = options.browser)?
     browsers = (b for b in browsers when b.browserName == browser)
 
-  process.env.NODE_ENV           = 'test'
-  process.env.TRAVIS            ?= 1
-  process.env.TRAVIS_JOB_NUMBER ?= 1
-  process.env.VERBOSE            = true
-
   invoke 'static-server'
   invoke 'browserstack-tunnel', ->
     tests = for {browserName, platform, version, deviceName, deviceOrientation} in browsers
@@ -111,6 +110,11 @@ task 'test-ci', 'Run tests on CI server', (options) ->
        --colors
        --timeout 90000
        test/test.coffee"
+
+    process.env.NODE_ENV           = 'test'
+    process.env.TRAVIS            ?= 1
+    process.env.TRAVIS_JOB_NUMBER ?= 1
+    process.env.VERBOSE            = true
 
     exec tests, (err) ->
       process.exit 1 if err?
