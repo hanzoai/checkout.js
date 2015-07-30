@@ -65,37 +65,31 @@ task 'selenium-install', 'Install selenium standalone', ->
   exec 'node_modules/.bin/selenium-standalone install'
 
 task 'test', 'Run tests', (options) ->
-  browserName      = options.browser ? 'phantomjs'
   externalSelenium = options.externalSelenium ? false
   verbose          = options.verbose ? false
 
+  process.env.BROWSER  = options.browser ? 'phantomjs'
+  process.env.NODE_ENV = 'test'
+  process.env.VERBOSE  = true
+
   runTest = (cb) ->
-    exec "NODE_ENV=test
-          BROWSER=#{browserName}
-          VERBOSE=#{verbose}
-          node_modules/.bin/mocha
+    exec "node_modules/.bin/mocha
           --compilers coffee:coffee-script/register
           --reporter spec
           --colors
           --timeout 90000
-          test/test.coffee", cb
+          test/test.coffee", (err) ->
+      process.exit 1 if err?
+      process.exit 0
 
   invoke 'static-server'
 
-  if externalSelenium
-    runTest (err) ->
-      process.exit 1 if err?
-      process.exit 0
-    return
+  return runTest() if externalSelenium
 
   selenium = require 'selenium-standalone'
   selenium.start (err, child) ->
     throw err if err?
-
-    runTest (err) ->
-      child.kill()
-      process.exit 1 if err?
-      process.exit 0
+    runTest()
 
 task 'test-ci', 'Run tests on CI server', (options) ->
   browsers = require './test/ci-config'
@@ -118,10 +112,15 @@ task 'test-ci', 'Run tests on CI server', (options) ->
        --timeout 90000
        test/test.coffee"
 
-    process.env.NODE_ENV           = 'test'
-    process.env.TRAVIS            ?= 1
-    process.env.TRAVIS_JOB_NUMBER ?= 1
-    process.env.VERBOSE            = true
+    process.env.CI       = true
+    process.env.NODE_ENV = 'test'
+    process.env.VERBOSE  = true
+
+    if process.env.TRAVIS?
+      process.env.TUNNEL_IDENTIFIER = process.env.TRAVIS_JOB_NUMBER
+    else
+      process.env.TUNNEL_IDENTIFIER = Math.floor(Math.random()*10+1)
 
     exec tests, (err) ->
       process.exit 1 if err?
+      process.exit 0
