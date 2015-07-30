@@ -24,10 +24,9 @@ task 'deploy', 'deploy new version', ->
 
 task 'browserstack-tunnel', 'Start tunnel for BrowserStack', (cb) ->
   fs = require 'fs'
-  {spawn} = require 'child_process'
 
   startTunnel = ->
-    exec "./BrowserStackLocal #{process.env.BROWSERSTACK_KEY} -localIdentifier #{process.env.TRAVIS_JOB_NUMBER} -forcelocal"
+    exec "./BrowserStackLocal #{process.env.BROWSERSTACK_KEY}"
     setTimeout cb, 10*1000
 
   # Download the BrowserStack tunnel helper
