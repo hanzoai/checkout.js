@@ -26,15 +26,18 @@ task 'browserstack-tunnel', 'Start tunnel for BrowserStack', (cb) ->
   fs = require 'fs'
 
   startTunnel = ->
-    exec "./BrowserStackLocal #{process.env.BROWSERSTACK_KEY}"
+    exec ".browserstack/BrowserStackLocal #{process.env.BROWSERSTACK_KEY} -localIdentifier #{process.env.TRAVIS_JOB_NUMBER} -forcelocal"
+    "'--localIdentifiertunnelIdentifier"
     setTimeout cb, 10*1000
 
   # Download the BrowserStack tunnel helper
-  unless fs.existsSync 'BrowserStackLocal'
+  unless fs.existsSync '.browserstack/BrowserStackLocal'
     platform = require('os').platform()
     cmds = [
       "wget http://www.browserstack.com/browserstack-local/BrowserStackLocal-#{platform}-x64.zip"
       "unzip BrowserStackLocal-#{platform}-x64.zip"
+      "mkdir -p .browserstack"
+      "mv BrowserStackLocal .browserstack"
     ]
     exec cmds, startTunnel
   else
