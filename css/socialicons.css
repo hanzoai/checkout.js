@@ -1,0 +1,282 @@
+@charset "UTF-8";
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.icon--vimeo::before {
+  content: "";
+}
+
+.social__icon--vimeo {
+  background-color: #4dbfe3;
+}
+.social__icon--vimeo:hover {
+  background-color: #41a2c0;
+}
+
+.icon--twitter::before {
+  content: "";
+}
+
+.social__icon--twitter {
+  background-color: #32b9e7;
+}
+.social__icon--twitter:hover {
+  background-color: #2a9dc4;
+}
+
+.icon--facebook::before {
+  content: "";
+}
+
+.social__icon--facebook {
+  background-color: #4b70ab;
+}
+.social__icon--facebook:hover {
+  background-color: #3f5f91;
+}
+
+.icon--googleplus::before {
+  content: "";
+}
+
+.social__icon--googleplus {
+  background-color: #fa5432;
+}
+.social__icon--googleplus:hover {
+  background-color: #d4472a;
+}
+
+.icon--pintrest::before {
+  content: "";
+}
+
+.social__icon--pintrest {
+  background-color: #d63533;
+}
+.social__icon--pintrest:hover {
+  background-color: #b52d2b;
+}
+
+.icon--linkedin::before {
+  content: "";
+}
+
+.social__icon--linkedin {
+  background-color: #0087be;
+}
+.social__icon--linkedin:hover {
+  background-color: #0072a1;
+}
+
+.icon--dribble::before {
+  content: "";
+}
+
+.social__icon--dribble {
+  background-color: #fc89b1;
+}
+.social__icon--dribble:hover {
+  background-color: #d67496;
+}
+
+.icon--stumbleupon::before {
+  content: "";
+}
+
+.social__icon--stumbleupon {
+  background-color: #f15d29;
+}
+.social__icon--stumbleupon:hover {
+  background-color: #cc4f22;
+}
+
+.icon--lastfm::before {
+  content: "";
+}
+
+.social__icon--lastfm {
+  background-color: #e42124;
+}
+.social__icon--lastfm:hover {
+  background-color: #c11c1e;
+}
+
+.icon--instagram::before {
+  content: "";
+}
+
+.social__icon--instagram {
+  background-color: #6291b2;
+}
+.social__icon--instagram:hover {
+  background-color: #537b97;
+}
+
+.icon--dropbox::before {
+  content: "";
+}
+
+.social__icon--dropbox {
+  background-color: #167ab6;
+}
+.social__icon--dropbox:hover {
+  background-color: #12679a;
+}
+
+.icon--picasa::before {
+  content: "";
+}
+
+.social__icon--picasa {
+  background-color: #c49aca;
+}
+.social__icon--picasa:hover {
+  background-color: #a682ab;
+}
+
+.icon--soundcloud::before {
+  content: "";
+}
+
+.social__icon--soundcloud {
+  background-color: #fb740b;
+}
+.social__icon--soundcloud:hover {
+  background-color: #d56209;
+}
+
+.icon--behance::before {
+  content: "";
+}
+
+.social__icon--behance {
+  background-color: #33abdb;
+}
+.social__icon--behance:hover {
+  background-color: #2b91ba;
+}
+
+.icon--skype::before {
+  content: "";
+}
+
+.social__icon--skype {
+  background-color: #00AFF0;
+}
+.social__icon--skype:hover {
+  background-color: #0094cc;
+}
+
+.icon--github::before {
+  content: "";
+}
+
+.social__icon--github {
+  background-color: #333333;
+}
+.social__icon--github:hover {
+  background-color: #2b2b2b;
+}
+
+.icon--flickr::before {
+  content: "";
+}
+
+.social__icon--flickr {
+  background-color: #333333;
+}
+.social__icon--flickr:hover {
+  background-color: #2b2b2b;
+}
+
+.icon--rdio::before {
+  content: "";
+}
+
+.social__icon--rdio {
+  background-color: #0086CD;
+}
+.social__icon--rdio:hover {
+  background-color: #0071ae;
+}
+
+.icon--evernote::before {
+  content: "";
+}
+
+.social__icon--evernote {
+  background-color: #aaca62;
+}
+.social__icon--evernote:hover {
+  background-color: #90ab53;
+}
+
+.icon--email::before {
+  content: "\27a6";
+}
+
+.social__icon--email {
+  background-color: #db4242;
+}
+
+.social__icon--email:hover {
+  background-color: #d03232;
+}
+
+.icon--rss::before {
+  content: "";
+}
+
+.social__icon--rss {
+  background-color: #FB7629;
+}
+.social__icon--rss:hover {
+  background-color: #d56422;
+}
+
+.social__item {
+  display: inline-block;
+  margin-right: 0.1em;
+}
+
+.icon, [class^="icon--"] {
+  font-family: 'entypo';
+  color: white !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 2;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.social__icon, [class^="social__icon"] {
+  font-size: 1.4em;
+  text-decoration: none;
+  width: 2.2em;
+  height: 2.2em;
+  text-align: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.social__container {
+  padding: 1em;
+  font-size: 1em;
+}

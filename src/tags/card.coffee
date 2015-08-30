@@ -38,6 +38,7 @@ class CardView extends View
     @payment = opts.model.payment
     @order = opts.model.order
     @login = false
+    @allowDuplicateUsers = opts.config.allowDuplicateUsers
     @password = ''
 
     @removeError = form.removeError
@@ -66,7 +67,7 @@ class CardView extends View
     if form.isEmail email
       if @ctx.user.email != email
         @ctx.api.emailExists email, (data)=>
-          @ctx.login = data.exists
+          @ctx.login = data.exists && !@ctx.allowDuplicateUsers
           @update()
           if @ctx.login
             requestAnimationFrame ()->
