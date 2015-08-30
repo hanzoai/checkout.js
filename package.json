@@ -26,7 +26,7 @@
     "mocha": "^2.2.5",
     "node-static": "^0.7.6",
     "q": "^1.4.1",
-    "requisite": "^1.9.16",
+    "requisite": "^1.9.17",
     "selenium-standalone": "^4.5.3",
     "serve-static": "^1.10.0",
     "shortcake": "^0.2.2",
