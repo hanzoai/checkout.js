@@ -177,6 +177,11 @@ theme =
       .select2 *, .select2-results *, .select2-container * {
         font-family: #{ theme.currentTheme.fontFamily };
       }
+
+      .social__icon, [class^="social__icon"] {
+        border-radius: #{ if theme.currentTheme.borderRadius > 0 then '100%' else '0px' } !important;
+      }
+
       /* End Font Family */
     """
 

@@ -1,10 +1,12 @@
 View = require '../view'
 modalHTML = require '../../templates/modal'
 modalCSS = require '../../css/modal'
+socialIcons = require '../../css/socialIcons'
 
 $ ()->
   $('head')
     .append($("<style>#{ modalCSS }</style>"))
+    .append($("<style>#{ socialIcons }</style>"))
 
 module.exports = new View 'modal', modalHTML, (opts)->
   close = ()->

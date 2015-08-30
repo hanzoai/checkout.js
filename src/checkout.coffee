@@ -44,9 +44,14 @@ checkout = (api, order, user = (new User), config = {}) ->
   config.internationalShipping = config.internationalShipping || 0 #In Cents
 
   # Configure social sharing
-  config.facebook   = config.facebook   || ''
-  config.googlePlus = config.googlePlus || ''
-  config.twitter    = config.twitter    || ''
+  config.shareMsg       = config.shareMsg       || ''
+  config.facebook       = config.facebook       || ''
+  config.googlePlus     = config.googlePlus     || ''
+  config.twitter        = config.twitter        || ''
+  config.twitterMsg     = config.twitterMsg     || ''
+  config.pinterest      = config.pinterest      || false
+  config.emailSubject   = config.emailSubject   || ''
+  config.emailBody      = config.emailBody      || ''
   config.forgotPasswordUrl    = config.forgotPasswordUrl || ''
 
   config.showPromoCode = config.showPromoCode || false
