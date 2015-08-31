@@ -183,6 +183,18 @@ theme =
       }
 
       /* End Font Family */
+
+      /* Lock Icon */
+
+      .icon-lock .lock-top-1, .icon-lock .lock-body {
+        background-color: #{ theme.currentTheme.dark } !important;
+      }
+
+      .icon-lock .lock-top-2, .icon-lock .lock-hole {
+        background-color: #{ theme.currentTheme.background } !important;
+      }
+
+      /* End Lock Icon */
     """
 
 theme.setTheme(
