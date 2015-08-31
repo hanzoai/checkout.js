@@ -189,6 +189,7 @@ class CheckoutView extends View
         @update()
 
   discount: ->
+
     switch @ctx.coupon.type
       when 'flat'
         if !@ctx.coupon.productId? || @ctx.coupon.productId == ''

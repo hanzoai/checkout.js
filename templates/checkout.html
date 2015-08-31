@@ -91,7 +91,11 @@
         </div>
         <div class="crowdstart-col-1-2">
           <div class="crowdstart-col-1-3-bl crowdstart-text-right">x</div>
-          <div class="crowdstart-col-1-3-bl crowdstart-text-right"><span class="crowdstart-money">{ this.parent.currency.renderUICurrencyFromJSON(this.parent.order.currency, item.price) }</span>&nbsp;=</div>
+          <div class="crowdstart-col-1-3-bl crowdstart-text-right" style="position:relative">
+            <span class="crowdstart-money">{ this.parent.currency.renderUICurrencyFromJSON(this.parent.order.currency, item.price) }</span>
+            <span class="crowdstart-money crowdstart-list-price" if="{ item.listPrice > item.price }">{ this.parent.currency.renderUICurrencyFromJSON(this.parent.order.currency, item.listPrice) }</span>
+            &nbsp;=
+          </div>
           <div class="crowdstart-col-1-3-bl crowdstart-text-right crowdstart-money">{ this.parent.currency.renderUICurrencyFromJSON(this.parent.order.currency, item.price * item.quantity) }</div>
         </div>
       </div>

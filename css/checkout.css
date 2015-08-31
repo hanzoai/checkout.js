@@ -517,3 +517,13 @@ checkout {
   width: 100%;
   text-align: right;
 }
+
+.crowdstart-list-price {
+  position: absolute;
+  left: .6em;
+  top: 1.5em;
+  font-size: 1em;
+  font-weight: 200;
+  display: block;
+  text-decoration: line-through;
+}

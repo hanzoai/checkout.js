@@ -22,6 +22,7 @@ module.exports = class API
           productName: product.name
           quantity: itemRefs[i].quantity
           price: product.price
+          listPrice: product.listPrice
           shipping: product.shipping
 
         if !failed && waitCount == order.items.length
