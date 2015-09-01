@@ -35,8 +35,7 @@ exports.getBrowser = ->
 
   webdriver.remote(opts).init()
 
-
 TIMEOUT = 5000
-if process.env.TRAVIS_CI
+if process.env.TRAVIS
   TIMEOUT = TIMEOUT * 10
 exports.TIMEOUT = TIMEOUT
