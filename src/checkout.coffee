@@ -1,4 +1,5 @@
 riot = require 'riot'
+analytics = require './utils/analytics'
 
 require './tags/checkbox'
 require './tags/checkout'
@@ -92,6 +93,14 @@ checkout = (api, order, user = (new User), config = {}) ->
 
     if qs.referrer?
       order.referrerId = qs.referrer
+
+    for item in order.items
+      analytics.track 'Added Product',
+        id: item.productId
+        sku: item.productSlug
+        name: item.productName
+        quantity: item.quantity
+        price: parseFloat(item.price / 100)
 
     model =
       payment: (new Payment)

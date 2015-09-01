@@ -144,7 +144,7 @@
         <div class="crowdstart-col-1-2 crowdstart-text-right crowdstart-money">{ currency.renderUICurrencyFromJSON(order.currency, view.total()) } ({order.currency.toUpperCase()})</div>
       </div>
 
-      <div class="crowdstart-col-1-1 crowdstart-text-right" if="{ opts.config.shippingDetails }">{ opts.config.shippingDetails }</div>
+      <div class="crowdstart-form-control crowdstart-text-right" if="{ opts.config.shippingDetails }">{ opts.config.shippingDetails }</div>
     </div>
 
     <div class="{ crowdstart-paging: true, crowdstart-collapsed: view.screenIndex >= callToActions.length, crowdstart-hidden: view.screenIndex >= callToActions.length }">

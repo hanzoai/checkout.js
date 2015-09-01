@@ -1,4 +1,5 @@
 View = require '../view'
+analytics = require '../utils/analytics'
 checkoutHTML = require '../../templates/checkout'
 
 require 'crowdstart.js/src/index'
@@ -80,8 +81,27 @@ class CheckoutView extends View
             i = parseInt $el.attr('data-index'), 10
             items = self.order.items
             if items? && items[i]?
-              items[i].quantity = parseInt $el.val(), 10
-              if items[i].quantity == 0
+              item = items[i]
+              quantity= item.quantity
+              item.quantity = parseInt $el.val(), 10
+
+              deltaQuantity = item.quantity - quantity
+              if deltaQuantity > 0
+                analytics.track 'Added Product',
+                  id: item.productId
+                  sku: item.productSlug
+                  name: item.productName
+                  quantity: deltaQuantity
+                  price: parseFloat(item.price / 100)
+              else if deltaQuantity < 0
+                analytics.track 'Removed Product',
+                  id: item.productId
+                  sku: item.productSlug
+                  name: item.productName
+                  quantity: deltaQuantity
+                  price: parseFloat(item.price / 100)
+
+              if item.quantity == 0
                 for j in [i..items.length-2] by 1
                   items[j] = items[j+1]
                 items.length--
@@ -269,6 +289,27 @@ class CheckoutView extends View
             @updateIndex @screenIndex + 1
             @locked = false
             @finished = true
+
+            options =
+              orderId:  order.id
+              total:    parseFloat(order.total/100),
+              # revenue: parseFloat(order.total/100),
+              shipping: parseFloat(order.shipping/100),
+              tax:      parseFloat(order.tax/100),
+              discount: parseFloat(order.discount/100),
+              coupon:   order.couponCodes[0] ? '',
+              currency: order.currency,
+              products: []
+
+            for item, i in order.options
+              products[i] =
+                id: item.productId
+                sku: item.productSlug
+                name: item.productName
+                quantity: item.quantity
+                price: parseFloat(item.price / 100)
+
+            analytics.track 'Completed Order', options
 
             window.Crowdstart.Events.trigger('checkout', order)
 
