@@ -31,11 +31,15 @@ describe "Checkout (#{process.env.BROWSER})", ->
         # Select 2 for 'Such T-shirt
         .selectByValue('.crowdstart-invoice > div:nth-child(2) select', '2')
 
-        .getText 'div.crowdstart-invoice > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > span', (err, res) ->
-          unitPrice = parsePrice res
+        .getText 'div.crowdstart-invoice > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > span:nth-child(1)'
+        .then (text) ->
+          console.log text
+          unitPrice = parsePrice text
 
-        .getText 'div.crowdstart-invoice > div:nth-child(2) > div:nth-child(2) > div.crowdstart-col-1-3-bl.crowdstart-text-right.crowdstart-money', (err, res) ->
-          lineItemPrice = parsePrice res
+        .getText 'div.crowdstart-invoice > div:nth-child(2) > div:nth-child(2) > div.crowdstart-col-1-3-bl.crowdstart-text-right.crowdstart-money'
+        .then (text) ->
+          console.log text
+          lineItemPrice = parsePrice text
           assert.strictEqual lineItemPrice, unitPrice * 2
         .end done
 
@@ -50,7 +54,7 @@ describe "Checkout (#{process.env.BROWSER})", ->
         .click 'a.crowdstart-checkout-button'
 
         # Billing information
-        .waitForEnabled '#crowdstart-line1'
+        .waitForVisible '#crowdstart-line1'
         .setValue '#crowdstart-line1', '1234 fake street'
         .setValue '#crowdstart-city', 'fake city'
         .setValue '#crowdstart-state', 'fake state'
@@ -58,6 +62,7 @@ describe "Checkout (#{process.env.BROWSER})", ->
         .click 'a.crowdstart-checkout-button'
 
         .waitForExist '.crowdstart-loader', 10000, true
-        .getText '.crowdstart-thankyou > form > h1', (err, res) ->
-          assert.strictEqual res, 'Thank You'
+        .getText '.crowdstart-thankyou > form > h1'
+        .then (text) ->
+          assert.strictEqual text, 'Thank You'
         .end done
