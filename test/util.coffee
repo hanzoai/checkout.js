@@ -37,5 +37,5 @@ exports.getBrowser = ->
 
 TIMEOUT = 5000
 if process.env.TRAVIS
-  TIMEOUT = TIMEOUT * 10
+  TIMEOUT = TIMEOUT * 3
 exports.TIMEOUT = TIMEOUT
