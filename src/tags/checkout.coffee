@@ -297,12 +297,12 @@ class CheckoutView extends View
               shipping: parseFloat(order.shipping/100),
               tax:      parseFloat(order.tax/100),
               discount: parseFloat(order.discount/100),
-              coupon:   order.couponCodes[0] ? '',
+              coupon:   @ctx.coupon.code || '',
               currency: order.currency,
               products: []
 
-            for item, i in order.options
-              products[i] =
+            for item, i in order.items
+              options.products[i] =
                 id: item.productId
                 sku: item.productSlug
                 name: item.productName
