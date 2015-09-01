@@ -58,11 +58,21 @@ task 'test', 'Run tests', (options) ->
       process.exit 0
 
   selenium = require 'selenium-standalone'
-  selenium.start (err, child) ->
+  selenium.start
+    spawnOptions:
+      stdio: 'inherit'
+  , (err, child) ->
     throw err if err?
 
+    kill = ->
+      child.kill 'SIGKILL'
+      child = null
+
+    child.on 'SIGINT', kill
+    child.on 'exit', kill
+
     runTest (err) ->
-      child.kill()
+      kill()
       process.exit 1 if err?
       process.exit 0
 
