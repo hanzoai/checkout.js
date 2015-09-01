@@ -32,8 +32,7 @@ task 'static-server', 'Run static server for tests', ->
   server.listen port
 
 task 'selenium-install', 'Install selenium standalone', (cb) ->
-  exec """node_modules/.bin/selenium-standalone install --version=2.45.0
-                                                        --baseURL=http://selenium-release.storage.googleapis.com""", cb
+  exec 'node_modules/.bin/selenium-standalone install --version=2.47.0', cb
 
 task 'test', 'Run tests', (options) ->
   browserName      = options.browser ? 'phantomjs'
