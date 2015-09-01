@@ -34,3 +34,9 @@ exports.getBrowser = ->
       key: process.env.SAUCE_ACCESS_KEY
 
   webdriver.remote(opts).init()
+
+
+TIMEOUT = 5000
+if process.env.TRAVIS_CI
+  TIMEOUT = TIMEOUT * 10
+exports.TIMEOUT = TIMEOUT

@@ -1,7 +1,7 @@
 assert    = require 'assert'
 should    = require('chai').should()
 
-{getBrowser} = require './util'
+{getBrowser, TIMEOUT} = require './util'
 
 parsePrice = (str) ->
   str = str.substring(1, str.length) # strip $
@@ -15,11 +15,11 @@ describe "Checkout (#{process.env.BROWSER})", ->
     browser
       .url testPage
 
-      .waitForExist 'modal', 5000
+      .waitForExist 'modal', TIMEOUT
 
       # Click the Buy button
       .click 'a.btn'
-      .waitForExist '.crowdstart-active', 5000
+      .waitForExist '.crowdstart-active', TIMEOUT
       .waitForExist '.crowdstart-line-item'
       .waitForVisible '.crowdstart-line-item:nth-child(2) .select2'
 
@@ -61,7 +61,7 @@ describe "Checkout (#{process.env.BROWSER})", ->
         .setValue '#crowdstart-postalCode', '55555'
         .click 'a.crowdstart-checkout-button'
 
-        .waitForExist '.crowdstart-loader', 10000, true
+        .waitForExist '.crowdstart-loader', TIMEOUT, true
         .getText '.crowdstart-thankyou > form > h1'
         .then (text) ->
           assert.strictEqual text, 'Thank You'
