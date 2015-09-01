@@ -283,10 +283,18 @@ class CheckoutView extends View
 
       @screens[@screenIndex].validate =>
         if @screenIndex >= @screens.length - 1
+
+          analytics.track 'Completed Checkout Step',
+            step: @screenIndex + 1
+
           @checkingOut = true
           @ctx.opts.api.charge @ctx.opts.model, (order)=>
 
             @updateIndex @screenIndex + 1
+
+            analytics.track 'Viewed Checkout Step',
+              step: @screenIndex + 1
+
             @locked = false
             @finished = true
 

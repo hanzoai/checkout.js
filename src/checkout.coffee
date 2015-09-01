@@ -102,6 +102,9 @@ checkout = (api, order, user = (new User), config = {}) ->
         quantity: item.quantity
         price: parseFloat(item.price / 100)
 
+      analytics.track 'Viewed Checkout Step',
+        step: 1
+
     model =
       payment: (new Payment)
       order:   order
