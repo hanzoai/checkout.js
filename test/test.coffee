@@ -7,25 +7,27 @@ parsePrice = (str) ->
   str = str.substring(1, str.length) # strip $
   parseFloat str
 
+
 describe "Checkout (#{process.env.BROWSER})", ->
   testPage = "http://localhost:#{process.env.PORT ? 3333}/widget.html"
+
+  openWidget = (browser) ->
+    browser
+      .url testPage
+
+      .waitForExist 'modal', 5000
+
+      # Click the Buy button
+      .click 'a.btn'
+      .waitForExist '.crowdstart-active', 5000
+      .waitForExist '.crowdstart-line-item'
+      .waitForVisible '.crowdstart-line-item:nth-child(2) .select2'
 
   describe 'Changing the quantity of a line item', ->
     it 'should update line item cost', (done) ->
       unitPrice = 0
 
-      # Select 2 for 'Such T-shirt'
-      getBrowser()
-        .url testPage
-
-        .waitForExist 'modal', 5000
-
-        # Click the Buy button
-        .click 'a.btn'
-        .waitForExist '.crowdstart-active', 5000
-        .waitForExist '.crowdstart-line-item'
-        .waitForVisible '.crowdstart-line-item:nth-child(2) .select2'
-
+      openWidget getBrowser()
         # Select 2 for 'Such T-shirt
         .selectByValue('.crowdstart-invoice > div:nth-child(2) select', '2')
 
@@ -39,16 +41,7 @@ describe "Checkout (#{process.env.BROWSER})", ->
 
   describe 'Completing the form', ->
     it 'should work', (done) ->
-      getBrowser()
-        # Setup page and modal
-        .url testPage
-        .waitForExist 'modal', 5000
-        .click 'a.btn'
-        .waitForExist '.crowdstart-active', 5000
-        .waitForExist '.crowdstart-line-item'
-        .waitForEnabled '#crowdstart-credit-card'
-        .waitForVisible '.crowdstart-line-item:nth-child(2) .select2'
-
+      openWidget getBrowser()
         # Payment information
         .setValue 'input#crowdstart-credit-card', '4242424242424242'
         .setValue 'input#crowdstart-expiry', '1122'

@@ -15,13 +15,16 @@ module.exports =
   cwd: process.cwd()
 
   exclude: [
-    /css/
     /lib/
     /node_modules/
     /vendor/
   ]
 
   compilers:
+    css: (src) ->
+      if /^css/.test src
+        exec 'node_modules/.bin/requisite src/checkout.coffee -o checkout.js'
+
     coffee: (src) ->
       if /^src/.test src
         compile()

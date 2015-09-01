@@ -1,5 +1,6 @@
 .crowdstart-loader {
-  margin: 6em auto;
+  margin-top: 10px;
+  width: 16px;
   font-size: 10px;
   position: relative;
   text-indent: -9999em;
@@ -15,6 +16,7 @@
   border-radius: 50%;
   width: 10em;
   height: 10em;
+  margin-top: 10px;
 }
 
 @-webkit-keyframes load8 {
