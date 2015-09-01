@@ -3,7 +3,7 @@ webdriver = require 'webdriverio'
 exports.getBrowser = ->
   caps =
     browserName:       process.env.BROWSER ? 'phantomjs'
-    platform:          process.env.PLATFORM
+    platform:          process.env.PLATFORM ? 'ANY'
     version:           process.env.VERSION
     deviceName:        process.env.DEVICE_NAME
     deviceOrientation: process.env.DEVICE_ORIENTATION
