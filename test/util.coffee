@@ -24,6 +24,7 @@ exports.getBrowser = ->
     ]
     caps['tunnel-identifier'] = process.env.TRAVIS_JOB_NUMBER
 
+  if process.env.SAUCE_CONNECT
     opts =
       desiredCapabilities: caps
       logLevel: logLevel
