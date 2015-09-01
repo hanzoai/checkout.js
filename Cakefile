@@ -32,7 +32,22 @@ task 'static-server', 'Run static server for tests', ->
   server.listen port
 
 task 'selenium-install', 'Install selenium standalone', (cb) ->
-  exec 'node_modules/.bin/selenium-standalone install', cb
+  selenium = require('selenium-standalone')
+  selenium.install
+    version: '2.45.0'
+    baseURL: 'http://selenium-release.storage.googleapis.com'
+    drivers:
+      chrome:
+        version: '2.15'
+        arch: process.arch
+        baseURL: 'http://chromedriver.storage.googleapis.com'
+      ie:
+        version: '2.45'
+        arch: process.arch
+        baseURL: 'http://selenium-release.storage.googleapis.com'
+    logger: (message) ->
+    progressCb: (totalLength, progressLength, chunkLength) ->
+  , cb
 
 task 'test', 'Run tests', (options) ->
   browserName      = options.browser ? 'phantomjs'
@@ -59,6 +74,7 @@ task 'test', 'Run tests', (options) ->
 
   selenium = require 'selenium-standalone'
   selenium.start
+    version: '2.47.0'
     spawnOptions:
       stdio: 'inherit'
   , (err, child) ->

@@ -24,6 +24,7 @@ exports.getBrowser = ->
     ]
     caps['tunnel-identifier'] = process.env.TRAVIS_JOB_NUMBER
 
+  if process.env.SAUCE_CONNECT
     opts =
       desiredCapabilities: caps
       logLevel: logLevel
@@ -33,3 +34,8 @@ exports.getBrowser = ->
       key: process.env.SAUCE_ACCESS_KEY
 
   webdriver.remote(opts).init()
+
+TIMEOUT = 5000
+if process.env.TRAVIS
+  TIMEOUT = TIMEOUT * 3
+exports.TIMEOUT = TIMEOUT
