@@ -318,6 +318,10 @@ checkout {
   font-size: 12px;
   cursor: pointer;
 
+  -webkit-transform: scale(-1, 1);
+  -ms-transform: scale(-1, 1);
+  transform: scale(-1, 1);
+
   -webkit-transition: opacity .4s ease-in-out;
   -ms-transition: opacity .4s ease-in-out;
   transition: opacity .4s ease-in-out;

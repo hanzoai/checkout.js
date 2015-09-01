@@ -1,7 +1,7 @@
 <div class="crowdstart-checkout crowdstart-widget">
   <progressbar if="{ order.items && order.items.length > 0 && !error }"></progressbar>
   <div class="{ crowdstart-back: true, crowdstart-hidden: view.screenIndex == 0 || view.finished || !order.items || order.items.length <= 0 || error }" onclick="{ back }">
-    <i class="fa fa-arrow-left"></i>
+    &#10140;
   </div>
   <div class="crowdstart-close" onclick="{ close }"></div>
   <div if="{ order.items && order.items.length > 0 && !error }" class="crowdstart-forms">

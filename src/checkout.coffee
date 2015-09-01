@@ -89,7 +89,6 @@ checkout = (api, order, user = (new User), config = {}) ->
         """
 
     $('body').prepend $modal
-    $('head').append($('<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">'))
 
     if qs.referrer?
       order.referrerId = qs.referrer
