@@ -76,7 +76,12 @@ task 'test', 'Run tests', (options) ->
       process.exit 1 if err?
       process.exit 0
 
+
 task 'test-ci', 'Run tests on CI server', ->
+  invoke 'selenium-install', ->
+    invoke 'test'
+
+task 'test-ci-full', 'Run tests on CI server (all browsers)', ->
   invoke 'static-server'
 
   browsers = require './test/ci-config'
