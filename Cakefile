@@ -31,8 +31,8 @@ task 'static-server', 'Run static server for tests', ->
   console.log "Static server started at http://localhost:#{port}"
   server.listen port
 
-task 'selenium-install', 'Install selenium standalone', ->
-  exec 'node_modules/.bin/selenium-standalone install'
+task 'selenium-install', 'Install selenium standalone', (cb) ->
+  exec 'node_modules/.bin/selenium-standalone install', cb
 
 task 'test', 'Run tests', (options) ->
   browserName      = options.browser ? 'phantomjs'
