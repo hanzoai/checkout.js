@@ -233,7 +233,7 @@ checkout {
   width: 12px;
   border-width: 6px;
   float: left;
-  top: 4px;
+  top: 10px;
   left: 10px;
   margin: 0;
   position: absolute;
@@ -262,11 +262,12 @@ checkout {
 }
 
 .crowdstart-paging {
+  max-height: 100px;
   width: 100%;
-  display: table;
-  -webkit-transition: left .4s ease-in-out;
-  -ms-transition: left .4s ease-in-out;
-  transition: left .4s ease-in-out;
+  display: block;
+  -webkit-transition: all .4s ease-in-out !important;
+  -ms-transition: all .4s ease-in-out !important;
+  transition: all .4s ease-in-out !important;
 }
 
 #crowdstart-promocode {
