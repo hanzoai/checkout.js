@@ -31,8 +31,8 @@ task 'static-server', 'Run static server for tests', ->
   console.log "Static server started at http://localhost:#{port}"
   server.listen port
 
-task 'selenium-install', 'Install selenium standalone', ->
-  exec 'node_modules/.bin/selenium-standalone install'
+task 'selenium-install', 'Install selenium standalone', (cb) ->
+  exec 'node_modules/.bin/selenium-standalone install', cb
 
 task 'test', 'Run tests', (options) ->
   browserName      = options.browser ? 'phantomjs'
@@ -58,15 +58,30 @@ task 'test', 'Run tests', (options) ->
       process.exit 0
 
   selenium = require 'selenium-standalone'
-  selenium.start (err, child) ->
+  selenium.start
+    spawnOptions:
+      stdio: 'inherit'
+  , (err, child) ->
     throw err if err?
 
+    kill = ->
+      child.kill 'SIGKILL'
+      child = null
+
+    child.on 'SIGINT', kill
+    child.on 'exit', kill
+
     runTest (err) ->
-      child.kill()
+      kill()
       process.exit 1 if err?
       process.exit 0
 
+
 task 'test-ci', 'Run tests on CI server', ->
+  invoke 'selenium-install', ->
+    invoke 'test'
+
+task 'test-ci-full', 'Run tests on CI server (all browsers)', ->
   invoke 'static-server'
 
   browsers = require './test/ci-config'
