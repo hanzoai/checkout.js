@@ -49,7 +49,7 @@ task 'selenium-install', 'Install selenium standalone', (cb) ->
     progressCb: (totalLength, progressLength, chunkLength) ->
   , cb
 
-task 'test', 'Run tests', (options) ->
+task 'test', 'Run tests', ['selenium-install'], (options) ->
   browserName      = options.browser ? 'phantomjs'
   externalSelenium = options.externalSelenium ? false
   verbose          = options.verbose ? false
