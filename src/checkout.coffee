@@ -126,16 +126,27 @@ button = (sel)->
     return false)
 
 if window?
-  window.Crowdstart =
-    API:      API
-    Checkout: checkout
-    Button:   button
-    ItemRef:  ItemRef
-    Order:    Order
-    User:     User
-    ShippingCountries: countries
-    setTheme: theme.setTheme
-    Events: {}
+  if window.Crowdstart?
+    window.Crowdstart.API               = API
+    window.Crowdstart.Checkout          = checkout
+    window.Crowdstart.Button            = button
+    window.Crowdstart.ItemRef           = ItemRef
+    window.Crowdstart.Order             = Order
+    window.Crowdstart.User              = User
+    window.Crowdstart.ShippingCountries = countries
+    window.Crowdstart.setTheme          = theme.setTheme
+    window.Crowdstart.Events            = {}
+  else
+    window.Crowdstart =
+      API:      API
+      Checkout: checkout
+      Button:   button
+      ItemRef:  ItemRef
+      Order:    Order
+      User:     User
+      ShippingCountries: countries
+      setTheme: theme.setTheme
+      Events: {}
 
   riot.observable window.Crowdstart.Events
 
