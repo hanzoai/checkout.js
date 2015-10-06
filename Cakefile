@@ -34,7 +34,7 @@ task 'static-server', 'Run static server for tests', ->
 task 'selenium-install', 'Install selenium standalone', (cb) ->
   selenium = require('selenium-standalone')
   selenium.install
-    version: '2.45.0'
+    version: '2.47.1'
     baseURL: 'http://selenium-release.storage.googleapis.com'
     drivers:
       chrome:
@@ -74,7 +74,7 @@ task 'test', 'Run tests', ['selenium-install'], (options) ->
 
   selenium = require 'selenium-standalone'
   selenium.start
-    version: '2.47.0'
+    version: '2.47.1'
     spawnOptions:
       stdio: 'inherit'
   , (err, child) ->
