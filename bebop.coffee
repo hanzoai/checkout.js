@@ -1,13 +1,32 @@
-fs   = require 'fs'
-path = require 'path'
-exec = require('executive').interactive
+fs        = require 'fs'
+path      = require 'path'
+exec      = require('executive').interactive
+requisite = require 'requisite'
 
-requisite = 'node_modules/.bin/requisite -g'
+compileJade = (opts, cb) ->
+  jade = require 'jade'
 
-compile = ->
-  exec 'node_modules/.bin/coffee -bcm -o lib/ src/'
-  exec 'node_modules/.bin/requisite src/checkout.coffee -o checkout.js'
-  exec 'node_modules/.bin/requisite src/checkout.coffee -m -o checkout.min.js'
+  fn = jade.compile opts.source,
+    compileDebug: false
+    debug: false
+    filename: opts.filename
+
+  cb null, """
+  module.exports = "#{fn()}"
+  """
+
+compileCoffee = (src) ->
+  return unless /^src|^templates|src\/checkout.coffee$/.test src
+
+  requisite.bundle
+    entry: 'src/checkout.coffee'
+    globalRequire: true
+    compilers:
+      jade: compileJade
+  , (err, bundle) ->
+    return console.error err if err?
+    fs.writeFileSync 'checkout.js', bundle.toString(), 'utf8'
+    console.log 'compiled checkout.js'
 
 module.exports =
   port: 4242
@@ -21,13 +40,59 @@ module.exports =
   ]
 
   compilers:
-    css: (src) ->
-      if /^css/.test src
-        exec 'node_modules/.bin/requisite src/checkout.coffee -o checkout.js'
+    css: -> false
+    coffee: compileCoffee
+    jade:   compileCoffee
 
-    coffee: (src) ->
-      if /^src/.test src
-        compile()
+    styl: (src, dst) ->
+      return unless /^css|css\/checkout.styl$/.test src
 
-      if /src\/checkout.coffee/.test src
-        compile()
+      CleanCSS     = require 'clean-css'
+      autoprefixer = require 'autoprefixer'
+      comments     = require 'postcss-discard-comments'
+      lost         = require 'lost-stylus'
+      postcss      = require 'poststylus'
+      rupture      = require 'rupture'
+      stylus       = require 'stylus'
+
+      src = 'css/checkout.styl'
+      dst = 'checkout.css'
+
+      style = stylus fs.readFileSync src, 'utf8'
+        .set 'filename', src
+        .set 'include css', true
+        .set 'sourcemap',
+          basePath: ''
+          sourceRoot: '../'
+        .use lost()
+        .use rupture()
+        .use postcss [
+          autoprefixer browsers: '> 1%'
+          'lost'
+          'rucksack-css'
+          'css-mqpacker'
+          comments removeAll: true
+        ]
+
+      style.render (err, css) ->
+        return console.error err if err
+
+        sourceMapURL = (path.basename dst) + '.map'
+
+        # compile with source maps for development
+        unless process.env.PRODUCTION
+          css = css + "/*# sourceMappingURL=#{sourceMapURL} */"
+
+          fs.writeFileSync dst, css, 'utf8'
+          fs.writeFileSync dst + '.map', JSON.stringify style.sourcemap, 'utf8'
+          console.log 'compiled ' + dst
+          return
+
+        # compile minified version for production
+        minified = new CleanCSS
+          semanticMerging: true
+        .minify css
+
+        dst = dst.replace /\.js$/.min.js/
+
+        fs.writeFileSync dst, minified.styles, 'utf8'
