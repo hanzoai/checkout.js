@@ -1,4 +1,81 @@
-require '../templates/test'
+riot = require 'riot'
+
+crowdcontrol = require 'crowdcontrol'
+Events = crowdcontrol.Events
+
+Client = require 'crowdstart.js'
+
+class Checkout
+  key: ''
+  order: null
+  user: null
+  items: null
+  itemUpdateQueue: null
+  obs: null
+
+  constructor: (@key)->
+    @client = new Client(key)
+
+    @order =
+      items: []
+
+    @items = []
+    @itemUpdateQueue = []
+
+    @obs = riot.obs({})
+
+  update: ()->
+    @obs.trigger Events.Checkout.Update,
+      user: @user
+      order: @order
+      config: @config
+
+  setConfig:(@config)->
+    @update()
+
+  setUser: (@user)->
+    @update()
+
+  updateItem: (id, quantity)->
+    @itemUpdateQueue.push [id, quantity]
+
+    if @itemUpdateQueue.length == 1
+      @_updateItem()
+
+  _updateItem: ()->
+    if itemUpdateQueue.length == 0
+      @update()
+      return
+
+    [id, quantity] = @itemUpdateQueue.shift()
+
+    set = false
+    if quantity == 0
+      for item, i in @items
+        if item.id == id
+          break
+
+      @items.splice i, 1
+      @order.items.splice i, 1
+      return
+
+    for item, i in @items
+      if item.id == id
+        @set = true
+        item.quantity = quantity
+        @items[i].quantity = quantity
+
+    if set
+      @items.push
+        id: item
+        quantity: quantity
+
+      @client.util.product(id).then((res)=>
+        @order.items.push(res.responseText)
+        @_updateItem()
+      ).catch (err)->
+        console.log "updateItem Error: #{err}"
+        @_updateItem()
 
 # riot = require 'riot'
 # analytics = require './utils/analytics'
