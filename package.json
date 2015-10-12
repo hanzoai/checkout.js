@@ -4,7 +4,6 @@
   "description": "One Click Checkout for Crowdstart",
   "main": "checkout.js",
   "scripts": {
-    "prepublish": "cake build",
     "test": "cake test"
   },
   "keywords": [
@@ -17,7 +16,7 @@
   "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^6.0.3",
-    "bebop": "^1.4.2",
+    "bebop": "^1.6.7",
     "cake": "^0.1.1",
     "chai": "^3.1.0",
     "clean-css": "^3.4.4",
@@ -32,9 +31,10 @@
     "lost-stylus": "^0.1.2",
     "mocha": "^2.2.5",
     "node-static": "^0.7.6",
+    "postcss": "^5.0.9",
     "postcss-discard-comments": "^2.0.0",
     "poststylus": "^0.2.1",
-    "requisite": "^1.10.3",
+    "requisite": "^1.10.4",
     "rucksack-css": "^0.8.2",
     "rupture": "^0.6.1",
     "selenium-standalone": "^4.5.3",
@@ -48,7 +48,9 @@
   "dependencies": {
     "card": "^1.0.0",
     "crowdcontrol": "^1.0.48",
-    "crowdstart.js": "^1.0.0",
-    "riot": "^2.0.15"
+    "crowdstart.js": "^1.0.2",
+    "poststylus": "^0.2.1",
+    "riot": "^2.0.15",
+    "shortcake": "^0.3.0"
   }
 }

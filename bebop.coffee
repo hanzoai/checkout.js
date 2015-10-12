@@ -12,7 +12,7 @@ compileJade = (opts, cb) ->
     filename: opts.filename
 
   cb null, """
-  module.exports = "#{fn()}"
+  module.exports = #{JSON.stringify fn()}
   """
 
 compileCoffee = (src) ->
