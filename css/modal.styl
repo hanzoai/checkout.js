@@ -1,13 +1,13 @@
 modal
-  width: 100%
-  position: absolute
-  top: 0
-  left: 0
+  & > div
+    width: 100%
+    position: absolute
+    top: 0
+    left: 0
 
 .crowdstart-modal
   content: ""
   height: 0
-  opacity: 0
   background: rgba(0,0,0,.6)
   position: fixed
   top: 0
@@ -25,6 +25,4 @@ modal
 
 .crowdstart-active .crowdstart-modal
   height: 5000px
-  opacity: 1
   transition: all 0.5s ease-in-out
-

@@ -1,0 +1,77 @@
+/* MEDIAQUERY */
+.crowdstart-active
+  .crowdstart-checkout
+    +below(350px)
+      top: -2%
+      transform: scale(0.6, 0.6)
+    +between(350px, 400px)
+      top: -2%
+      transform: scale(0.9, 0.9)
+/* END MEDIAQUERY */
+
+/* CHECKOUT WIDGET */
+widget
+  position: relative
+  width: 100%
+  height: 100%
+  display: block
+  top: 0
+
+  transform: translate(0, -5000px)
+  transition: all 0.5s ease-in-out
+  z-index: 9999
+
+.crowdstart-active
+  widget
+    transform: translate(0, 0)
+
+.crowdstart-checkout
+  position: absolute
+  left: 50%
+  top: 5%
+  font-weight: 400
+
+  margin-left: -200px
+
+  width: 400px
+  max-height: 900px
+
+  overflow: hidden
+  box-sizing: border-box
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4)
+
+  font-size: 1em
+  font-style: normal
+  font-variant: normal
+
+  z-index: 9999
+/* END CHECKOUT WIDGET */
+
+/* FORMS */
+.crowdstart-checkout
+  form
+    width: 100%
+    max-height: 400px
+/* END FORMS */
+
+/* UI CONTROLS */
+.crowdstart-back
+  position: absolute
+  top: 0.3em
+  left: 0.6em
+  font-size: 0.8em
+  cursor: pointer
+
+  transform: scale(-1, 1)
+  transition: all 0.4s ease-in-out
+
+.crowdstart-close
+  font: 20px/100% arial, sans-serif
+  right: 0.3em
+  top: 0.2em
+  position: absolute
+  cursor: pointer
+
+.crowdstart-close:after
+  content: '×'
+/* END UI CONTROLS */

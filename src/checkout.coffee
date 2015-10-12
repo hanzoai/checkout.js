@@ -7,7 +7,9 @@ Events = crowdcontrol.Events
 Client = require 'crowdstart.js'
 
 require './events'
-require './views/modal'
+ProgressBar = require './views/progressbar'
+Widget      = require './views/widget'
+Modal       = require './views/modal'
 
 class Checkout
   key: ''
@@ -39,7 +41,8 @@ class Checkout
     @obs = {}
     riot.observable(@obs)
 
-    $modal = $('<modal><h1>YAY</h1></modal>')
+    widgetTag = Widget.prototype.tag
+    $modal = $("<modal><#{widgetTag} obs=\"{ obs }\"></#{widgetTag}></modal>")
     $('body').append($modal)
 
     riot.mount('modal', obs: @obs)
@@ -49,7 +52,9 @@ class Checkout
     @obs.trigger Events.Modal.DisableClose
     setTimeout ()=>
       @obs.trigger Events.Modal.EnableClose
-    , 500
+    , 600
+
+    return false
 
   update: ()->
     @obs.trigger Events.Checkout.Update,
@@ -109,6 +114,9 @@ if window.Crowdstart?
 else
   window.Crowdstart =
     Checkout: Checkout
+
+if module?
+  module.exports = Checkout
 
 # riot = require 'riot'
 # analytics = require './utils/analytics'

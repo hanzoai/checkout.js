@@ -1,0 +1,3 @@
+ul.crowdstart-progress
+  li(each='{ screen, i in screens }', class!='{ active: this.parent.index >= i }')
+    | { screen }

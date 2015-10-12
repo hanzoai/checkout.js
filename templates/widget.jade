@@ -1,0 +1,11 @@
+.crowdstart-checkout.crowdstart-widget
+  progressbar(screens='{ screens }')
+  .crowdstart-back
+    span &#10140;
+  .crowdstart-close(onclick='{ close }')
+  .crowdstart-screens-container
+    .crowdstart-screens
+      .crowdstart-screen-strip
+        #{'yield'}
+  .crowdstart-invoice
+    .crowdstart-sep
