@@ -1,9 +1,13 @@
 riot = require 'riot'
+window.riot = riot
 
 crowdcontrol = require 'crowdcontrol'
-Events = crowdcontrol.Events
 
+Events = crowdcontrol.Events
 Client = require 'crowdstart.js'
+
+require './events'
+require './views/modal'
 
 class Checkout
   key: ''
@@ -14,15 +18,38 @@ class Checkout
   obs: null
 
   constructor: (@key)->
-    @client = new Client(key)
+    $modal = $('<modal><h1>YAY</h1></modal>')
+    $('body').append($modal)
+
+    riot.mount('modal')
+
+    @client = new Client(@key)
+
+    search = /([^&=]+)=?([^&]*)/g
+    q = window.location.href.split('?')[1]
+    qs = {}
+    if q?
+      while (match = search.exec(q))
+        qs[decodeURIComponent(match[1])] = decodeURIComponent(match[2])
 
     @order =
       items: []
 
+    if qs.referrer?
+      @order.referrerId = qs.referrer
+
     @items = []
     @itemUpdateQueue = []
 
-    @obs = riot.obs({})
+    @obs = {}
+    riot.observable(@obs)
+
+  open: ()->
+    @obs.trigger Events.Modal.Open
+    @obs.trigger Events.Modal.DisableClose
+    setTimeout ()=>
+      @obs.trigger Events.Modal.EnableClose
+    , 500
 
   update: ()->
     @obs.trigger Events.Checkout.Update,
@@ -77,6 +104,12 @@ class Checkout
         console.log "updateItem Error: #{err}"
         @_updateItem()
 
+if window.Crowdstart?
+  window.Crowdstart.Checkout = Checkout
+else
+  window.Crowdstart =
+    Checkout: Checkout
+
 # riot = require 'riot'
 # analytics = require './utils/analytics'
 #
@@ -95,12 +128,6 @@ class Checkout
 #
 # theme = require './utils/theme'
 #
-# search = /([^&=]+)=?([^&]*)/g
-# q = window.location.href.split('?')[1]
-# qs = {}
-# if q?
-#   while (match = search.exec(q))
-#     qs[decodeURIComponent(match[1])] = decodeURIComponent(match[2])
 #
 # waitRef =
 #   waitId: 0
@@ -170,8 +197,6 @@ class Checkout
 #
 #     $('body').prepend $modal
 #
-#     if qs.referrer?
-#       order.referrerId = qs.referrer
 #
 #     for item in order.items
 #       analytics.track 'Added Product',

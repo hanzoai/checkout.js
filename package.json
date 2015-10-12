@@ -48,7 +48,7 @@
   "dependencies": {
     "card": "^1.0.0",
     "crowdcontrol": "^1.0.48",
-    "crowdstart.js": "0.0.5",
+    "crowdstart.js": "^1.0.0",
     "riot": "^2.0.15"
   }
 }

@@ -1,10 +1,9 @@
-riot = require 'riot'
-
 crowdcontrol = require 'crowdcontrol'
 Events = crowdcontrol.Events
 View = crowdcontrol.view.View
 
 class Modal extends View
+  tag: 'modal'
   html: require '../../templates/modal.jade'
   isOpen: false
   canClose: true
