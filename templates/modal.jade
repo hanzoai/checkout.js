@@ -1,3 +1,4 @@
-.crowdstart-modal-target(onclick='{ close }')
-  yield
-div(class='{ crowdstart-modal: true, crowdstart-active:isOpen }' onclick="{ close }")
+div(class='{ crowdstart-active: isOpen }')
+  .crowdstart-modal-target(onclick='{ close }')
+    #{'yield'}
+  .crowdstart-modal(onclick='{ close }')

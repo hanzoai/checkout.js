@@ -35,4 +35,6 @@ class Modal extends View
     if event.which == 27
       @close()
 
+Modal.register()
+
 module.exports = Modal

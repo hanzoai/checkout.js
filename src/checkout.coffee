@@ -18,11 +18,6 @@ class Checkout
   obs: null
 
   constructor: (@key)->
-    $modal = $('<modal><h1>YAY</h1></modal>')
-    $('body').append($modal)
-
-    riot.mount('modal')
-
     @client = new Client(@key)
 
     search = /([^&=]+)=?([^&]*)/g
@@ -43,6 +38,11 @@ class Checkout
 
     @obs = {}
     riot.observable(@obs)
+
+    $modal = $('<modal><h1>YAY</h1></modal>')
+    $('body').append($modal)
+
+    riot.mount('modal', obs: @obs)
 
   open: ()->
     @obs.trigger Events.Modal.Open
