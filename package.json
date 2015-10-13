@@ -51,6 +51,7 @@
     "crowdstart.js": "^1.0.2",
     "poststylus": "^0.2.1",
     "riot": "^2.0.15",
-    "shortcake": "^0.3.0"
+    "shortcake": "^0.3.0",
+    "underscore": "^1.8.3"
   }
 }

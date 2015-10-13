@@ -7,6 +7,7 @@ modal > div{
 .crowdstart-modal{
   content:"";
   height:0;
+  opacity:0;
   background:rgba(0,0,0,0.6);
   position:fixed;
   top:0;
@@ -25,6 +26,7 @@ modal > div{
 }
 .crowdstart-active .crowdstart-modal{
   height:5000px;
+  opacity:1;
   -webkit-transition:all 0.5s ease-in-out;
           transition:all 0.5s ease-in-out;
 }
@@ -87,6 +89,10 @@ widget{
 }
 .crowdstart-close:after{
   content:'×';
+}
+.crowdstart-sep{
+  margin:5px 0;
+  width:100%;
 }
 .crowdstart-progress{
   width:100%;

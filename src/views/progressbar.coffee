@@ -5,15 +5,15 @@ View = crowdcontrol.view.View
 class ProgressBar extends View
   tag: 'progressbar'
   html: require '../../templates/progressbar.jade'
-  screens: []
-  index: 0
+
+  # model: PagingModel
 
   events:
     "#{Events.ProgressBar.Update}": (i)->
-      @index = i
+      @model.index = i
+      @update()
 
   js: (opts)->
-    @screens = opts.screens
 
 ProgressBar.register()
 

@@ -1,3 +1,5 @@
+_ = require 'underscore'
+
 riot = require 'riot'
 window.riot = riot
 
@@ -6,10 +8,10 @@ crowdcontrol = require 'crowdcontrol'
 Events = crowdcontrol.Events
 Client = require 'crowdstart.js'
 
+# These don't return anything but register stuff with crowdcontrol
 require './events'
-ProgressBar = require './views/progressbar'
-Widget      = require './views/widget'
-Modal       = require './views/modal'
+Views = require './views'
+Widget = Views.Widget
 
 class Checkout
   key: ''
@@ -18,8 +20,9 @@ class Checkout
   items: null
   itemUpdateQueue: null
   obs: null
+  model: null
 
-  constructor: (@key)->
+  constructor: (@key, opts = {})->
     @client = new Client(@key)
 
     search = /([^&=]+)=?([^&]*)/g
@@ -29,8 +32,18 @@ class Checkout
       while (match = search.exec(q))
         qs[decodeURIComponent(match[1])] = decodeURIComponent(match[2])
 
+    @user = opts.user || {}
+
     @order =
-      items: []
+      currency: 'usd'
+      taxRate: 0
+
+    @order = _.extend(@order, opts.order) if opts.order?
+    @order.items = []
+
+    @model =
+      user: @user
+      order: @order
 
     if qs.referrer?
       @order.referrerId = qs.referrer
@@ -39,13 +52,19 @@ class Checkout
     @itemUpdateQueue = []
 
     @obs = {}
-    riot.observable(@obs)
+    riot.observable @obs
+
+    modal = document.createElement 'MODAL'
 
     widgetTag = Widget.prototype.tag
-    $modal = $("<modal><#{widgetTag} obs=\"{ obs }\"></#{widgetTag}></modal>")
-    $('body').append($modal)
+    widget = document.createElement widgetTag.toUpperCase()
+    widget.setAttribute 'model', '{ model }'
+    widget.setAttribute 'obs', '{ obs }'
 
-    riot.mount('modal', obs: @obs)
+    modal.appendChild widget
+    document.body.appendChild modal
+
+    riot.mount 'modal', { obs: @obs, model: @model }
 
   open: ()->
     @obs.trigger Events.Modal.Open
@@ -65,7 +84,12 @@ class Checkout
   setConfig:(@config)->
     @update()
 
-  setUser: (@user)->
+  setUser: (user = {})->
+    if !user?
+      return
+
+    @user = _.extend @user, user
+    @model.user = @user
     @update()
 
   updateItem: (id, quantity)->
