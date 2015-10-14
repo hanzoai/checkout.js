@@ -2,13 +2,11 @@ crowdcontrol = require 'crowdcontrol'
 Events = crowdcontrol.Events
 View = crowdcontrol.view.View
 
-input = require '../utils/input.coffee'
-
 class Invoice extends View
   tag: 'invoice'
   html: require '../../templates/invoice.jade'
 
-  currency: require '../utils/currency.coffee'
+  renderCurrency: require('../utils/currency.coffee').renderUICurrencyFromJSON
 
   subtotal: ()->
     items = @model.items

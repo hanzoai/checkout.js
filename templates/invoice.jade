@@ -1,28 +1,28 @@
 .crowdstart-items
   .crowdstart-sep
-  lineitem(each='{ item, i in order.items }', model='{ item }')
-.crowdstart-receipt
+    lineitem(each='{ item, i in model.items }', currency='{ this.parent.model.currency }', model='{ item }')
+.crowdstart-totals
   .crowdstart-sep
   .crowdstart-subotal
     .crowdstart-receipt-label
       | Subtotal
     .crowdstart-money
-      | { currency.renderUICurrencyFromJSON(model.currency, subtotal()) }
+      | { renderCurrency(model.currency, subtotal()) }
   .crowdstart-shipping-and-handling
     .crowdstart-receipt-label
       | Shipping & Handling
     .crowdstart-money
-      | { currency.renderUICurrencyFromJSON(model.currency, shipping()) }
+      | { renderCurrency(model.currency, shipping()) }
   .crowdstart-tax
     .crowdstart-receipt-label
       | Taxes ({ taxRate() }%)
     .crowdstart-money
-      | { currency.renderUICurrencyFromJSON(model.currency, tax()) }
+      | { renderCurrency(model.currency, tax()) }
   .crowdstart-sep
   .crowdstart-total
     .crowdstart-receipt-label
       | Total
     .crowdstart-money
-      | { currency.renderUICurrencyFromJSON(model.currency, total()) } ({model.currency.toUpperCase()})
+      | { renderCurrency(model.currency, total()) } ({model.currency.toUpperCase()})
 
 

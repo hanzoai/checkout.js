@@ -5,12 +5,17 @@ FormView = crowdcontrol.view.form.FormView
 input = require '../utils/input.coffee'
 
 class LineItem extends FormView
-  tag: 'linetime'
+  tag: 'lineitem'
   html: require '../../templates/lineitem.jade'
 
+  renderCurrency: require('../utils/currency.coffee').renderUICurrencyFromJSON
+
   inputConfigs: [
-    input('')
+    input('quantity', '', 'quantity-select')
   ]
+
+  js: (opts)->
+    @currency = opts.currency
 
 LineItem.register()
 

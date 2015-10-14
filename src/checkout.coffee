@@ -13,6 +13,18 @@ require './events'
 Views = require './views'
 Widget = Views.Widget
 
+
+# Format of opts.config
+# {
+#   ########################
+#   ### Order Overrides ####
+#   ########################
+#
+#   currency:       string (3 letter ISO code)
+#   taxRate:        number (decimal)
+#   shippingRate    number (per item cost in cents or base unit for zero decimal currencies)
+# }
+
 class Checkout
   key: ''
   order: null
@@ -34,19 +46,20 @@ class Checkout
 
     @user = opts.user || {}
 
-    @order =
-      currency: 'usd'
-      taxRate: 0
-
+    @order = {}
     @order = _.extend(@order, opts.order) if opts.order?
-    @order.items = []
+
+    @order.items        = []
+    @order.currency     = opts.config?.currency      || @order.currency      || 'usd'
+    @order.taxRate      = opts.config?.taxRate       || @order.taxRate       || 0
+    @order.shippingRate = opts.configi?.shippingRate  || @order.shippingRate  || 0
 
     @model =
       user: @user
       order: @order
 
     if qs.referrer?
-      @order.referrerId = qs.referrer
+      @order.referrerId = qs.referrer || @order.referrerId
 
     @items = []
     @itemUpdateQueue = []
@@ -81,6 +94,8 @@ class Checkout
       order: @order
       config: @config
 
+    riot.update()
+
   setConfig:(@config)->
     @update()
 
@@ -92,14 +107,14 @@ class Checkout
     @model.user = @user
     @update()
 
-  updateItem: (id, quantity)->
+  setItem: (id, quantity)->
     @itemUpdateQueue.push [id, quantity]
 
     if @itemUpdateQueue.length == 1
-      @_updateItem()
+      @_setItem()
 
-  _updateItem: ()->
-    if itemUpdateQueue.length == 0
+  _setItem: ()->
+    if @itemUpdateQueue.length == 0
       @update()
       return
 
@@ -117,21 +132,29 @@ class Checkout
 
     for item, i in @items
       if item.id == id
-        @set = true
+        set = true
         item.quantity = quantity
         @items[i].quantity = quantity
 
-    if set
+    if !set
       @items.push
         id: item
         quantity: quantity
 
       @client.util.product(id).then((res)=>
-        @order.items.push(res.responseText)
-        @_updateItem()
+        product = res.responseText
+        @order.items.push
+          productId: product.id
+          productName: product.name
+          quantity: quantity
+          price: product.price
+          listPrice: product.listPrice
+        @_setItem()
       ).catch (err)->
-        console.log "updateItem Error: #{err}"
-        @_updateItem()
+        console.log "setItem Error: #{err}"
+        @_setItem()
+    else
+      @_setItem()
 
 if window.Crowdstart?
   window.Crowdstart.Checkout = Checkout

@@ -30,6 +30,8 @@
         <script>
           (function(){
             checkout = new Crowdstart.Checkout('eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJiaXQiOjQ1MDM2MTcwNzU2NzUxNzYsImp0aSI6IkNTaWFDckhpdDQ0Iiwic3ViIjoiRXFUR294cDV1MyJ9.fRcRQRRe0CrcnGSW12fmQ_8Cly6mqByIc5wTnANPdPWP3V1Bx9AIGbTVPTx_3KbBEziGewKJtNT1ys6WDXegyg')
+            checkout.setItem('84cRXBYs9jX7w', 1)
+            checkout.setItem('doge-shirt', 1)
 
             $('.btn').on('click', function(){
               checkout.open()
