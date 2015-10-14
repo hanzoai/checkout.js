@@ -1,16 +1,6 @@
 div(class='{ crowdstart-line-item: true, crowdstart-collapsed: model.quantity == 0, crowdstart-hidden: model.quantity == 0 }')
-  div
-    select.crowdstart-quantity-select(__disabled!='{ this.parent.view.screenIndex >= this.parent.callToActions.length }')
-      option(value=0) 0
-      option(value=1, __selected='{ model.quantity == 1 }') 1
-      option(value=2, __selected='{ model.quantity == 2 }') 2
-      option(value=3, __selected='{ model.quantity == 3 }') 3
-      option(value=4, __selected='{ model.quantity == 4 }') 4
-      option(value=5, __selected='{ model.quantity == 5 }') 5
-      option(value=6, __selected='{ model.quantity == 6 }') 6
-      option(value=7, __selected='{ model.quantity == 7 }') 7
-      option(value=8, __selected='{ model.quantity == 8 }') 8
-      option(value=9, __selected='{ model.quantity == 9 }') 9
+  .crowdstart-quantity-select.crowdstart-form-control
+    control(input='{ inputs.quantity }')
   .crowdstart-item-description
     | { model.productName }
   .crowdstart-item-price

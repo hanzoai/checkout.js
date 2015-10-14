@@ -15,6 +15,7 @@ class LineItem extends FormView
   ]
 
   js: (opts)->
+    super
     @currency = opts.currency
 
 LineItem.register()

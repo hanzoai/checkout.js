@@ -15,8 +15,8 @@ modal > div{
   right:0;
   bottom:0;
   z-index:9998;
-  -webkit-transition:all 0.5s ease-in-out;
-          transition:all 0.5s ease-in-out;
+  -webkit-transition:opacity 0.5s ease-in-out;
+          transition:opacity 0.5s ease-in-out;
 }
 .crowdstart-modal-target{
   z-index:9999;
@@ -27,8 +27,8 @@ modal > div{
 .crowdstart-active .crowdstart-modal{
   height:5000px;
   opacity:1;
-  -webkit-transition:all 0.5s ease-in-out;
-          transition:all 0.5s ease-in-out;
+  -webkit-transition:opacity 0.5s ease-in-out, height 0.5s step-end;
+          transition:opacity 0.5s ease-in-out, height 0.5s step-end;
 }
 widget{
   position:relative;
@@ -58,10 +58,11 @@ widget{
   max-height:900px;
   overflow:hidden;
   box-sizing:border-box;
-  box-shadow:0 0 15px 1px rgba(0,0,0,0.4);
+  box-shadow:0 0 1em 0.1em rgba(0,0,0,0.4);
   font-size:1em;
   font-style:normal;
   font-variant:normal;
+  padding:0 1em 1em 1em;
   z-index:9999;
 }
 .crowdstart-checkout form{
@@ -91,8 +92,70 @@ widget{
   content:'×';
 }
 .crowdstart-sep{
-  margin:5px 0;
+  margin:0.5em 0;
   width:100%;
+}
+.crowdstart-form-control input,
+.select2-container input,
+.crowdstart-form-control label,
+.crowdstart-form-control button{
+  margin:0;
+  border:0;
+  padding:0;
+  display:inline-block;
+  vertical-align:middle;
+  white-space:normal;
+  background:none;
+  line-height:1.5em;
+  box-sizing:border-box;
+}
+.crowdstart-form-control input,
+.select2-container input{
+  width:100%;
+  font-size:1em;
+}
+.crowdstart-form-control input:focus,
+.crowdstart-form-control select:focus,
+.select2-container input:focus{
+  outline:0;
+}
+.crowdstart-checkout .select2{
+  margin-top:0.5em;
+}
+.crowdstart-line-item .select2{
+  margin-top:0;
+}
+.crowdstart-checkout .select2-selection{
+  height:2em;
+}
+.select2 *,
+.select2-results *,
+.select2-container *{
+  font-size:1em;
+  font-style:normal;
+  font-variant:normal;
+}
+.select2-container{
+  z-index:10000;
+}
+.crowdstart-form-control label{
+  font-weight:600;
+  padding:0.5em 0 0 0;
+}
+.crowdstart-form-control input,
+.select2-container input{
+  padding:0.5em 1em;
+  margin:0.5em 0;
+  z-index:200;
+  -webkit-transition:border 0.3s ease-out;
+          transition:border 0.3s ease-out;
+}
+.select2 *,
+.select2-results *{
+  font-size:1em;
+}
+.select2-selection{
+  outline:0 !important;
 }
 .crowdstart-progress{
   width:100%;
@@ -162,6 +225,9 @@ widget{
   float:left;
   display:block;
   position:relative;
+}
+.crowdstart-checkout{
+  background-color:#fff;
 }
 @media only screen and (max-width: 350px){
   .crowdstart-active .crowdstart-checkout{

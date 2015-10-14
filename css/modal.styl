@@ -16,7 +16,7 @@ modal
   right: 0
   bottom: 0
   z-index: 9998
-  transition: all 0.5s ease-in-out
+  transition: opacity 0.5s ease-in-out
 
 .crowdstart-modal-target
   z-index: 9999
@@ -27,4 +27,4 @@ modal
 .crowdstart-active .crowdstart-modal
   height: 5000px
   opacity: 1
-  transition: all 0.5s ease-in-out
+  transition: opacity 0.5s ease-in-out, height 0.5s step-end

@@ -13,6 +13,17 @@ require './events'
 Views = require './views'
 Widget = Views.Widget
 
+require '../vendor/js/select2'
+select2Css = require '../vendor/css/select2'
+
+head = document.head || document.getElementsByTagName('head')[0]
+style = document.createElement 'STYLE'
+style.type = 'text/css'
+if  style.styleSheet
+  style.styleSheet.cssText = select2Css
+else
+  style.appendChild document.createTextNode select2Css
+head.appendChild style
 
 # Format of opts.config
 # {
