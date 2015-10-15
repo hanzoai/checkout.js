@@ -56,9 +56,12 @@ widget
 /* END FORMS */
 
 /* UI CONTROLS */
+control
+  display: inline-block
+
 .crowdstart-back
   position: absolute
-  top: 0.3em
+  top: 0.2em
   left: 0.6em
   font-size: 0.8em
   cursor: pointer
@@ -69,7 +72,7 @@ widget
 .crowdstart-close
   font: 20px/100% arial, sans-serif
   right: 0.3em
-  top: 0.2em
+  top: 0.1em
   position: absolute
   cursor: pointer
 
@@ -84,22 +87,22 @@ widget
 .select2-container input
 .crowdstart-form-control label
 .crowdstart-form-control button
-  margin:0;
-  border:0;
-  padding:0;
-  display:inline-block;
-  vertical-align:middle;
-  white-space:normal;
-  background:none;
-  line-height:1.5em;
+  margin:0
+  border:0
+  padding:0
+  display:inline-block
+  vertical-align:middle
+  white-space:normal
+  background:none
+  line-height:1.5em
 
-  -webkit-box-sizing:border-box;
-  box-sizing:border-box;
+  -webkit-box-sizing:border-box
+  box-sizing:border-box
 
 .crowdstart-form-control input
 .select2-container input
-  width: 100%;
-  font-size:1em;
+  width: 100%
+  font-size:1em
 
 /* Remove the stupid outer glow in Webkit */
 .crowdstart-form-control input:focus
@@ -132,12 +135,12 @@ widget
 
 .crowdstart-form-control input
 .select2-container input
-  padding: 0.5em 1em;
-  margin: 0.5em 0;
+  padding: 0.5em 1em
+  margin: 0.5em 0
 
-  z-index: 200;
+  z-index: 200
 
-  transition: border 0.3s ease-out;
+  transition: border 0.3s ease-out
 
 .select2 *
 .select2-results *
@@ -145,4 +148,29 @@ widget
 
 .select2-selection
   outline: 0 !important
+
+.crowdstart-checkout-button
+.crowdstart-error-button
+  text-align: center
+  width: 100%
+  display: block
+  padding: 10px 0
+  text-transform: uppercase
+  text-decoration: none
+  letter-spacing: 3px
+  margin: 10px 0
+  font-weight: 600
+  position: relative
+  box-sizing: border-box
+  cursor: pointer
+
+  .crowdstart-loader
+    height: 12px
+    width: 12px
+    border-width: 6px
+    float: left
+    top: 10px
+    left: 10px
+    margin: 0
+    position: absolute
 /* END UI CONTROLS */

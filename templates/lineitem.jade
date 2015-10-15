@@ -5,7 +5,7 @@ div(class='{ crowdstart-line-item: true, crowdstart-collapsed: model.quantity ==
     | { model.productName }
   .crowdstart-item-price
     | { renderCurrency(currency, model.price) }
-    .crowdstart-item-list-price(if='{ model.price != model.listPrice }')
+    .crowdstart-item-list-price(if!='{ model.price < model.listPrice }')
       | { renderCurrency(currency, model.listPrice) }
   .crowdstart-item-total-price
     | { renderCurrency(currency, model.quantity * model.price) }

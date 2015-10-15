@@ -6,62 +6,9 @@
   margin: 0;
 }
 
-.crowdstart-form-control input,
-.select2-container input,
-.crowdstart-form-control label,
-.crowdstart-form-control button
-{
-  margin:0;
-  border:0;
-  padding:0;
-  display:inline-block;
-  vertical-align:middle;
-  white-space:normal;
-  background:none;
-  line-height:1.5em;
-
-  -webkit-box-sizing:border-box;
-  box-sizing:border-box;
-}
-
-.crowdstart-form-control input,
-.select2-container input {
-  width: 100%;
-  font-size:12px;
-}
-
-/* Remove the stupid outer glow in Webkit */
-.crowdstart-form-control input:focus,
-.crowdstart-form-control select:focus,
-.select2-container input:focus
-{
-  outline:0;
-}
 /* END RESET */
 
 /* Forms */
-
-.crowdstart-checkout .select2 {
-  margin-top: 5px;
-}
-
-.crowdstart-line-item .select2 {
-  margin-top: 0px;
-}
-
-.crowdstart-checkout .select2-selection {
-  height: 30px;
-}
-
-.select2 *, .select2-results *, .select2-container * {
-  font-size: 14px;
-  font-style: normal;
-  font-variant: normal;
-}
-
-.select2-container {
-  z-index: 10000;
-}
 
 .crowdstart-form-control {
   display: table;
@@ -69,31 +16,7 @@
   width: 100%;
 }
 
-.crowdstart-form-control label {
-  font-weight: 600;
-  padding: 5px 0 0 0;
-}
 
-.crowdstart-form-control input,
-.select2-container input
-{
-  padding: 5px 10px;
-  margin: 5px 0;
-
-  z-index: 200;
-
-  -webkit-transition: border 0.3s ease-out;
-  -ms-transition: border 0.3s ease-out;
-  transition: border 0.3s ease-out;
-}
-
-.select2 *, .select2-results * {
-  font-size: 12px;
-}
-
-.select2-selection {
-  outline: 0 !important;
-}
 
 .crowdstart-promocode.crowdstart-collapsed{
   display: block;

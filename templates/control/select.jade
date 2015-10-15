@@ -2,7 +2,6 @@ select(id='{ model.name }', name='{ model.name }', onchange='{ change }', onblur
   option(if='{ model.placeholder }')
     option(each='{ value, name in options() }', value='{value}', __selected='{ this.parent.model.value == value }')
       | {name}
-
   optgroup(if='{ tags && isCustom() }', label='Custom Events')
     option(value='{ model.value }', selected='true')
       | { model.value }

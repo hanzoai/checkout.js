@@ -1,3 +1,5 @@
+_ = require('underscore')
+
 crowdcontrol = require 'crowdcontrol'
 Events = crowdcontrol.Events
 InputView = crowdcontrol.view.form.InputView
@@ -5,14 +7,30 @@ InputView = crowdcontrol.view.form.InputView
 helpers = crowdcontrol.view.form.helpers
 helpers.defaultTagName = 'crowdstart-input'
 
+class Input extends InputView
+  js:(opts)->
+    @model = if opts.input then opts.input.model else @model
+
 # views
-class Static extends InputView
+class Static extends Input
   tag: 'crowdstart-static'
   html: '<span>{ model.value }</span>'
 
 Static.register()
 
-class Select extends InputView
+class Checkbox extends Input
+  tag: 'crowdstart-checkbox'
+  html: require '../../../templates/control/checkbox.jade'
+  change: (event) ->
+    value = event.target.checked
+    if value != @model.value
+      @obs.trigger Events.Input.Change, @model.name, value
+      @model.value = value
+      @update()
+
+Checkbox.register()
+
+class Select extends Input
   tag: 'crowdstart-select'
   html: require '../../../templates/control/select.jade'
   tags: false
@@ -116,7 +134,11 @@ helpers.registerTag (inputCfg)->
 , 'crowdstart-static'
 
 helpers.registerTag (inputCfg)->
-  return inputCfg.hints['select']
+  return inputCfg.hints.checkbox
+, 'crowdstart-checkbox'
+
+helpers.registerTag (inputCfg)->
+  return inputCfg.hints.select
 , 'crowdstart-select'
 
 helpers.registerTag (inputCfg)->

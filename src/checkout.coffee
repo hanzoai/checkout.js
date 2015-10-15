@@ -1,4 +1,5 @@
 _ = require 'underscore'
+theme = require './utils/theme.coffee'
 
 riot = require 'riot'
 window.riot = riot
@@ -33,7 +34,8 @@ head.appendChild style
 #
 #   currency:       string (3 letter ISO code)
 #   taxRate:        number (decimal)
-#   shippingRate    number (per item cost in cents or base unit for zero decimal currencies)
+#   shippingRate:   number (per item cost in cents or base unit for zero decimal currencies)
+#   termsUrl:       string (url of terms page)
 # }
 
 class Checkout
@@ -44,6 +46,7 @@ class Checkout
   itemUpdateQueue: null
   obs: null
   model: null
+  config: null
 
   constructor: (@key, opts = {})->
     @client = new Client(@key)
@@ -61,19 +64,24 @@ class Checkout
     @order = _.extend(@order, opts.order) if opts.order?
 
     @order.items        = []
-    @order.currency     = opts.config?.currency      || @order.currency      || 'usd'
-    @order.taxRate      = opts.config?.taxRate       || @order.taxRate       || 0
-    @order.shippingRate = opts.configi?.shippingRate  || @order.shippingRate  || 0
-
-    @model =
-      user: @user
-      order: @order
+    @order.currency     = opts.config?.currency         || @order.currency      || 'usd'
+    @order.taxRate      = opts.config?.taxRate          || @order.taxRate       || 0
+    @order.shippingRate = opts.config?.shippingRate     || @order.shippingRate  || 0
 
     if qs.referrer?
       @order.referrerId = qs.referrer || @order.referrerId
 
     @items = []
     @itemUpdateQueue = []
+
+    @config = {}
+    @config = _.extend(@config, opts.config) if opts.config?
+    @config.termsUrl = opts.config?.termsUrl || ''
+
+    @model =
+      user:     @user
+      order:    @order
+      config:   @config
 
     @obs = {}
     riot.observable @obs
@@ -101,9 +109,9 @@ class Checkout
 
   update: ()->
     @obs.trigger Events.Checkout.Update,
-      user: @user
-      order: @order
-      config: @config
+      user:     @user
+      order:    @order
+      config:   @config
 
     riot.update()
 

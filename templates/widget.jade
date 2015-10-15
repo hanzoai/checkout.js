@@ -8,4 +8,5 @@
       .crowdstart-screen-strip
         #{'yield'}
   .crowdstart-invoice
-    invoice(model='{ model.order }')
+    invoice(model='{ model.order }', checkoutObs='{ obs }')
+  confirm(obs='{ obs }', config='{ model.config }')
