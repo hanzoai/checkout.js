@@ -8,8 +8,12 @@ helpers = crowdcontrol.view.form.helpers
 helpers.defaultTagName = 'crowdstart-input'
 
 class Input extends InputView
+  tag: 'crowdstart-input'
+  html: require '../../../templates/control/input.jade'
   js:(opts)->
     @model = if opts.input then opts.input.model else @model
+
+Input.register()
 
 # views
 class Static extends Input
@@ -130,6 +134,10 @@ QuantitySelect.register()
 
 # tag registration
 helpers.registerTag (inputCfg)->
+  return inputCfg.hints.input
+, 'crowdstart-input'
+
+helpers.registerTag (inputCfg)->
   return inputCfg.hints.static
 , 'crowdstart-static'
 
@@ -145,3 +153,20 @@ helpers.registerTag (inputCfg)->
   return inputCfg.hints['quantity-select']
 , 'crowdstart-quantity-select'
 
+helpers.registerValidator ((inputCfg) -> return inputCfg.hints.required)
+, (model, name)->
+  value = model[name]
+  if _.isNumber(value)
+    return value
+
+  value = value?.trim()
+  throw new Error "Required" if !value? || value == ''
+
+  return value
+
+helpers.registerValidator ((inputCfg) -> return inputCfg.hints.terms)
+, (model, name)->
+  value = model[name]
+  if !value
+    throw new Error 'Please read and agree to the terms and conditions.'
+  return value

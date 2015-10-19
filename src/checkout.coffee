@@ -98,6 +98,8 @@ class Checkout
 
     riot.mount 'modal', { obs: @obs, model: @model }
 
+    @obs.trigger Events.Screen.UpdateScript, ['stripe']
+
   open: ()->
     @obs.trigger Events.Modal.Open
     @obs.trigger Events.Modal.DisableClose

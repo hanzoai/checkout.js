@@ -52,16 +52,12 @@ widget{
   position:absolute;
   left:50%;
   top:5%;
-  font-weight:400;
   margin-left:-200px;
   width:400px;
   max-height:900px;
   overflow:hidden;
   box-sizing:border-box;
   box-shadow:0 0 1em 0.1em rgba(0,0,0,0.4);
-  font-size:1em;
-  font-style:normal;
-  font-variant:normal;
   padding:0 1em 1em 1em;
   z-index:9999;
 }
@@ -71,12 +67,12 @@ widget{
 }
 control{
   display:inline-block;
+  width:100%;
 }
 .crowdstart-back{
   position:absolute;
   top:0.2em;
   left:0.6em;
-  font-size:0.8em;
   cursor:pointer;
   -webkit-transform:scale(-1, 1);
       -ms-transform:scale(-1, 1);
@@ -131,18 +127,10 @@ control{
 .crowdstart-checkout .select2-selection{
   height:2em;
 }
-.select2 *,
-.select2-results *,
-.select2-container *{
-  font-size:1em;
-  font-style:normal;
-  font-variant:normal;
-}
 .select2-container{
   z-index:10000;
 }
 .crowdstart-form-control label{
-  font-weight:600;
   padding:0.5em 0 0 0;
 }
 .crowdstart-form-control input,
@@ -152,10 +140,6 @@ control{
   z-index:200;
   -webkit-transition:border 0.3s ease-out;
           transition:border 0.3s ease-out;
-}
-.select2 *,
-.select2-results *{
-  font-size:1em;
 }
 .select2-selection{
   outline:0 !important;
@@ -198,7 +182,6 @@ control{
 .crowdstart-progress li{
   list-style-type:none;
   text-transform:uppercase;
-  font-size:0.7em;
   width:33.33%;
   float:left;
   position:relative;
@@ -212,7 +195,6 @@ control{
   width:20px;
   line-height:2.2em;
   display:block;
-  font-size:0.8em;
   border-radius:3px;
   margin:0 auto 5px auto;
   -webkit-transition:all 0.4s ease-in-out;
@@ -232,39 +214,43 @@ control{
 .crowdstart-progress li:first-child:after{
   content:none;
 }
-.crowdstart-screens-container{
-  padding:10px 15px;
+screen-manager{
+  margin:0 -1em;
+  padding:0.6em 0em;
   display:table;
   width:100%;
   box-sizing:border-box;
   line-height:1.5em;
 }
-.crowdstart-screens-container .crowdstart-screens{
+screen-manager .crowdstart-screens{
   width:100%;
   display:table;
 }
-.crowdstart-screens-container .crowdstart-screens .crowdstart-screen-strip{
+screen-manager .crowdstart-screens .crowdstart-screen-strip{
   display:table;
   -webkit-transition:all 0.4s ease-in-out;
           transition:all 0.4s ease-in-out;
   z-index:1000;
   position:relative;
 }
-.crowdstart-screens-container .crowdstart-screens .crowdstart-screen-strip > *{
-  float:left;
-  display:block;
+screen-manager .crowdstart-screens .crowdstart-screen-strip > *{
+  margin:0 -1em 0 1em;
+  display:inline-block;
   position:relative;
+}
+.crowdstart-terms > control{
+  width:auto;
 }
 .crowdstart-checkbox-control input[type="checkbox"]{
   display:none;
 }
 .crowdstart-checkbox-control input[type="checkbox"] + label .crowdstart-checkbox{
   display:inline-block;
-  width:12px;
-  height:12px;
+  width:1em;
+  height:1em;
   position:relative;
-  top:2px;
-  margin-right:5px;
+  top:0.2em;
+  margin-right:0.3em;
 }
 .crowdstart-checkbox-control input[type="checkbox"] + label{
   -webkit-user-select:none;
@@ -514,6 +500,40 @@ control{
     -webkit-transform:matrix3d(0.5, 0, 0, 0, 0, 0.5, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
             transform:matrix3d(0.5, 0, 0, 0, 0, 0.5, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
   }
+}
+.crowdstart-checkout{
+  font-weight:400;
+  font-size:0.7em;
+  font-style:normal;
+  font-variant:normal;
+}
+.select2-container *{
+  font-size:0.7em;
+  font-style:normal;
+  font-variant:normal;
+}
+.select2 *{
+  font-size:1em;
+}
+.select2-results *{
+  font-size:1.15em;
+  margin-left:0.2em;
+}
+.crowdstart-back{
+  font-size:0.8em;
+}
+.crowdstart-form-control label{
+  font-weight:600;
+}
+.crowdstart-checkout-button,
+.crowdstart-error-button{
+  font-weight:600;
+}
+.crowdstart-progress li{
+  font-size:0.7em;
+}
+.crowdstart-progress li:before{
+  font-size:0.8em;
 }
 @media only screen and (max-width: 350px){
   .crowdstart-active .crowdstart-checkout{

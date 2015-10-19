@@ -1,3 +1,4 @@
+label(__for='{ model.name }', if='{ opts.label }')
 select(id='{ model.name }', name='{ model.name }', onchange='{ change }', onblur='{ change }', value='{ model.value }', data-placeholder='{ model.placeholder }', style='width:100%')
   option(if='{ model.placeholder }')
     option(each='{ value, name in options() }', value='{value}', __selected='{ this.parent.model.value == value }')

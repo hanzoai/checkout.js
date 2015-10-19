@@ -13,12 +13,15 @@ class Confirm extends FormView
     agreed: false
 
   inputConfigs: [
-    input('agreed', '', 'checkbox')
+    input 'agreed', '', 'checkbox terms'
   ]
 
   js: (opts)->
     super
     @config = opts.config
+
+  _submit: (event)->
+    @obs.trigger Events.Screen.TryNext, event
 
 Confirm.register()
 

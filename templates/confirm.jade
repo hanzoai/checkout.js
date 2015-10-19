@@ -3,7 +3,7 @@
   | I have read and agree to&nbsp;
   a(target="_blank", href="{ config.termsUrl }")
     | these terms and conditions.
-.crowdstart-checkout-button
+.crowdstart-checkout-button(onclick='{ submit }')
   .crowdstart-loader(if='{ locked }')
   div(if='{ locked }')
     | Processing

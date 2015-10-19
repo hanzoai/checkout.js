@@ -3,10 +3,7 @@
   .crowdstart-back(if!='{ pagingModel.index > 0 }')
     span &#10140;
   .crowdstart-close(onclick='{ close }')
-  .crowdstart-screens-container
-    .crowdstart-screens
-      .crowdstart-screen-strip
-        #{'yield'}
+  screen-manager(model='{ model }', obs='{ obs }')
   .crowdstart-invoice
     invoice(model='{ model.order }', checkoutObs='{ obs }')
   confirm(obs='{ obs }', config='{ model.config }')

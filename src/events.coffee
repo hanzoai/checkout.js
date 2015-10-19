@@ -1,6 +1,12 @@
 crowdcontrol = require 'crowdcontrol'
 Events = crowdcontrol.Events
 
+Events.Screen =
+  TryNext:      'screen-try-next'
+  Next:         'screen-next'
+  Back:         'screen-back'
+  UpdateScript: 'screen-update-script'
+
 Events.ProgressBar =
   Update: 'progressbar-update'
 
