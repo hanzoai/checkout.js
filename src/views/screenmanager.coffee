@@ -32,19 +32,16 @@ class ScreenManager extends View
       @back()
 
   tryNext: ()->
-    console.log('try next')
     if @index < @script.length
-      @script[@index]?.submit()
+      @scriptRefs[@index]?.submit()
 
   next: ()->
-    console.log('next')
-    if @index < @script.length
+    if @index < @script.length - 1
       @index++
       @update()
 
   back: ()->
-    console.log('back')
-    if @index >= 0
+    if @index > 0
       @index--
       @update()
 
@@ -62,16 +59,24 @@ class ScreenManager extends View
       $el.html ''
 
       total = @script.length
-      for script, i in @script
+      for script in @script
         $el.append $("<#{ script }>")
-        instance = riot.mount script, {model: @model, index: i, total: total, screenManagerObs: @obs}
+        instance = riot.mount script, {model: @model, total: total, screenManagerObs: @obs}
         @scriptRefs.push instance[0]
 
-      @style = "width: #{ total * 100 }%"
       @update()
 
   js: (opts)->
     @updateScript(opts.script || [])
+
+    @on 'update', ()=>
+      total = @script.length
+      @style = "transform: translateX(-#{ @index * 100 / total }%); width: #{ total * 100 }%"
+      $root = $(@root)
+      $root.width $root.parent().outerWidth()
+
+      if @scriptRefs?[@index]?
+        $root.height $(@scriptRefs[@index].root).height()
 
 ScreenManager.register()
 

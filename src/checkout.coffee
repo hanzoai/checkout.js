@@ -98,7 +98,7 @@ class Checkout
 
     riot.mount 'modal', { obs: @obs, model: @model }
 
-    @obs.trigger Events.Screen.UpdateScript, ['stripe']
+    @obs.trigger Events.Screen.UpdateScript, ['stripe', 'shipping']
 
   open: ()->
     @obs.trigger Events.Modal.Open

@@ -12,13 +12,13 @@ class Screen extends FormView
   screenManagerObs: null
 
   js: (opts)->
-    @index = opts.index ? 0
     @total = opts.total ? 1
 
-    left = opts.index * 2
-    width = 100 / opts.total
+    width = 100 / @total
 
-    @style = "left: #{left}em; width: #{width}%;"
+    @on 'update', ()=>
+      $(@root).css('width', "#{width}%")
+
     @screenManagerObs = opts.screenManagerObs
     super
 

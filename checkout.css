@@ -215,12 +215,13 @@ control{
   content:none;
 }
 screen-manager{
-  margin:0 -1em;
   padding:0.6em 0em;
-  display:table;
+  display:block;
   width:100%;
   box-sizing:border-box;
   line-height:1.5em;
+  left:-1em;
+  position:relative;
 }
 screen-manager .crowdstart-screens{
   width:100%;
@@ -234,9 +235,11 @@ screen-manager .crowdstart-screens .crowdstart-screen-strip{
   position:relative;
 }
 screen-manager .crowdstart-screens .crowdstart-screen-strip > *{
-  margin:0 -1em 0 1em;
+  padding:0 1em;
   display:inline-block;
   position:relative;
+  box-sizing:border-box;
+  vertical-align:top;
 }
 .crowdstart-terms > control{
   width:auto;
@@ -518,6 +521,9 @@ screen-manager .crowdstart-screens .crowdstart-screen-strip > *{
 .select2-results *{
   font-size:1.15em;
   margin-left:0.2em;
+}
+label{
+  font-size:1.2em;
 }
 .crowdstart-back{
   font-size:0.8em;

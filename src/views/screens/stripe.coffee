@@ -8,17 +8,13 @@ class Stripe extends Screen
   tag: 'stripe'
   html: require '../../../templates/screens/stripe.jade'
   inputConfigs: [
-    input 'user.email',             '', 'input required'
-    input 'user.password',          '', 'password'
-    input 'user.name',              '', 'input name required'
-    input 'payment.account.number', '', 'input required'
-    input 'payment.account.expiry', '', 'input required'
-    input 'payment.account.cvc',    '', 'input required'
+    input 'user.email',             'youremail@somewhere.com',  'input required'
+    input 'user.password',          'Password',                 'password'
+    input 'user.name',              'Full Name',                'input name required'
+    input 'payment.account.number', 'XXXX XXXX XXXX XXXX',      'input required'
+    input 'payment.account.expiry', 'MM/YY',                    'input required'
+    input 'payment.account.cvc',    'CVC',                      'input required'
   ]
-
-  js:()->
-    console.log 'STRIPE'
-    super
 
 Stripe.register()
 
