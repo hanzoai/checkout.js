@@ -9,6 +9,7 @@ helpers.defaultTagName = 'crowdstart-input'
 
 class Input extends InputView
   tag: 'crowdstart-input'
+  errorHtml: require '../../../templates/control/error.jade'
   html: require '../../../templates/control/input.jade'
   js:(opts)->
     @model = if opts.input then opts.input.model else @model

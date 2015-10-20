@@ -54,6 +54,7 @@ widget
 control
   display: inline-block
   width: 100%
+  position: relative
 
 .crowdstart-back
   position: absolute
@@ -91,7 +92,6 @@ control
   background:none
   line-height:1.5em
 
-  -webkit-box-sizing:border-box
   box-sizing:border-box
 
 .crowdstart-form-control input
@@ -116,6 +116,9 @@ control
 
 .select2-container
   z-index: 10000
+
+.select2
+  z-index: 0
 
 .crowdstart-form-control label
   padding: 0.5em 0 0 0
@@ -159,4 +162,23 @@ control
 .crowdstart-checkout
   .error-container
     position: absolute
+
+.crowdstart-message::before
+  content: ""
+  display: block
+  position: absolute
+  width: 7px
+  height: 7px
+  top: -4px
+  left: 20px
+  transform: rotate(45deg)
+
+.crowdstart-message
+  padding: 2px 8px
+  position: absolute
+  top: 6em
+  left: .5em
+  text-align: left
+  z-index: 1
+
 /* END UI CONTROLS */

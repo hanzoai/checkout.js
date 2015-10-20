@@ -68,6 +68,7 @@ widget{
 control{
   display:inline-block;
   width:100%;
+  position:relative;
 }
 .crowdstart-back{
   position:absolute;
@@ -130,6 +131,9 @@ control{
 .select2-container{
   z-index:10000;
 }
+.select2{
+  z-index:0;
+}
 .crowdstart-form-control label{
   padding:0.5em 0 0 0;
 }
@@ -171,6 +175,26 @@ control{
 }
 .crowdstart-checkout .error-container{
   position:absolute;
+}
+.crowdstart-message::before{
+  content:"";
+  display:block;
+  position:absolute;
+  width:7px;
+  height:7px;
+  top:-4px;
+  left:20px;
+  -webkit-transform:rotate(45deg);
+      -ms-transform:rotate(45deg);
+          transform:rotate(45deg);
+}
+.crowdstart-message{
+  padding:2px 8px;
+  position:absolute;
+  top:6em;
+  left:0.5em;
+  text-align:left;
+  z-index:1;
 }
 .crowdstart-progress{
   width:100%;
@@ -551,6 +575,9 @@ label{
 }
 .crowdstart-progress li:before{
   font-size:0.8em;
+}
+.crowdstart-message{
+  font-size:1em;
 }
 @media only screen and (max-width: 350px){
   .crowdstart-active .crowdstart-checkout{

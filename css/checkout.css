@@ -116,28 +116,6 @@
   transition: opacity 0.3s ease-out;
 }
 
-.crowdstart-message::before {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 7px;
-  height: 7px;
-  top: -4px;
-  left: 20px;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-
-.crowdstart-message {
-  padding: 2px 8px;
-  position: absolute;
-  top: 2px;
-  left: 5px;
-  font-size: 12px;
-  text-align: left;
-}
-
 .crowdstart-card {
   z-index: -100;
 }

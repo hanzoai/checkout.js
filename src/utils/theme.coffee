@@ -75,7 +75,7 @@ theme =
         color: #{ theme.currentTheme.dark } !important;
       }
 
-      .crowdstart-error input {
+      input.crowdstart-error {
         border-color: #{ theme.currentTheme.error } !important;
       }
 

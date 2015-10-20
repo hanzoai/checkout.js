@@ -10,7 +10,7 @@ class Shipping extends Screen
   html: require '../../../templates/screens/shipping.jade'
   inputConfigs: [
     input 'order.shippingAddress.line1',        '123 Street',       'input required'
-    input 'order.shippingAddress.line2',        '123 Apt',          'input required'
+    input 'order.shippingAddress.line2',        '123 Apt',          'input'
     input 'order.shippingAddress.city',         'City',             'input required'
     input 'order.shippingAddress.state',        'State',            'input required'
     input 'order.shippingAddress.postalCode',   'Zip/Postal Code',  'input postalRequired'
