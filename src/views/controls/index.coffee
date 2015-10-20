@@ -206,6 +206,15 @@ helpers.registerValidator ((inputCfg) -> return inputCfg.hints.name)
   model.lastName = name.slice i+1
   return value
 
+helpers.registerValidator ((inputCfg) -> return inputCfg.hints.cardnumber)
+, (model, name)->
+  value = model[name]
+  return crowdcontrol.utils.shim.promise.new (resolve, reject)=>
+    requestAnimationFrame ()=>
+      if $('input[name=number]').hasClass('jp-card-invalid')
+        reject new Error('Enter a valid card number')
+      resolve value
+
 helpers.registerValidator ((inputCfg) -> return inputCfg.hints.expiration)
 , (model, name)->
   value = model[name]
@@ -214,4 +223,18 @@ helpers.registerValidator ((inputCfg) -> return inputCfg.hints.expiration)
   model.month = (date[0]).trim()
   model.year = ('' + (new Date()).getFullYear()).substr(0, 2) + (date[1]).trim()
 
-  return value
+  return crowdcontrol.utils.shim.promise.new (resolve, reject)=>
+    requestAnimationFrame ()=>
+      if $('input[name=expiry]').hasClass('jp-card-invalid')
+        reject new Error('Enter a valid expiration date')
+      resolve value
+
+helpers.registerValidator ((inputCfg) -> return inputCfg.hints.cvc)
+, (model, name)->
+  value = model[name]
+  return crowdcontrol.utils.shim.promise.new (resolve, reject)=>
+    requestAnimationFrame ()=>
+      if $('input[name=number]').hasClass('jp-card-invalid')
+        reject new Error('Enter a valid CVC number')
+      resolve value
+

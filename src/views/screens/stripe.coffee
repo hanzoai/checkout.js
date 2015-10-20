@@ -14,9 +14,9 @@ class Stripe extends Screen
     input 'user.email',             'youremail@somewhere.com',  'input required'
     input 'user.password',          'Password',                 'password'
     input 'user.name',              'Full Name',                'input name required'
-    input 'payment.account.number', 'XXXX XXXX XXXX XXXX',      'input required'
+    input 'payment.account.number', 'XXXX XXXX XXXX XXXX',      'input required cardnumber'
     input 'payment.account.expiry', 'MM/YY',                    'input required expiration'
-    input 'payment.account.cvc',    'CVC',                      'input required'
+    input 'payment.account.cvc',    'CVC',                      'input required cvc'
   ]
 
   js: ()->

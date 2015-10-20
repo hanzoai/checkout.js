@@ -252,6 +252,9 @@ screen-manager .crowdstart-screens .crowdstart-screen-strip > *{
 .crowdstart-card .jp-card-container{
   z-index:10001;
 }
+.crowdstart-item-list-price{
+  text-decoration:line-through;
+}
 .crowdstart-checkbox-control input[type="checkbox"]{
   display:none;
 }
