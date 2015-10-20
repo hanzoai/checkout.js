@@ -67,6 +67,8 @@ class Checkout
     @order.currency     = opts.config?.currency         || @order.currency      || 'usd'
     @order.taxRate      = opts.config?.taxRate          || @order.taxRate       || 0
     @order.shippingRate = opts.config?.shippingRate     || @order.shippingRate  || 0
+    @order.shippingAddress =
+      country: 'us'
 
     if qs.referrer?
       @order.referrerId = qs.referrer || @order.referrerId

@@ -149,12 +149,11 @@ control{
   text-align:center;
   width:100%;
   display:block;
-  padding:10px 0;
+  padding:1em 0;
   text-transform:uppercase;
   text-decoration:none;
-  letter-spacing:3px;
-  margin:10px 0;
-  font-weight:600;
+  letter-spacing:0.2em;
+  margin:1em 0 0.3em 0;
   position:relative;
   box-sizing:border-box;
   cursor:pointer;
@@ -170,6 +169,9 @@ control{
   margin:0;
   position:absolute;
 }
+.crowdstart-checkout .error-container{
+  position:absolute;
+}
 .crowdstart-progress{
   width:100%;
   padding:0;
@@ -182,7 +184,6 @@ control{
 .crowdstart-progress li{
   list-style-type:none;
   text-transform:uppercase;
-  width:33.33%;
   float:left;
   position:relative;
   text-align:center;
@@ -526,7 +527,7 @@ label{
   font-size:1.2em;
 }
 .crowdstart-back{
-  font-size:0.8em;
+  font-size:1em;
 }
 .crowdstart-form-control label{
   font-weight:600;

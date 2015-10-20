@@ -7,6 +7,7 @@ input = require '../../utils/input.coffee'
 class Stripe extends Screen
   tag: 'stripe'
   html: require '../../../templates/screens/stripe.jade'
+  title: 'Payment Info'
   inputConfigs: [
     input 'user.email',             'youremail@somewhere.com',  'input required'
     input 'user.password',          'Password',                 'password'

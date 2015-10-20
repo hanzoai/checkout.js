@@ -4,6 +4,7 @@ FormView = crowdcontrol.view.form.FormView
 
 class Screen extends FormView
   tag: 'screen'
+  title: 'Untitled'
 
   index: 0
   total: 1

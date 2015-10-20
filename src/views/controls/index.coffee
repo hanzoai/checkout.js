@@ -132,6 +132,18 @@ class QuantitySelect extends Select
 
 QuantitySelect.register()
 
+class CountrySelect extends Select
+  tag: 'crowdstart-country-select'
+  options: ()->
+    return require '../../data/countries'
+
+  js: ()->
+    @model.value = @model.value.toLowerCase() if @model.value?
+
+    super
+
+CountrySelect.register()
+
 # tag registration
 helpers.registerTag (inputCfg)->
   return inputCfg.hints.input
@@ -150,8 +162,22 @@ helpers.registerTag (inputCfg)->
 , 'crowdstart-select'
 
 helpers.registerTag (inputCfg)->
+  return inputCfg.hints['country-select']
+, 'crowdstart-country-select'
+
+helpers.registerTag (inputCfg)->
   return inputCfg.hints['quantity-select']
 , 'crowdstart-quantity-select'
+
+countryUtils = require '../../utils/country'
+
+helpers.registerValidator ((inputCfg) -> return inputCfg.hints.postalRequired)
+, (model, name)->
+  value = model[name]
+  if countryUtils.requiresPostalCode(model.country || '') && (!value? || value == '')
+    throw new Error "Required for Selected Country"
+
+  return value
 
 helpers.registerValidator ((inputCfg) -> return inputCfg.hints.required)
 , (model, name)->

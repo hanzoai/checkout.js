@@ -1,7 +1,4 @@
 .crowdstart-checkout.crowdstart-widget
-  progressbar(if!='{ pagingModel.screens.length > 0 }', model='{ pagingModel }')
-  .crowdstart-back(if!='{ pagingModel.index > 0 }')
-    span &#10140;
   .crowdstart-close(onclick='{ close }')
   screen-manager(model='{ model }', obs='{ obs }')
   .crowdstart-invoice

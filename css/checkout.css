@@ -53,32 +53,6 @@
   cursor: pointer;
 }
 
-.crowdstart-checkout-button, .crowdstart-error-button {
-  text-align: center;
-  width: 100%;
-  display: block;
-  padding: 10px 0;
-  text-transform: uppercase;
-  text-decoration: none;
-  letter-spacing: 3px;
-  margin: 10px 0;
-  font-weight: 600;
-  position: relative;
-  box-sizing: border-box;
-  cursor: pointer;
-}
-
-.crowdstart-checkout-button .crowdstart-loader {
-  height: 12px;
-  width: 12px;
-  border-width: 6px;
-  float: left;
-  top: 10px;
-  left: 10px;
-  margin: 0;
-  position: absolute;
-}
-
 .crowdstart-paging {
   max-height: 100px;
   width: 100%;

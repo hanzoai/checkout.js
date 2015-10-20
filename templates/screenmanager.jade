@@ -1,2 +1,7 @@
 .crowdstart-screens.crowdstart-form-control
+  .crowdstart-back(if!='{ index > 0 }', onclick='{ back }')
+    span &#10140;
+  ul.crowdstart-progress
+    li(each='{ ref, i in scriptRefs }', class!='{ active: this.parent.index >= i }', style='{ this.parent.progressStyle }')
+      | { ref.title }
   .crowdstart-screen-strip(style='{ style }')

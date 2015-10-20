@@ -18,6 +18,9 @@ class ScreenManager extends View
   # style attribute for specifying the width of .crowdstart-screen-strip
   style: ''
 
+  # style attribute for progress width
+  progressStyle: ''
+
   events:
     "#{ Events.Screen.UpdateScript }": (script)->
       @updateScript script
@@ -71,12 +74,17 @@ class ScreenManager extends View
 
     @on 'update', ()=>
       total = @script.length
-      @style = "transform: translateX(-#{ @index * 100 / total }%); width: #{ total * 100 }%"
+      @style = "transform: translateX(-#{ @index * 100 / total }%); width: #{ total * 100 }%;"
+      @progressStyle = "width: #{ 100 / total }%"
       $root = $(@root)
       $root.width $root.parent().outerWidth()
+      $children = $root.find('.crowdstart-screen-strip').children()
+      for child, i in $children
+        $child = $(child).children()
+        $child.css('display', if i == @index then '' else 'none')
 
-      if @scriptRefs?[@index]?
-        $root.height $(@scriptRefs[@index].root).height()
+      # if @scriptRefs?[@index]?
+      #   $root.height $(@scriptRefs[@index].root).height()
 
 ScreenManager.register()
 
