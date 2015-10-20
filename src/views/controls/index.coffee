@@ -196,3 +196,22 @@ helpers.registerValidator ((inputCfg) -> return inputCfg.hints.terms)
   if !value
     throw new Error 'Please read and agree to the terms and conditions.'
   return value
+
+helpers.registerValidator ((inputCfg) -> return inputCfg.hints.name)
+, (model, name)->
+  value = model[name]
+
+  i = value.indexOf ' '
+  model.firstName = name.slice 0, i
+  model.lastName = name.slice i+1
+  return value
+
+helpers.registerValidator ((inputCfg) -> return inputCfg.hints.expiration)
+, (model, name)->
+  value = model[name]
+
+  date = value.split '/'
+  model.month = (date[0]).trim()
+  model.year = ('' + (new Date()).getFullYear()).substr(0, 2) + (date[1]).trim()
+
+  return value

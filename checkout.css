@@ -215,6 +215,9 @@ control{
 .crowdstart-progress li:first-child:after{
   content:none;
 }
+.crowdstart-terms > control{
+  width:auto;
+}
 screen-manager{
   padding:0.6em 0em;
   display:block;
@@ -242,8 +245,12 @@ screen-manager .crowdstart-screens .crowdstart-screen-strip > *{
   box-sizing:border-box;
   vertical-align:top;
 }
-.crowdstart-terms > control{
-  width:auto;
+.crowdstart-card{
+  position:absolute;
+  z-index:-1;
+}
+.crowdstart-card .jp-card-container{
+  z-index:10001;
 }
 .crowdstart-checkbox-control input[type="checkbox"]{
   display:none;
