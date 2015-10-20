@@ -21,6 +21,7 @@ class Screen extends FormView
       $(@root).css('width', "#{width}%")
 
     @screenManagerObs = opts.screenManagerObs
+    @client = opts.client
     super
 
   _submit: ()->

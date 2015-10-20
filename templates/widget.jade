@@ -1,6 +1,6 @@
 .crowdstart-checkout.crowdstart-widget
   .crowdstart-close(onclick='{ close }')
-  screen-manager(model='{ model }', obs='{ obs }')
+  screen-manager(model='{ model }', obs='{ obs }', client='{ client }')
   .crowdstart-invoice
     invoice(model='{ model.order }', checkoutObs='{ obs }')
   confirm(obs='{ obs }', config='{ model.config }')

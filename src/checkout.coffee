@@ -37,6 +37,21 @@ head.appendChild style
 #   shippingRate:   number (per item cost in cents or base unit for zero decimal currencies)
 #   termsUrl:       string (url of terms page)
 # }
+#
+# Format of opts.social
+# {
+#   ##################################
+#   ### Social Links and Messages ####
+#   ##################################
+#   facebook:       string (facebook account name)
+#   facebookMsg:    string (share message)
+#   googlePlus:     string (google plus username)
+#   twitter:        string (twitter account name)
+#   twitterMsg:     string (tweet message)
+#   pinterest:      bool (show/hide pinterest button)
+#   emailSubject:   string (email subject line)
+#   emailNsg:       string (email body contents)
+# }
 
 class Checkout
   key: ''
@@ -47,6 +62,11 @@ class Checkout
   obs: null
   model: null
   config: null
+  social: null
+
+  currentScript: null
+  stripeScript: ['choose', 'stripe', 'shipping', 'thankyou']
+  paypalScript: ['choose', 'paypal', 'thankyou']
 
   constructor: (@key, opts = {})->
     @client = new Client(@key)
@@ -80,10 +100,17 @@ class Checkout
     @config = _.extend(@config, opts.config) if opts.config?
     @config.termsUrl = opts.config?.termsUrl || ''
 
+    @social = {}
+    @social = _.extend(@social, opts.social) if opts.social?
+
     @model =
       user:     @user
       order:    @order
       config:   @config
+      social:   @social
+      scripts:
+        stripe: @stripeScript
+        paypal: @paypalScript
 
     @obs = {}
     riot.observable @obs
@@ -98,9 +125,9 @@ class Checkout
     modal.appendChild widget
     document.body.appendChild modal
 
-    riot.mount 'modal', { obs: @obs, model: @model }
+    riot.mount 'modal', { obs: @obs, model: @model, client: @client }
 
-    @obs.trigger Events.Screen.UpdateScript, ['stripe', 'shipping']
+    @obs.trigger Events.Screen.UpdateScript, @stripeScript
 
   open: ()->
     @obs.trigger Events.Modal.Open

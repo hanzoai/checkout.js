@@ -17,6 +17,9 @@ class Shipping extends Screen
     input 'order.shippingAddress.country',      '',                 'country-select required'
   ]
 
+  _submit: ()->
+    @screenManagerObs.trigger Events.Screen.Next
+
 Shipping.register()
 
 module.exports = Shipping

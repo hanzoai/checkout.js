@@ -22,8 +22,8 @@ class ScreenManager extends View
   progressStyle: ''
 
   events:
-    "#{ Events.Screen.UpdateScript }": (script)->
-      @updateScript script
+    "#{ Events.Screen.UpdateScript }": (script, index)->
+      @updateScript script, index
 
     "#{ Events.Screen.TryNext }": ()->
       @tryNext()
@@ -48,8 +48,16 @@ class ScreenManager extends View
       @index--
       @update()
 
-  updateScript: (@script)->
-    @index = 0
+  updateScript: (script, index = 0)->
+    if @script == script
+      if @index != index
+        @index = index
+        @update()
+        return
+      return
+
+    @script = script
+    @index = index
 
     requestAnimationFrame ()=>
       if @scriptRefs?
@@ -64,12 +72,14 @@ class ScreenManager extends View
       total = @script.length
       for script in @script
         $el.append $("<#{ script }>")
-        instance = riot.mount script, {model: @model, total: total, screenManagerObs: @obs}
+        instance = riot.mount script, {model: @model, total: total, screenManagerObs: @obs, client: @client}
         @scriptRefs.push instance[0]
 
       @update()
 
   js: (opts)->
+    @client = opts.client
+
     @updateScript(opts.script || [])
 
     @on 'update', ()=>

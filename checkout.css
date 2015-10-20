@@ -196,6 +196,14 @@ control{
   text-align:left;
   z-index:1;
 }
+[riot-tag="crowdstart-checkbox"] .crowdstart-message::before{
+  left:6px;
+}
+[riot-tag="crowdstart-checkbox"] .crowdstart-message{
+  top:2.1em;
+  left:0;
+  width:23em;
+}
 .crowdstart-progress{
   width:100%;
   padding:0;
