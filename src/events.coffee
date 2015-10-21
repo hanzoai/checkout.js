@@ -7,9 +7,6 @@ Events.Screen =
   Back:         'screen-back'
   UpdateScript: 'screen-update-script'
 
-Events.ProgressBar =
-  Update: 'progressbar-update'
-
 Events.Checkout =
   Update: 'checkout-update'
 
@@ -19,4 +16,12 @@ Events.Modal =
   DisableClose: 'modal-disable-close'
   EnableClose:  'modal-enable-close'
 
+Events.Confirm =
+  Hide:     'confirm-hide'
+  Show:     'confirm-show'
+  Lock:     'confirm-lock'
+  Unlock:   'confirm-unlock'
 
+Events.Invoice =
+  Disabled: 'invoice-disable'
+  Enable:   'invoice-enable'

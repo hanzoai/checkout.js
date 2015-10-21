@@ -8,6 +8,7 @@ class ThankYou extends Screen
   tag: 'thankyou'
   title: 'Done!'
   html: require '../../../templates/screens/thankyou.jade'
+  showConfirm: false
 
   _submit: ()->
 

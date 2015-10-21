@@ -52,6 +52,13 @@ head.appendChild style
 #   emailSubject:   string (email subject line)
 #   emailNsg:       string (email body contents)
 # }
+#
+# Format of opts.theme
+# {
+#   ######################
+#   ### Theme Options ####
+#   ######################
+# }
 
 class Checkout
   key: ''
@@ -63,6 +70,7 @@ class Checkout
   model: null
   config: null
   social: null
+  theme: null
 
   currentScript: null
   stripeScript: ['choose', 'stripe', 'shipping', 'thankyou']
@@ -103,6 +111,9 @@ class Checkout
     @social = {}
     @social = _.extend(@social, opts.social) if opts.social?
 
+    @theme = {}
+    @theme = _.extend(@theme, opts.theme) if opts.theme?
+
     @model =
       user:     @user
       order:    @order
@@ -121,11 +132,16 @@ class Checkout
     widget = document.createElement widgetTag.toUpperCase()
     widget.setAttribute 'model', '{ model }'
     widget.setAttribute 'obs', '{ obs }'
+    widget.setAttribute 'client', '{ client }'
 
     modal.appendChild widget
     document.body.appendChild modal
 
-    riot.mount 'modal', { obs: @obs, model: @model, client: @client }
+    theme.setTheme @theme
+    riot.mount 'modal',
+      obs: @obs
+      model: @model
+      client: @client
 
     @obs.trigger Events.Screen.UpdateScript, @stripeScript
 

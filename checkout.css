@@ -87,6 +87,7 @@ control{
   top:0.1em;
   position:absolute;
   cursor:pointer;
+  z-index:100;
 }
 .crowdstart-close:after{
   content:'×';
@@ -161,17 +162,6 @@ control{
   position:relative;
   box-sizing:border-box;
   cursor:pointer;
-}
-.crowdstart-checkout-button .crowdstart-loader,
-.crowdstart-error-button .crowdstart-loader{
-  height:12px;
-  width:12px;
-  border-width:6px;
-  float:left;
-  top:10px;
-  left:10px;
-  margin:0;
-  position:absolute;
 }
 .crowdstart-checkout .error-container{
   position:absolute;
@@ -586,6 +576,55 @@ label{
 }
 .crowdstart-message{
   font-size:1em;
+}
+.crowdstart-loader{
+  margin-top:10px;
+  width:16px;
+  font-size:10px;
+  position:relative;
+  text-indent:-9999em;
+  -webkit-transform:translateZ(0);
+          transform:translateZ(0);
+  -webkit-animation:load8 1.1s infinite linear;
+          animation:load8 1.1s infinite linear;
+}
+.crowdstart-loader,
+.crowdstart-loader:after{
+  border-radius:50%;
+  width:10em;
+  height:10em;
+  margin-top:10px;
+}
+.crowdstart-checkout-button .crowdstart-loader,
+.crowdstart-error-button .crowdstart-loader{
+  height:1em;
+  width:1em;
+  border-width:0.5em;
+  float:left;
+  top:0.33em;
+  left:0.33em;
+  margin:0;
+  position:absolute;
+}
+@-webkit-keyframes load8{
+  0%{
+    -webkit-transform:rotate(0deg);
+            transform:rotate(0deg);
+  }
+  100%{
+    -webkit-transform:rotate(360deg);
+            transform:rotate(360deg);
+  }
+}
+@keyframes load8{
+  0%{
+    -webkit-transform:rotate(0deg);
+            transform:rotate(0deg);
+  }
+  100%{
+    -webkit-transform:rotate(360deg);
+            transform:rotate(360deg);
+  }
 }
 @media only screen and (max-width: 350px){
   .crowdstart-active .crowdstart-checkout{

@@ -18,7 +18,20 @@ class Shipping extends Screen
   ]
 
   _submit: ()->
-    @screenManagerObs.trigger Events.Screen.Next
+    @screenManagerObs.trigger Events.Confirm.Lock
+
+    data =
+      user:     @model.user
+      order:    @model.order
+      payment:  @model.payment
+
+    @client.payment.authorize(data).then((res)=>
+      console.log "yay!"
+      @screenManagerObs.trigger Events.Screen.Next
+      @screenManagerObs.trigger Events.Screen.Unlock
+    ).catch (err)->
+      console.log "shipping submit Error: #{err}"
+      @screenManagerObs.trigger Events.Screen.Unlock
 
 Shipping.register()
 

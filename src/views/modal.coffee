@@ -18,6 +18,7 @@ class Modal extends View
       @canClose = true
 
   js: (opts)->
+    @client = opts.client
     $(document).on('keydown', @closeOnEscape)
 
   open: ()->

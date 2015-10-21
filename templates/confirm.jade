@@ -1,9 +1,9 @@
-.crowdstart-terms
+.crowdstart-terms(if='{ !hide }')
   control(input='{ inputs.agreed }')
   | I have read and agree to&nbsp;
   a(target="_blank", href="{ config.termsUrl }")
     | these terms and conditions.
-.crowdstart-checkout-button(onclick='{ submit }')
+.crowdstart-checkout-button(onclick='{ submit }', if='{ !hide }')
   .crowdstart-loader(if='{ locked }')
   div(if='{ locked }')
     | Processing

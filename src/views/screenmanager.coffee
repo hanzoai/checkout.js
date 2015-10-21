@@ -41,17 +41,28 @@ class ScreenManager extends View
   next: ()->
     if @index < @script.length - 1
       @index++
+      @updateConfirm()
       @update()
 
   back: ()->
     if @index > 0
       @index--
+      @updateConfirm()
       @update()
+
+  updateConfirm: ()->
+    if @scriptRefs? && @scriptRefs[@index]
+      if !@scriptRefs[@index].showConfirm
+        @obs.trigger Events.Confirm.Hide
+        return
+
+    @obs.trigger Events.Confirm.Show
 
   updateScript: (script, index = 0)->
     if @script == script
       if @index != index
         @index = index
+        @updateConfirm()
         @update()
         return
       return
@@ -72,9 +83,14 @@ class ScreenManager extends View
       total = @script.length
       for script in @script
         $el.append $("<#{ script }>")
-        instance = riot.mount script, {model: @model, total: total, screenManagerObs: @obs, client: @client}
+        instance = riot.mount script,
+          model: @model,
+          total: total,
+          screenManagerObs: @obs,
+          client: @client
         @scriptRefs.push instance[0]
 
+      @updateConfirm()
       @update()
 
   js: (opts)->

@@ -10,7 +10,7 @@ class Invoice extends View
   renderCurrency: require('../utils/currency.coffee').renderUICurrencyFromJSON
 
   js: (opts)->
-    @checkoutObs = opts.checkoutObs
+    @checkoutObs = opts.checkoutobs
 
   subtotal: ()->
     items = @model.items

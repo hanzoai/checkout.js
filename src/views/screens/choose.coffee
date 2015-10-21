@@ -6,9 +6,10 @@ input = require '../../utils/input.coffee'
 
 class Choose extends Screen
   tag: 'choose'
-  title: 'Payment Options'
+  title: 'Select Payment'
   html: require '../../../templates/screens/choose.jade'
   scripts: null
+  showConfirm: false
 
   js: ()->
     @scripts = @model.scripts
