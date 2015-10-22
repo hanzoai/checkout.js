@@ -17,8 +17,6 @@ class Shipping extends Screen
     input 'order.shippingAddress.country',      '',                 'country-select required'
   ]
 
-  disableInvoice: true
-
   _submit: ()->
     @screenManagerObs.trigger Events.Confirm.Lock
 
@@ -28,12 +26,14 @@ class Shipping extends Screen
       payment:  @model.payment
 
     @client.payment.authorize(data).then((res)=>
-      console.log "yay!"
+      @model.order = res.responseText
       @screenManagerObs.trigger Events.Screen.Next
       @screenManagerObs.trigger Events.Confirm.Unlock
+      @screenManagerObs.trigger Events.Checkout.Done
     ).catch (err)->
       console.log "shipping submit Error: #{err}"
       @screenManagerObs.trigger Events.Confirm.Unlock
+      @screenManagerObs.trigger Events.Checkout.Done
 
 Shipping.register()
 

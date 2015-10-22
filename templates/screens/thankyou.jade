@@ -1,0 +1,20 @@
+h1
+  | { model.thankyou.header }
+p
+  | { model.thankyou.body }
+.social__container
+  .social__item(if="{ model.thankyou.facebook }")
+    a.social__icon--facebook(target="_blank", href="https://www.facebook.com/sharer/sharer.php?u={ model.thankyou.facebook }")
+      i.icon--facebook
+  .social__item(if="{ model.thankyou.twitter }")
+    a.social__icon--twitter(target="_blank",  href="https://twitter.com/intent/tweet?url={ model.thankyou.twitter }&text={ model.thankyou.twitterMsg}")
+      i.icon--twitter
+  .social__item(if="{ model.thankyou.googlePlus }")
+    a.social__icon--googleplus(target="_blank", href="https://plus.google.com/u/0/{ model.thankyou.googlePlus }")
+      i.icon--googleplus
+  .social__item(if="{ model.thankyou.pinterest }")
+    a.social__icon--pintrest(href="javascript:void((function()%7Bvar%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','https://assets.pinterest.com/js/pinmarklet.js?r='+Math.random()*99999999);document.body.appendChild(e)%7D)());")
+      i.icon--pintrest
+  .social__item(if="{ model.thankyou.emailSubject }")
+    a.social__icon--email(href="mailto:%20?subject={ model.thankyou.emailSubject }&body={ model.thankyou.emailBody }")
+      i.icon--email

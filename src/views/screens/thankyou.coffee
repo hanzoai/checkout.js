@@ -12,6 +12,8 @@ class ThankYou extends Screen
   showBack: false
   disableInvoice: true
 
+  js: ()->
+    super
   _submit: ()->
 
 ThankYou.register()

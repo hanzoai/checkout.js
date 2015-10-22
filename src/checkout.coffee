@@ -38,19 +38,20 @@ head.appendChild style
 #   termsUrl:       string (url of terms page)
 # }
 #
-# Format of opts.social
+# Format of opts.thankyou
 # {
-#   ##################################
-#   ### Social Links and Messages ####
-#   ##################################
+#   ###########################
+#   ### Links and Messages ####
+#   ###########################
+#   header:         string (header message)
+#   body:           string (thank you body message)
 #   facebook:       string (facebook account name)
-#   facebookMsg:    string (share message)
 #   googlePlus:     string (google plus username)
 #   twitter:        string (twitter account name)
 #   twitterMsg:     string (tweet message)
 #   pinterest:      bool (show/hide pinterest button)
 #   emailSubject:   string (email subject line)
-#   emailNsg:       string (email body contents)
+#   emailMsg:       string (email body contents)
 # }
 #
 # Format of opts.theme
@@ -58,6 +59,21 @@ head.appendChild style
 #   ######################
 #   ### Theme Options ####
 #   ######################
+#   background:             'white'
+#   light:                  'white'
+#   dark:                   'lightslategray'
+#   medium:                 '#DDDDDD'
+#   error:                  'red'
+#   promoCodeForeground:    'white'
+#   promoCodeBackground:    'lightslategray'
+#   calloutForeground:      'white'
+#   calloutBackground:      '#27AE60'
+#   showPromoCode:          'steelblue'
+#   progress:               '#27AE60'
+#   spinner:                'rgb(255,255,255)'
+#   spinnerTrail:           'rgba(255,255,255,0.2)'
+#   fontFamily:             "'Helvetica Neue', Helvetica, Arial, sans-serif"
+#   borderRadius:           5
 # }
 
 class Checkout
@@ -69,8 +85,10 @@ class Checkout
   obs: null
   model: null
   config: null
-  social: null
+  thankyou: null
   theme: null
+
+  reset: true
 
   currentScript: null
   stripeScript: ['choose', 'stripe', 'shipping', 'thankyou']
@@ -104,12 +122,14 @@ class Checkout
     @items = []
     @itemUpdateQueue = []
 
-    @config = {}
+    @config =
+      termsUrl: ''
     @config = _.extend(@config, opts.config) if opts.config?
-    @config.termsUrl = opts.config?.termsUrl || ''
 
-    @social = {}
-    @social = _.extend(@social, opts.social) if opts.social?
+    @thankyou =
+      header:   'Thank You!'
+      body:     'Check Your Email For The Order Confirmation.'
+    @thankyou = _.extend(@thankyou, opts.thankyou) if opts.thankyou?
 
     @theme = {}
     @theme = _.extend(@theme, opts.theme) if opts.theme?
@@ -118,7 +138,7 @@ class Checkout
       user:     @user
       order:    @order
       config:   @config
-      social:   @social
+      thankyou: @thankyou
       scripts:
         stripe: @stripeScript
         paypal: @paypalScript
@@ -144,10 +164,14 @@ class Checkout
       client: @client
 
     @obs.trigger Events.Screen.UpdateScript, @stripeScript
-
-    @obs.on Events.Checkout.Done, ()->
+    @obs.on Events.Checkout.Done, ()=>
+      @reset = true
 
   open: ()->
+    if @reset
+      @obs.trigger Events.Screen.UpdateScript, @stripeScript
+      @reset = false
+
     @obs.trigger Events.Modal.Open
     @obs.trigger Events.Modal.DisableClose
     setTimeout ()=>
