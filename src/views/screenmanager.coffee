@@ -6,6 +6,9 @@ class ScreenManager extends View
   tag: 'screen-manager'
   html: require '../../templates/screenmanager.jade'
 
+  # show the back button?
+  showBack: true
+
   # Array index of screen form script being shown
   index: 0
 
@@ -41,28 +44,40 @@ class ScreenManager extends View
   next: ()->
     if @index < @script.length - 1
       @index++
-      @updateConfirm()
+      @updateConfirmAndBackAndInvoice()
       @update()
 
   back: ()->
     if @index > 0
       @index--
-      @updateConfirm()
+      @updateConfirmAndBackAndInvoice()
       @update()
 
-  updateConfirm: ()->
+  updateConfirmAndBackAndInvoice: ()->
+    show = true
+    disable = false
     if @scriptRefs? && @scriptRefs[@index]
-      if !@scriptRefs[@index].showConfirm
-        @obs.trigger Events.Confirm.Hide
-        return
+      if @scriptRefs[@index].disableInvoice
+        disable = true
+        @obs.trigger Events.Invoice.Disable
 
-    @obs.trigger Events.Confirm.Show
+      if !@scriptRefs[@index].showConfirm
+        show = false
+        @obs.trigger Events.Confirm.Hide
+
+      @showBack = @scriptRefs[@index].showBack
+
+    if show
+      @obs.trigger Events.Confirm.Show
+
+    if !disable
+      @obs.trigger Events.Invoice.Enable
 
   updateScript: (script, index = 0)->
     if @script == script
       if @index != index
         @index = index
-        @updateConfirm()
+        @updateConfirmAndBackAndInvoice()
         @update()
         return
       return
@@ -84,13 +99,13 @@ class ScreenManager extends View
       for script in @script
         $el.append $("<#{ script }>")
         instance = riot.mount script,
-          model: @model,
-          total: total,
-          screenManagerObs: @obs,
+          model: @model
+          total: total
+          screenManagerObs: @obs
           client: @client
         @scriptRefs.push instance[0]
 
-      @updateConfirm()
+      @updateConfirmAndBackAndInvoice()
       @update()
 
   js: (opts)->

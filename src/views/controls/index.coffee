@@ -119,7 +119,6 @@ class QuantitySelect extends Select
   tag: 'crowdstart-quantity-select'
   options: ()->
     return {
-      0: 0
       1: 1
       2: 2
       3: 3

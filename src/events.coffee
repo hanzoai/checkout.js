@@ -6,9 +6,11 @@ Events.Screen =
   Next:         'screen-next'
   Back:         'screen-back'
   UpdateScript: 'screen-update-script'
+  DisableBack:  'screen-disable-back'
+  EnableBack:   'screen-enable-back'
 
 Events.Checkout =
-  Update: 'checkout-update'
+  Done: 'checkout-done'
 
 Events.Modal =
   Open:         'modal-open'
@@ -23,5 +25,5 @@ Events.Confirm =
   Unlock:   'confirm-unlock'
 
 Events.Invoice =
-  Disabled: 'invoice-disable'
+  Disable:  'invoice-disable'
   Enable:   'invoice-enable'

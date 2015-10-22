@@ -9,6 +9,8 @@ class ThankYou extends Screen
   title: 'Done!'
   html: require '../../../templates/screens/thankyou.jade'
   showConfirm: false
+  showBack: false
+  disableInvoice: true
 
   _submit: ()->
 

@@ -145,6 +145,8 @@ class Checkout
 
     @obs.trigger Events.Screen.UpdateScript, @stripeScript
 
+    @obs.on Events.Checkout.Done, ()->
+
   open: ()->
     @obs.trigger Events.Modal.Open
     @obs.trigger Events.Modal.DisableClose

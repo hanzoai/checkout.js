@@ -6,6 +6,8 @@ class Screen extends FormView
   tag: 'screen'
   title: 'Untitled'
   showConfirm: true
+  showBack: true
+  disableInvoice: false
 
   index: 0
   total: 1

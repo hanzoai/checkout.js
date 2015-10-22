@@ -5,12 +5,8 @@ View = crowdcontrol.view.View
 class Invoice extends View
   tag: 'invoice'
   html: require '../../templates/invoice.jade'
-  checkoutObs: null
 
   renderCurrency: require('../utils/currency.coffee').renderUICurrencyFromJSON
-
-  js: (opts)->
-    @checkoutObs = opts.checkoutobs
 
   subtotal: ()->
     items = @model.items

@@ -14,9 +14,27 @@ class LineItem extends FormView
     input('quantity', '', 'quantity-select')
   ]
 
+  disabled: false
+
+  events:
+    "#{ Events.Invoice.Disable }": ()->
+      @setDisabled true
+    "#{ Events.Invoice.Enable }": ()->
+      @setDisabled false
+
+  setDisabled: (state)->
+    @disabled = state
+    @update()
+
   js: (opts)->
     super
     @currency = opts.currency
+
+    @on 'update', ()=>
+      if @disabled
+        $(@root).find('select').prop('disabled', true)
+      else
+        $(@root).find('select').prop('disabled', false)
 
 LineItem.register()
 
