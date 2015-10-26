@@ -30,7 +30,7 @@ class Header extends View
     @update()
 
   back: ()->
-    @obs.trigger "#{Events.Modal.Back}"
+    @obs.trigger "#{Events.Screen.Back}"
 
   close: ()->
     @obs.trigger "#{Events.Modal.Close}"

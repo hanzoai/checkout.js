@@ -74,6 +74,7 @@ class Promo extends FormView
     @locked = true
     @codeApplied = false
     @clickedApplyPromoCode = true
+    @invalidCode = ''
     @update()
 
     @client.util.coupon(@model.promoCode).then((res)=>
