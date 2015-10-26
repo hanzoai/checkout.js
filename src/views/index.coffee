@@ -1,5 +1,6 @@
 module.exports =
   Confirm:          require './confirm'
+  Header:           require './header'
   Invoice:          require './invoice'
   LineItem:         require './lineitem'
   Modal:            require './modal'

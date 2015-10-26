@@ -8,10 +8,6 @@ class Widget extends View
   js: (opts)->
     @client = opts.client
 
-  close: ()->
-    @obs.trigger "#{Events.Modal.Close}"
-
 Widget.register()
 
 module.exports = Widget
-

@@ -8,8 +8,10 @@ Events.Screen =
   UpdateScript: 'screen-update-script'
   DisableBack:  'screen-disable-back'
   EnableBack:   'screen-enable-back'
+  SyncScript:   'screen-sync-script'
 
 Events.Checkout =
+  Update: 'checkout-update'
   Done: 'checkout-done'
 
 Events.Modal =
