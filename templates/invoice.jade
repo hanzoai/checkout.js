@@ -2,26 +2,32 @@
   .crowdstart-sep
   lineitem(each='{ item, i in model.items }', currency='{ this.parent.model.currency }', model='{ item }', obs='{ this.parent.obs }')
   promo(order='{ model }', client='{ client }')
+
 .crowdstart-totals
   .crowdstart-sep
+
   .crowdstart-subotal
-    .crowdstart-receipt-label
+    .column.crowdstart-receipt-label
       | Subtotal
-    .crowdstart-money
+    .column.crowdstart-money
       | { renderCurrency(model.currency, subtotal()) }
+
   .crowdstart-shipping-and-handling
-    .crowdstart-receipt-label
+    .column.crowdstart-receipt-label
       | Shipping & Handling
-    .crowdstart-money
+    .column.crowdstart-money
       | { renderCurrency(model.currency, shipping()) }
+
   .crowdstart-tax
-    .crowdstart-receipt-label
+    .column.crowdstart-receipt-label
       | Taxes ({ taxRate() }%)
-    .crowdstart-money
+    .column.crowdstart-money
       | { renderCurrency(model.currency, tax()) }
+
   .crowdstart-sep
+
   .crowdstart-total
-    .crowdstart-receipt-label
+    .column.crowdstart-receipt-label
       | Total
-    .crowdstart-money
+    .column.crowdstart-money
       | { renderCurrency(model.currency, total()) } ({model.currency.toUpperCase()})

@@ -14,6 +14,13 @@
   ],
   "author": "Crowdstart, LLC",
   "license": "MIT",
+  "dependencies": {
+    "card": "^1.0.0",
+    "crowdcontrol": "^1.0.48",
+    "crowdstart.js": "^1.0.2",
+    "riot": "^2.0.15",
+    "underscore": "^1.8.3"
+  },
   "devDependencies": {
     "autoprefixer": "^6.0.3",
     "bebop": "^1.6.7",
@@ -39,19 +46,14 @@
     "rupture": "^0.6.1",
     "selenium-standalone": "^4.5.3",
     "serve-static": "^1.10.0",
-    "shortcake": "^0.2.5",
+    "shortcake": "^0.3.0",
     "stylus": "^0.52.4",
     "typographic": "^2.9.3",
     "uglify-js": "^2.4.23",
-    "webdriverio": "^3.1.0"
-  },
-  "dependencies": {
-    "card": "^1.0.0",
-    "crowdcontrol": "^1.0.48",
-    "crowdstart.js": "^1.0.2",
+    "webdriverio": "^3.1.0",
+    "bebop": "^1.6.7",
     "poststylus": "^0.2.1",
-    "riot": "^2.0.15",
-    "shortcake": "^0.3.0",
-    "underscore": "^1.8.3"
+    "requisite": "^1.10.4",
+    "shortcake": "^0.3.0"
   }
 }
