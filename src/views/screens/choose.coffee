@@ -5,11 +5,11 @@ Screen = require './screen'
 input = require '../../utils/input.coffee'
 
 class Choose extends Screen
-  tag: 'choose'
-  title: 'Select Payment'
-  html: require '../../../templates/screens/choose.jade'
-  scripts: null
-  showConfirm: false
+  tag:          'choose'
+  title:        'Select Payment'
+  html:         require '../../../templates/screens/choose.jade'
+  scripts:      null
+  showConfirm:  false
 
   js: ()->
     @scripts = @model.scripts

@@ -1,6 +1,7 @@
 .crowdstart-items
   .crowdstart-sep
   lineitem(each='{ item, i in model.items }', currency='{ this.parent.model.currency }', model='{ item }', obs='{ this.parent.obs }')
+  promo(order='{ model }', client='{ client }')
 .crowdstart-totals
   .crowdstart-sep
   .crowdstart-subotal
@@ -24,5 +25,3 @@
       | Total
     .crowdstart-money
       | { renderCurrency(model.currency, total()) } ({model.currency.toUpperCase()})
-
-

@@ -27,7 +27,7 @@ theme =
         color: #{ theme.currentTheme.promoCodeForeground } !important;
       }
 
-      .crowdstart-checkout-button, .crowdstart-error-button {
+      .crowdstart-button {
         background-color: #{ theme.currentTheme.calloutBackground } !important;
         color: #{ theme.currentTheme.calloutForeground } !important;
       }

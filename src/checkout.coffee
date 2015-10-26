@@ -115,6 +115,7 @@ class Checkout
     @order.shippingRate = opts.config?.shippingRate     || @order.shippingRate  || 0
     @order.shippingAddress =
       country: 'us'
+    @order.discount = 0
 
     if qs.referrer?
       @order.referrerId = qs.referrer || @order.referrerId

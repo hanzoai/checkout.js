@@ -149,8 +149,7 @@ control{
 .select2-selection{
   outline:0 !important;
 }
-.crowdstart-checkout-button,
-.crowdstart-error-button{
+.crowdstart-button{
   text-align:center;
   width:100%;
   display:block;
@@ -279,6 +278,9 @@ screen-manager .crowdstart-screens .crowdstart-screen-strip > *{
 }
 .crowdstart-item-list-price{
   text-decoration:line-through;
+}
+promo .crowdstart-button{
+  width:150px;
 }
 .crowdstart-checkbox-control input[type="checkbox"]{
   display:none;
@@ -598,8 +600,7 @@ label{
   height:10em;
   margin-top:10px;
 }
-.crowdstart-checkout-button .crowdstart-loader,
-.crowdstart-error-button .crowdstart-loader{
+.crowdstart-button .crowdstart-loader{
   height:3em;
   width:3em;
   border-width:0.5em;

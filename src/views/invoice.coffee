@@ -5,15 +5,19 @@ View = crowdcontrol.view.View
 class Invoice extends View
   tag: 'invoice'
   html: require '../../templates/invoice.jade'
+  client: null
 
   renderCurrency: require('../utils/currency.coffee').renderUICurrencyFromJSON
+
+  js:(opts)->
+    @client = opts.client
 
   subtotal: ()->
     items = @model.items
     subtotal = 0
     for item in items
       subtotal += item.price * item.quantity
-    # subtotal -= @discount()
+      subtotal -= @model.discount
 
     @model.subtotal = subtotal
     return subtotal

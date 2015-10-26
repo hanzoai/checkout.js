@@ -3,6 +3,7 @@ module.exports =
   Invoice:          require './invoice'
   LineItem:         require './lineitem'
   Modal:            require './modal'
+  Promo:            require './promo'
   Widget:           require './widget'
   ScreenManager:    require './screenmanager'
 
