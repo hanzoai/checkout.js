@@ -182,8 +182,17 @@ control{
 .crowdstart-progress{
   overflow:hidden;
   counter-reset:step;
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:-ms-flexbox;
+  display:flex;
+  -webkit-box-pack:justify;
+  -webkit-justify-content:space-between;
+      -ms-flex-pack:justify;
+          justify-content:space-between;
 }
 .crowdstart-progress li{
+  width:100%;
   list-style-type:none;
   text-transform:uppercase;
   float:left;

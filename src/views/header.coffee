@@ -15,9 +15,6 @@ class Header extends View
   # array of referenced tags ot show
   scriptRefs: null
 
-  # style attribute for progress width
-  style: ''
-
   events:
     "#{ Events.Screen.SyncScript }": (scriptRefs, index)->
       @syncScript scriptRefs, index
@@ -25,7 +22,6 @@ class Header extends View
   syncScript: (@scriptRefs, @index)->
     if @scriptRefs? && @scriptRefs[@index]?
       @showBack = @scriptRefs[@index].showBack
-      @style = "width: #{ 100 / @scriptRefs.length }%"
 
     @update()
 
