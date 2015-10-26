@@ -14,10 +14,9 @@ class Invoice extends View
 
   subtotal: ()->
     items = @model.items
-    subtotal = 0
+    subtotal = -@model.discount || 0
     for item in items
       subtotal += item.price * item.quantity
-      subtotal -= @model.discount
 
     @model.subtotal = subtotal
     return subtotal
