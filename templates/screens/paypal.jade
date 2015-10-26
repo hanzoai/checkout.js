@@ -1,0 +1,11 @@
+control(label='{ "Email" }', input='{ inputs["user.email"] }')
+control(label='{ "Password" }', input='{ inputs["user.password"] }', if='{ config.login }')
+control(label='{ "Name" }', input='{ inputs["user.name"] }')
+
+form#paypal(action="https://www.sandbox.paypal.com/webapps/adaptivepayment/flow/pay", target="PPDGFrame", class="standard")
+  label(for="buy")
+    | Buy Now:
+  input#gopaypal(type="hidden")
+  input#type(type="hidden", name="expType", value="light")
+  input#paykey(type="hidden", name="paykey", value="{ payKey }")
+  input#submitBtn(type="image", value="Pay with PayPal", src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif", onclick='{ submit }')

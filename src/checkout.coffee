@@ -20,11 +20,16 @@ select2Css = require '../vendor/css/select2'
 head = document.head || document.getElementsByTagName('head')[0]
 style = document.createElement 'STYLE'
 style.type = 'text/css'
-if  style.styleSheet
+if style.styleSheet
   style.styleSheet.cssText = select2Css
 else
   style.appendChild document.createTextNode select2Css
 head.appendChild style
+
+paypalScript = document.createElement 'SCRIPT'
+paypalScript.type = 'text/javascript'
+paypalScript.src = 'https://www.paypalobjects.com/js/external/dg.js'
+head.appendChild paypalScript
 
 # Format of opts.config
 # {
@@ -75,10 +80,19 @@ head.appendChild style
 #   fontFamily:             "'Helvetica Neue', Helvetica, Arial, sans-serif"
 #   borderRadius:           5
 # }
+#
+# Format of opts.test
+# {
+#   #####################
+#   ### Test Options ####
+#   #####################
+#   endpoint:   string (endpoint to hit with api
+# }
 
 class Checkout
   key: ''
   order: null
+  payment: null
   user: null
   items: null
   itemUpdateQueue: null
@@ -96,6 +110,8 @@ class Checkout
 
   constructor: (@key, opts = {})->
     @client = new Client(@key)
+    if opts?.test?.endpoint?
+      @client.endpoint = opts.test.endpoint
 
     search = /([^&=]+)=?([^&]*)/g
     q = window.location.href.split('?')[1]
@@ -120,6 +136,7 @@ class Checkout
     if qs.referrer?
       @order.referrerId = qs.referrer || @order.referrerId
 
+    @payment = {}
     @items = []
     @itemUpdateQueue = []
 
@@ -138,6 +155,7 @@ class Checkout
     @model =
       user:     @user
       order:    @order
+      payment:  @payment
       config:   @config
       thankyou: @thankyou
       scripts:
@@ -243,7 +261,7 @@ class Checkout
           price: product.price
           listPrice: product.listPrice
         @_setItem()
-      ).catch (err)->
+      ).catch (err)=>
         console.log "setItem Error: #{err}"
         @_setItem()
     else
