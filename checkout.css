@@ -149,7 +149,7 @@ control{
   position:absolute;
   width:7px;
   height:7px;
-  top:-4px;
+  top:-3px;
   left:20px;
   -webkit-transform:rotate(45deg);
       -ms-transform:rotate(45deg);
@@ -248,8 +248,16 @@ control{
 .crowdstart-close:after{
   content:'×';
 }
-.crowdstart-terms > control{
+confirm{
+  position:relative;
+}
+confirm .crowdstart-terms > control{
   width:auto;
+}
+confirm .crowdstart-message{
+  display:table;
+  top:-10px;
+  left:5px;
 }
 screen-manager{
   padding:0.6em 0em;
@@ -860,6 +868,10 @@ label{
 .social__container{
   padding:1em;
   font-size:1em;
+}
+.row{
+  display:table;
+  width:100%;
 }
 .crowdstart-checkout .column{
   width:calc(99.99% * 1/2 - (30px - 30px * 1/2));

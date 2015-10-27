@@ -2,7 +2,7 @@ h1
   | { model.thankyou.header }
 p
   | { model.thankyou.body }
-p
+p(if='{ model.order.number != null }')
   | Your Order Confirmation:
   span
     | { model.order.number }

@@ -6,4 +6,5 @@
       screen-manager(model='{ model }', obs='{ obs }', client='{ client }')
     .column
       invoice(model='{ model.order }', client='{ client }' obs='{ obs }')
-  confirm(obs='{ obs }', config='{ model.config }')
+  .row
+    confirm(obs='{ obs }', config='{ model.config }')

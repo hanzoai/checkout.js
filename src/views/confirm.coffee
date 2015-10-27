@@ -9,6 +9,7 @@ class Confirm extends FormView
   html: require '../../templates/confirm.jade'
   locked: false
   hide: false
+  error: ''
 
   model:
     agreed: false
@@ -18,6 +19,8 @@ class Confirm extends FormView
   ]
 
   events:
+    "#{ Events.Confirm.Error }": (msg)->
+      @error = msg
     "#{ Events.Confirm.Hide }": ()->
       @setHide true
     "#{ Events.Confirm.Show }": ()->
@@ -34,6 +37,9 @@ class Confirm extends FormView
   setLock: (state)->
     @locked = state
     @update()
+
+  hasError: ()->
+    return @error? && @error != ''
 
   js: (opts)->
     super

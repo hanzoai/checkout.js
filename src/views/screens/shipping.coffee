@@ -19,6 +19,7 @@ class Shipping extends Screen
 
   _submit: ()->
     @screenManagerObs.trigger Events.Confirm.Lock
+    @screenManagerObs.trigger Events.Confirm.Error, ''
 
     data =
       user:     @model.user
@@ -30,8 +31,17 @@ class Shipping extends Screen
       @screenManagerObs.trigger Events.Screen.Next
       @screenManagerObs.trigger Events.Confirm.Unlock
       @screenManagerObs.trigger Events.Checkout.Done
-    ).catch (err)->
+
+      riot.update()
+    ).catch (err)=>
       console.log "shipping submit Error: #{err}"
+
+      res = @client.lastResponse
+      if res.status == 402 && res.error.code == 'card-declined'
+        @screenManagerObs.trigger Events.Confirm.Error, 'Sorry, your card was declined. Please check your payment information.'
+      else
+        @screenManagerObs.trigger Events.Confirm.Error, 'Sorry, unable to complete your transaction. Please try again later.'
+
       @screenManagerObs.trigger Events.Confirm.Unlock
       @screenManagerObs.trigger Events.Checkout.Done
 

@@ -21,6 +21,7 @@ Events.Modal =
   EnableClose:  'modal-enable-close'
 
 Events.Confirm =
+  Error:    'confirm-error'
   Hide:     'confirm-hide'
   Show:     'confirm-show'
   Lock:     'confirm-lock'

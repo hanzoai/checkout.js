@@ -9,3 +9,5 @@
     | Processing
   div(if='{ !locked }')
     | { config.callToAction || 'confirm' }
+.crowdstart-message(if='{ hasError() }')
+  | { error }

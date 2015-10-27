@@ -243,3 +243,11 @@ helpers.registerValidator ((inputCfg) -> return inputCfg.hints.cvc)
         reject new Error('Enter a valid CVC number')
       resolve value
 
+emailRe = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
+
+helpers.registerValidator ((inputCfg) -> return inputCfg.hints.email)
+, (model, name)->
+  value = model[name]
+  throw new Error "Enter a valid email" if !emailRe.test value
+  return value
+

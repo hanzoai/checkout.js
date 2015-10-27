@@ -1,3 +1,5 @@
+riot = require 'riot'
+
 crowdcontrol = require 'crowdcontrol'
 Events = crowdcontrol.Events
 View = crowdcontrol.view.View
@@ -98,7 +100,10 @@ class ScreenManager extends View
         @scriptRefs.push instance[0]
 
       @updateConfirmAndBackAndInvoice()
+
+      # sometimes a single update does not work
       @update()
+      riot.update()
 
   js: (opts)->
     @client = opts.client

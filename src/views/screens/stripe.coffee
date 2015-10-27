@@ -11,7 +11,7 @@ class Stripe extends Screen
   title: 'Payment Info'
   $card: null
   inputConfigs: [
-    input 'user.email',             'youremail@somewhere.com',  'input required'
+    input 'user.email',             'youremail@somewhere.com',  'email input required'
     input 'user.password',          'Password',                 'password'
     input 'user.name',              'Full Name',                'input name required'
     input 'payment.account.number', 'XXXX XXXX XXXX XXXX',      'input required cardnumber'

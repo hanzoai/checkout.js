@@ -26,11 +26,6 @@ else
   style.appendChild document.createTextNode select2Css
 head.appendChild style
 
-paypalScript = document.createElement 'SCRIPT'
-paypalScript.type = 'text/javascript'
-paypalScript.src = 'https://www.paypalobjects.com/js/external/dg.js'
-head.appendChild paypalScript
-
 # Format of opts.config
 # {
 #   ########################
@@ -86,7 +81,8 @@ head.appendChild paypalScript
 #   #####################
 #   ### Test Options ####
 #   #####################
-#   endpoint:   string (endpoint to hit with api
+#   endpoint:   string  (endpoint to hit with api)
+#   paypal:     bool    (set to true if we want to use paypal sandbox)
 # }
 
 class Checkout
@@ -152,12 +148,16 @@ class Checkout
     @theme = {}
     @theme = _.extend(@theme, opts.theme) if opts.theme?
 
+    @test = {}
+    @test = _.extend(@test, opts.test) if opts.test?
+
     @model =
       user:     @user
       order:    @order
       payment:  @payment
       config:   @config
       thankyou: @thankyou
+      test:     @test
       scripts:
         stripe: @stripeScript
         paypal: @paypalScript
