@@ -31,7 +31,7 @@ head.appendChild style
 #   ########################
 #   ### Order Overrides ####
 #   ########################
-#
+#   narrow:         bool (always in narrow mode - 400px wide)
 #   currency:       string (3 letter ISO code)
 #   taxRate:        number (decimal)
 #   shippingRate:   number (per item cost in cents or base unit for zero decimal currencies)

@@ -1,0 +1,16 @@
+label(for='{ model.name }', if='{ opts.label }')
+  | { opts.label }
+  br
+  span.crowdstart-fine-print
+    | (Visa, Mastercard, AMEX, Discover, Diners Club, JCB)
+  .icon-lock
+    .lock-top-1
+    .lock-top-2
+    .lock-body
+    .lock-hole
+  .stripe-branding
+    | Powered by
+    strong
+      a(href="http://www.stripe.com",target="_blank")
+        |&nbsp;Stripe
+input(class='{ crowdstart-error: hasError() }', id='{ model.name }', name='{ opts.name || model.name }', onchange='{ change }', onblur='{ change }', value='{ model.value }', placeholder='{ model.placeholder }')

@@ -1,9 +1,51 @@
-.row
-  display: table
-  width: 100%
+@lost gutter 1em
 
-.crowdstart-checkout .column
-  column: 1/2
+.crowdstart-checkout
+  width: 400px
+  margin-left: -200px
 
-.crowdstart-line-item div
-  column: 1/4
+  .crowdstart-full-width
+    margin: 0 -1em
+
+    & > *
+      margin-left: 1em
+
+  .crowdstart-card-expiry-cvc
+  .crowdstart-shipping-address-line
+  .crowdstart-shipping-state-postal
+    display: table
+    width: 100%
+
+    & > control
+      column: 1/2
+
+  +above(650px)
+    width: 600px
+    margin-left: -300px
+
+    .crowdstart-column:last-of-type
+      position: relative
+      z-index: 2000
+
+    &:not(.crowdstart-narrow)
+      .crowdstart-row
+        display: table
+        width: 100%
+
+      & > .crowdstart-row
+        .crowdstart-column
+          column: 1/2
+
+      .crowdstart-line-item div
+        column: 1/4
+
+  +below(650px)
+    .crowdstart-card-widget
+      display: table
+      width: 100%
+
+      & > .crowdstart-card-details
+      & > .crowdstart-card
+        column: 1/2
+
+

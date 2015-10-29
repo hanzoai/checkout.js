@@ -110,11 +110,17 @@ class ScreenManager extends View
 
     @updateScript(opts.script || [])
 
+    resizeFn = ()=>
+      $root = $(@root)
+      $root.width $root.parent().outerWidth()
+      return $root
+
+    $(window).on 'resize', resizeFn
+
     @on 'update', ()=>
       total = @script.length
       @style = "transform: translateX(-#{ @index * 100 / total }%); width: #{ total * 100 }%;"
-      $root = $(@root)
-      $root.width $root.parent().outerWidth()
+      $root = resizeFn()
       $children = $root.find('.crowdstart-screen-strip').children()
       for child, i in $children
         $child = $(child).children()
@@ -124,6 +130,9 @@ class ScreenManager extends View
 
       # if @scriptRefs?[@index]?
       #   $root.height $(@scriptRefs[@index].root).height()
+
+    @on 'unmount', ()->
+      $(window).off 'resize', resizeFn
 
 ScreenManager.register()
 

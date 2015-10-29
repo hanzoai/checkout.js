@@ -23,6 +23,7 @@ modal > div{
   position:absolute;
   width:0%;
   left:50%;
+  top:100px;
 }
 .crowdstart-active .crowdstart-modal{
   height:5000px;
@@ -52,8 +53,6 @@ widget{
   position:absolute;
   left:50%;
   top:5%;
-  margin-left:-200px;
-  width:400px;
   max-height:900px;
   overflow:hidden;
   box-sizing:border-box;
@@ -63,12 +62,15 @@ widget{
 }
 .crowdstart-checkout form{
   width:100%;
-  max-height:400px;
 }
 control{
   display:inline-block;
   width:100%;
   position:relative;
+}
+.crowdstart-fine-print{
+  font-size:0.7em;
+  font-weight:400;
 }
 .crowdstart-sep{
   margin:0.5em 0;
@@ -286,12 +288,83 @@ screen-manager .crowdstart-screens .crowdstart-screen-strip > *{
   box-sizing:border-box;
   vertical-align:top;
 }
-.crowdstart-card{
+.icon-lock{
+  width:48px;
+  height:48px;
+  position:relative;
+  overflow:hidden;
+  margin-left:25px;
+  margin-bottom:25px;
+  clear:left;
+  float:left;
   position:absolute;
-  z-index:-1;
+  left:3.8em;
+  top:0.3em;
+  -webkit-transform:scale(0.4);
+  -ms-transform:scale(0.4);
+  transform:scale(0.4);
+  -webkit-transform-origin:0 0;
+  -ms-transform-origin:0 0;
+  transform-origin:0 0;
 }
-.crowdstart-card .jp-card-container{
-  z-index:10001;
+.icon-lock .lock-top-1{
+  width:40%;
+  height:40%;
+  position:absolute;
+  left:50%;
+  margin-left:-20%;
+  top:14%;
+  background-color:transparent;
+  border-radius:40%;
+}
+.icon-lock .lock-top-2{
+  width:24%;
+  height:40%;
+  position:absolute;
+  left:50%;
+  margin-left:-12%;
+  top:22%;
+  background-color:#151517;
+  border-radius:25%;
+}
+.icon-lock .lock-body{
+  width:60%;
+  height:48%;
+  position:absolute;
+  left:50%;
+  margin-left:-30%;
+  bottom:11%;
+  background-color:transparent;
+  border-radius:15%;
+}
+.icon-lock .lock-hole{
+  width:16%;
+  height:13%;
+  position:absolute;
+  left:50%;
+  margin-left:-8%;
+  top:51%;
+  border-radius:100%;
+  background-color:#151517;
+}
+.icon-lock .lock-hole:after{
+  content:"";
+  width:43%;
+  height:78%;
+  position:absolute;
+  left:50%;
+  margin-left:-20%;
+  top:100%;
+  background-color:inherit;
+}
+.stripe-branding{
+  position:absolute;
+  top:0.85em;
+  left:10.5em;
+  font-size:0.6em;
+}
+.stripe-branding a{
+  text-decoration:none;
 }
 .crowdstart-item-list-price{
   text-decoration:line-through;
@@ -869,42 +942,47 @@ label{
   padding:1em;
   font-size:1em;
 }
-.row{
+.crowdstart-checkout{
+  width:400px;
+  margin-left:-200px;
+}
+.crowdstart-checkout .crowdstart-full-width{
+  margin:0 -1em;
+}
+.crowdstart-checkout .crowdstart-full-width > *{
+  margin-left:1em;
+}
+.crowdstart-checkout .crowdstart-card-expiry-cvc,
+.crowdstart-checkout .crowdstart-shipping-address-line,
+.crowdstart-checkout .crowdstart-shipping-state-postal{
   display:table;
   width:100%;
 }
-.crowdstart-checkout .column{
-  width:calc(99.99% * 1/2 - (30px - 30px * 1/2));
+.crowdstart-checkout .crowdstart-card-expiry-cvc > control,
+.crowdstart-checkout .crowdstart-shipping-address-line > control,
+.crowdstart-checkout .crowdstart-shipping-state-postal > control{
+  width:calc(99.99% * 1/2 - (1em - 1em * 1/2));
 }
-.crowdstart-checkout .column:nth-child(n){
+.crowdstart-checkout .crowdstart-card-expiry-cvc > control:nth-child(n),
+.crowdstart-checkout .crowdstart-shipping-address-line > control:nth-child(n),
+.crowdstart-checkout .crowdstart-shipping-state-postal > control:nth-child(n){
   float:left;
-  margin-right:30px;
+  margin-right:1em;
   clear:none;
 }
-.crowdstart-checkout .column:last-child{
+.crowdstart-checkout .crowdstart-card-expiry-cvc > control:last-child,
+.crowdstart-checkout .crowdstart-shipping-address-line > control:last-child,
+.crowdstart-checkout .crowdstart-shipping-state-postal > control:last-child{
   margin-right:0;
 }
-.crowdstart-checkout .column:nth-child(2n){
+.crowdstart-checkout .crowdstart-card-expiry-cvc > control:nth-child(2n),
+.crowdstart-checkout .crowdstart-shipping-address-line > control:nth-child(2n),
+.crowdstart-checkout .crowdstart-shipping-state-postal > control:nth-child(2n){
   margin-right:0;
 }
-.crowdstart-checkout .column:nth-child(2n + 1){
-  clear:left;
-}
-.crowdstart-line-item div{
-  width:calc(99.99% * 1/4 - (30px - 30px * 1/4));
-}
-.crowdstart-line-item div:nth-child(n){
-  float:left;
-  margin-right:30px;
-  clear:none;
-}
-.crowdstart-line-item div:last-child{
-  margin-right:0;
-}
-.crowdstart-line-item div:nth-child(4n){
-  margin-right:0;
-}
-.crowdstart-line-item div:nth-child(4n + 1){
+.crowdstart-checkout .crowdstart-card-expiry-cvc > control:nth-child(2n + 1),
+.crowdstart-checkout .crowdstart-shipping-address-line > control:nth-child(2n + 1),
+.crowdstart-checkout .crowdstart-shipping-state-postal > control:nth-child(2n + 1){
   clear:left;
 }
 @media only screen and (max-width: 350px){
@@ -921,5 +999,104 @@ label{
     -webkit-transform:scale(0.9, 0.9);
     -ms-transform:scale(0.9, 0.9);
     transform:scale(0.9, 0.9);
+  }
+}
+@media only screen and (max-width: 650px){
+  .crowdstart-card{
+    position:absolute;
+    z-index:-1;
+    margin-top:-7px;
+    margin-left:156px;
+  }
+  .crowdstart-card .jp-card-container{
+    z-index:10001;
+    height:172px;
+    -webkit-transform:scale(0.56);
+    -ms-transform:scale(0.56);
+    transform:scale(0.56);
+  }
+  .crowdstart-checkout .crowdstart-card-widget{
+    display:table;
+    width:100%;
+  }
+  .crowdstart-checkout .crowdstart-card-widget > .crowdstart-card-details,
+  .crowdstart-checkout .crowdstart-card-widget > .crowdstart-card{
+    width:calc(99.99% * 1/2 - (1em - 1em * 1/2));
+  }
+  .crowdstart-checkout .crowdstart-card-widget > .crowdstart-card-details:nth-child(n),
+  .crowdstart-checkout .crowdstart-card-widget > .crowdstart-card:nth-child(n){
+    float:left;
+    margin-right:1em;
+    clear:none;
+  }
+  .crowdstart-checkout .crowdstart-card-widget > .crowdstart-card-details:last-child,
+  .crowdstart-checkout .crowdstart-card-widget > .crowdstart-card:last-child{
+    margin-right:0;
+  }
+  .crowdstart-checkout .crowdstart-card-widget > .crowdstart-card-details:nth-child(2n),
+  .crowdstart-checkout .crowdstart-card-widget > .crowdstart-card:nth-child(2n){
+    margin-right:0;
+  }
+  .crowdstart-checkout .crowdstart-card-widget > .crowdstart-card-details:nth-child(2n + 1),
+  .crowdstart-checkout .crowdstart-card-widget > .crowdstart-card:nth-child(2n + 1){
+    clear:left;
+  }
+}
+@media only screen and (min-width: 650px){
+  .crowdstart-card{
+    -webkit-transform:scale(0.82);
+    -ms-transform:scale(0.82);
+    transform:scale(0.82);
+    width:200px;
+    margin-left:-18px;
+  }
+  .crowdstart-card .jp-card-container{
+    height:170px;
+  }
+  .crowdstart-checkout{
+    width:600px;
+    margin-left:-300px;
+  }
+  .crowdstart-checkout .crowdstart-column:last-of-type{
+    position:relative;
+    z-index:2000;
+  }
+  .crowdstart-checkout:not(.crowdstart-narrow) .crowdstart-row{
+    display:table;
+    width:100%;
+  }
+  .crowdstart-checkout:not(.crowdstart-narrow) > .crowdstart-row .crowdstart-column{
+    width:calc(99.99% * 1/2 - (1em - 1em * 1/2));
+  }
+  .crowdstart-checkout:not(.crowdstart-narrow) > .crowdstart-row .crowdstart-column:nth-child(n){
+    float:left;
+    margin-right:1em;
+    clear:none;
+  }
+  .crowdstart-checkout:not(.crowdstart-narrow) > .crowdstart-row .crowdstart-column:last-child{
+    margin-right:0;
+  }
+  .crowdstart-checkout:not(.crowdstart-narrow) > .crowdstart-row .crowdstart-column:nth-child(2n){
+    margin-right:0;
+  }
+  .crowdstart-checkout:not(.crowdstart-narrow) > .crowdstart-row .crowdstart-column:nth-child(2n + 1){
+    clear:left;
+  }
+  .crowdstart-checkout:not(.crowdstart-narrow) .crowdstart-line-item div{
+    width:calc(99.99% * 1/4 - (1em - 1em * 1/4));
+  }
+  .crowdstart-checkout:not(.crowdstart-narrow) .crowdstart-line-item div:nth-child(n){
+    float:left;
+    margin-right:1em;
+    clear:none;
+  }
+  .crowdstart-checkout:not(.crowdstart-narrow) .crowdstart-line-item div:last-child{
+    margin-right:0;
+  }
+  .crowdstart-checkout:not(.crowdstart-narrow) .crowdstart-line-item div:nth-child(4n){
+    margin-right:0;
+  }
+  .crowdstart-checkout:not(.crowdstart-narrow) .crowdstart-line-item div:nth-child(4n + 1){
+    clear:left;
   }
 }/*# sourceMappingURL=checkout.css.map */

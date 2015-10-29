@@ -16,6 +16,12 @@ class Input extends InputView
 
 Input.register()
 
+class CardNumber extends Input
+  tag: 'crowdstart-card-number'
+  html: require '../../../templates/control/cardnumber.jade'
+
+CardNumber.register()
+
 # views
 class Static extends Input
   tag: 'crowdstart-static'
@@ -139,7 +145,6 @@ class CountrySelect extends Select
 
   js: ()->
     @model.value = @model.value.toLowerCase() if @model.value?
-
     super
 
 CountrySelect.register()
@@ -148,6 +153,10 @@ CountrySelect.register()
 helpers.registerTag (inputCfg)->
   return inputCfg.hints.input
 , 'crowdstart-input'
+
+helpers.registerTag (inputCfg)->
+  return inputCfg.hints.cardnumber
+, 'crowdstart-card-number'
 
 helpers.registerTag (inputCfg)->
   return inputCfg.hints.static

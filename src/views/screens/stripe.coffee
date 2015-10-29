@@ -14,7 +14,7 @@ class Stripe extends Screen
     input 'user.email',             'youremail@somewhere.com',  'email input required'
     input 'user.password',          'Password',                 'password'
     input 'user.name',              'Full Name',                'input name required'
-    input 'payment.account.number', 'XXXX XXXX XXXX XXXX',      'input required cardnumber'
+    input 'payment.account.number', 'XXXX XXXX XXXX XXXX',      'cardnumber required'
     input 'payment.account.expiry', 'MM/YY',                    'input required expiration'
     input 'payment.account.cvc',    'CVC',                      'input required cvc'
   ]
@@ -30,18 +30,6 @@ class Stripe extends Screen
             form: 'form#stripe'
             container: '.crowdstart-card'
             width: 180
-
-          $card
-            .css(
-              'margin-top': '-93px'
-              'margin-left': '103px')
-            .children()
-            .css
-              top: '50px'
-              height: '192px'
-              '-webkit-transform': 'scale(0.514285714285714)'
-              '-ms-transform': 'scale(0.514285714285714)'
-              transform: 'scale(0.514285714285714)'
 
 Stripe.register()
 

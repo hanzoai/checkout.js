@@ -1,10 +1,10 @@
-.crowdstart-checkout.crowdstart-widget
-  .row
+.crowdstart-checkout.crowdstart-widget(class='{ model.config.narrow }')
+  .crowdstart-row
     header(obs='{ obs }')
-  .row
-    .column
+  .crowdstart-row
+    .crowdstart-column.crowdstart-full-width
       screen-manager(model='{ model }', obs='{ obs }', client='{ client }')
-    .column
+    .crowdstart-column
       invoice(model='{ model.order }', client='{ client }' obs='{ obs }')
-  .row
+  .crowdstart-row
     confirm(obs='{ obs }', config='{ model.config }')

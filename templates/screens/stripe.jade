@@ -1,8 +1,12 @@
 form#stripe
   control(label='{ "Email" }', input='{ inputs["user.email"] }')
   control(label='{ "Password" }', input='{ inputs["user.password"] }', if='{ config.login }')
-  control(label='{ "Name" }', input='{ inputs["user.name"] }')
-  control(name='{ "number" }', label='{ "Credit Card" }', input='{ inputs["payment.account.number"] }')
-  .crowdstart-card
-  control(name='{ "expiry" }', label='{ "Expiration" }', input='{ inputs["payment.account.expiry"] }')
-  control(name='{ "cvc" }', label='{ "CVC Code" }', input='{ inputs["payment.account.cvc"] }')
+  control(name='{ "name"}', label='{ "Name" }', input='{ inputs["user.name"] }')
+  .crowdstart-card-widget
+    .crowdstart-card-details
+      control(name='{ "number" }', label='{ "Credit Card" }', input='{ inputs["payment.account.number"] }')
+      .crowdstart-card-expiry-cvc
+        control(name='{ "expiry" }', label='{ "Expiration" }', input='{ inputs["payment.account.expiry"] }')
+        control(name='{ "cvc" }', label='{ "CVC Code" }', input='{ inputs["payment.account.cvc"] }')
+    .crowdstart-card
+
