@@ -19,6 +19,31 @@
     & > control
       column: 1/2
 
+  .crowdstart-totals > *
+    display: table
+    width: 100%
+
+    & > :nth-child(1)
+      column: 4/5
+
+    & > :nth-child(2)
+      column: 1/5
+
+  promo .crowdstart-form-control
+    display: table
+    width: 100%
+
+    & > *
+      column: 1/4
+    & > :nth-child(1)
+      column: 1/2
+
+  .crowdstart-line-item
+    div
+      column: 1/5
+    div:nth-of-type(2)
+      column: 2/5
+
   +above(650px)
     width: 600px
     margin-left: -300px
@@ -36,9 +61,6 @@
         .crowdstart-column
           column: 1/2
 
-      .crowdstart-line-item div
-        column: 1/4
-
   +below(650px)
     .crowdstart-card-widget
       display: table
@@ -47,5 +69,3 @@
       & > .crowdstart-card-details
       & > .crowdstart-card
         column: 1/2
-
-

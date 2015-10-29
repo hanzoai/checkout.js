@@ -1,22 +1,28 @@
-.crowdstart-card
+.crowdstart-card-widget
   +below(650px)
-    position:     absolute
-    z-index:      -1
-    margin-top:   -7px
-    margin-left:  156px
+    .crowdstart-fine-print
+      width: 200%
 
-    .jp-card-container
-      z-index: 10001
-      height: 172px
-      transform: scale(0.56)
+    .crowdstart-card
+      position:     absolute
+      z-index:      -1
+      margin-top:   12px
+      margin-left:  156px
+
+      .jp-card-container
+        z-index: 10001
+        height: 172px
+        transform: scale(0.56) !important
 
   +above(650px)
-    transform: scale(0.82)
-    width: 200px
-    margin-left: -18px
+    .crowdstart-card
+      transform: scale(0.82) !important
+      width: 200px
+      margin-left: -18px
 
-    .jp-card-container
-      height: 170px
+      .jp-card-container
+        height: 170px
+        transform: scale(1) !important
 
 .icon-lock {
   width: 48px

@@ -1,4 +1,6 @@
-.crowdstart-items
+.crowdstart-items.crowdstart-form-control
+  label
+    | Cart
   .crowdstart-sep
   lineitem(each='{ item, i in model.items }', currency='{ this.parent.model.currency }', model='{ item }', obs='{ this.parent.obs }')
   promo(order='{ model }', client='{ client }')

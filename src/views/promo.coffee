@@ -67,6 +67,14 @@ class Promo extends FormView
     riot.update()
     return 0
 
+  _change: ()->
+    super
+    requestAnimationFrame ()=>
+      @update()
+
+  resetState: ()->
+    @invalidCode = ''
+
   _submit: ()->
     if @model.promoCode == ''
       return

@@ -1,2 +1,38 @@
 .crowdstart-item-list-price
   text-decoration: line-through
+
+.crowdstart-items
+  margin-top: .5em
+
+  lineitem
+    margin-bottom: .5em
+    display: table
+    width: 100%
+
+    .crowdstart-line-item
+      margin-top: .5em
+      line-height: 2.5em
+
+    .crowdstart-item-list-price
+      margin-top: -1.5em;
+      position: absolute;
+
+  .crowdstart-receipt-label
+    text-align: right
+
+.crowdstart-money
+  text-align: right
+
+.crowdstart-totals > *
+  line-height: 2.5em
+
++above(650px)
+  .crowdstart-items
+    .crowdstart-sep:first-of-type
+      display: none
+
++below(650px)
+  .crowdstart-items
+    label:first-of-type
+      display: none
+
