@@ -124,7 +124,18 @@ class ScreenManager extends View
       $children = $root.find('.crowdstart-screen-strip').children()
       for child, i in $children
         $child = $(child).children()
-        $child.css('display', if i == @index then '' else 'none')
+        if i == @index
+          $child.css('display', '')
+          do ($child)->
+            requestAnimationFrame ()->
+              $child.css 'opacity', 1
+              $root.height $child.outerHeight()
+        else
+          $child.css 'opacity', 0
+          do ($child)->
+            setTimeout ()->
+              $child.css 'display', 'none'
+            , 500
 
       @obs.trigger Events.Screen.SyncScript, @scriptRefs, @index
 

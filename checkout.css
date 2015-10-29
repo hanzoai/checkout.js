@@ -176,6 +176,9 @@ control{
   left:0;
   width:23em;
 }
+[riot-tag="crowdstart-card-number"] .crowdstart-message{
+  top:7.8em;
+}
 .crowdstart-progress{
   width:100%;
   padding:0;
@@ -269,6 +272,8 @@ screen-manager{
   line-height:1.5em;
   left:-1em;
   position:relative;
+  -webkit-transition:all 0.5s ease-in-out;
+          transition:all 0.5s ease-in-out;
 }
 screen-manager .crowdstart-screens{
   width:100%;
@@ -287,6 +292,10 @@ screen-manager .crowdstart-screens .crowdstart-screen-strip > *{
   position:relative;
   box-sizing:border-box;
   vertical-align:top;
+}
+screen-manager .crowdstart-screens .crowdstart-screen-strip > * > *{
+  -webkit-transition:all 0.5s ease-in-out;
+          transition:all 0.5s ease-in-out;
 }
 .icon-lock{
   width:48px;
