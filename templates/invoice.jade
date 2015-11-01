@@ -2,7 +2,7 @@
   label
     | Cart
   .crowdstart-sep
-  lineitem(each='{ item, i in model.items }', currency='{ this.parent.model.currency }', model='{ item }', obs='{ this.parent.obs }')
+  lineitem(each='{ item, i in model.items }', currency='{ this.parent.model.currency }', model='{ item }', invoiceobs='{ this.parent.obs }')
   promo(order='{ model }', client='{ client }')
 
 .crowdstart-totals

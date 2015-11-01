@@ -1,9 +1,63 @@
-ul
-  | Pay With:
-  li(onclick='{ stripe }')
+div
+  label
+    | Select a Payment Method
+  p
     | Credit Card
-  li(onclick='{ paypal }')
+  .crowdstart-choose.stripe(onclick='{ stripe }')
+    div
+      input#choose-stripe(type='radio')
+    label.crowdstart-card-icons(for='choose-stripe')
+      .crowdstart-card-icon
+        .visa
+          p
+            | VISA
+      .crowdstart-card-icon
+        .mc
+          hr
+          hr
+          hr
+          hr
+          hr
+          p
+            | MasterCard
+
+      .crowdstart-card-icon
+        .amex
+          hr
+          hr
+          hr
+          hr
+          hr
+          hr
+          hr
+          hr
+          hr
+          hr
+          hr
+          hr
+          hr
+          hr
+          hr
+          hr
+          svg.svg
+            text(x="6%", y="45%", fill="none", stroke="#fff")
+              | AMERICAN
+          svg.svg
+            text(x="20%", y="75%", fill="none", stroke="#fff")
+              | EXPRESS
+
+      .crowdstart-card-icon
+        .discover
+          p
+            | Discover
+
+  p
     | Paypal
+  .crowdstart-choose.paypal(onclick='{ paypal }')
+    div
+      input#choose-paypal(type='radio')
+    label.crowdstart-card-icons(for='choose-paypal')
+      img(src='https://www.paypalobjects.com/webstatic/mktg/logo/bdg_now_accepting_pp_2line_w.png')
 
 
 

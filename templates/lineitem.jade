@@ -1,6 +1,6 @@
 div(class='{ crowdstart-line-item: true, crowdstart-collapsed: model.quantity == 0, crowdstart-hidden: model.quantity == 0 }')
   .crowdstart-quantity-select.crowdstart-form-control
-    control(input='{ inputs.quantity }')
+    control(input='{ inputs.quantity }', style!='{ "width:50px" }')
   .crowdstart-item-description
     | { model.productName }
   .crowdstart-item-price.crowdstart-money

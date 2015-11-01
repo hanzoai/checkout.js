@@ -8,7 +8,7 @@ screen-manager
   line-height:1.5em
   left: -1em
   position: relative
-  transition: all 0.5s ease-in-out
+  transition: height 0.5s ease-in-out
 
   .crowdstart-screens
     width: 100%
@@ -28,8 +28,35 @@ screen-manager
         position: relative
         box-sizing: border-box
         vertical-align: top
-
-        > *
-          transition: all 0.5s ease-in-out
+        transition: none
 
 /* END SCREENS */
+
+choose
+  & > div
+    display: table
+    width: 100%
+
+  .crowdstart-choose
+    cursor: pointer
+    margin-bottom: 1em
+    margin-left: .5em
+    text-align: left
+
+    &.paypal
+      img
+        height: 3.5em
+        float: left
+
+    :nth-child(1)
+      text-align: center
+
+    input[type="radio"]
+      width: auto
+      margin-top: 1em
+
+    &.stripe
+
+      input[type="radio"]
+        +above(650px)
+          margin-top: 3.5em

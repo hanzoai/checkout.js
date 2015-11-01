@@ -11,16 +11,11 @@ class LineItem extends FormView
   renderCurrency: require('../utils/currency.coffee').renderUICurrencyFromJSON
 
   inputConfigs: [
-    input('quantity', '', 'quantity-select')
+    input('quantity', '', 'quantity-select parsenumber')
   ]
 
+  invoiceObs: null
   disabled: false
-
-  events:
-    "#{ Events.Invoice.Disable }": ()->
-      @setDisabled true
-    "#{ Events.Invoice.Enable }": ()->
-      @setDisabled false
 
   setDisabled: (state)->
     @disabled = state
@@ -28,6 +23,13 @@ class LineItem extends FormView
 
   js: (opts)->
     super
+
+    @invoiceObs = opts.invoiceobs
+    @invoiceObs.on Events.Invoice.Disable, ()=>
+      @setDisabled true
+    @invoiceObs.on Events.Invoice.Enable, ()=>
+      @setDisabled false
+
     @currency = opts.currency
 
     @on 'update', ()=>

@@ -113,6 +113,7 @@ class ScreenManager extends View
     resizeFn = ()=>
       $root = $(@root)
       $root.width $root.parent().outerWidth()
+      $root.height $($root.find('.crowdstart-screen-strip').children()[@index]).outerHeight()
       return $root
 
     $(window).on 'resize', resizeFn

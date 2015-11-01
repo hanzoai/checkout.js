@@ -93,6 +93,7 @@ class Select extends Input
   js:(opts)->
     super
 
+    opts.style = opts.style || 'width:100%'
     @selectOptions = opts.options
 
     @on 'update', ()=>
@@ -260,3 +261,9 @@ helpers.registerValidator ((inputCfg) -> return inputCfg.hints.email)
   throw new Error "Enter a valid email" if !emailRe.test value
   return value
 
+helpers.registerValidator ((inputCfg) -> return inputCfg.hints.parsenumber)
+, (model, name)->
+  value = model[name]
+  if !_.isNumber value
+    return parseFloat value
+  return value
