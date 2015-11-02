@@ -14,15 +14,32 @@
         height: 172px
         transform: scale(0.56) !important
 
-  +above(650px)
+.crowdstart-narrow
+  .crowdstart-card-widget
+    .crowdstart-fine-print
+      width: 200%
+
     .crowdstart-card
-      transform: scale(0.82) !important
-      width: 200px
-      margin-left: -18px
+      position:     absolute
+      z-index:      -1
+      margin-top:   12px
+      margin-left:  156px
 
       .jp-card-container
-        height: 170px
-        transform: scale(1) !important
+        z-index: 10001
+        height: 172px
+        transform: scale(0.56) !important
+
+  +above(650px)
+    &:not(.crowdstart-narrow)
+      .crowdstart-card
+        transform: scale(0.82) !important
+        width: 200px
+        margin-left: -18px
+
+        .jp-card-container
+          height: 170px
+          transform: scale(1) !important
 
 .icon-lock {
   width: 48px
