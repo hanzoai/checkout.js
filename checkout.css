@@ -435,6 +435,37 @@ promo .crowdstart-button > div{
   line-height:0.5em;
   font-size:0.8em;
 }
+tabs{
+  width:100%;
+  display:block;
+  margin-top:1.5em;
+  position:relative;
+}
+tabs > *{
+  display:table-cell;
+  white-space:nowrap;
+}
+.crowdstart-tab{
+  min-width:150px;
+  font-size:1.2em;
+  padding:0.5em 0.5em 0.2em 0.5em;
+  text-align:center;
+  cursor:pointer;
+  max-height:36px;
+}
+.crowdstart-tab img{
+  width:50%;
+}
+.crowdstart-tab.crowdstart-tab-selected{
+  font-weight:600;
+  cursor:initial;
+}
+.crowdstart-tab.crowdstart-tab-selected img{
+  width:60%;
+}
+.crowdstart-tab-padding{
+  width:100%;
+}
 .crowdstart-checkbox-control input[type="checkbox"]{
   display:none;
 }
@@ -1148,7 +1179,6 @@ label{
 .crowdstart-card-icons .crowdstart-card-icon .amex{
   background:#0971bc;
   background-image:-webkit-radial-gradient(circle farthest-corner at top left, #7ecdf2, #0971bc 60%);
-  background-image:-webkit-radial-gradient(top left, circle farthest-corner, #7ecdf2, #0971bc 60%);
   background-image:radial-gradient(circle farthest-corner at top left, #7ecdf2, #0971bc 60%);
   font-size:2em;
   font-weight:900;

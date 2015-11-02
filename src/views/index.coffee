@@ -5,6 +5,7 @@ module.exports =
   LineItem:         require './lineitem'
   Modal:            require './modal'
   Promo:            require './promo'
+  Tabs:             require './tabs'
   Widget:           require './widget'
   ScreenManager:    require './screenmanager'
 

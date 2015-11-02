@@ -101,8 +101,8 @@ class Checkout
   reset: true
 
   currentScript: null
-  stripeScript: ['choose', 'stripe', 'shipping', 'thankyou']
-  paypalScript: ['choose', 'paypal', 'thankyou']
+  stripeScript: ['stripe', 'shipping', 'thankyou']
+  paypalScript: ['paypal', 'thankyou']
 
   constructor: (@key, opts = {})->
     @client = new Client(@key)

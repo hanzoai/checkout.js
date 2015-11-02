@@ -3,4 +3,4 @@ module.exports =
   PayPal:   require './paypal'
   Shipping: require './shipping'
   ThankYou: require './thankyou'
-  Choose:   require './choose'
+  # Choose:   require './choose'
