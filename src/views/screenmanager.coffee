@@ -143,6 +143,8 @@ class ScreenManager extends View
             , 500
 
       @obs.trigger Events.Screen.SyncScript, @scriptRefs, @index
+      requestAnimationFrame ()->
+        resizeFn()
 
       # if @scriptRefs?[@index]?
       #   $root.height $(@scriptRefs[@index].root).height()

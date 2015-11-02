@@ -37,6 +37,7 @@ head.appendChild style
 #   taxRate:        number (decimal)
 #   shippingRate:   number (per item cost in cents or base unit for zero decimal currencies)
 #   termsUrl:       string (url of terms page)
+#   callToActions:  [string, string] (Up to 2 element array containing the text for the confirmation button)
 # }
 #
 # Format of opts.analytics
@@ -149,6 +150,7 @@ class Checkout
 
     @config =
       termsUrl: ''
+      callToActions: []
     @config = _.extend(@config, opts.config) if opts.config?
 
     @thankyou =
@@ -208,7 +210,11 @@ class Checkout
       @obs.trigger Events.Screen.UpdateScript, @paypalScript, 1
       @reset = false
       @open()
+      id = setInterval ()->
+        $(window).resize()
+      , 50
       setTimeout ()->
+        clearInterval id
         riot.update()
       , 1000
     else

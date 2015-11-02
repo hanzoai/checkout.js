@@ -8,6 +8,6 @@
   div(if='{ locked }')
     | Processing
   div(if='{ !locked }')
-    | { config.callToAction || 'confirm' }
+    | { config.callToActions[index] || config.callToActions[0] || 'confirm' }
 .crowdstart-message(if='{ hasError() }')
   | { error }

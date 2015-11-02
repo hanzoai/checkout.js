@@ -78,7 +78,7 @@ class Shipping extends Screen
     ).catch (err)=>
       console.log "shipping submit Error: #{err}"
 
-      res = @client.lastResponse
+      res = @client.lastResponse.responseText
       if res.status == 402 && res.error.code == 'card-declined'
         @screenManagerObs.trigger Events.Confirm.Error, 'Sorry, your card was declined. Please check your payment information.'
       else

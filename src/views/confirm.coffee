@@ -10,6 +10,7 @@ class Confirm extends FormView
   locked: false
   hide: false
   error: ''
+  index: 0
 
   model:
     agreed: false
@@ -19,6 +20,8 @@ class Confirm extends FormView
   ]
 
   events:
+    "#{ Events.Screen.SyncScript }": (scriptRefs, @index)->
+      @update()
     "#{ Events.Confirm.Error }": (msg)->
       @error = msg
     "#{ Events.Confirm.Hide }": ()->

@@ -15,8 +15,8 @@ modal > div{
   right:0;
   bottom:0;
   z-index:9998;
-  -webkit-transition:opacity 0.5s ease-in-out;
-          transition:opacity 0.5s ease-in-out;
+  -webkit-transition:opacity 0.5s ease-in-out, height 0.5s step-end;
+          transition:opacity 0.5s ease-in-out, height 0.5s step-end;
 }
 .crowdstart-modal-target{
   z-index:9999;
@@ -28,8 +28,8 @@ modal > div{
 .crowdstart-active .crowdstart-modal{
   height:5000px;
   opacity:1;
-  -webkit-transition:opacity 0.5s ease-in-out, height 0.5s step-end;
-          transition:opacity 0.5s ease-in-out, height 0.5s step-end;
+  -webkit-transition:opacity 0.5s ease-in-out;
+          transition:opacity 0.5s ease-in-out;
 }
 .crowdstart-active .crowdstart-checkout{
   -webkit-transform-origin:50% 0;
@@ -320,16 +320,20 @@ choose .crowdstart-choose input[type="radio"]{
   width:auto;
   margin-top:1em;
 }
-thankyou{
+thankyou,
+paypal-thankyou{
   text-align:center;
 }
-thankyou > div{
+thankyou > div,
+paypal-thankyou > div{
   padding:1em;
 }
-thankyou h1{
+thankyou h1,
+paypal-thankyou h1{
   font-size:1.4em;
 }
-thankyou .social__item{
+thankyou .social__item,
+paypal-thankyou .social__item{
   margin:0 0.2em;
 }
 .crowdstart-narrow .crowdstart-card-widget .crowdstart-fine-print{
