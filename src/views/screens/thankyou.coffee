@@ -2,7 +2,7 @@ crowdcontrol = require 'crowdcontrol'
 Events = crowdcontrol.Events
 Screen = require './screen'
 
-input = require '../../utils/input.coffee'
+analytics = require '../../utils/analytics'
 
 class ThankYou extends Screen
   tag: 'thankyou'
@@ -10,9 +10,16 @@ class ThankYou extends Screen
   html: require '../../../templates/screens/thankyou.jade'
   showConfirm: false
   showBack: false
-  disableInvoice: true
+  showInvoice: false
 
   _submit: ()->
+    # This is never called because confirmation button is gone
+    # analytics.track 'Completed Checkout Step',
+    #   step: 3
+
+  show: ()->
+    analytics.track 'Viewed Checkout Step',
+      step: 3
 
 ThankYou.register()
 

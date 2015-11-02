@@ -4,6 +4,8 @@ crowdcontrol = require 'crowdcontrol'
 Events = crowdcontrol.Events
 InputView = crowdcontrol.view.form.InputView
 
+analytics = require '../../utils/analytics'
+
 helpers = crowdcontrol.view.form.helpers
 helpers.defaultTagName = 'crowdstart-input'
 
@@ -62,7 +64,7 @@ class Select extends Input
   changed: false
   change: (event) ->
     value = $(event.target).val()
-    if value != @model.value
+    if value != @model.value && parseFloat(value) != @model.value
       @obs.trigger Events.Input.Change, @model.name, value
       @model.value = value
       @changed = true
@@ -111,8 +113,8 @@ class Select extends Input
             if @isCustom()
               $select.select('destroy')
               @initSelect($select)
-            $select.select2('val', @model.value)
             @changed = false
+            $select.select2('val', @model.value)
       else
         requestAnimationFrame ()=>
           @update()
@@ -136,6 +138,27 @@ class QuantitySelect extends Select
       8: 8
       9: 9
     }
+
+  change: (event) ->
+    oldValue = @model.value
+    super
+    newValue = @model.value
+
+    deltaQuantity = newValue - oldValue
+    if deltaQuantity > 0
+      analytics.track 'Added Product',
+        id: @model.productId
+        sku: @model.productSlug
+        name: @model.productName
+        quantity: deltaQuantity
+        price: parseFloat(@model.price / 100)
+    else if deltaQuantity < 0
+      analytics.track 'Removed Product',
+        id: @model.productId
+        sku: @model.productSlug
+        name: @model.productName
+        quantity: deltaQuantity
+        price: parseFloat(@model.price / 100)
 
 QuantitySelect.register()
 

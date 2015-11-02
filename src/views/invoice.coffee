@@ -6,8 +6,19 @@ class Invoice extends View
   tag: 'invoice'
   html: require '../../templates/invoice.jade'
   client: null
+  hide: false
 
   renderCurrency: require('../utils/currency.coffee').renderUICurrencyFromJSON
+
+  events:
+    "#{ Events.Invoice.Hide }": ()->
+      @setHide true
+    "#{ Events.Invoice.Show }": ()->
+      @setHide false
+
+  setHide: (state)->
+    @hide = state
+    @update()
 
   js:(opts)->
     @client = opts.client

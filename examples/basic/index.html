@@ -47,6 +47,15 @@
                 pinterest:      true,
                 emailSubject:   'Test Subject',
                 emailMsg:       'Test Body',
+              },
+              referralProgram: {
+                name: "Such Referral",
+                triggers: [0],
+                actions: [{
+                  type: "Credit",
+                  currency: "points",
+                  amount: 1
+                }]
               }
             })
             checkout.setItem('84cRXBYs9jX7w', 1)

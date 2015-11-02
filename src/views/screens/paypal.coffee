@@ -2,6 +2,8 @@ crowdcontrol = require 'crowdcontrol'
 Events = crowdcontrol.Events
 Screen = require './screen'
 
+analytics = require '../../utils/analytics'
+
 input = require '../../utils/input.coffee'
 
 class PayPal extends Screen
@@ -17,6 +19,10 @@ class PayPal extends Screen
     input 'user.name',              'Full Name',                'input name required'
   ]
 
+  show: ()->
+    analytics.track 'Viewed Checkout Step',
+      step: 1
+
   _submit: (event)->
     @screenManagerObs.trigger Events.Confirm.Lock
 
@@ -27,6 +33,9 @@ class PayPal extends Screen
 
     @client.payment.paypal(data).then((res)=>
       @payKey = res.responseText.payKey
+
+      analytics.track 'Completed Checkout Step',
+        step: 1
 
       if @model.test.paypal
         window.location.href = "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_ap-payment&paykey=#{ @payKey }"

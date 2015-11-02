@@ -1,5 +1,6 @@
 _ = require 'underscore'
 theme = require './utils/theme.coffee'
+analytics = require './utils/analytics'
 
 riot = require 'riot'
 window.riot = riot
@@ -36,6 +37,11 @@ head.appendChild style
 #   taxRate:        number (decimal)
 #   shippingRate:   number (per item cost in cents or base unit for zero decimal currencies)
 #   termsUrl:       string (url of terms page)
+# }
+#
+# Format of opts.analytics
+# {
+#   pixels: map of string to string (map of pixel names to pixel url)
 # }
 #
 # Format of opts.thankyou
@@ -84,6 +90,9 @@ head.appendChild style
 #   endpoint:   string  (endpoint to hit with api)
 #   paypal:     bool    (set to true if we want to use paypal sandbox)
 # }
+#
+# Format of opts.referralProgram
+# Referral Program Object
 
 class Checkout
   key: ''
@@ -97,12 +106,14 @@ class Checkout
   config: null
   thankyou: null
   theme: null
+  analytics: null
+  referralProgram: null
 
   reset: true
 
   currentScript: null
   stripeScript: ['stripe', 'shipping', 'thankyou']
-  paypalScript: ['paypal', 'thankyou']
+  paypalScript: ['paypal', 'paypal-thankyou']
 
   constructor: (@key, opts = {})->
     @client = new Client(@key)
@@ -151,13 +162,20 @@ class Checkout
     @test = {}
     @test = _.extend(@test, opts.test) if opts.test?
 
+    @analytics = {}
+    @analytics = _.extend(@analytics, opts.analytics) if opts.analytics?
+
+    @referralProgram = opts.referralProgram
+
     @model =
-      user:     @user
-      order:    @order
-      payment:  @payment
-      config:   @config
-      thankyou: @thankyou
-      test:     @test
+      user:             @user
+      order:            @order
+      payment:          @payment
+      config:           @config
+      thankyou:         @thankyou
+      test:             @test
+      analytics:        @analytics
+      referralProgram:  @referralProgram
       scripts:
         stripe: @stripeScript
         paypal: @paypalScript
@@ -182,9 +200,19 @@ class Checkout
       model: @model
       client: @client
 
-    @obs.trigger Events.Screen.UpdateScript, @stripeScript
     @obs.on Events.Checkout.Done, ()=>
       @reset = true
+
+    if window.location.hash == '#checkoutsuccess'
+      @obs.trigger Events.Tabs.ChoosePaypal
+      @obs.trigger Events.Screen.UpdateScript, @paypalScript, 1
+      @reset = false
+      @open()
+      setTimeout ()->
+        riot.update()
+      , 1000
+    else
+      @obs.trigger Events.Screen.UpdateScript, @stripeScript
 
   open: ()->
     if @reset
@@ -196,6 +224,17 @@ class Checkout
     setTimeout ()=>
       @obs.trigger Events.Modal.EnableClose
     , 600
+
+    for item in @order.items
+      analytics.track 'Added Product',
+        id: item.productId
+        sku: item.productSlug
+        name: item.productName
+        quantity: item.quantity
+        price: parseFloat(item.price / 100)
+
+    analytics.track 'Viewed Checkout Step',
+      step: 1
 
     return false
 
@@ -277,7 +316,6 @@ if module?
   module.exports = Checkout
 
 # riot = require 'riot'
-# analytics = require './utils/analytics'
 #
 # require './tags/checkbox'
 # require './tags/checkout'

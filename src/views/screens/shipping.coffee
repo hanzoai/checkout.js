@@ -2,6 +2,8 @@ crowdcontrol = require 'crowdcontrol'
 Events = crowdcontrol.Events
 Screen = require './screen'
 
+analytics = require '../../utils/analytics'
+
 input = require '../../utils/input.coffee'
 
 class Shipping extends Screen
@@ -17,6 +19,10 @@ class Shipping extends Screen
     input 'order.shippingAddress.country',      '',                 'country-select required'
   ]
 
+  show: ()->
+    analytics.track 'Viewed Checkout Step',
+      step: 2
+
   _submit: ()->
     @screenManagerObs.trigger Events.Confirm.Lock
     @screenManagerObs.trigger Events.Confirm.Error, ''
@@ -26,8 +32,44 @@ class Shipping extends Screen
       order:    @model.order
       payment:  @model.payment
 
-    @client.payment.authorize(data).then((res)=>
+    @client.payment.charge(data).then((res)=>
+      coupon = @model.order.coupon || {}
       @model.order = res.responseText
+
+      analytics.track 'Completed Checkout Step',
+        step: 2
+
+      options =
+        orderId:  @model.order.id
+        total:    parseFloat(@model.order.total/100),
+        # revenue: parseFloat(order.total/100),
+        shipping: parseFloat(@model.order.shipping/100),
+        tax:      parseFloat(@model.order.tax/100),
+        discount: parseFloat(@model.order.discount/100),
+        coupon:   coupon.code || '',
+        currency: @model.order.currency,
+        products: []
+
+      for item, i in @model.order.items
+        options.products[i] =
+          id: item.productId
+          sku: item.productSlug
+          name: item.productName
+          quantity: item.quantity
+          price: parseFloat(item.price / 100)
+
+      analytics.track 'Completed Order', options
+
+      if @model.referralProgram?
+        @client.payment.newReferrer(
+          userId: @model.order.userId
+          orderId: @model.order.orderId
+          program: @model.referralProgram
+        ).then((res)=>
+          @model.referrerId = res.responseText.id
+        ).catch (err)->
+          console.log "new referralProgram Error: #{err}"
+
       @screenManagerObs.trigger Events.Screen.Next
       @screenManagerObs.trigger Events.Confirm.Unlock
       @screenManagerObs.trigger Events.Checkout.Done

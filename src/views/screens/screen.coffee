@@ -7,7 +7,7 @@ class Screen extends FormView
   title: 'Untitled'
   showConfirm: true
   showBack: true
-  disableInvoice: false
+  showInvoice: true
 
   index: 0
   total: 1
@@ -26,6 +26,8 @@ class Screen extends FormView
     @screenManagerObs = opts.screenManagerObs
     @client = opts.client
     super
+
+  show: ()->
 
   _submit: ()->
     @screenManagerObs.trigger Events.Screen.Next

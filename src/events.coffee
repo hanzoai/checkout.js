@@ -28,5 +28,9 @@ Events.Confirm =
   Unlock:   'confirm-unlock'
 
 Events.Invoice =
-  Disable:  'invoice-disable'
-  Enable:   'invoice-enable'
+  Hide:     'invoice-hide'
+  Show:     'invoice-show'
+
+Events.Tabs =
+  ChooseStripe: 'events-choose-stripe'
+  ChoosePaypal: 'events-choose-paypal'

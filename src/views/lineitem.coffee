@@ -15,28 +15,11 @@ class LineItem extends FormView
   ]
 
   invoiceObs: null
-  disabled: false
-
-  setDisabled: (state)->
-    @disabled = state
-    @update()
 
   js: (opts)->
     super
 
-    @invoiceObs = opts.invoiceobs
-    @invoiceObs.on Events.Invoice.Disable, ()=>
-      @setDisabled true
-    @invoiceObs.on Events.Invoice.Enable, ()=>
-      @setDisabled false
-
     @currency = opts.currency
-
-    @on 'update', ()=>
-      if @disabled
-        $(@root).find('select').prop('disabled', true)
-      else
-        $(@root).find('select').prop('disabled', false)
 
 LineItem.register()
 

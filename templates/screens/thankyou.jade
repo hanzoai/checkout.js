@@ -5,8 +5,8 @@ div
     | { model.thankyou.body }
   p(if='{ model.order.number != null }')
     | Your Order Confirmation:
-    span
-      | { model.order.number }
+    strong
+      | &nbsp;{ model.order.number }
   .social__container
     .social__item(if="{ model.thankyou.facebook }")
       a.social__icon--facebook(target="_blank", href="https://www.facebook.com/sharer/sharer.php?u={ model.thankyou.facebook }")

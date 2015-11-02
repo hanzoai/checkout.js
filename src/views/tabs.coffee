@@ -12,6 +12,13 @@ class Tabs extends View
 
   selected: 'stripe'
 
+  events:
+    "#{ Events.Tabs.ChooseStripe }": ()->
+      @chooseStripe()
+
+    "#{ Events.Tabs.ChoosePaypal }": ()->
+      @choosePaypal()
+
   js: ()->
     @scripts = @model.scripts
 

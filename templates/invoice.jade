@@ -1,35 +1,36 @@
-.crowdstart-items.crowdstart-form-control
-  label
-    | Cart
-  .crowdstart-sep
-  lineitem(each='{ item, i in model.items }', currency='{ this.parent.model.currency }', model='{ item }', invoiceobs='{ this.parent.obs }')
-  promo(order='{ model }', client='{ client }')
+div(if='{ !hide }')
+  .crowdstart-items.crowdstart-form-control
+    label
+      | Cart
+    .crowdstart-sep
+    lineitem(each='{ item, i in model.items }', currency='{ this.parent.model.currency }', model='{ item }', invoiceobs='{ this.parent.obs }')
+    promo(order='{ model }', client='{ client }')
 
-.crowdstart-totals
-  .crowdstart-sep
+  .crowdstart-totals
+    .crowdstart-sep
 
-  .crowdstart-subotal
-    .column.crowdstart-receipt-label
-      | Subtotal
-    .column.crowdstart-money
-      | { renderCurrency(model.currency, subtotal()) }
+    .crowdstart-subotal
+      .column.crowdstart-receipt-label
+        | Subtotal
+      .column.crowdstart-money
+        | { renderCurrency(model.currency, subtotal()) }
 
-  .crowdstart-shipping-and-handling
-    .column.crowdstart-receipt-label
-      | Shipping & Handling
-    .column.crowdstart-money
-      | { renderCurrency(model.currency, shipping()) }
+    .crowdstart-shipping-and-handling
+      .column.crowdstart-receipt-label
+        | Shipping & Handling
+      .column.crowdstart-money
+        | { renderCurrency(model.currency, shipping()) }
 
-  .crowdstart-tax
-    .column.crowdstart-receipt-label
-      | Taxes ({ taxRate() }%)
-    .column.crowdstart-money
-      | { renderCurrency(model.currency, tax()) }
+    .crowdstart-tax
+      .column.crowdstart-receipt-label
+        | Taxes ({ taxRate() }%)
+      .column.crowdstart-money
+        | { renderCurrency(model.currency, tax()) }
 
-  .crowdstart-sep
+    .crowdstart-sep
 
-  .crowdstart-total
-    .column.crowdstart-receipt-label
-      | Total
-    .column.crowdstart-money
-      | { renderCurrency(model.currency, total()) } ({model.currency.toUpperCase()})
+    .crowdstart-total
+      .column.crowdstart-receipt-label
+        | Total
+      .column.crowdstart-money
+        | { renderCurrency(model.currency, total()) } ({model.currency.toUpperCase()})

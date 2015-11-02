@@ -2,6 +2,8 @@ crowdcontrol = require 'crowdcontrol'
 Events = crowdcontrol.Events
 Screen = require './screen'
 
+analytics = require '../../utils/analytics'
+
 input = require '../../utils/input.coffee'
 require 'card/lib/js/card'
 
@@ -18,6 +20,16 @@ class Stripe extends Screen
     input 'payment.account.expiry', 'MM/YY',                    'input required expiration'
     input 'payment.account.cvc',    'CVC',                      'input required cvc'
   ]
+
+  show: ()->
+    analytics.track 'Viewed Checkout Step',
+      step: 1
+
+  _submit: ()->
+    super()
+
+    analytics.track 'Completed Checkout Step',
+      step: 1
 
   js: ()->
     super

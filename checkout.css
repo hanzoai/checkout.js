@@ -320,6 +320,18 @@ choose .crowdstart-choose input[type="radio"]{
   width:auto;
   margin-top:1em;
 }
+thankyou{
+  text-align:center;
+}
+thankyou > div{
+  padding:1em;
+}
+thankyou h1{
+  font-size:1.4em;
+}
+thankyou .social__item{
+  margin:0 0.2em;
+}
 .crowdstart-narrow .crowdstart-card-widget .crowdstart-fine-print{
   width:200%;
 }

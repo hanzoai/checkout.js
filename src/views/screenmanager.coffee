@@ -41,21 +41,23 @@ class ScreenManager extends View
     if @index < @script.length - 1
       @index++
       @updateConfirmAndBackAndInvoice()
+      @scriptRefs[@index]?.show()
       @update()
 
   back: ()->
     if @index > 0
       @index--
       @updateConfirmAndBackAndInvoice()
+      @scriptRefs[@index]?.show()
       @update()
 
   updateConfirmAndBackAndInvoice: ()->
     show = true
     disable = false
     if @scriptRefs? && @scriptRefs[@index]
-      if @scriptRefs[@index].disableInvoice
+      if !@scriptRefs[@index].showInvoice
         disable = true
-        @obs.trigger Events.Invoice.Disable
+        @obs.trigger Events.Invoice.Hide
 
       if !@scriptRefs[@index].showConfirm
         show = false
@@ -65,7 +67,7 @@ class ScreenManager extends View
       @obs.trigger Events.Confirm.Show
 
     if !disable
-      @obs.trigger Events.Invoice.Enable
+      @obs.trigger Events.Invoice.Show
 
   updateScript: (script, index = 0)->
     if @script == script
@@ -100,6 +102,8 @@ class ScreenManager extends View
         @scriptRefs.push instance[0]
 
       @updateConfirmAndBackAndInvoice()
+
+      @scriptRefs[@index]?.show()
 
       # sometimes a single update does not work
       @update()
