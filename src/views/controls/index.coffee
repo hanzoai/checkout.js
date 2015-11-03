@@ -223,6 +223,17 @@ helpers.registerValidator ((inputCfg) -> return inputCfg.hints.required)
 
   return value
 
+helpers.registerValidator ((inputCfg) -> return inputCfg.hints.requiredstripe)
+, (model, name)->
+  value = model[name]
+  if _.isNumber(value)
+    return value
+
+  value = value?.trim()
+  throw new Error "Required" if model._type == 'stripe' && (!value? || value == '')
+
+  return value
+
 helpers.registerValidator ((inputCfg) -> return inputCfg.hints.uppercase)
 , (model, name)->
   value = model[name].toUpperCase()
@@ -247,6 +258,10 @@ helpers.registerValidator ((inputCfg) -> return inputCfg.hints.name)
 helpers.registerValidator ((inputCfg) -> return inputCfg.hints.cardnumber)
 , (model, name)->
   value = model[name]
+
+  if model._type != 'stripe'
+    return value
+
   return crowdcontrol.utils.shim.promise.new (resolve, reject)->
     requestAnimationFrame ()->
       if $('input[name=number]').hasClass('jp-card-invalid')
@@ -256,6 +271,9 @@ helpers.registerValidator ((inputCfg) -> return inputCfg.hints.cardnumber)
 helpers.registerValidator ((inputCfg) -> return inputCfg.hints.expiration)
 , (model, name)->
   value = model[name]
+
+  if model._type != 'stripe'
+    return value
 
   date = value.split '/'
   model.month = (date[0]).trim()
@@ -270,6 +288,10 @@ helpers.registerValidator ((inputCfg) -> return inputCfg.hints.expiration)
 helpers.registerValidator ((inputCfg) -> return inputCfg.hints.cvc)
 , (model, name)->
   value = model[name]
+
+  if model._type != 'stripe'
+    return value
+
   return crowdcontrol.utils.shim.promise.new (resolve, reject)->
     requestAnimationFrame ()->
       if $('input[name=number]').hasClass('jp-card-invalid')

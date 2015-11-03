@@ -10,6 +10,10 @@ Events.Screen =
   EnableBack:   'screen-enable-back'
   SyncScript:   'screen-sync-script'
 
+  Payment:
+    ChooseStripe: 'screen-payment-choose-stripe'
+    ChoosePaypal: 'screen-payment-choose-paypal'
+
 Events.Checkout =
   Update: 'checkout-update'
   Done: 'checkout-done'
@@ -30,7 +34,3 @@ Events.Confirm =
 Events.Invoice =
   Hide:     'invoice-hide'
   Show:     'invoice-show'
-
-Events.Tabs =
-  ChooseStripe: 'events-choose-stripe'
-  ChoosePaypal: 'events-choose-paypal'

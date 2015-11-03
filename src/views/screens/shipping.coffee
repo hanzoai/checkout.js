@@ -27,6 +27,33 @@ class Shipping extends Screen
     @screenManagerObs.trigger Events.Confirm.Lock
     @screenManagerObs.trigger Events.Confirm.Error, ''
 
+    if @model.order.type == 'paypal'
+      @submitPaypal()
+    else
+      @submitStripe()
+
+  submitPaypal: ()->
+    data =
+      user:     @model.user
+      order:    @model.order
+      payment:  @model.payment
+
+    @client.payment.paypal(data).then((res)=>
+      @payKey = res.responseText.payKey
+
+      analytics.track 'Completed Checkout Step',
+        step: 2
+
+      if @model.test.paypal
+        window.location.href = "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_ap-payment&paykey=#{ @payKey }"
+      else
+        window.location.href = "https://www.paypal.com/cgi-bin/webscr?cmd=_ap-payment&paykey=#{ @payKey }"
+    ).catch (err)->
+      console.log "shipping submit Error: #{err}"
+      @screenManagerObs.trigger Events.Confirm.Unlock
+      @screenManagerObs.trigger Events.Checkout.Done
+
+  submitStripe: ()->
     data =
       user:     @model.user
       order:    @model.order

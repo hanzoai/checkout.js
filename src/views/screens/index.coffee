@@ -1,7 +1,4 @@
 module.exports =
-  Stripe:           require './stripe'
-  PayPal:           require './paypal'
+  Payment:          require './payment'
   Shipping:         require './shipping'
   ThankYou:         require './thankyou'
-  PaypalThankYou:   require './paypalthankyou'
-  # Choose:   require './choose'

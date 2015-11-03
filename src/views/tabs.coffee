@@ -7,28 +7,15 @@ input = require '../utils/input.coffee'
 class Tabs extends View
   tag: 'tabs'
   html: require '../../templates/tabs.jade'
-  choice: 'stripe'
-  scripts: null
-
   selected: 'stripe'
-
-  events:
-    "#{ Events.Tabs.ChooseStripe }": ()->
-      @chooseStripe()
-
-    "#{ Events.Tabs.ChoosePaypal }": ()->
-      @choosePaypal()
-
-  js: ()->
-    @scripts = @model.scripts
 
   chooseStripe: ()->
     @selected = 'stripe'
-    @obs.trigger Events.Screen.UpdateScript, @scripts.stripe
+    @obs.trigger Events.Screen.Payment.ChooseStripe
 
   choosePaypal: ()->
     @selected = 'paypal'
-    @obs.trigger Events.Screen.UpdateScript, @scripts.paypal
+    @obs.trigger Events.Screen.Payment.ChoosePaypal
 
 Tabs.register()
 

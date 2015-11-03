@@ -113,8 +113,7 @@ class Checkout
   reset: true
 
   currentScript: null
-  stripeScript: ['stripe', 'shipping', 'thankyou']
-  paypalScript: ['paypal', 'paypal-thankyou']
+  script: ['payment', 'shipping', 'thankyou']
 
   constructor: (@key, opts = {})->
     @client = new Client(@key)
@@ -140,11 +139,14 @@ class Checkout
     @order.shippingAddress =
       country: 'us'
     @order.discount = 0
+    @order.type = 'stripe'
 
     if qs.referrer?
       @order.referrerId = qs.referrer || @order.referrerId
 
-    @payment = {}
+    @payment =
+      account:
+        _type: 'stripe'
     @items = []
     @itemUpdateQueue = []
 
@@ -179,8 +181,7 @@ class Checkout
       analytics:        @analytics
       referralProgram:  @referralProgram
       scripts:
-        stripe: @stripeScript
-        paypal: @paypalScript
+        basic: @script
 
     @obs = {}
     riot.observable @obs
@@ -206,8 +207,7 @@ class Checkout
       @reset = true
 
     if window.location.hash == '#checkoutsuccess'
-      @obs.trigger Events.Tabs.ChoosePaypal
-      @obs.trigger Events.Screen.UpdateScript, @paypalScript, 1
+      @obs.trigger Events.Screen.UpdateScript, @script, 2
       @reset = false
       @open()
       id = setInterval ()->
@@ -218,11 +218,11 @@ class Checkout
         riot.update()
       , 1000
     else
-      @obs.trigger Events.Screen.UpdateScript, @stripeScript
+      @obs.trigger Events.Screen.UpdateScript, @script
 
   open: ()->
     if @reset
-      @obs.trigger Events.Screen.UpdateScript, @stripeScript
+      @obs.trigger Events.Screen.UpdateScript, @script
       @reset = false
 
     @obs.trigger Events.Modal.Open
