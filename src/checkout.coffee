@@ -213,9 +213,10 @@ class Checkout
       id = setInterval ()->
         $(window).resize()
       , 50
-      setTimeout ()->
+      setTimeout ()=>
         clearInterval id
         riot.update()
+        @reset = true
       , 1000
     else
       @obs.trigger Events.Screen.UpdateScript, @script

@@ -193,9 +193,11 @@ control{
   counter-reset:step;
   display:-webkit-box;
   display:-webkit-flex;
+  display:-ms-flexbox;
   display:flex;
   -webkit-box-pack:justify;
   -webkit-justify-content:space-between;
+      -ms-flex-pack:justify;
           justify-content:space-between;
 }
 .crowdstart-progress li{
@@ -475,7 +477,7 @@ tabs > *{
   cursor:initial;
 }
 .crowdstart-tab.crowdstart-tab-selected img{
-  width:70%;
+  width:65%;
 }
 .crowdstart-tab-padding{
   width:100%;
@@ -1028,12 +1030,15 @@ label{
   text-align:center;
   display:-webkit-box;
   display:-webkit-flex;
+  display:-ms-flexbox;
   display:flex;
   -webkit-box-align:center;
   -webkit-align-items:center;
+  -ms-flex-align:center;
   align-items:center;
   -webkit-box-pack:center;
   -webkit-justify-content:center;
+  -ms-flex-pack:center;
   justify-content:center;
 }
 .social__container{
@@ -1190,6 +1195,7 @@ label{
 .crowdstart-card-icons .crowdstart-card-icon .amex{
   background:#0971bc;
   background-image:-webkit-radial-gradient(circle farthest-corner at top left, #7ecdf2, #0971bc 60%);
+  background-image:-webkit-radial-gradient(top left, circle farthest-corner, #7ecdf2, #0971bc 60%);
   background-image:radial-gradient(circle farthest-corner at top left, #7ecdf2, #0971bc 60%);
   font-size:2em;
   font-weight:900;
