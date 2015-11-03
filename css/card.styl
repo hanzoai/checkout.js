@@ -1,8 +1,8 @@
 .crowdstart-card-widget
-  +below(650px)
-    .crowdstart-fine-print
-      width: 200%
+  .crowdstart-fine-print
+    white-space:nowrap
 
+  +below(750px)
     .crowdstart-card
       position:     absolute
       z-index:      -1
@@ -14,16 +14,17 @@
         height: 172px
         transform: scale(0.56) !important
 
-  +above(650px)
+  +above(750px)
     &:not(.crowdstart-narrow)
       .crowdstart-card
-        transform: scale(0.82) !important
-        width: 200px
-        margin-left: -18px
+        position:     absolute
+        z-index:      -1
+        margin-left:  118px
 
         .jp-card-container
-          height: 170px
-          transform: scale(1) !important
+          z-index: 10001
+          height: 200px
+          transform: scale(0.475) !important
 
 .crowdstart-narrow
   .crowdstart-card-widget

@@ -58,10 +58,10 @@
     div:nth-of-type(2)
       column: 2/5
 
-  +above(650px)
+  +above(750px)
     &:not(.crowdstart-narrow)
-      width: 600px
-      margin-left: -300px
+      width: 700px
+      margin-left: -350px
 
       .crowdstart-column:last-of-type
         position: relative
@@ -86,14 +86,13 @@
           &:nth-child(2)
             column: 3/4
 
-  +below(650px)
-    .crowdstart-card-widget
-      display: table
-      width: 100%
+  .crowdstart-card-widget
+    display: table
+    width: 100%
 
-      & > .crowdstart-card-details
-      & > .crowdstart-card
-        column: 1/2
+    & > .crowdstart-card-details
+    & > .crowdstart-card
+      column: 1/2
 
   &.crowdstart-narrow
     .crowdstart-card-widget
