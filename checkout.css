@@ -311,6 +311,19 @@ thankyou h1{
 thankyou .social__item{
   margin:0 0.2em;
 }
+payment .crowdstart-paypal-widget,
+payment .crowdstart-card-widget{
+  height:155px;
+}
+payment .crowdstart-paypal-widget{
+  text-align:center;
+  padding-top:1em;
+}
+payment .crowdstart-paypal-widget svg{
+  width:100px;
+  height:100px;
+  fill:currentColor;
+}
 .crowdstart-narrow .crowdstart-card-widget .crowdstart-fine-print{
   width:200%;
 }
@@ -337,7 +350,7 @@ thankyou .social__item{
   clear:left;
   float:left;
   position:absolute;
-  left:3.8em;
+  left:5em;
   top:0.3em;
   -webkit-transform:scale(0.4);
   -ms-transform:scale(0.4);
@@ -399,8 +412,9 @@ thankyou .social__item{
 .stripe-branding{
   position:absolute;
   top:0.85em;
-  left:10.5em;
+  left:12.25em;
   font-size:0.6em;
+  white-space:nowrap;
 }
 .stripe-branding a{
   text-decoration:none;
@@ -455,6 +469,7 @@ tabs{
   width:100%;
   display:block;
   margin-top:1.5em;
+  margin-bottom:0.5em;
   position:relative;
 }
 tabs > *{
@@ -1195,6 +1210,7 @@ label{
 .crowdstart-card-icons .crowdstart-card-icon .amex{
   background:#0971bc;
   background-image:-webkit-radial-gradient(circle farthest-corner at top left, #7ecdf2, #0971bc 60%);
+  background-image:-webkit-radial-gradient(top left, circle farthest-corner, #7ecdf2, #0971bc 60%);
   background-image:radial-gradient(circle farthest-corner at top left, #7ecdf2, #0971bc 60%);
   font-size:2em;
   font-weight:900;
