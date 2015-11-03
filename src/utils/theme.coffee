@@ -64,7 +64,7 @@ theme =
       }
 
       .crowdstart-sep {
-        border-bottom: 1px solid #{ theme.currentTheme.dark } !important;
+        border-bottom: 1px solid #{ theme.currentTheme.medium } !important;
       }
 
       .crowdstart-thankyou a {
@@ -200,15 +200,15 @@ theme =
 
       tabs:before,
       tabs:after {
-        border-bottom: 1px solid #{ theme.currentTheme.dark } !important;
+        border-bottom: 1px solid #{ theme.currentTheme.medium } !important;
       }
 
       tabs > * {
-        border-bottom: 1px solid #{ theme.currentTheme.dark } !important;
+        border-bottom: 1px solid #{ theme.currentTheme.medium } !important;
       }
 
       .crowdstart-tab.crowdstart-tab-selected {
-        border: 1px solid #{ theme.currentTheme.dark } !important;
+        border: 1px solid #{ theme.currentTheme.medium } !important;
         border-bottom: 0 !important;
       }
 
