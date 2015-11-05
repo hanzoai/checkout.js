@@ -41,7 +41,7 @@
     "postcss": "^5.0.9",
     "postcss-discard-comments": "^2.0.0",
     "poststylus": "^0.2.1",
-    "requisite": "^1.10.4",
+    "requisite": "^1.10.5",
     "rucksack-css": "^0.8.2",
     "rupture": "^0.6.1",
     "selenium-standalone": "^4.5.3",
@@ -50,10 +50,6 @@
     "stylus": "^0.52.4",
     "typographic": "^2.9.3",
     "uglify-js": "^2.4.23",
-    "webdriverio": "^3.1.0",
-    "bebop": "^1.6.7",
-    "poststylus": "^0.2.1",
-    "requisite": "^1.10.4",
-    "shortcake": "^0.3.0"
+    "webdriverio": "^3.1.0"
   }
 }
