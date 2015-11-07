@@ -1,4 +1,6 @@
 # Crowdstart Checkout
+
+[![Join the chat at https://gitter.im/crowdstart/checkout](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/crowdstart/checkout?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Our checkout widget makes it possible to start taking pre-orders in minutes,
 and is quite customizable.
 
