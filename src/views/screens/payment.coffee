@@ -51,7 +51,7 @@ class Payment extends Screen
 
     @on 'update', ()=>
       if !@card?
-        $card = $('.crowdstart-card')
+        $card = $(@root).find('.crowdstart-card')
         if $card[0]?
           @card = new window.Card
             form: 'form#payment'
