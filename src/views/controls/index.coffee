@@ -276,6 +276,9 @@ helpers.registerValidator ((inputCfg) -> return inputCfg.hints.expiration)
     return value
 
   date = value.split '/'
+  if date.length < 2
+    throw new Error('Enter a valid expiration date')
+
   model.month = (date[0]).trim()
   model.year = ('' + (new Date()).getFullYear()).substr(0, 2) + (date[1]).trim()
 
@@ -294,7 +297,7 @@ helpers.registerValidator ((inputCfg) -> return inputCfg.hints.cvc)
 
   return crowdcontrol.utils.shim.promise.new (resolve, reject)->
     requestAnimationFrame ()->
-      if $('input[name=number]').hasClass('jp-card-invalid')
+      if $('input[name=cvc]').hasClass('jp-card-invalid')
         reject new Error('Enter a valid CVC number')
       resolve value
 
