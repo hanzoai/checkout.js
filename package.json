@@ -17,7 +17,7 @@
   "dependencies": {
     "card": "^1.0.0",
     "crowdcontrol": "^1.0.48",
-    "crowdstart.js": "^1.0.4",
+    "crowdstart.js": "^1.0.5",
     "riot": "^2.0.15",
     "underscore": "^1.8.3"
   },

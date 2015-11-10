@@ -16,7 +16,7 @@ modal > div{
   bottom:0;
   z-index:9998;
   -webkit-transition:opacity 0.5s ease-in-out, height 0.5s step-end;
-          transition:opacity 0.5s ease-in-out, height 0.5s step-end;
+  transition:opacity 0.5s ease-in-out, height 0.5s step-end;
 }
 .crowdstart-modal-target{
   z-index:9999;
@@ -29,7 +29,7 @@ modal > div{
   height:5000px;
   opacity:1;
   -webkit-transition:opacity 0.5s ease-in-out;
-          transition:opacity 0.5s ease-in-out;
+  transition:opacity 0.5s ease-in-out;
 }
 .crowdstart-active .crowdstart-checkout{
   -webkit-transform-origin:50% 0;
@@ -46,7 +46,7 @@ widget{
       -ms-transform:translate(0, -5000px);
           transform:translate(0, -5000px);
   -webkit-transition:all 0.5s ease-in-out;
-          transition:all 0.5s ease-in-out;
+  transition:all 0.5s ease-in-out;
   z-index:9999;
 }
 .crowdstart-active widget{
@@ -128,7 +128,7 @@ control{
   margin:0.5em 0;
   z-index:200;
   -webkit-transition:border 0.3s ease-out;
-          transition:border 0.3s ease-out;
+  transition:border 0.3s ease-out;
 }
 .select2-selection{
   outline:0 !important;
@@ -194,11 +194,9 @@ control{
   counter-reset:step;
   display:-webkit-box;
   display:-webkit-flex;
-  display:-ms-flexbox;
   display:flex;
   -webkit-box-pack:justify;
   -webkit-justify-content:space-between;
-      -ms-flex-pack:justify;
           justify-content:space-between;
 }
 .crowdstart-progress li{
@@ -209,7 +207,7 @@ control{
   position:relative;
   text-align:center;
   -webkit-transition:all 0.4s ease-in-out;
-          transition:all 0.4s ease-in-out;
+  transition:all 0.4s ease-in-out;
 }
 .crowdstart-progress li:before{
   content:counter(step);
@@ -220,7 +218,7 @@ control{
   border-radius:3px;
   margin:0 auto 5px auto;
   -webkit-transition:all 0.4s ease-in-out;
-          transition:all 0.4s ease-in-out;
+  transition:all 0.4s ease-in-out;
 }
 .crowdstart-progress li:after{
   content:'';
@@ -231,7 +229,7 @@ control{
   top:9px;
   z-index:-1;
   -webkit-transition:all 0.4s ease-in-out;
-          transition:all 0.4s ease-in-out;
+  transition:all 0.4s ease-in-out;
 }
 .crowdstart-progress li:first-child:after{
   content:none;
@@ -245,7 +243,7 @@ control{
       -ms-transform:scale(-1, 1);
           transform:scale(-1, 1);
   -webkit-transition:all 0.4s ease-in-out;
-          transition:all 0.4s ease-in-out;
+  transition:all 0.4s ease-in-out;
 }
 .crowdstart-close{
   font:20px/100% arial, sans-serif;
@@ -279,7 +277,7 @@ screen-manager{
   left:-1em;
   position:relative;
   -webkit-transition:height 0.5s ease-in-out;
-          transition:height 0.5s ease-in-out;
+  transition:height 0.5s ease-in-out;
 }
 screen-manager .crowdstart-screens{
   width:100%;
@@ -288,7 +286,7 @@ screen-manager .crowdstart-screens{
 screen-manager .crowdstart-screens .crowdstart-screen-strip{
   display:table;
   -webkit-transition:all 0.4s ease-in-out;
-          transition:all 0.4s ease-in-out;
+  transition:all 0.4s ease-in-out;
   z-index:1000;
   position:relative;
 }
@@ -299,7 +297,7 @@ screen-manager .crowdstart-screens .crowdstart-screen-strip > *{
   box-sizing:border-box;
   vertical-align:top;
   -webkit-transition:none;
-          transition:none;
+  transition:none;
 }
 thankyou{
   text-align:center;
@@ -1053,15 +1051,12 @@ label{
   text-align:center;
   display:-webkit-box;
   display:-webkit-flex;
-  display:-ms-flexbox;
   display:flex;
   -webkit-box-align:center;
   -webkit-align-items:center;
-  -ms-flex-align:center;
   align-items:center;
   -webkit-box-pack:center;
   -webkit-justify-content:center;
-  -ms-flex-pack:center;
   justify-content:center;
 }
 .social__container{
@@ -1145,6 +1140,7 @@ label{
   position:absolute;
   top:37.25%;
   -webkit-transform:rotateZ(189deg);
+      -ms-transform:rotate(189deg);
           transform:rotateZ(189deg);
   width:0;
   z-index:600;
