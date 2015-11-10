@@ -1218,7 +1218,6 @@ label{
 .crowdstart-card-icons .crowdstart-card-icon .amex{
   background:#0971bc;
   background-image:-webkit-radial-gradient(circle farthest-corner at top left, #7ecdf2, #0971bc 60%);
-  background-image:-webkit-radial-gradient(top left, circle farthest-corner, #7ecdf2, #0971bc 60%);
   background-image:radial-gradient(circle farthest-corner at top left, #7ecdf2, #0971bc 60%);
   font-size:2em;
   font-weight:900;
