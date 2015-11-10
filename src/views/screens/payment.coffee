@@ -49,7 +49,7 @@ class Payment extends Screen
 
     @model.payment.account._type = @model.order.type
 
-    @on 'update', ()=>
+    @on 'updated', ()=>
       if !@card?
         $card = $(@root).find('.crowdstart-card')
         if $card[0]?

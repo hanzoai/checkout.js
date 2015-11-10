@@ -125,6 +125,8 @@ class ScreenManager extends View
     @on 'update', ()=>
       total = @script.length
       @style = "transform: translateX(-#{ @index * 100 / total }%); width: #{ total * 100 }%;"
+
+    @on 'updated', ()=>
       $root = resizeFn()
       $children = $root.find('.crowdstart-screen-strip').children()
       for child, i in $children

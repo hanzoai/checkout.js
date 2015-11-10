@@ -20,7 +20,7 @@ class Screen extends FormView
 
     width = 100 / @total
 
-    @on 'update', ()=>
+    @on 'updated', ()=>
       $(@root).css('width', "#{width}%")
 
     @screenManagerObs = opts.screenManagerObs

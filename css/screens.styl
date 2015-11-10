@@ -17,7 +17,7 @@ screen-manager
     .crowdstart-screen-strip
       display: table
 
-      transition: all .4s ease-in-out
+      transition: all .5s ease-in-out
 
       z-index: 1000
       position: relative
@@ -30,6 +30,9 @@ screen-manager
         vertical-align: top
         transition: none
 
+        > *
+          transition: all .5s ease-in
+
 /* END SCREENS */
 
 thankyou
@@ -37,6 +40,10 @@ thankyou
 
   & > div
     padding: 1em
+
+    +above(750px)
+      left: 59%
+      position: relative
 
   h1
     font-size 1.4em

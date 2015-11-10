@@ -98,7 +98,7 @@ class Select extends Input
     opts.style = opts.style || 'width:100%'
     @selectOptions = opts.options
 
-    @on 'update', ()=>
+    @on 'updated', ()=>
       $select = $(@root).find('select')
       if $select[0]?
         if !@initialized

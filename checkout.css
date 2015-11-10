@@ -285,8 +285,8 @@ screen-manager .crowdstart-screens{
 }
 screen-manager .crowdstart-screens .crowdstart-screen-strip{
   display:table;
-  -webkit-transition:all 0.4s ease-in-out;
-  transition:all 0.4s ease-in-out;
+  -webkit-transition:all 0.5s ease-in-out;
+  transition:all 0.5s ease-in-out;
   z-index:1000;
   position:relative;
 }
@@ -298,6 +298,10 @@ screen-manager .crowdstart-screens .crowdstart-screen-strip > *{
   vertical-align:top;
   -webkit-transition:none;
   transition:none;
+}
+screen-manager .crowdstart-screens .crowdstart-screen-strip > * > *{
+  -webkit-transition:all 0.5s ease-in;
+  transition:all 0.5s ease-in;
 }
 thankyou{
   text-align:center;
@@ -1531,25 +1535,11 @@ label{
     transform:scale(0.9, 0.9);
   }
 }
-@media only screen and (max-width: 750px){
-  .crowdstart-card-widget .crowdstart-card{
-    position:absolute;
-    z-index:-1;
-    margin-top:12px;
-    margin-left:156px;
-  }
-  .crowdstart-card-widget .crowdstart-card .jp-card-container{
-    z-index:10001;
-    height:172px;
-    -webkit-transform:scale(0.56) !important;
-    -ms-transform:scale(0.56) !important;
-    transform:scale(0.56) !important;
-  }
-  .crowdstart-items label:first-of-type{
-    display:none;
-  }
-}
 @media only screen and (min-width: 750px){
+  thankyou > div{
+    left:59%;
+    position:relative;
+  }
   .crowdstart-card-widget:not(.crowdstart-narrow) .crowdstart-card{
     position:absolute;
     z-index:-1;
@@ -1644,6 +1634,24 @@ label{
   }
   .crowdstart-checkout:not(.crowdstart-narrow) .crowdstart-choose > *:nth-child(2):nth-child(4n + 1){
     clear:left;
+  }
+}
+@media only screen and (max-width: 750px){
+  .crowdstart-card-widget .crowdstart-card{
+    position:absolute;
+    z-index:-1;
+    margin-top:12px;
+    margin-left:156px;
+  }
+  .crowdstart-card-widget .crowdstart-card .jp-card-container{
+    z-index:10001;
+    height:172px;
+    -webkit-transform:scale(0.56) !important;
+    -ms-transform:scale(0.56) !important;
+    transform:scale(0.56) !important;
+  }
+  .crowdstart-items label:first-of-type{
+    display:none;
   }
 }
 @media only screen and (min-width: 25.625em){
