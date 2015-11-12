@@ -3,6 +3,7 @@ _ = require('underscore')
 crowdcontrol = require 'crowdcontrol'
 Events = crowdcontrol.Events
 InputView = crowdcontrol.view.form.InputView
+requestAnimationFrame = crowdcontrol.utils.shim.requestAnimationFrame
 
 analytics = require '../../utils/analytics'
 

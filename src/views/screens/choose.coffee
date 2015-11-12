@@ -1,6 +1,7 @@
 crowdcontrol = require 'crowdcontrol'
 Events = crowdcontrol.Events
 Screen = require './screen'
+requestAnimationFrame = crowdcontrol.utils.shim.requestAnimationFrame
 
 input = require '../../utils/input.coffee'
 

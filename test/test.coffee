@@ -4,9 +4,7 @@ should    = require('chai').should()
 {getBrowser, TIMEOUT} = require './util'
 
 parsePrice = (str) ->
-  str = str.substring(1, str.length) # strip $
-  parseFloat str
-
+  parseFloat str.match /[\d.]+/
 
 describe "Checkout (#{process.env.BROWSER})", ->
   testPage = "http://localhost:#{process.env.PORT ? 3333}/widget.html"
@@ -20,8 +18,8 @@ describe "Checkout (#{process.env.BROWSER})", ->
       # Click the Buy button
       .click 'a.btn'
       .waitForExist '.crowdstart-active', TIMEOUT
-      .waitForExist '.crowdstart-line-item'
-      .waitForVisible '.crowdstart-line-item:nth-child(2) .select2'
+      .waitForExist 'lineitem'
+      .waitForVisible 'lineitem:nth-of-type(2) .select2', TIMEOUT
 
   describe 'Changing the quantity of a line item', ->
     it 'should update line item cost', (done) ->
@@ -29,14 +27,14 @@ describe "Checkout (#{process.env.BROWSER})", ->
 
       openWidget getBrowser()
         # Select 2 for 'Such T-shirt
-        .selectByValue('.crowdstart-invoice > div:nth-child(2) select', '2')
+        .selectByValue('.crowdstart-items > lineitem:nth-of-type(2) select', '2')
 
-        .getText 'div.crowdstart-invoice > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > span:nth-child(1)'
+        .getText '.crowdstart-items > lineitem:nth-of-type(2) .crowdstart-item-price'
         .then (text) ->
           console.log text
           unitPrice = parsePrice text
 
-        .getText 'div.crowdstart-invoice > div:nth-child(2) > div:nth-child(2) > div.crowdstart-col-1-3-bl.crowdstart-text-right.crowdstart-money'
+        .getText '.crowdstart-items > lineitem:nth-of-type(2) .crowdstart-item-total-price'
         .then (text) ->
           console.log text
           lineItemPrice = parsePrice text
@@ -47,22 +45,25 @@ describe "Checkout (#{process.env.BROWSER})", ->
     it 'should work', (done) ->
       openWidget getBrowser()
         # Payment information
-        .setValue 'input#crowdstart-credit-card', '4242424242424242'
-        .setValue 'input#crowdstart-expiry', '1122'
-        .setValue '#crowdstart-cvc', '424'
-        .click 'label[for=terms]'
-        .click 'a.crowdstart-checkout-button'
-
+        .setValue '#user\\.email', 'test2@checkouttests.xyz'
+        .setValue '#user\\.name', 'checkout test2'
+        .setValue '#payment\\.account\\.number', '4242424242424242'
+        .setValue '#payment\\.account\\.expiry', '1122'
+        .setValue '#payment\\.account\\.cvc', '424'
+        .click 'label[for=agreed]'
+        .click 'confirm .crowdstart-button'
         # Billing information
-        .waitForVisible '#crowdstart-line1'
-        .setValue '#crowdstart-line1', '1234 fake street'
-        .setValue '#crowdstart-city', 'fake city'
-        .setValue '#crowdstart-state', 'fake state'
-        .setValue '#crowdstart-postalCode', '55555'
-        .click 'a.crowdstart-checkout-button'
+        .waitForVisible 'shipping', TIMEOUT
+        .setValue '#order\\.shippingAddress\\.line1', '1234 fake street'
+        .setValue '#order\\.shippingAddress\\.city', 'fake city'
+        .setValue '#order\\.shippingAddress\\.state', 'fake state'
+        .setValue '#order\\.shippingAddress\\.postalCode', '55555'
+        .click 'confirm .crowdstart-button'
 
+        .waitForExist '.crowdstart-loader', TIMEOUT
         .waitForExist '.crowdstart-loader', TIMEOUT, true
-        .getText '.crowdstart-thankyou > form > h1'
+        .waitForVisible 'thankyou', TIMEOUT
+        .getHTML 'thankyou h1'
         .then (text) ->
-          assert.strictEqual text, 'Thank You'
+          assert.strictEqual text, '<h1>Thank You!</h1>'
         .end done

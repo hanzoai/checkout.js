@@ -10,10 +10,14 @@
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
         <!-- Place favicon.ico in the root directory -->
 
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/checkout.css">
-        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+        <link rel="stylesheet" href="checkout.css">
+<!-- Trick Phantom -->
+        <style>
+          .crowdstart-screen-strip * {
+            display: block !important;
+            height: 1px !important;
+          }
+        </style>
     </head>
     <body>
         <!--[if lt IE 8]>
@@ -25,8 +29,9 @@
           <a class="btn">Buy Now</a>
         </div>
 
-        <script src="js/jquery-1.11.3.js"></script>
-        <script src="js/checkout.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.3.1/es5-shim.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="checkout.js"></script>
         <script>
           (function(){
             checkout = new Crowdstart.Checkout(
