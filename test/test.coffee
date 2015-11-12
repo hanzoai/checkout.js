@@ -18,7 +18,7 @@ describe "Checkout (#{process.env.BROWSER})", ->
       # Click the Buy button
       .click 'a.btn'
       .waitForExist '.crowdstart-active', TIMEOUT
-      .waitForExist 'lineitem'
+      .waitForExist 'lineitem', TIMEOUT
       .waitForVisible 'lineitem:nth-of-type(2) .select2', TIMEOUT
 
   describe 'Changing the quantity of a line item', ->
