@@ -1,0 +1,11 @@
+div(class='{ crowdstart-line-item: true, crowdstart-collapsed: model.quantity == 0, crowdstart-hidden: model.quantity == 0 }')
+  .crowdstart-quantity-select.crowdstart-form-control
+    control(input='{ inputs.quantity }', style!='{ "width:50px" }')
+  .crowdstart-item-description
+    | { model.productName }
+  .crowdstart-item-price.crowdstart-money
+    | x { renderCurrency(currency, model.price) }
+    .crowdstart-item-list-price.crowdstart-money(if!='{ model.price < model.listPrice }')
+      | { renderCurrency(currency, model.listPrice) }
+  .crowdstart-item-total-price.crowdstart-money
+    | = { renderCurrency(currency, model.quantity * model.price) }

@@ -1,0 +1,21 @@
+.crowdstart-form-control
+  control(input='{ inputs.promoCode }', onclick='{ resetState }')
+  .crowdstart-button(onclick='{ submit }', if='{ !hide }')
+    .crowdstart-loader(if='{ locked }')
+    div(if='{ locked }')
+      | ...
+    div(if!='{ !locked && !codeApplied }')
+      | Apply
+    div(if!='{ !locked && codeApplied }')
+      | Apply
+  div(if!='{ !locked && codeApplied }')
+    .crowdstart-receipt-label
+      | You Saved
+    .crowdstart-money
+      | { renderCurrency(order.currency, discount()) }
+  div(if!="{ !locked && invalidCode === '' && model.promoCode !== '' && !clickedApplyPromoCode}")
+    | Don't forget to apply your code!
+  div(if!="{ !locked && invalidCode === 'expired'}")
+    | Expired
+  div(if!="{ !locked && invalidCode === 'invalid'}")
+    | Invalid Code

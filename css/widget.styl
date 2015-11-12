@@ -1,0 +1,170 @@
+/* MEDIAQUERY */
+.crowdstart-active
+  .crowdstart-checkout
+    +below(350px)
+      transform: scale(0.6, 0.6)
+    +between(350px, 400px)
+      transform: scale(0.9, 0.9)
+
+    transform-origin: 50% 0
+/* END MEDIAQUERY */
+
+/* CHECKOUT WIDGET */
+widget
+  position: relative
+  width: 100%
+  height: 100%
+  display: block
+  top: 0
+
+  transform: translate(0, -5000px)
+  transition: all 0.5s ease-in-out
+  z-index: 9999
+
+.crowdstart-active
+  widget
+    transform: translate(0, 0)
+
+.crowdstart-checkout
+  position: absolute
+  left: 50%
+
+  max-height: 900px
+
+  overflow: hidden
+  box-sizing: border-box
+  box-shadow: 0 0 1em .1em rgba(0, 0, 0, 0.4)
+
+  padding: 0 1em 1em 1em
+  z-index: 9999
+/* END CHECKOUT WIDGET */
+
+/* FORMS */
+.crowdstart-checkout
+  form
+    width: 100%
+/* END FORMS */
+
+/* UI CONTROLS */
+control
+  display: inline-block
+  width: 100%
+  position: relative
+
+.crowdstart-fine-print
+  font-size: .7em
+  font-weight: 400
+
+.crowdstart-sep
+  margin: .5em 0
+  width: 100%
+
+.crowdstart-form-control input
+.select2-container input
+.crowdstart-form-control label
+.crowdstart-form-control button
+  margin:0
+  border:0
+  padding:0
+  display:inline-block
+  vertical-align:middle
+  white-space:normal
+  background:none
+  line-height:1.5em
+
+  box-sizing:border-box
+
+.crowdstart-form-control input
+.select2-container input
+  width: 100%
+  font-size:1em
+
+/* Remove the stupid outer glow in Webkit */
+.crowdstart-form-control input:focus
+.crowdstart-form-control select:focus
+.select2-container input:focus
+  outline: 0
+
+.crowdstart-checkout .select2
+  margin-top: .5em
+
+.crowdstart-line-item .select2
+  margin-top: 0
+
+.crowdstart-checkout .select2-container .select2-selection
+  height: 2.75em
+
+.select2-container
+  z-index: 10000
+
+.select2
+  z-index: 0
+
+.crowdstart-form-control label
+  padding: 0.5em 0 0 0
+
+.crowdstart-form-control input
+.select2-container input
+  padding: 0.5em 1em
+  margin: 0.5em 0
+
+  z-index: 200
+
+  transition: border 0.3s ease-out
+
+.select2-selection
+  outline: 0 !important
+
+.crowdstart-button
+  text-align: center
+  width: 100%
+  display: block
+  padding: 1em 0
+  text-transform: uppercase
+  text-decoration: none
+  letter-spacing: .2em
+  margin: 1em 0 .3em 0
+  position: relative
+  box-sizing: border-box
+  cursor: pointer
+
+.crowdstart-checkout
+  .error-container
+    position: absolute
+
+.crowdstart-message::before
+  content: ""
+  display: block
+  position: absolute
+  width: 7px
+  height: 7px
+  top: -3px
+  left: 20px
+  transform: rotate(45deg)
+
+.crowdstart-message
+  padding: 2px 8px
+  position: absolute
+  top: 6em
+  left: .5em
+  text-align: left
+  z-index: 1
+  white-space:nowrap
+
+.select2-container--default.select2-container--disabled .select2-selection--single
+  background-color: #eee !important
+
+[riot-tag="crowdstart-checkbox"]
+  .crowdstart-message::before
+    left: 6px
+
+  .crowdstart-message
+    top: 2.1em
+    left: 0
+    width: 23em
+
+[riot-tag="crowdstart-card-number"]
+  .crowdstart-message
+    top: 7.8em
+
+/* END UI CONTROLS */

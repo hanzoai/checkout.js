@@ -1,0 +1,4 @@
+form#paypal
+  control(label='{ "Email" }', input='{ inputs["user.email"] }')
+  control(label='{ "Password" }', input='{ inputs["user.password"] }', if='{ config.login }')
+  control(name='{ "name"}', label='{ "Name" }', input='{ inputs["user.name"] }')

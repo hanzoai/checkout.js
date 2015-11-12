@@ -1,0 +1,210 @@
+@import url('http://fonts.googleapis.com/css?family=Roboto:400,100,900')
+@import url('http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,800italic,400')
+@import url('http://fonts.googleapis.com/css?family=Bevan')
+
+.crowdstart-card-icons
+  border-radius: 0.9375em
+  display: table-cell
+  font-size: .6em
+  height: 100%
+  text-align: center
+  vertical-align: middle
+  width: 100%
+  font-size: .4rem
+
+  .crowdstart-card-icon
+    & > *
+      background: #fff
+      border-radius: 0.25em
+      box-shadow: 0 0.039em 0.132em rgba(0, 0, 0, 0.4)
+      display: inline-block
+      font-size: 1em
+      height: 3em
+      overflow: hidden
+      position: relative
+      vertical-align: middle
+      width: 5em
+      float: left
+      margin-bottom: 1em
+
+    //////////
+    // VISA //
+    //////////
+    .visa
+      font-family: "Open Sans", sans-serif
+      font-size: 2em
+      font-style: italic
+      font-weight: 800
+      padding: .05em
+      z-index: 0
+
+      &:before
+      &:after
+        background: #00579F
+        border-top-left-radius: 0.25em
+        border-top-right-radius: 0.25em
+        content: ""
+        display: block
+        height: .75em
+        left: 50%
+        position: absolute
+        top: 1.75%
+        transform: translate(-50%, 0)
+        width: 98%
+        z-index: 200
+
+      &:after
+        background: #FBA31B
+        border-top-left-radius: 0
+        border-top-right-radius: 0
+        border-bottom-left-radius: 0.25em
+        border-bottom-right-radius: 0.25em
+        bottom: 2.75%
+        top: auto
+
+      p
+        color: #00579F
+        position: relative
+
+        &:after
+          border-top: .1em solid transparent
+          border-bottom: .1em solid transparent
+          border-left: 0.4em solid #FBA31B
+          border-radius: 0.0625em
+          content: ""
+          display: block
+          height: 0
+          left: 25.5%
+          position: absolute
+          top: 37.25%
+          transform: rotateZ(189deg)
+          width: 0
+          z-index: 600
+
+    ////////////////
+    // MASTERCARD //
+    ////////////////
+    .mc
+      background: #0059B3
+      font-size: 2em
+
+      &:before
+      &:after
+        background: #EF3526
+        border-radius: 50%
+        content: ""
+        display: block
+        height: 2em
+        left: 35%
+        position: absolute
+        top: 50%
+        width: 2em
+        transform: translate(-50%, -50%)
+        z-index: 200
+
+      &:after
+        background: #FCB836
+        left: 65%
+
+      hr
+        background: #EF3526
+        border: none
+        border-top-right-radius: 0.25em
+        height: .14em
+        margin: .14em auto
+        position: relative
+        top: 25%
+        width: .65em
+        z-index: 600
+
+        &:nth-of-type(1)
+        &:nth-of-type(5)
+          transform: translate(-28%, 0)
+
+        &:nth-of-type(2)
+        &:nth-of-type(4)
+          transform: translate(-10%, 0)
+
+        &:nth-of-type(4)
+        &:nth-of-type(5)
+          border-top-right-radius: 0
+          border-bottom-right-radius: 0.25em
+
+        &:nth-of-type(3)
+          border-top-right-radius: 4
+          border-bottom-right-radius: 0.25em
+
+      p
+        color: #fff
+        font-size: .63em
+        font-weight: 600
+        line-height: 1.5em
+        position: relative
+        text-shadow: 0.0625em 0.0625em 0.0625em black
+        top: -.8em
+        z-index: 600
+
+    //////////
+    // AMEX //
+    //////////
+    .amex
+      background: #0971bc
+      background-image: -webkit-radial-gradient(circle farthest-corner at top left, #7ecdf2, #0971bc 60%)
+      background-image: radial-gradient(circle farthest-corner at top left, #7ecdf2, #0971bc 60%)
+      font-size: 2em
+      font-weight: 900
+
+      hr
+        border: none
+        border-top: 1px solid rgba(255, 255, 255, 0.05)
+        margin: .15em 0
+
+      .svg
+        width: 100%
+        height: 100%
+        color: #FFF
+        font-size: .8em
+        left: 0
+        position: absolute
+        top: 0
+        stroke-width: 0.6
+
+    //////////////
+    // DISCOVER //
+    //////////////
+    .discover
+      font-size: 2em
+
+      &:after
+        border-top: .75em solid transparent
+        border-bottom: 0 solid transparent
+        border-right: 1.75em solid #FF7800
+        bottom: 0
+        content: ""
+        height: 0
+        position: absolute
+        right: 0
+        width: 0
+
+      p
+        font-size: .75em
+        font-weight: bold
+        letter-spacing: .0625em
+        position: relative
+        text-transform: uppercase
+        line-height: 2em
+        color: black
+
+        &:after
+          background: #FF7800
+          border-radius: 50%
+          content: ""
+          display: block
+          height: .87em
+          left: 3.11em
+          position: absolute
+          margin-top: -1.0em
+          width: .87em
+
+          +above(25.625em)
+            top: 1.59em

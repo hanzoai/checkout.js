@@ -1,0 +1,66 @@
+.crowdstart-progress
+  width: 100%
+  padding: 0
+  margin: 20px 0 -10px 0
+
+.crowdstart-progress
+  overflow: hidden
+  counter-reset: step
+  display: flex
+  justify-content: space-between
+
+.crowdstart-progress li
+  width: 100%
+  list-style-type: none
+  text-transform: uppercase
+  float: left
+  position: relative
+  text-align: center
+
+  transition: all 0.4s ease-in-out
+
+.crowdstart-progress li:before
+  content: counter(step)
+  counter-increment: step
+  width: 20px
+  line-height: 2.2em
+  display: block
+  border-radius: 3px
+  margin: 0 auto 5px auto
+
+  transition: all 0.4s ease-in-out
+
+.crowdstart-progress li:after
+  content: ''
+  width: 100%
+  height: 2px
+  position: absolute
+  left: -50%
+  top: 9px
+  z-index: -1
+
+  transition: all 0.4s ease-in-out
+
+.crowdstart-progress li:first-child:after
+  content: none
+
+.crowdstart-back
+  position: absolute
+  top: 0.2em
+  left: 0.6em
+  cursor: pointer
+
+  transform: scale(-1, 1)
+  transition: all 0.4s ease-in-out
+
+.crowdstart-close
+  font: 20px/100% arial, sans-serif
+  right: 0.3em
+  top: 0.1em
+  position: absolute
+  cursor: pointer
+
+  z-index: 100
+
+.crowdstart-close:after
+  content: '×'

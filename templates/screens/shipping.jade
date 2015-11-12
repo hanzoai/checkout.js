@@ -1,0 +1,9 @@
+form#shipping
+  .crowdstart-shipping-address-line
+    control(label='{ "Shipping Address" }', input='{ inputs["order.shippingAddress.line1"] }')
+    control(label='{ "Suite" }', input='{ inputs["order.shippingAddress.line2"] }')
+  control(label='{ "City" }', input='{ inputs["order.shippingAddress.city"] }')
+  .crowdstart-shipping-state-postal
+    control(label='{ "State" }', input='{ inputs["order.shippingAddress.state"] }')
+    control(label='{ "Postal Code" }', input='{ inputs["order.shippingAddress.postalCode"] }')
+  control(label='{ "Country" }', input='{ inputs["order.shippingAddress.country"] }')

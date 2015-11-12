@@ -27,7 +27,7 @@ theme =
         color: #{ theme.currentTheme.promoCodeForeground } !important;
       }
 
-      .crowdstart-checkout-button, .crowdstart-error-button {
+      .crowdstart-button {
         background-color: #{ theme.currentTheme.calloutBackground } !important;
         color: #{ theme.currentTheme.calloutForeground } !important;
       }
@@ -64,7 +64,7 @@ theme =
       }
 
       .crowdstart-sep {
-        border-bottom: 1px solid #{ theme.currentTheme.dark } !important;
+        border-bottom: 1px solid #{ theme.currentTheme.medium } !important;
       }
 
       .crowdstart-thankyou a {
@@ -75,7 +75,7 @@ theme =
         color: #{ theme.currentTheme.dark } !important;
       }
 
-      .crowdstart-error input {
+      input.crowdstart-error {
         border-color: #{ theme.currentTheme.error } !important;
       }
 
@@ -195,6 +195,24 @@ theme =
       }
 
       /* End Lock Icon */
+
+      /* Tabs */
+
+      tabs:before,
+      tabs:after {
+        border-bottom: 1px solid #{ theme.currentTheme.medium } !important;
+      }
+
+      tabs > * {
+        border-bottom: 1px solid #{ theme.currentTheme.medium } !important;
+      }
+
+      .crowdstart-tab.crowdstart-tab-selected {
+        border: 1px solid #{ theme.currentTheme.medium } !important;
+        border-bottom: 0 !important;
+      }
+
+      /* End Tabs */
     """
 
 theme.setTheme(

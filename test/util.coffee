@@ -3,6 +3,7 @@ webdriver = require 'webdriverio'
 exports.getBrowser = ->
   caps =
     browserName:       process.env.BROWSER ? 'phantomjs'
+    'phantomjs.binary.path': './node_modules/phantomjs/bin/phantomjs'
     platform:          process.env.PLATFORM ? 'ANY'
     version:           process.env.VERSION
     deviceName:        process.env.DEVICE_NAME
@@ -37,5 +38,5 @@ exports.getBrowser = ->
 
 TIMEOUT = 5000
 if process.env.TRAVIS
-  TIMEOUT = TIMEOUT * 3
+  TIMEOUT = TIMEOUT * 5
 exports.TIMEOUT = TIMEOUT

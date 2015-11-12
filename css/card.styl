@@ -1,0 +1,133 @@
+.crowdstart-card-widget
+  .crowdstart-fine-print
+    white-space:nowrap
+
+  +below(750px)
+    .crowdstart-card
+      position:     absolute
+      z-index:      -1
+      margin-top:   12px
+      margin-left:  156px
+
+      .jp-card-container
+        z-index: 10001
+        height: 172px
+        transform: scale(0.56) !important
+
+  +above(750px)
+    &:not(.crowdstart-narrow)
+      .crowdstart-card
+        position:     absolute
+        z-index:      -1
+        margin-left:  118px
+
+        .jp-card-container
+          z-index: 10001
+          height: 200px
+          transform: scale(0.475) !important
+
+.crowdstart-narrow
+  .crowdstart-card-widget
+    .crowdstart-fine-print
+      width: 200%
+
+    .crowdstart-card
+      position:     absolute
+      z-index:      -1
+      margin-top:   12px
+      margin-left:  156px
+
+      .jp-card-container
+        z-index: 10001
+        height: 172px
+        transform: scale(0.56) !important
+
+.icon-lock {
+  width: 48px
+  height: 48px
+  position: relative
+  overflow: hidden
+  margin-left: 25px
+  margin-bottom: 25px
+
+  clear: left
+  float: left
+  position: absolute
+  left: 5em
+  top: .3em
+  -webkit-transform:  scale(.4)
+  -ms-transform:  scale(.4)
+  transform: scale(.4)
+  -webkit-transform-origin: 0 0
+  -ms-transform-origin: 0 0
+  transform-origin: 0 0
+}
+
+.icon-lock .lock-top-1 {
+  width: 40%
+  height: 40%
+  position: absolute
+  left: 50%
+  margin-left: -20%
+  top: 14%
+  background-color: transparent
+  border-radius: 40%
+}
+
+.icon-lock .lock-top-2 {
+  width: 24%
+  height: 40%
+  position: absolute
+  left: 50%
+  margin-left: -12%
+  top: 22%
+  background-color: #151517
+  border-radius: 25%
+}
+
+.icon-lock .lock-body {
+  width: 60%
+  height: 48%
+  position: absolute
+  left: 50%
+  margin-left: -30%
+  bottom: 11%
+  background-color: transparent
+  border-radius: 15%
+}
+
+.icon-lock .lock-hole {
+  width: 16%
+  height: 13%
+  position: absolute
+  left: 50%
+  margin-left: -8%
+  top: 51%
+  border-radius: 100%
+  background-color: #151517
+}
+
+.icon-lock .lock-hole:after {
+  content: ""
+  width: 43%
+  height: 78%
+  position: absolute
+  left: 50%
+  margin-left: -20%
+  top: 100%
+  background-color: inherit
+}
+
+.stripe-branding {
+  position: absolute
+  top: .85em
+  left: 14.25em
+  font-size: .6em
+  white-space:nowrap
+}
+
+.stripe-branding a {
+  text-decoration: none
+}
+
+

@@ -1,0 +1,69 @@
+/* SCREENS */
+
+screen-manager
+  padding: .6em 0em
+  display: block
+  width: 100%
+  box-sizing:border-box
+  line-height:1.5em
+  left: -1em
+  position: relative
+  transition: height 0.5s ease-in-out
+
+  .crowdstart-screens
+    width: 100%
+    display: table
+
+    .crowdstart-screen-strip
+      display: table
+
+      transition: all .5s ease-in-out
+
+      z-index: 1000
+      position: relative
+
+      > *
+        padding: 0 1em
+        display: inline-block
+        position: relative
+        box-sizing: border-box
+        vertical-align: top
+        transition: none
+
+        > *
+          transition: all .5s ease-in
+
+/* END SCREENS */
+
+thankyou
+  text-align: center
+
+  & > div
+    padding: 1em
+
+    +above(750px)
+      left: 59%
+      position: relative
+
+  h1
+    font-size 1.4em
+
+  .social__item
+    margin: 0 .2em
+
+payment
+  .crowdstart-paypal-widget
+  .crowdstart-card-widget
+    min-height: 155px
+
+  .crowdstart-paypal-widget
+    text-align: center
+    padding-top: 1em
+
+    svg
+      width: 100px
+      height: 100px
+      fill: currentColor
+
+    p
+      margin: 0

@@ -1,0 +1,105 @@
+@lost gutter 1em
+
+.crowdstart-checkout
+  width: 400px
+  margin-left: -200px
+
+  .crowdstart-choose
+    display: table
+    width: 100%
+
+    & > *
+      &:nth-child(1)
+        column: 1/8
+      &:nth-child(2)
+        column: 6/8
+
+  .crowdstart-card-icons
+    display: table
+    width: 100%
+
+    & > .crowdstart-card-icon
+      column: 1/4
+
+  .crowdstart-full-width
+    margin: 0 -1em
+
+    & > *
+      margin-left: 1em
+
+  .crowdstart-card-expiry-cvc
+  .crowdstart-shipping-address-line
+  .crowdstart-shipping-state-postal
+    display: table
+    width: 100%
+
+    & > control
+      column: 1/2
+
+  .crowdstart-totals > *
+    display: table
+    width: 100%
+
+    & > *
+      column: 1/2
+
+  promo .crowdstart-form-control
+    display: table
+    width: 100%
+
+    & > *
+      column: 1/4
+    & > :nth-child(1)
+      column: 1/2
+
+  .crowdstart-line-item
+    div
+      column: 1/5
+    div:nth-of-type(2)
+      column: 2/5
+
+  +above(750px)
+    &:not(.crowdstart-narrow)
+      width: 700px
+      margin-left: -350px
+
+      .crowdstart-column:last-of-type
+        position: relative
+        z-index: 2000
+
+      .crowdstart-row
+        display: table
+        width: 100%
+
+      & > .crowdstart-row
+        .crowdstart-column
+          column: 1/2
+
+      .crowdstart-card-icons
+        & > .crowdstart-card-icon
+          column: 1/3 2
+
+      .crowdstart-choose
+        & > *
+          &:nth-child(1)
+            column: 1/4
+          &:nth-child(2)
+            column: 3/4
+
+  .crowdstart-card-widget
+    display: table
+    width: 100%
+
+    & > .crowdstart-card-details
+    & > .crowdstart-card
+      column: 1/2
+
+  &.crowdstart-narrow
+    .crowdstart-card-widget
+      display: table
+      width: 100%
+
+      & > .crowdstart-card-details
+      & > .crowdstart-card
+        column: 1/2
+

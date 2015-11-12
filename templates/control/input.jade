@@ -1,0 +1,3 @@
+label(for='{ model.name }', if='{ opts.label }')
+  | { opts.label }
+input(class='{ crowdstart-error: hasError() }', id='{ model.name }', name='{ opts.name || model.name }', onchange='{ change }', onblur='{ change }', value='{ model.value }', placeholder='{ model.placeholder }')

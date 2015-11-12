@@ -1,0 +1,7 @@
+.crowdstart-back(if!='{ index > 0 && showBack }', onclick='{ back }')
+  span &#10140;
+ul.crowdstart-progress
+  li(each='{ ref, i in scriptRefs }', class!='{ active: this.parent.index >= i }')
+    | { ref.title }
+.crowdstart-close(onclick='{ close }')
+
