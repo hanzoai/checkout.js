@@ -4,7 +4,7 @@ div(if='{ !hide }')
       | Cart
     .crowdstart-sep
     lineitem(each='{ item, i in model.items }', currency='{ this.parent.model.currency }', model='{ item }', invoiceobs='{ this.parent.obs }')
-    promo(order='{ model }', client='{ client }')
+      promo(order='{ model }', client='{ client }', if='{ config.showPromoCode }')
 
   .crowdstart-totals
     .crowdstart-sep

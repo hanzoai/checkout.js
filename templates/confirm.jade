@@ -1,3 +1,5 @@
+.crowdstart-shipping-details(if='{ config.shippingDetails != "" }')
+  | { config.shippingDetails }
 .crowdstart-terms(if='{ !hide }')
   control(input='{ inputs.agreed }')
   | I have read and agree to&nbsp;

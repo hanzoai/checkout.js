@@ -6,6 +6,7 @@ class Invoice extends View
   tag: 'invoice'
   html: require '../../templates/invoice.jade'
   client: null
+  config: null
   hide: false
 
   renderCurrency: require('../utils/currency.coffee').renderUICurrencyFromJSON
@@ -22,6 +23,7 @@ class Invoice extends View
 
   js:(opts)->
     @client = opts.client
+    @config = opts.config
 
   subtotal: ()->
     items = @model.items
