@@ -86,6 +86,8 @@ class Shipping extends Screen
           price: parseFloat(item.price / 100)
 
       analytics.track 'Completed Order', options
+      if @model.analytics?.pixels?.checkout?
+        analytics.track @model.analytics.pixels?.checkout
 
       if @model.referralProgram?
         @client.payment.newReferrer(
