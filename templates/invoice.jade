@@ -34,3 +34,7 @@ div(if='{ !hide }')
         | Total
       .column.crowdstart-money
         | { renderCurrency(model.currency, total()) } ({model.currency.toUpperCase()})
+
+.crowdstart-shipping-details(if='{ config.shippingDetails != "" }')
+  | { config.shippingDetails }
+
