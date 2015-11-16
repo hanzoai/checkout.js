@@ -35,6 +35,6 @@ div(if='{ !hide }')
       .column.crowdstart-money
         | { renderCurrency(model.currency, total()) } ({model.currency.toUpperCase()})
 
-.crowdstart-shipping-details(if='{ config.shippingDetails != "" }')
+.crowdstart-shipping-details(if='{ !hide && config.shippingDetails != "" }')
   | { config.shippingDetails }
 
