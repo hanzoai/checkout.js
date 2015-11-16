@@ -20,7 +20,7 @@ modal > div{
 }
 .crowdstart-modal-target{
   z-index:9999;
-  position:fixed;
+  position:absolute;
   width:0%;
   left:50%;
 }

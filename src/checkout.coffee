@@ -247,6 +247,8 @@ class Checkout
     analytics.track 'Viewed Checkout Step',
       step: 1
 
+    $('.crowdstart-modal-target').css 'top', document.body.scrollTop + 'px'
+
     return false
 
   one: ()->
