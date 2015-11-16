@@ -48,8 +48,9 @@ class Shipping extends Screen
         window.location.href = "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_ap-payment&paykey=#{ @payKey }"
       else
         window.location.href = "https://www.paypal.com/cgi-bin/webscr?cmd=_ap-payment&paykey=#{ @payKey }"
-    ).catch (err)->
+    ).catch (err)=>
       console.log "shipping submit Error: #{err}"
+      @screenManagerObs.trigger Events.Confirm.Error, 'Sorry, Paypal is unavailable.  Please try again later.'
       @screenManagerObs.trigger Events.Confirm.Unlock
       @screenManagerObs.trigger Events.Checkout.Done
 
