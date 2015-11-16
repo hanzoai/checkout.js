@@ -20,11 +20,6 @@ class Modal extends View
   js: (opts)->
     @client = opts.client
     $(document).on('keydown', @closeOnEscape)
-    updateScroll = ()=>
-      $(@root).find('.crowdstart-modal-target').css 'top', document.body.scrollTop + 'px'
-
-    @on 'updated', updateScroll
-    $(window).scroll updateScroll
 
   open: ()->
     @isOpen = true
