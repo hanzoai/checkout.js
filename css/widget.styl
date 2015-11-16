@@ -15,11 +15,15 @@ widget
   width: 100%
   height: 100%
   display: block
-  top: 0
 
   transform: translate(0, -5000px)
   transition: all 0.5s ease-in-out
   z-index: 9999
+
+  top: 50px
+
+  +below(350px)
+    top: 0
 
 .crowdstart-active
   widget

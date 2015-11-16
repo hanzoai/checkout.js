@@ -23,7 +23,6 @@ modal > div{
   position:absolute;
   width:0%;
   left:50%;
-  top:50px;
 }
 .crowdstart-active .crowdstart-modal{
   height:5000px;
@@ -41,13 +40,13 @@ widget{
   width:100%;
   height:100%;
   display:block;
-  top:0;
   -webkit-transform:translate(0, -5000px);
       -ms-transform:translate(0, -5000px);
           transform:translate(0, -5000px);
   -webkit-transition:all 0.5s ease-in-out;
   transition:all 0.5s ease-in-out;
   z-index:9999;
+  top:50px;
 }
 .crowdstart-active widget{
   -webkit-transform:translate(0, 0);
@@ -1522,13 +1521,13 @@ label{
   clear:left;
 }
 @media only screen and (max-width: 350px){
-  .crowdstart-modal-target{
-    top:0px;
-  }
   .crowdstart-active .crowdstart-checkout{
     -webkit-transform:scale(0.6, 0.6);
     -ms-transform:scale(0.6, 0.6);
     transform:scale(0.6, 0.6);
+  }
+  widget{
+    top:0;
   }
 }
 @media only screen and (min-width: 350px) and (max-width: 400px){
