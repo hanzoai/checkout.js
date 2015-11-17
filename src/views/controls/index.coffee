@@ -48,6 +48,7 @@ class Select extends Input
   tag: 'crowdstart-select'
   html: require '../../../templates/control/select.jade'
   tags: false
+  min: Infinity
 
   lastValueSet: null
 
@@ -90,7 +91,7 @@ class Select extends Input
     $select.select2(
       tags: @tags
       placeholder: @model.placeholder
-      minimumResultsForSearch: Infinity
+      minimumResultsForSearch: @min
     ).change((event)=>@change(event))
 
   js:(opts)->
@@ -163,14 +164,53 @@ class QuantitySelect extends Select
 
 QuantitySelect.register()
 
+class StateSelect extends Select
+  tag: 'crowdstart-state-select'
+  html: require '../../../templates/control/stateselect.jade'
+  country: ''
+  min: 1
+
+  events:
+    "#{Events.Country.Set}": (@country) ->
+      if @country == 'us'
+        @obs.trigger
+        $(@root).find('.select2').show()
+      else
+        $(@root).find('.select2').hide()
+        @model.value = @model.value.toUpperCase() if @model.value?
+
+  options: ()->
+    return require '../../data/states'
+
+  js: ()->
+    super
+    @model.value = @model.value.toLowerCase() if @model.value?
+
+StateSelect.register()
+
 class CountrySelect extends Select
   tag: 'crowdstart-country-select'
+  min: 1
+
+  events:
+    "#{Events.Input.Set}": (name, value) ->
+      if name == @model.name && value?
+        @clearError()
+        @model.value = value
+
+        @obs.trigger Events.Country.Set, value
+
+        # whole page needs to be updated for side effects
+        riot.update()
+
   options: ()->
     return require '../../data/countries'
 
   js: ()->
-    @model.value = @model.value.toLowerCase() if @model.value?
     super
+
+    @model.value = @model.value.toLowerCase() if @model.value?
+    @obs.trigger Events.Country.Set, @model.value
 
 CountrySelect.register()
 
@@ -194,6 +234,10 @@ helpers.registerTag (inputCfg)->
 helpers.registerTag (inputCfg)->
   return inputCfg.hints.select
 , 'crowdstart-select'
+
+helpers.registerTag (inputCfg)->
+  return inputCfg.hints['state-select']
+, 'crowdstart-state-select'
 
 helpers.registerTag (inputCfg)->
   return inputCfg.hints['country-select']

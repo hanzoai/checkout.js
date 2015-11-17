@@ -1,0 +1,10 @@
+label(for='{ model.name }', if='{ opts.label }')
+  | { opts.label }
+input(if='{ country !== "us" }', class='{ crowdstart-error: hasError() }', id='{ model.name }', name='{ opts.name || model.name }', onchange='{ change }', onblur='{ change }', value='{ model.value }', placeholder='{ model.placeholder }')
+select(if='{ country == "us" }', id='{ model.name }', style='{ opts.style }', name='{ model.name }', onchange='{ change }', onblur='{ change }', value='{ model.value }', data-placeholder='{ model.placeholder }')
+  option(if='{ model.placeholder }')
+    option(each='{ value, name in options() }', value='{value}', __selected='{ this.parent.model.value == value }')
+      | {name}
+  optgroup(if='{ tags && isCustom() }', label='Custom Events')
+    option(value='{ model.value }', selected='true')
+      | { model.value }

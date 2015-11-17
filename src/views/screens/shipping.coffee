@@ -10,14 +10,38 @@ class Shipping extends Screen
   tag: 'shipping'
   title: 'Shipping Address'
   html: require '../../../templates/screens/shipping.jade'
+  taxRates: null
   inputConfigs: [
     input 'order.shippingAddress.line1',        '123 Street',       'input required'
     input 'order.shippingAddress.line2',        '123 Apt',          'input'
     input 'order.shippingAddress.city',         'City',             'input required'
-    input 'order.shippingAddress.state',        'State',            'input required'
+    input 'order.shippingAddress.state',        'State',            'state-select required'
     input 'order.shippingAddress.postalCode',   'Zip/Postal Code',  'input postalRequired'
     input 'order.shippingAddress.country',      '',                 'country-select required'
   ]
+
+  updateTaxRate: ()->
+    for taxRate in @taxRates
+      if taxRate.city.toLowerCase() != @model.order.shippingAddress.city.toLowerCase()
+        continue
+
+      if taxRate.state.toLowerCase() != @model.order.shippingAddress.state.toLowerCase()
+        continue
+
+      if taxRate.country.toLowerCase() != @model.order.shippingAddress.country.toLowerCase()
+        continue
+
+      @order.taxRate = taxRate
+      riot.update()
+      break
+
+  events:
+    "#{Events.Input.Set}": ()->
+      @updateTaxRate()
+
+  js: (opts)->
+    super
+    @taxRates = opts.taxRates ? []
 
   show: ()->
     analytics.track 'Viewed Checkout Step',

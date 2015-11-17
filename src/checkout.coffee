@@ -35,13 +35,29 @@ head.appendChild style
 #   ########################
 #   narrow:             bool (always in narrow mode - 400px wide)
 #   currency:           string (3 letter ISO code)
-#   taxRate:            number (decimal)
+#   taxRate:            number (decimal) taxRate, overridden by opts.taxRates
 #   shippingRate:       number (per item cost in cents or base unit for zero decimal currencies)
 #   termsUrl:           string (url of terms page)
 #   callToActions:      [string, string] (Up to 2 element array containing the text for the confirmation button)
 #   shippingDetails:    string (description of when shipping happens)
 #   showPromoCode:      bool (defaults: true, show the promo/coupon code)
 # }
+#
+# Format of opts.taxRates
+# Tax rates are filtered based on exact string match of city, state, and country.
+# Tax rates are evaluated in the order listed in the array.  This means if the first tax rate
+# is matched, then the second and subsequent tax rates will not be evaluated
+#
+# If no city, state, or country is set, then the tax rate will be used if evaluated
+#
+# [
+#   {
+#     taxRate:  number (decimal tax rate)
+#     city:     null or string (name of city where tax is charged)
+#     state:    null or string (name of state where tax is charged)
+#     country:  null or string (2 digit ISO country code eg. 'us' where tax is charged)
+#   }
+# ]
 #
 # Format of opts.analytics
 # {
@@ -112,6 +128,7 @@ class Checkout
   theme: null
   analytics: null
   referralProgram: null
+  taxRates: null
 
   reset: true
 
@@ -173,7 +190,8 @@ class Checkout
     @analytics = {}
     @analytics = _.extend(@analytics, opts.analytics) if opts.analytics?
 
-    @referralProgram = opts.referralProgram
+    @referralProgram    = opts.referralProgram
+    @taxRates           = opts.taxRates || []
 
     @model =
       user:             @user
@@ -184,6 +202,7 @@ class Checkout
       test:             @test
       analytics:        @analytics
       referralProgram:  @referralProgram
+      taxRates:         @taxRates
       scripts:
         basic: @script
 

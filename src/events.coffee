@@ -32,5 +32,8 @@ Events.Confirm =
   Unlock:   'confirm-unlock'
 
 Events.Invoice =
-  Hide:     'invoice-hide'
-  Show:     'invoice-show'
+  Hide: 'invoice-hide'
+  Show: 'invoice-show'
+
+Events.Country =
+  Set:  'country-set'

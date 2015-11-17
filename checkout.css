@@ -186,6 +186,9 @@ control{
 [riot-tag="crowdstart-card-number"] .crowdstart-message{
   top:7.8em;
 }
+.select2-container--open .select2-dropdown--below{
+  margin-top:1px;
+}
 .crowdstart-progress{
   width:100%;
   padding:0;
