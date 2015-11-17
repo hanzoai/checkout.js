@@ -21,19 +21,22 @@ class Shipping extends Screen
   ]
 
   updateTaxRate: ()->
+    @model.order.taxRate = 0
+
     for taxRate in @taxRates
-      if taxRate.city.toLowerCase() != @model.order.shippingAddress.city.toLowerCase()
+      if taxRate.city? && @model.order.shippingAddress.city? && taxRate.city.toLowerCase() != @model.order.shippingAddress.city.toLowerCase()
         continue
 
-      if taxRate.state.toLowerCase() != @model.order.shippingAddress.state.toLowerCase()
+      if taxRate.state? && @model.order.shippingAddress.state? && taxRate.state.toLowerCase() != @model.order.shippingAddress.state.toLowerCase()
         continue
 
-      if taxRate.country.toLowerCase() != @model.order.shippingAddress.country.toLowerCase()
+      if taxRate.country? && @model.order.shippingAddress.country? && taxRate.country.toLowerCase() != @model.order.shippingAddress.country.toLowerCase()
         continue
 
-      @order.taxRate = taxRate
-      riot.update()
+      @model.order.taxRate = taxRate.taxRate
       break
+
+    riot.update()
 
   events:
     "#{Events.Input.Set}": ()->
@@ -41,7 +44,7 @@ class Shipping extends Screen
 
   js: (opts)->
     super
-    @taxRates = opts.taxRates ? []
+    @taxRates = @model.taxRates ? []
 
   show: ()->
     analytics.track 'Viewed Checkout Step',

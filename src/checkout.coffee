@@ -46,7 +46,8 @@ head.appendChild style
 # Format of opts.taxRates
 # Tax rates are filtered based on exact string match of city, state, and country.
 # Tax rates are evaluated in the order listed in the array.  This means if the first tax rate
-# is matched, then the second and subsequent tax rates will not be evaluated
+# is matched, then the subsequent tax rates will not be evaluated.
+# Therefore, list tax rates from specific to general
 #
 # If no city, state, or country is set, then the tax rate will be used if evaluated
 #
@@ -54,7 +55,7 @@ head.appendChild style
 #   {
 #     taxRate:  number (decimal tax rate)
 #     city:     null or string (name of city where tax is charged)
-#     state:    null or string (name of state where tax is charged)
+#     state:    null or string (2 digit Postal code of US state or name of non-US state where tax is charged)
 #     country:  null or string (2 digit ISO country code eg. 'us' where tax is charged)
 #   }
 # ]
