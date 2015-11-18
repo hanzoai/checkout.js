@@ -266,7 +266,7 @@ class Checkout
     analytics.track 'Viewed Checkout Step',
       step: 1
 
-    $('.crowdstart-modal-target').css 'top', document.body.scrollTop + 'px'
+    $('.crowdstart-modal-target').css 'top', $(window).scrollTop() + 'px'
 
     return false
 
