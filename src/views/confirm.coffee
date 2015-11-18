@@ -2,7 +2,7 @@ crowdcontrol = require 'crowdcontrol'
 Events = crowdcontrol.Events
 FormView = crowdcontrol.view.form.FormView
 
-input = require '../utils/input.coffee'
+input = require '../utils/input'
 
 class Confirm extends FormView
   tag: 'confirm'

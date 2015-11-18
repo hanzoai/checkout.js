@@ -3,8 +3,8 @@ Events = crowdcontrol.Events
 Screen = require './screen'
 
 analytics = require '../../utils/analytics'
+input     = require '../../utils/input'
 
-input = require '../../utils/input.coffee'
 require 'card/lib/js/card'
 
 class Payment extends Screen

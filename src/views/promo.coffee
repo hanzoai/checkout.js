@@ -5,13 +5,13 @@ Events = crowdcontrol.Events
 FormView = crowdcontrol.view.form.FormView
 requestAnimationFrame = crowdcontrol.utils.shim.requestAnimationFrame
 
-input = require '../utils/input.coffee'
+input = require '../utils/input'
 
 class Promo extends FormView
   tag:      'promo'
   html:     require '../../templates/promo.jade'
 
-  renderCurrency: require('../utils/currency.coffee').renderUICurrencyFromJSON
+  renderCurrency: require('../utils/currency').renderUICurrencyFromJSON
 
   order:    null
   client:   null

@@ -3,8 +3,7 @@ Events = crowdcontrol.Events
 Screen = require './screen'
 
 analytics = require '../../utils/analytics'
-
-input = require '../../utils/input.coffee'
+input     = require '../../utils/input'
 
 class PayPal extends Screen
   tag: 'paypal'

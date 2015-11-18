@@ -3,7 +3,7 @@ Events = crowdcontrol.Events
 Screen = require './screen'
 requestAnimationFrame = crowdcontrol.utils.shim.requestAnimationFrame
 
-input = require '../../utils/input.coffee'
+input = require '../../utils/input'
 
 class Choose extends Screen
   tag:          'choose'

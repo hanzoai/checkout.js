@@ -2,7 +2,7 @@ crowdcontrol = require 'crowdcontrol'
 Events = crowdcontrol.Events
 View = crowdcontrol.view.View
 
-input = require '../utils/input.coffee'
+input = require '../utils/input'
 
 class Tabs extends View
   tag: 'tabs'

@@ -9,7 +9,7 @@ class Invoice extends View
   config: null
   hide: false
 
-  renderCurrency: require('../utils/currency.coffee').renderUICurrencyFromJSON
+  renderCurrency: require('../utils/currency').renderUICurrencyFromJSON
 
   events:
     "#{ Events.Invoice.Hide }": ()->

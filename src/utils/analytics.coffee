@@ -1,5 +1,5 @@
 module.exports =
-  track: (event, data)->
+  track: (event, data) ->
     if window.analytics?
       window.analytics.track(event, data)
 
