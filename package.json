@@ -1,6 +1,6 @@
 {
   "name": "crowdstart-checkout",
-  "version": "2.0.18",
+  "version": "2.0.19",
   "description": "One Click Checkout for Crowdstart",
   "main": "lib/",
   "scripts": {
