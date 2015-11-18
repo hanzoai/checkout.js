@@ -21,6 +21,10 @@ class ThankYou extends Screen
     analytics.track 'Viewed Checkout Step',
       step: 3
 
+    $('body').animate(
+      scrollTop: ($('screen-manager').first().offset().top - 50)
+    , 500)
+
 ThankYou.register()
 
 module.exports = ThankYou

@@ -50,6 +50,10 @@ class Shipping extends Screen
     analytics.track 'Viewed Checkout Step',
       step: 2
 
+    $('body').animate(
+      scrollTop: ($('screen-manager').first().offset().top - 50)
+    , 500)
+
   _submit: ()->
     @screenManagerObs.trigger Events.Confirm.Lock
     @screenManagerObs.trigger Events.Confirm.Error, ''
