@@ -22,13 +22,11 @@
     "underscore": "^1.8.3"
   },
   "devDependencies": {
-    "phantomjs": "^1.9.18",
     "autoprefixer": "^6.0.3",
-    "bebop": "^1.6.7",
-    "cake": "^0.1.1",
+    "bebop": "^1.7.4",
     "chai": "^3.1.0",
-    "clean-css": "^3.4.4",
-    "coffee-script": "^1.9.3",
+    "clean-css": "^3.4.8",
+    "coffee-script": "^1.10.0",
     "connect": "^3.4.0",
     "css-mqpacker": "^4.0.0",
     "cssnano": "^3.1.0",
@@ -37,9 +35,10 @@
     "jade": "^1.11.0",
     "lost": "^6.6.2",
     "lost-stylus": "^0.1.2",
-    "mocha": "^2.2.5",
+    "mocha": "^2.3.4",
     "node-static": "^0.7.6",
-    "postcss": "^5.0.9",
+    "phantomjs": "^1.9.18",
+    "postcss": "^5.0.12",
     "postcss-discard-comments": "^2.0.0",
     "poststylus": "^0.2.1",
     "requisite": "^1.10.6",
@@ -50,7 +49,7 @@
     "shortcake": "^0.3.0",
     "stylus": "^0.52.4",
     "typographic": "^2.9.3",
-    "uglify-js": "^2.4.23",
+    "uglify-js": "^2.6.1",
     "webdriverio": "^3.1.0"
   }
 }
