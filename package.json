@@ -16,8 +16,10 @@
   "license": "MIT",
   "dependencies": {
     "card": "^1.0.0",
-    "crowdcontrol": "^1.0.48",
+    "crowdcontrol": "^1.0.49",
     "crowdstart.js": "^1.0.5",
+    "is-number": "^2.0.2",
+    "is-object": "^1.0.1",
     "riot": "2.2.4"
   },
   "devDependencies": {
