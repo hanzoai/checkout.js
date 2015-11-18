@@ -1,6 +1,6 @@
 {
   "name": "crowdstart-checkout",
-  "version": "2.0.10",
+  "version": "2.0.11",
   "description": "One Click Checkout for Crowdstart",
   "main": "src/index.coffee",
   "scripts": {
