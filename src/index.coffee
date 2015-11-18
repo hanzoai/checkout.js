@@ -1,4 +1,3 @@
-_ = require 'underscore'
 theme = require './utils/theme'
 analytics = require './utils/analytics'
 
@@ -151,7 +150,7 @@ class Checkout
     @user = opts.user || {}
 
     @order = {}
-    @order = _.extend(@order, opts.order) if opts.order?
+    @order = $.extend(@order, opts.order) if opts.order?
 
     @order.items        = []
     @order.currency     = opts.config?.currency         || @order.currency      || 'usd'
@@ -175,21 +174,21 @@ class Checkout
       showPromoCode:    true
       termsUrl:         ''
       callToActions:    []
-    @config = _.extend(@config, opts.config) if opts.config?
+    @config = $.extend(@config, opts.config) if opts.config?
 
     @thankyou =
       header:   'Thank You!'
       body:     'Check Your Email For The Order Confirmation.'
-    @thankyou = _.extend(@thankyou, opts.thankyou) if opts.thankyou?
+    @thankyou = $.extend(@thankyou, opts.thankyou) if opts.thankyou?
 
     @theme = {}
-    @theme = _.extend(@theme, opts.theme) if opts.theme?
+    @theme = $.extend(@theme, opts.theme) if opts.theme?
 
     @test = {}
-    @test = _.extend(@test, opts.test) if opts.test?
+    @test = $.extend(@test, opts.test) if opts.test?
 
     @analytics = {}
-    @analytics = _.extend(@analytics, opts.analytics) if opts.analytics?
+    @analytics = $.extend(@analytics, opts.analytics) if opts.analytics?
 
     @referralProgram    = opts.referralProgram
     @taxRates           = opts.taxRates || []
@@ -295,7 +294,7 @@ class Checkout
     if !user?
       return
 
-    @user = _.extend @user, user
+    @user = $.extend @user, user
     @model.user = @user
     @update()
 

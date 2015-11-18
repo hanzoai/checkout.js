@@ -19,7 +19,6 @@
     "crowdcontrol": "^1.0.48",
     "crowdstart.js": "^1.0.5",
     "riot": "2.2.4",
-    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "autoprefixer": "^6.0.3",

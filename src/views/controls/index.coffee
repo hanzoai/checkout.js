@@ -1,5 +1,3 @@
-_ = require('underscore')
-
 crowdcontrol = require 'crowdcontrol'
 Events = crowdcontrol.Events
 InputView = crowdcontrol.view.form.InputView
@@ -9,6 +7,10 @@ analytics = require '../../utils/analytics'
 
 helpers = crowdcontrol.view.form.helpers
 helpers.defaultTagName = 'crowdstart-input'
+
+util = require '../../utils/util'
+isObject = util.isObject
+isNumber = util.isNumber
 
 class Input extends InputView
   tag: 'crowdstart-input'
@@ -260,7 +262,7 @@ helpers.registerValidator ((inputCfg) -> return inputCfg.hints.postalRequired)
 helpers.registerValidator ((inputCfg) -> return inputCfg.hints.required)
 , (model, name)->
   value = model[name]
-  if _.isNumber(value)
+  if isNumber value
     return value
 
   value = value?.trim()
@@ -271,7 +273,7 @@ helpers.registerValidator ((inputCfg) -> return inputCfg.hints.required)
 helpers.registerValidator ((inputCfg) -> return inputCfg.hints.requiredstripe)
 , (model, name)->
   value = model[name]
-  if _.isNumber(value)
+  if isNumber value
     return value
 
   value = value?.trim()
@@ -357,6 +359,6 @@ helpers.registerValidator ((inputCfg) -> return inputCfg.hints.email)
 helpers.registerValidator ((inputCfg) -> return inputCfg.hints.parsenumber)
 , (model, name)->
   value = model[name]
-  if !_.isNumber value
+  if !isNumber value
     return parseFloat value
   return value
