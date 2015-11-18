@@ -2,7 +2,7 @@
   "name": "crowdstart-checkout",
   "version": "2.0.10",
   "description": "One Click Checkout for Crowdstart",
-  "main": "checkout.js",
+  "main": "src/index.coffee",
   "scripts": {
     "test": "cake test"
   },

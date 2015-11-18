@@ -16,10 +16,10 @@ compileJade = (opts, cb) ->
   """
 
 compileCoffee = (src) ->
-  return unless /^src|^templates|src\/checkout.coffee$/.test src
+  return unless /^src|^templates|src\/index.coffee$/.test src
 
   requisite.bundle
-    entry: 'src/checkout.coffee'
+    entry: 'src/index.coffee'
     globalRequire: true
     compilers:
       jade: compileJade
