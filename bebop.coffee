@@ -8,8 +8,9 @@ compileJade = (opts, cb) ->
 
   fn = jade.compile opts.source,
     compileDebug: false
-    debug: false
-    filename: opts.filename
+    debug:        false
+    filename:     opts.filename
+    pretty:       false
 
   cb null, """
   module.exports = #{JSON.stringify fn()}
