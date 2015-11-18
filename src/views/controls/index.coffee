@@ -80,7 +80,7 @@ class Select extends Input
       options = @options()
 
     for name, value of options
-      if _.isObject value
+      if isObject value
         if !@isCustom value
           return false
 
