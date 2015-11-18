@@ -8,9 +8,8 @@ analytics = require '../../utils/analytics'
 helpers = crowdcontrol.view.form.helpers
 helpers.defaultTagName = 'crowdstart-input'
 
-util = require '../../utils/util'
-isObject = util.isObject
-isNumber = util.isNumber
+isObject = require 'is-object'
+isNumber = require 'is-number'
 
 class Input extends InputView
   tag: 'crowdstart-input'
@@ -80,7 +79,7 @@ class Select extends Input
       options = @options()
 
     for name, value of options
-      if _.isObject value
+      if isObject value
         if !@isCustom value
           return false
 
