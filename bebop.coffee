@@ -45,7 +45,7 @@ module.exports =
     jade:   compileCoffee
 
     styl: (src, dst) ->
-      return unless /^css|css\/checkout.styl$/.test src
+      return unless /^css|css\/index.styl$/.test src
 
       CleanCSS     = require 'clean-css'
       autoprefixer = require 'autoprefixer'
@@ -55,7 +55,7 @@ module.exports =
       rupture      = require 'rupture'
       stylus       = require 'stylus'
 
-      src = 'css/checkout.styl'
+      src = 'css/index.styl'
       dst = 'checkout.css'
 
       style = stylus fs.readFileSync src, 'utf8'
