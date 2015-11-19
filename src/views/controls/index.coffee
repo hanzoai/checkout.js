@@ -250,6 +250,13 @@ helpers.registerTag (inputCfg)->
 
 countryUtils = require '../../utils/country'
 
+helpers.registerValidator ((inputCfg) -> return inputCfg.hints.input || inputCfg.hints.password)
+, (model, name)->
+  value = model[name]
+  if !isNumber value
+    value = value?.trim()
+  return value
+
 helpers.registerValidator ((inputCfg) -> return inputCfg.hints.postalRequired)
 , (model, name)->
   value = model[name]
@@ -262,7 +269,7 @@ helpers.registerValidator ((inputCfg) -> return inputCfg.hints.required)
 , (model, name)->
   value = model[name]
   if isNumber value
-    return value
+    return parseFloat value
 
   value = value?.trim()
   throw new Error "Required" if !value? || value == ''
@@ -305,6 +312,7 @@ helpers.registerValidator ((inputCfg) -> return inputCfg.hints.cardnumber)
 , (model, name)->
   value = model[name]
 
+  value = value?.trim()
   if model._type != 'stripe'
     return value
 
@@ -318,6 +326,7 @@ helpers.registerValidator ((inputCfg) -> return inputCfg.hints.expiration)
 , (model, name)->
   value = model[name]
 
+  value = value?.trim()
   if model._type != 'stripe'
     return value
 
@@ -338,6 +347,7 @@ helpers.registerValidator ((inputCfg) -> return inputCfg.hints.cvc)
 , (model, name)->
   value = model[name]
 
+  value = value?.trim()
   if model._type != 'stripe'
     return value
 
@@ -352,12 +362,14 @@ emailRe = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a
 helpers.registerValidator ((inputCfg) -> return inputCfg.hints.email)
 , (model, name)->
   value = model[name]
+  value = value?.trim()
   throw new Error "Enter a valid email" if !emailRe.test value
   return value
 
 helpers.registerValidator ((inputCfg) -> return inputCfg.hints.parsenumber)
 , (model, name)->
   value = model[name]
+  value = value?.trim()
   if !isNumber value
     return parseFloat value
   return value

@@ -44,7 +44,7 @@
     "postcss": "^5.0.12",
     "postcss-discard-comments": "^2.0.0",
     "poststylus": "^0.2.1",
-    "requisite": "^1.11.3",
+    "requisite": "^1.11.5",
     "rucksack-css": "^0.8.2",
     "rupture": "^0.6.1",
     "selenium-standalone": "^4.5.3",

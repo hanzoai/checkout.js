@@ -25,7 +25,7 @@ class Promo extends FormView
   invalidCode: ''
 
   inputConfigs: [
-    input 'promoCode', 'Promo/Coupon Code', 'input uppercase'
+    input 'promoCode', 'Promo/Coupon Code', 'input uppercase trim'
   ]
 
   js: (opts)->

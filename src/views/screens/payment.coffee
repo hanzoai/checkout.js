@@ -17,7 +17,7 @@ class Payment extends Screen
     input 'user.password',          'Password',                 'password'
     input 'user.name',              'Full Name',                'input name required'
     input 'payment.account.number', 'XXXX XXXX XXXX XXXX',      'cardnumber requiredstripe'
-    input 'payment.account.expiry', 'MM / YY',                    'input requiredstripe expiration'
+    input 'payment.account.expiry', 'MM / YY',                  'input requiredstripe expiration'
     input 'payment.account.cvc',    'CVC',                      'input requiredstripe cvc'
   ]
 
