@@ -370,6 +370,4 @@ helpers.registerValidator ((inputCfg) -> return inputCfg.hints.parsenumber)
 , (model, name)->
   value = model[name]
   value = value?.trim()
-  if !isNumber value
-    return parseFloat value
-  return value
+  return parseFloat value
