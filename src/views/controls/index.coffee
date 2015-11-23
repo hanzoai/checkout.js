@@ -304,8 +304,8 @@ helpers.registerValidator ((inputCfg) -> return inputCfg.hints.name)
   value = model[name]
 
   i = value.indexOf ' '
-  model.firstName = name.slice 0, i
-  model.lastName = name.slice i+1
+  model.firstName = value.slice 0, i
+  model.lastName = value.slice i+1
   return value
 
 helpers.registerValidator ((inputCfg) -> return inputCfg.hints.cardnumber)
