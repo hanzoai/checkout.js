@@ -15,6 +15,7 @@ class Promo extends FormView
 
   order:    null
   client:   null
+  freeProduct: null
 
   model:
     promoCode: ''
@@ -85,18 +86,33 @@ class Promo extends FormView
     @codeApplied = false
     @clickedApplyPromoCode = true
     @invalidCode = ''
+    @freeProduct = null
     @update()
 
     @client.util.coupon(@model.promoCode).then((res)=>
-      @locked = false
       coupon = res.responseText
       if coupon.enabled
         @order.coupon = coupon
         @order.couponCodes = [@model.promoCode]
-        @codeApplied = true
+        if coupon.freeProductId != "" && coupon.freeQuantity > 0
+          @client.util.product(coupon.freeProductId).then((res)=>
+            @freeProduct = res.responseText
+            @freeProduct.quantity = coupon.freeQuantity
+            @codeApplied = true
+            @locked = false
+            @update()
+          ).catch (err)=>
+            @codeApplied = true
+            @locked = false
+            @update()
+            console.log "couponFreeProduct Error: #{err}"
+        else
+          @codeApplied = true
+          @locked = false
       else
         @invalidCode = 'expired'
         @clickedApplyPromoCode = false
+        @locked = false
       @update()
     ).catch (err)=>
       @locked = false
