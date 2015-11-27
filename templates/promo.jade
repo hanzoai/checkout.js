@@ -8,17 +8,17 @@
       | Apply
     div(if!='{ !locked && codeApplied }')
       | Apply
-  div(if!='{ !locked && codeApplied && !freeProduct }')
-    .crowdstart-receipt-label
+  .crowdstart-promo-discount(if!='{ !locked && codeApplied && !freeProduct }')
+    .crowdstart-promo-label
       | You Saved
     .crowdstart-money
       | { renderCurrency(order.currency, discount()) }
-  div(if!='{ !locked && codeApplied && freeProduct }')
-    .crowdstart-receipt-label(if='{ freeProduct.quantity === 1 }')
+  .crowdstart-promo-item(if!='{ !locked && codeApplied && freeProduct }')
+    .crowdstart-promo-label(if='{ freeProduct.quantity === 1 }')
       | Free
-    .crowdstart-receipt-label(if='{ freeProduct.quantity > 1 }')
-      | { freeProduct.quantity } Free { freeProduct.name }
-    .crowdstart-money
+    .crowdstart-promo-label(if='{ freeProduct.quantity > 1 }')
+      | { freeProduct.quantity } Free
+    .crowdstart-promo-item-name
       | { freeProduct.name }
   div(if!="{ !locked && invalidCode === '' && model.promoCode !== '' && !clickedApplyPromoCode}")
     | Don't forget to apply your code!
