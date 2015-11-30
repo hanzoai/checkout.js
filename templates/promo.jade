@@ -8,11 +8,13 @@
       | Apply
     div(if!='{ !locked && codeApplied }')
       | Apply
-  .crowdstart-promo-discount(if!='{ !locked && codeApplied && !freeProduct }')
+  .crowdstart-promo-discount(if!='{ !locked && codeApplied && !freeProduct && isApplicable() }')
     .crowdstart-promo-label
       | You Saved
     .crowdstart-money
       | { renderCurrency(order.currency, discount()) }
+  div(if!='{ !locked && codeApplied && !freeProduct && !isApplicable() }')
+    | Code Not Applicable
   .crowdstart-promo-item(if!='{ !locked && codeApplied && freeProduct }')
     .crowdstart-promo-label(if='{ freeProduct.quantity === 1 }')
       | Free

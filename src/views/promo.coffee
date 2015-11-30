@@ -21,7 +21,7 @@ class Promo extends FormView
     promoCode: ''
 
   codeApplied: false
-  clickedApplyPromoCode: false
+  clickedApplyPromoCode: true
   locked: false
   invalidCode: ''
 
@@ -35,6 +35,15 @@ class Promo extends FormView
     @order = opts.order
     @coupon = opts.coupon
     @client = opts.client
+
+  isApplicable: ()->
+    if !@order.coupon.productId? || @order.coupon.productId == ''
+      return true
+
+    for item in @order.items
+      if item.productId == @order.coupon.productId
+        return true
+      return false
 
   discount: ()->
     switch @order.coupon.type
@@ -73,7 +82,11 @@ class Promo extends FormView
   _change: ()->
     super
     requestAnimationFrame ()=>
-      @update()
+      @clickedApplyPromoCode = false
+
+      setTimeout ()=>
+        @update()
+      , 200
 
   resetState: ()->
     @invalidCode = ''
