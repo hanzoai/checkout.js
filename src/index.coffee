@@ -134,6 +134,7 @@ class Checkout
   taxRates: null
 
   reset: true
+  waits: 0
 
   currentScript: null
   script: ['payment', 'shipping', 'thankyou']
@@ -288,12 +289,21 @@ class Checkout
     @obs.off.apply @obs, arguments
 
   update: ()->
-    @obs.trigger Events.Checkout.Update,
-      user:     @user
-      order:    @order
-      config:   @config
+    if @waits == 0
+      #ugly hack
+      items = @order.items
+      @order.items = []
+      riot.update()
 
-    riot.update()
+      @order.items = items
+      riot.update()
+
+      @obs.trigger Events.Checkout.Update,
+        user:     @user
+        order:    @order
+        config:   @config
+
+      riot.update()
 
   setConfig:(@config)->
     @update()
@@ -319,32 +329,36 @@ class Checkout
 
     [id, quantity] = @itemUpdateQueue.shift()
 
+    # delete item
     if quantity == 0
       for item, i in @order.items
         break if item.productId == id || item.productSlug == id
 
-      @order.items.splice i, 1
-      if @itemUpdateQueue.length == 0
-        @update()
+      if i < @order.items.length
+        @order.items.splice i, 1
+        @_setItem()
         return
-      @_setItem()
 
+    # try and update item quantity
     for item, i in @order.items
       continue if item.productId != id && item.productSlug != id
 
       item.quantity = quantity
 
-      if @itemUpdateQueue.length == 0
-        @update()
-        return
       @_setItem()
       return
 
+    # fetch up to date information at time of checkout openning
+    # TODO: Think about revising so we don't report old prices if they changed after checkout is open
     @order.items.push
       id: id
       quantity: quantity
 
+    # waiting for response so don't update
+    @waits++
+
     @client.util.product(id).then((res)=>
+      @waits--
       product = res.responseText
       for item, i in @order.items
         if product.id == item.id || product.slug == item.id
@@ -352,6 +366,7 @@ class Checkout
           break
       @_setItem()
     ).catch (err)=>
+      @waits--
       console.log "setItem Error: #{err}"
       @_setItem()
 
