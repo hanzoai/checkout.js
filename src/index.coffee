@@ -290,7 +290,7 @@ class Checkout
 
   update: ()->
     if @waits == 0
-      #ugly hack
+      #ugly hack to make each loops render in riot
       items = @order.items
       @order.items = []
       riot.update()
@@ -336,8 +336,8 @@ class Checkout
 
       if i < @order.items.length
         @order.items.splice i, 1
-        @_setItem()
-        return
+      @_setItem()
+      return
 
     # try and update item quantity
     for item, i in @order.items
