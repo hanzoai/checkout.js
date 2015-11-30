@@ -205,7 +205,7 @@ class CountrySelect extends Select
         riot.update()
 
   options: ()->
-    return require '../../data/countries'
+    return require('../../data/countries').data
 
   js: ()->
     super

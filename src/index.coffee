@@ -378,6 +378,9 @@ class Checkout
     item.price          = product.price
     item.listPrice      = product.listPrice
 
+Checkout.countries = require './data/countries'
+Checkout.currencies = require './data/currencies'
+
 if window.Crowdstart?
   window.Crowdstart.Checkout = Checkout
 else

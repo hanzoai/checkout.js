@@ -1,4 +1,4 @@
-currencySigns = require '../data/currencies'
+currencySigns = require('../data/currencies').data
 currencySeparator = '.'
 digitsOnlyRe = new RegExp('[^\\d.-]', 'g')
 
