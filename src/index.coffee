@@ -123,7 +123,6 @@ class Checkout
   order: null
   payment: null
   user: null
-  items: null
   itemUpdateQueue: null
   obs: null
   model: null
@@ -183,7 +182,6 @@ class Checkout
     @payment =
       account:
         _type: 'stripe'
-    @items = []
     @itemUpdateQueue = []
 
     @thankyou =
@@ -321,41 +319,49 @@ class Checkout
 
     [id, quantity] = @itemUpdateQueue.shift()
 
-    set = false
     if quantity == 0
-      for item, i in @items
-        if item.id == id
-          break
+      for item, i in @order.items
+        break if item.productId == id || item.productSlug == id
 
-      @items.splice i, 1
       @order.items.splice i, 1
+      if @itemUpdateQueue.length == 0
+        @update()
+        return
+      @_setItem()
+
+    for item, i in @order.items
+      continue if item.productId != id && item.productSlug != id
+
+      item.quantity = quantity
+
+      if @itemUpdateQueue.length == 0
+        @update()
+        return
+      @_setItem()
       return
 
-    for item, i in @items
-      if item.id == id
-        set = true
-        item.quantity = quantity
-        @items[i].quantity = quantity
+    @order.items.push
+      id: id
+      quantity: quantity
 
-    if !set
-      @items.push
-        id: item
-        quantity: quantity
-
-      @client.util.product(id).then((res)=>
-        product = res.responseText
-        @order.items.push
-          productId: product.id
-          productName: product.name
-          quantity: quantity
-          price: product.price
-          listPrice: product.listPrice
-        @_setItem()
-      ).catch (err)=>
-        console.log "setItem Error: #{err}"
-        @_setItem()
-    else
+    @client.util.product(id).then((res)=>
+      product = res.responseText
+      for item, i in @order.items
+        if product.id == item.id || product.slug == item.id
+          @_updateItem product, item
+          break
       @_setItem()
+    ).catch (err)=>
+      console.log "setItem Error: #{err}"
+      @_setItem()
+
+  _updateItem: (product, item)->
+    item.id             = undefined
+    item.productId      = product.id
+    item.productSlug    = product.slug
+    item.productName    = product.name
+    item.price          = product.price
+    item.listPrice      = product.listPrice
 
 if window.Crowdstart?
   window.Crowdstart.Checkout = Checkout
