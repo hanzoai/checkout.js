@@ -49,7 +49,7 @@ class Select extends Input
   tag: 'crowdstart-select'
   html: require '../../../templates/control/select.jade'
   tags: false
-  min: Infinity
+  min: 10
 
   lastValueSet: null
 
@@ -169,7 +169,6 @@ class StateSelect extends Select
   tag: 'crowdstart-state-select'
   html: require '../../../templates/control/stateselect.jade'
   country: ''
-  min: 1
 
   events:
     "#{Events.Country.Set}": (@country) ->
