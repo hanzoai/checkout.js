@@ -40,6 +40,10 @@ head.appendChild style
 #   callToActions:      [string, string] (Up to 2 element array containing the text for the confirmation button)
 #   shippingDetails:    string (description of when shipping happens)
 #   showPromoCode:      bool (defaults: true, show the promo/coupon code)
+#   processors: {
+#       stripe:         bool (defaults: true, show the stripe checkout
+#       paypal:         bool (defaults: false, show the paypal checkout
+#   }
 # }
 #
 # Format of opts.taxRates
@@ -147,6 +151,15 @@ class Checkout
       while (match = search.exec(q))
         qs[decodeURIComponent(match[1])] = decodeURIComponent(match[2])
 
+    @config =
+      showPromoCode:    true
+      termsUrl:         ''
+      callToActions:    []
+      processors:
+        stripe: true
+        paypal: true
+    @config = $.extend(@config, opts.config) if opts.config?
+
     @user = opts.user || {}
 
     @order = {}
@@ -159,7 +172,10 @@ class Checkout
     @order.shippingAddress =
       country: 'us'
     @order.discount = 0
-    @order.type = 'stripe'
+    if @config.processors.stripe
+      @order.type = 'stripe'
+    else if @config.processors.paypal
+      @order.type = 'paypal'
 
     if qs.referrer?
       @order.referrerId = qs.referrer || @order.referrerId
@@ -169,12 +185,6 @@ class Checkout
         _type: 'stripe'
     @items = []
     @itemUpdateQueue = []
-
-    @config =
-      showPromoCode:    true
-      termsUrl:         ''
-      callToActions:    []
-    @config = $.extend(@config, opts.config) if opts.config?
 
     @thankyou =
       header:   'Thank You!'

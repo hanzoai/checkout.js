@@ -28,6 +28,15 @@ class Payment extends Screen
     "#{ Events.Screen.Payment.ChoosePaypal }": ()->
       @setSelected 'paypal'
 
+  hasProcessors: ()->
+    return @hasPaypal() && @hasStripe()
+
+  hasPaypal: ()->
+    return @model.config.processors.paypal
+
+  hasStripe: ()->
+    return @model.config.processors.stripe
+
   setSelected: (selected)->
     @model.order.type = selected
     @model.payment.account._type = selected

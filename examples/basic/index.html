@@ -35,7 +35,11 @@
               config: {
                 callToActions:  ['pre-order', 'confirm'],
                 termsUrl:       '/terms.html',
-                shippingDetails: 'Estimated Shipping Date: 2 Months'
+                shippingDetails: 'Estimated Shipping Date: 2 Months',
+                processors: {
+                  stripe: true,
+                  paypal: false,
+                },
               },
               test: {
                 endpoint:   'https://api.staging.crowdstart.com/',
