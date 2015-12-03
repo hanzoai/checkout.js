@@ -68,8 +68,8 @@ class Shipping extends Screen
       order:    @model.order
       payment:  @model.payment
 
-    @client.payment.paypal(data).then((res)=>
-      @payKey = res.responseText.payKey
+    @client.checkout.paypal(data).then((order)=>
+      @payKey = order.payKey
 
       analytics.track 'Completed Checkout Step',
         step: 2
@@ -90,9 +90,9 @@ class Shipping extends Screen
       order:    @model.order
       payment:  @model.payment
 
-    @client.payment.charge(data).then((res)=>
+    @client.checkout.charge(data).then((order)=>
       coupon = @model.order.coupon || {}
-      @model.order = res.responseText
+      @model.order = order
 
       analytics.track 'Completed Checkout Step',
         step: 2
@@ -121,12 +121,12 @@ class Shipping extends Screen
         analytics.track @model.analytics.pixels?.checkout
 
       if @model.referralProgram?
-        @client.payment.newReferrer(
+        @client.referrer.create(
           userId: @model.order.userId
           orderId: @model.order.orderId
           program: @model.referralProgram
-        ).then((res)=>
-          @model.referrerId = res.responseText.id
+        ).then((referrer)=>
+          @model.referrerId = referrer.id
         ).catch (err)->
           console.log "new referralProgram Error: #{err}"
 
