@@ -18,7 +18,7 @@
   "dependencies": {
     "card": "^1.0.0",
     "crowdcontrol": "^1.0.54",
-    "crowdstart.js": "^2.2.2",
+    "crowdstart.js": "^2.2.3",
     "is-number": "^2.0.2",
     "is-object": "^1.0.1",
     "requisite": "^1.11.0",
