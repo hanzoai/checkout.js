@@ -102,8 +102,7 @@ class Promo extends FormView
     @freeProduct = null
     @update()
 
-    @client.util.coupon(@model.promoCode).then((res)=>
-      coupon = res.responseText
+    @client.coupon.get(@model.promoCode).then((coupon)=>
       if coupon.enabled
         @order.coupon = coupon
         @order.couponCodes = [@model.promoCode]

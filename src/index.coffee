@@ -8,7 +8,7 @@ crowdcontrol = require 'crowdcontrol'
 requestAnimationFrame = crowdcontrol.utils.shim.requestAnimationFrame
 
 Events = crowdcontrol.Events
-Client = require 'crowdstart.js'
+Crowdstart = require 'crowdstart.js'
 
 # These don't return anything but register stuff with crowdcontrol
 require './events'
@@ -140,9 +140,9 @@ class Checkout
   script: ['payment', 'shipping', 'thankyou']
 
   constructor: (@key, opts = {})->
-    @client = new Client(@key)
-    if opts?.test?.endpoint?
-      @client.endpoint = opts.test.endpoint
+    @client = new Crowdstart.Api
+      key: @key
+      endpoint: opts?.test?.endpoint
 
     search = /([^&=]+)=?([^&]*)/g
     q = window.location.href.split('?')[1]
@@ -357,9 +357,8 @@ class Checkout
     # waiting for response so don't update
     @waits++
 
-    @client.util.product(id).then((res)=>
+    @client.product.get(id).then((product)=>
       @waits--
-      product = res.responseText
       for item, i in @order.items
         if product.id == item.id || product.slug == item.id
           @_updateItem product, item
