@@ -1,7 +1,7 @@
 {
-  "name": "checkout.js",
+  "name": "Checkout.js",
   "version": "2.1.1",
-  "description": "One Click Checkout for Crowdstart",
+  "description": "One-click checkout for Crowdstart",
   "main": "lib/",
   "scripts": {
     "test": "cake test",
