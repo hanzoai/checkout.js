@@ -1,5 +1,5 @@
 {
-  "name": "Checkout.js",
+  "name": "checkout.js",
   "version": "2.1.1",
   "description": "One-click checkout for Crowdstart.",
   "main": "lib/",
