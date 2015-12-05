@@ -1,4 +1,4 @@
-# Crowdstart Checkout
+# Checkout.js  [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![NPM version][npm-image]][npm-url]  [![Gitter chat][gitter-image]][gitter-url]
 Our checkout widget makes it possible to start taking pre-orders in minutes,
 and is quite customizable.
 
@@ -53,3 +53,16 @@ documentation](http://www.crowdstart.com/docs/checkout).
 
 ## Testing
 To test locally, [phantomjs2](https://www.npmjs.com/package/phantomjs2) must be installed.
+
+[crowdstart]: https://crowdstart.com
+[checkout.js]: https://cdn.rawgit.com/crowdstart/checkout.js/v2.1.1/checkout.min.js
+[travis-url]: https://travis-ci.org/crowdstart/checkout.js
+[travis-image]: https://img.shields.io/travis/crowdstart/checkout.js.svg
+[coveralls-url]: https://coveralls.io/r/crowdstart/checkout.js/
+[coveralls-image]: https://img.shields.io/coveralls/crowdstart/checkout.js.svg
+[npm-url]: https://www.npmjs.com/package/checkout.js
+[npm-image]: https://img.shields.io/npm/v/checkout.js.svg
+[downloads-image]: https://img.shields.io/npm/dm/checkout.js.svg
+[downloads-url]: http://badge.fury.io/js/checkout.js
+[gitter-url]: https://gitter.im/crowdstart/chat
+[gitter-image]: https://img.shields.io/badge/gitter-chat-brightgreen.svg
