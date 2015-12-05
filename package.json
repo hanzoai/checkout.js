@@ -1,23 +1,32 @@
 {
   "name": "Checkout.js",
   "version": "2.1.1",
-  "description": "One-click checkout for Crowdstart",
+  "description": "One-click checkout for Crowdstart.",
   "main": "lib/",
+  "engines": {
+    "node": ">=4.0.0"
+  },
   "scripts": {
     "test": "cake test",
-    "prepublish": "cake build"
+    "prepublish": "cake build-min"
   },
   "keywords": [
+    "browser",
     "cart",
     "checkout",
     "checkout.js",
     "crowdfunding",
     "crowdstart",
     "ecommerce",
+    "payments",
     "shopping",
     "store"
   ],
-  "author": "Crowdstart, LLC",
+  "author": "Crowdstart, LLC <hi@crowdstart.com> (http://crowdstart.com)",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/crowdstart/checkout.js"
+  },
   "license": "MIT",
   "dependencies": {
     "card": "^1.0.0",
@@ -53,7 +62,7 @@
     "rupture": "^0.6.1",
     "selenium-standalone": "^4.5.3",
     "serve-static": "^1.10.0",
-    "shortcake": "^0.3.0",
+    "shortcake": "^1.1.7",
     "stylus": "^0.52.4",
     "typographic": "^2.9.3",
     "uglify-js": "^2.6.1",
