@@ -1,123 +1,134 @@
-exec = require('shortcake').exec
+require 'shortcake'
 
-option '-b', '--browser [browserName]', 'Browser to test with'
-option '-s', '--external-selenium',     'Use external selenium'
-option '-v', '--verbose',               'Enable verbose logging for tests'
+fs        = require 'fs'
+requisite = require 'requisite'
+
+option '-b', '--browser [browser]', 'browser to use for tests'
+option '-g', '--grep [filter]',     'test filter'
+option '-t', '--test [test]',       'specify test to run'
+option '-v', '--verbose',           'enable verbose test logging'
 
 task 'build', 'Build module and bundled checkout.js', ->
   exec 'node_modules/.bin/bebop -c'
 
-  # compile everything for use as a node library
-  exec 'node_modules/.bin/coffee -bcm -o lib/ src/'
+task 'clean', 'clean project', ->
+  exec 'rm -rf lib'
 
 task 'watch', 'watch for changes and recompile', ->
   exec 'node_modules/.bin/bebop'
 
-task 'deploy', 'deploy new version', ->
-  exec [
-    'cake build'
-    'git commit -am "Updated generated files"'
-    'git pull --tags'
-    'npm version patch'
-    'git push'
-    'git push --tags'
-  ]
+task 'build-min', 'build project', ['build'], ->
+  exec 'uglifyjs checkout.js --compress --mangle --lint=false > checkout.min.js'
 
-task 'static-server', 'Run static server for tests', ->
-  connect = require 'connect'
-  server = connect()
-  server.use (require 'serve-static') './test'
+server = do require 'connect'
 
+task 'static-server', 'Run static server for tests', (cb) ->
   port = process.env.PORT ? 3333
-  console.log "Static server started at http://localhost:#{port}"
-  server.listen port
 
-task 'selenium-install', 'Install selenium standalone', (cb) ->
-  selenium = require('selenium-standalone')
-  selenium.install
-    version: '2.47.1'
-    baseURL: 'http://selenium-release.storage.googleapis.com'
-    drivers:
-      chrome:
-        version: '2.15'
-        arch: process.arch
-        baseURL: 'http://chromedriver.storage.googleapis.com'
-      ie:
-        version: '2.45'
-        arch: process.arch
-        baseURL: 'http://selenium-release.storage.googleapis.com'
-    logger: (message) ->
-    progressCb: (totalLength, progressLength, chunkLength) ->
-  , cb
+  server.use (require 'serve-static') './test/fixtures'
+  server = require('http').createServer(server).listen port, cb
 
-task 'test', 'Run tests', ['selenium-install'], (options) ->
-  browserName      = options.browser ? 'phantomjs'
-  externalSelenium = options.externalSelenium ? false
-  verbose          = options.verbose ? false
+task 'test', 'Run tests', ['static-server'], (opts) ->
+  bail     = opts.bail     ? true
+  coverage = opts.coverage ? false
+  grep     = opts.grep     ? ''
+  test     = opts.test     ? 'test/ test/server/ test/browser/'
+  verbose  = opts.verbose  ? ''
 
-  invoke 'static-server'
+  bail    = '--bail' if bail
+  grep    = "--grep #{opts.grep}" if grep
+  verbose = 'DEBUG=nightmare VERBOSE=true' if verbose
 
-  runTest = (cb) ->
-    exec "NODE_ENV=test
-          BROWSER=#{browserName}
-          VERBOSE=#{verbose}
-          node_modules/.bin/mocha
-          --compilers coffee:coffee-script/register
-          --reporter spec
-          --colors
-          --timeout 90000
-          test/test.coffee", cb
+  if coverage
+    bin = 'istanbul --print=none cover _mocha --'
+  else
+    bin = 'mocha'
 
-  if externalSelenium
-    runTest (err) ->
-      process.exit 1 if err?
-      process.exit 0
+  {status} = yield exec.interactive "NODE_ENV=test #{verbose}
+        #{bin}
+        --colors
+        --reporter spec
+        --timeout 10000000
+        --compilers coffee:coffee-script/register
+        --require co-mocha
+        --require postmortem/register
+        #{bail}
+        #{grep}
+        #{test}"
 
-  selenium = require 'selenium-standalone'
-  selenium.start
-    version: '2.47.1'
-    spawnOptions:
-      stdio: 'inherit'
-  , (err, child) ->
-    throw err if err?
+  server.close()
+  process.exit status
 
-    kill = ->
-      child.kill 'SIGKILL'
-      child = null
+task 'test-ci', 'Run tests', (opts) ->
+  invoke 'test', bail: true, coverage: true
 
-    child.on 'SIGINT', kill
-    child.on 'exit', kill
+task 'coverage', 'Process coverage statistics', ->
+  exec '''
+    cat ./coverage/lcov.info | coveralls
+    cat ./coverage/coverage.json | codecov
+    rm -rf coverage/
+    '''
 
-    runTest (err) ->
-      kill()
-      process.exit 1 if err?
-      process.exit 0
+task 'watch', 'watch for changes and recompile project', ->
+  exec 'coffee -bcmw -o lib/ src/'
 
+task 'watch:test', 'watch for changes and re-run tests', ->
+  invoke 'watch'
 
-task 'test-ci', 'Run tests on CI server', ->
-  invoke 'selenium-install', ->
-    invoke 'test'
+  require('vigil').watch __dirname, (filename, stats) ->
+    if /^src/.test filename
+      invoke 'test'
 
-task 'test-ci-full', 'Run tests on CI server (all browsers)', ->
-  invoke 'static-server'
+    if /^test/.test filename
+      invoke 'test', test: filename
 
-  browsers = require './test/ci-config'
+task 'major', ['version'], ->
+task 'minor', ['version'], ->
+task 'patch', ['version'], ->
+task 'version', 'change version of project', (opts) ->
+  {stdout, stderr} = yield exec.quiet 'git status --porcelain'
+  if stderr or stdout
+    console.log 'working directory not clean'
+    return
 
-  tests = for {browserName, platform, version, deviceName, deviceOrientation} in browsers
-    "NODE_ENV=test
-     BROWSER=\"#{browserName}\"
-     PLATFORM=\"#{platform}\"
-     VERSION=\"#{version}\"
-     DEVICE_NAME=\"#{deviceName ? ''}\"
-     DEVICE_ORIENTATION=\"#{deviceOrientation ? ''}\"
-     VERBOSE=true
-     node_modules/.bin/mocha
-     --compilers coffee:coffee-script/register
-     --reporter spec
-     --colors
-     --timeout 60000
-     test/test.coffee"
+  yield invoke 'build-min'
 
-  exec tests, (err) ->
-    process.exit 1 if err?
-    process.exit 0
+  pkg     = require './package'
+  version = pkg.version
+
+  level = (opts.arguments.filter (v) -> v isnt 'version')[0]
+  [major, minor, patch] = (parseInt n for n in version.split '.')
+
+  switch level
+    when 'major'
+      newVersion = "#{major + 1}.0.0"
+    when 'minor'
+      newVersion = "#{major}.#{minor + 1}.0"
+    when 'patch'
+      newVersion = "#{major}.#{minor}.#{patch + 1}"
+    else
+      console.log 'Unable to parse versioning'
+      process.exit 1
+
+  console.log "v#{version} -> v#{newVersion}"
+  console.log
+
+  data = fs.readFileSync 'README.md', 'utf8'
+  data = data.replace (new RegExp version, 'g'), newVersion
+  fs.writeFileSync 'README.md', data, 'utf8'
+
+  pkg.version = newVersion
+  fs.writeFileSync 'package.json', (JSON.stringify pkg, null, 2), 'utf8'
+
+  yield exec """
+  git add .
+  git commit -m #{newVersion}
+  git tag v#{newVersion}
+  """
+
+task 'publish', 'publish project', ->
+  exec.parallel '''
+  git push
+  git push --tags
+  npm publish
+  '''
