@@ -20,7 +20,7 @@ Set the `href` of your button to `#checkout`.
 Configure the checkout widget however you'd like.
 
 ```javascript
-<script src="https://cdn.rawgit.com/crowdstart/checkout.js/v2.1.2/checkout.min.js"></script>
+<script src="https://cdn.rawgit.com/crowdstart/checkout.js/v2.1.3/checkout.min.js"></script>
 <script>
   // Create a new client for Crowdstart API.
   var api = new Crowdstart.API('eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJiaXQiOjI0LCJqdGkiOiJVMDc0RlU3MHVhWSIsInN1YiI6IkVxVEdveHA1dTMifQ.g_MqPv2s0DnyFdhkUMzYn9mtKaXNwmlEM14WcFq_s5Yd2eqH16TB9thxOdDE8ylcoBMgyI3eimSHJxGq7oj-EA')
@@ -57,9 +57,9 @@ see it in action in the [Crowdstart
 documentation](http://www.crowdstart.com/docs/checkout).
 
 [examples]: https://github.com/crowdstart/checkout.js/tree/master/examples
-[checkout-image]: https://cdn.rawgit.com/crowdstart/checkout.js/v2.1.2/examples/basic/basic_screenshot.png
+[checkout-image]: https://cdn.rawgit.com/crowdstart/checkout.js/v2.1.3/examples/basic/basic_screenshot.png
 [crowdstart]: https://crowdstart.com
-[checkout.js]: https://cdn.rawgit.com/crowdstart/checkout.js/v2.1.2/checkout.min.js
+[checkout.js]: https://cdn.rawgit.com/crowdstart/checkout.js/v2.1.3/checkout.min.js
 [travis-url]: https://travis-ci.org/crowdstart/checkout.js
 [travis-image]: https://img.shields.io/travis/crowdstart/checkout.js.svg
 [coveralls-url]: https://coveralls.io/r/crowdstart/checkout.js/
