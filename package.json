@@ -8,10 +8,14 @@
     "prepublish": "cake build"
   },
   "keywords": [
+    "cart",
     "checkout",
+    "checkout.js",
     "crowdfunding",
-    "store",
-    "ecommerce"
+    "crowdstart",
+    "ecommerce",
+    "shopping",
+    "store"
   ],
   "author": "Crowdstart, LLC",
   "license": "MIT",
