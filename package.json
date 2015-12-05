@@ -34,7 +34,6 @@
     "crowdstart.js": "^2.2.3",
     "is-number": "^2.1.0",
     "is-object": "^1.0.1",
-    "requisite": "^1.11.0",
     "riot": "2.2.4"
   },
   "devDependencies": {
@@ -47,7 +46,6 @@
     "css-mqpacker": "^4.0.0",
     "cssnano": "^3.1.0",
     "csswring": "^4.0.0",
-    "executive": "^0.5.0",
     "jade": "^1.11.0",
     "lost": "^6.6.2",
     "lost-stylus": "^0.1.2",
