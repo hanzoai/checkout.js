@@ -3,7 +3,7 @@ Our checkout widget makes it possible to start taking pre-orders in minutes,
 and is quite customizable.
 
 ## Preview
-![Screenshot Preview](examples/basic/basic_screenshot.png)
+![Checkout.js Image][checkout-image]
 
 ## Install
 ```bash
@@ -52,13 +52,12 @@ Configure the checkout widget however you'd like.
 ```
 
 ## Examples
-You can find examples in [examples/](examples/basic/index.html). You can also
+You can find examples in the [Github repo][examples]. You can also
 see it in action in the [Crowdstart
 documentation](http://www.crowdstart.com/docs/checkout).
 
-## Testing
-To test locally, [phantomjs2](https://www.npmjs.com/package/phantomjs2) must be installed.
-
+[examples]: https://github.com/crowdstart/checkout.js/tree/master/examples
+[checkout-image]: https://cdn.rawgit.com/crowdstart/checkout.js/v2.1.2/examples/basic/basic_screenshot.png
 [crowdstart]: https://crowdstart.com
 [checkout.js]: https://cdn.rawgit.com/crowdstart/checkout.js/v2.1.2/checkout.min.js
 [travis-url]: https://travis-ci.org/crowdstart/checkout.js
