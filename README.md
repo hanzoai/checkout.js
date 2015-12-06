@@ -56,17 +56,18 @@ You can find examples in the [Github repo][examples]. You can also
 see it in action in the [Crowdstart
 documentation](http://www.crowdstart.com/docs/checkout).
 
-[examples]: https://github.com/crowdstart/checkout.js/tree/master/examples
-[checkout-image]: https://cdn.rawgit.com/crowdstart/checkout.js/v2.1.3/examples/basic/basic_screenshot.png
-[crowdstart]: https://crowdstart.com
-[checkout.js]: https://cdn.rawgit.com/crowdstart/checkout.js/v2.1.3/checkout.min.js
-[travis-url]: https://travis-ci.org/crowdstart/checkout.js
-[travis-image]: https://img.shields.io/travis/crowdstart/checkout.js.svg
-[coveralls-url]: https://coveralls.io/r/crowdstart/checkout.js/
+[checkout-image]:  https://cdn.rawgit.com/crowdstart/checkout.js/v2.1.3/examples/basic/basic_screenshot.png
+[checkout.js]:     https://cdn.rawgit.com/crowdstart/checkout.js/v2.1.3/checkout.min.js
+[crowdstart]:      https://crowdstart.com
+[examples]:        https://github.com/crowdstart/checkout.js/tree/master/examples
+
 [coveralls-image]: https://img.shields.io/coveralls/crowdstart/checkout.js.svg
-[npm-url]: https://www.npmjs.com/package/checkout.js
-[npm-image]: https://img.shields.io/npm/v/checkout.js.svg
+[coveralls-url]:   https://coveralls.io/r/crowdstart/checkout.js/
 [downloads-image]: https://img.shields.io/npm/dm/checkout.js.svg
-[downloads-url]: http://badge.fury.io/js/checkout.js
-[gitter-url]: https://gitter.im/crowdstart/chat
-[gitter-image]: https://img.shields.io/badge/gitter-chat-brightgreen.svg
+[downloads-url]:   http://badge.fury.io/js/checkout.js
+[gitter-image]:    https://img.shields.io/badge/gitter-join_chat-brightgreen.svg
+[gitter-url]:      https://gitter.im/crowdstart/chat
+[npm-image]:       https://img.shields.io/npm/v/checkout.js.svg
+[npm-url]:         https://www.npmjs.com/package/checkout.js
+[travis-image]:    https://img.shields.io/travis/crowdstart/checkout.js.svg
+[travis-url]:      https://travis-ci.org/crowdstart/checkout.js
