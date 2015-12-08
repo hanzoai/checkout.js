@@ -5,7 +5,7 @@ riot = require 'riot'
 window.riot = riot
 
 crowdcontrol = require 'crowdcontrol'
-requestAnimationFrame = crowdcontrol.utils.shim.requestAnimationFrame
+requestAnimationFrame = require 'raf'
 
 Events = crowdcontrol.Events
 Crowdstart = require 'crowdstart.js'

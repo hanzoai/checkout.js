@@ -3,7 +3,7 @@ riot = require 'riot'
 crowdcontrol = require 'crowdcontrol'
 Events = crowdcontrol.Events
 View = crowdcontrol.view.View
-requestAnimationFrame = crowdcontrol.utils.shim.requestAnimationFrame
+requestAnimationFrame = require 'raf'
 
 class ScreenManager extends View
   tag: 'screen-manager'
