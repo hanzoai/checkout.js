@@ -9,6 +9,7 @@ option '-t', '--test [test]',       'specify test to run'
 option '-v', '--verbose',           'enable verbose test logging'
 
 task 'build', 'Build module and bundled checkout.js', ->
+  exec 'coffee -bcm -o lib/ src/'
   exec 'node_modules/.bin/bebop -c'
 
 task 'clean', 'clean project', ->
