@@ -9,14 +9,17 @@ option '-t', '--test [test]',       'specify test to run'
 option '-v', '--verbose',           'enable verbose test logging'
 
 task 'build', 'Build module and bundled checkout.js', ->
-  exec 'coffee -bcm -o lib/ src/'
-  exec 'node_modules/.bin/bebop -c'
+  exec.parallel '''
+    coffee -bcm -o lib/ src/'
+    bebop -c'
+  '''
 
 task 'clean', 'clean project', ->
   exec 'rm -rf lib'
 
 task 'watch', 'watch for changes and recompile', ->
-  exec 'node_modules/.bin/bebop'
+  exec 'coffee -bcmw -o lib/ src/'
+  exec 'bebop'
 
 task 'build-min', 'build project', ['build'], ->
   exec 'uglifyjs checkout.js --compress --mangle --lint=false > checkout.min.js'
