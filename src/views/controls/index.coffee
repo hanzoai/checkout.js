@@ -104,6 +104,8 @@ class Select extends Input
     @on 'updated', ()=>
       $select = $(@root).find('select')
       if $select[0]?
+        $(@root).children('.select2').css
+          width: '100%'
         if !@initialized
           requestAnimationFrame ()=>
             @initSelect($select)
