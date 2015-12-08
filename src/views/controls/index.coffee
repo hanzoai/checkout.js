@@ -46,7 +46,7 @@ class Checkbox extends Input
 
 Checkbox.register()
 
-isABrokenBrowser = (window.navigator.userAgent.indexOf('MSIE ') > 0)
+isABrokenBrowser = (window.navigator.userAgent.indexOf('MSIE') > 0 || window.navigator.userAgent.indexOf('Trident') > 0)
 
 class Select extends Input
   tag: 'crowdstart-select'
