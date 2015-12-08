@@ -1,6 +1,6 @@
 {
   "name": "checkout.js",
-  "version": "2.1.7",
+  "version": "2.1.8",
   "description": "Easy to use checkout widget powered by Crowdstart.",
   "main": "lib/",
   "engines": {
