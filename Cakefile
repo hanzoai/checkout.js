@@ -17,10 +17,6 @@ task 'build', 'Build module and bundled checkout.js', ->
 task 'clean', 'clean project', ->
   exec 'rm -rf lib'
 
-task 'watch', 'watch for changes and recompile', ->
-  exec 'coffee -bcmw -o lib/ src/'
-  exec 'bebop'
-
 task 'build-min', 'build project', ['build'], ->
   exec 'uglifyjs checkout.js --compress --mangle --lint=false > checkout.min.js'
 
@@ -36,7 +32,8 @@ task 'test', 'Run tests', ['static-server'], (opts) ->
   bail     = opts.bail     ? true
   coverage = opts.coverage ? false
   grep     = opts.grep     ? ''
-  test     = opts.test     ? 'test/ test/server/ test/browser/'
+  test     = opts.test     ? 'test/'
+
   verbose  = opts.verbose  ? ''
 
   bail    = '--bail' if bail
@@ -75,6 +72,7 @@ task 'coverage', 'Process coverage statistics', ->
 
 task 'watch', 'watch for changes and recompile project', ->
   exec 'coffee -bcmw -o lib/ src/'
+  exec 'bebop -o'
 
 task 'watch:test', 'watch for changes and re-run tests', ->
   invoke 'watch'
