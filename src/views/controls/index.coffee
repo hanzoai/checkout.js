@@ -2,6 +2,7 @@ crowdcontrol = require 'crowdcontrol'
 Events = crowdcontrol.Events
 InputView = crowdcontrol.view.form.InputView
 requestAnimationFrame = require 'raf'
+Promise = require 'broken'
 
 analytics = require '../../utils/analytics'
 
