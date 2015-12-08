@@ -3,7 +3,7 @@ riot = require 'riot'
 crowdcontrol = require 'crowdcontrol'
 Events = crowdcontrol.Events
 FormView = crowdcontrol.view.form.FormView
-requestAnimationFrame = crowdcontrol.utils.shim.requestAnimationFrame
+requestAnimationFrame = require 'raf'
 
 input = require '../utils/input'
 
