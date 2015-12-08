@@ -46,6 +46,8 @@ class Checkbox extends Input
 
 Checkbox.register()
 
+isABrokenBrowser = (window.navigator.userAgent.indexOf('MSIE ') > 0)
+
 class Select extends Input
   tag: 'crowdstart-select'
   html: require '../../../templates/control/select.jade'
@@ -102,11 +104,15 @@ class Select extends Input
     opts.style = opts.style || 'width:100%'
     @selectOptions = opts.options
 
+    if isABrokenBrowser
+      requestAnimationFrame ()=>
+        $(@root).children('.select2').css width: '100%'
+
     @on 'updated', ()=>
       $select = $(@root).find('select')
       if $select[0]?
-        $select2 = $(@root).children('.select2')
-        $select2.css width: '100%' if $select2.width() < 10
+        if isABrokenBrowser
+          $(@root).children('.select2').css width: '100%'
         if !@initialized
           requestAnimationFrame ()=>
             @initSelect($select)

@@ -1523,6 +1523,12 @@ label{
 .crowdstart-checkout.crowdstart-narrow .crowdstart-card-widget > .crowdstart-card:nth-child(2n + 1){
   clear:left;
 }
+@media screen 0{
+  .crowdstart-form-control input,
+  .select2-container input{
+    padding-bottom:0.8em;
+  }
+}
 @media only screen and (max-width: 350px){
   .crowdstart-active .crowdstart-checkout{
     -webkit-transform:scale(0.6, 0.6);
