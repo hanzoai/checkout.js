@@ -104,8 +104,8 @@ class Select extends Input
     @on 'updated', ()=>
       $select = $(@root).find('select')
       if $select[0]?
-        $(@root).children('.select2').css
-          width: '100%'
+        $select2 = $(@root).children('.select2')
+        $select2.css width: '100%' if $select2.width() < 10
         if !@initialized
           requestAnimationFrame ()=>
             @initSelect($select)
@@ -317,7 +317,7 @@ helpers.registerValidator ((inputCfg) -> return inputCfg.hints.cardnumber)
   if model._type != 'stripe'
     return value
 
-  return crowdcontrol.utils.shim.promise.new (resolve, reject)->
+  return new Promise (resolve, reject)->
     requestAnimationFrame ()->
       if $('input[name=number]').hasClass('jp-card-invalid')
         reject new Error('Enter a valid card number')
@@ -338,7 +338,7 @@ helpers.registerValidator ((inputCfg) -> return inputCfg.hints.expiration)
   model.month = (date[0]).trim?()
   model.year = ('' + (new Date()).getFullYear()).substr(0, 2) + (date[1]).trim?()
 
-  return crowdcontrol.utils.shim.promise.new (resolve, reject)->
+  return new Promise (resolve, reject)->
     requestAnimationFrame ()->
       if $('input[name=expiry]').hasClass('jp-card-invalid')
         reject new Error('Enter a valid expiration date')
@@ -352,7 +352,7 @@ helpers.registerValidator ((inputCfg) -> return inputCfg.hints.cvc)
   if model._type != 'stripe'
     return value
 
-  return crowdcontrol.utils.shim.promise.new (resolve, reject)->
+  return new Promise (resolve, reject)->
     requestAnimationFrame ()->
       if $('input[name=cvc]').hasClass('jp-card-invalid')
         reject new Error('Enter a valid CVC number')
