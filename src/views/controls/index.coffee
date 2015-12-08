@@ -96,6 +96,7 @@ class Select extends Input
       tags: @tags
       placeholder: @model.placeholder
       minimumResultsForSearch: @min
+      width: '100%' if isABrokenBrowser
     ).change((event)=>@change(event))
 
   js:(opts)->
@@ -104,9 +105,6 @@ class Select extends Input
     opts.style = opts.style || 'width:100%'
     @selectOptions = opts.options
 
-    if isABrokenBrowser
-      requestAnimationFrame ()=>
-        $(@root).children('.select2').css width: '100%'
 
     @on 'updated', ()=>
       $select = $(@root).find('select')
