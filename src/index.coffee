@@ -1,31 +1,21 @@
-theme = require './utils/theme'
+Crowdstart            = require 'crowdstart.js'
+crowdcontrol          = require 'crowdcontrol'
+requestAnimationFrame = require 'raf'
+riot = window.riot    = require 'riot'
+
+# Require Select2 and Select2 styles
+require '../vendor/js/select2'
+require('style-inject') require '../vendor/css/select2'
+
+theme     = require './utils/theme'
 analytics = require './utils/analytics'
 
-riot = require 'riot'
-window.riot = riot
-
-crowdcontrol = require 'crowdcontrol'
-requestAnimationFrame = require 'raf'
-
 Events = crowdcontrol.Events
-Crowdstart = require 'crowdstart.js'
 
 # These don't return anything but register stuff with crowdcontrol
 require './events'
 Views = require './views'
 Widget = Views.Widget
-
-require '../vendor/js/select2'
-select2Css = require '../vendor/css/select2'
-
-head = document.head || document.getElementsByTagName('head')[0]
-style = document.createElement 'STYLE'
-style.type = 'text/css'
-if style.styleSheet
-  style.styleSheet.cssText = select2Css
-else
-  style.appendChild document.createTextNode select2Css
-head.appendChild style
 
 # Format of opts.config
 # {
