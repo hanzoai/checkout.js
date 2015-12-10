@@ -5,7 +5,8 @@ Screen = require './screen'
 analytics = require '../../utils/analytics'
 input     = require '../../utils/input'
 
-require 'card/lib/js/card'
+require 'card/src/coffee/card'
+require('style-inject') require 'card/src/scss/card'
 
 class Payment extends Screen
   tag: 'payment'
