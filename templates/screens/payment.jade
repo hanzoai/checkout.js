@@ -2,7 +2,7 @@ form#payment
   control(label='{ "Email" }', input='{ inputs["user.email"] }')
   control(label='{ "Password" }', input='{ inputs["user.password"] }', if='{ config.login }')
   control(name='{ "name"}', label='{ "Name" }', input='{ inputs["user.name"] }')
-  tabs(model='{ model }', obs='{ obs }' if='{ hasProcessors() }')
+  tabs(model='{ model }', obs='{ obs }', if='{ hasProcessors() }')
   .crowdstart-card-widget(if='{ model.order.type  === "stripe" }')
     .crowdstart-card-details
       control(name='{ "number" }', label='{ "Card Number" }', input='{ inputs["payment.account.number"] }')

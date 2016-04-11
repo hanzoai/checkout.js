@@ -24,8 +24,6 @@ Widget = Views.Widget
 #   ########################
 #   narrow:             bool (always in narrow mode - 400px wide)
 #   currency:           string (3 letter ISO code)
-#   taxRate:            number (decimal) taxRate, overridden by opts.taxRates
-#   shippingRate:       number (per item cost in cents or base unit for zero decimal currencies)
 #   termsUrl:           string (url of terms page)
 #   callToActions:      [string, string] (Up to 2 element array containing the text for the confirmation button)
 #   shippingDetails:    string (description of when shipping happens)
@@ -47,6 +45,23 @@ Widget = Views.Widget
 # [
 #   {
 #     taxRate:  number (decimal tax rate)
+#     city:     null or string (name of city where tax is charged)
+#     state:    null or string (2 digit Postal code of US state or name of non-US state where tax is charged)
+#     country:  null or string (2 digit ISO country code eg. 'us' where tax is charged)
+#   }
+# ]
+#
+# Format of opts.shippingRates
+# Tax rates are filtered based on exact string match of city, state, and country.
+# Tax rates are evaluated in the order listed in the array.  This means if the first tax rate
+# is matched, then the subsequent tax rates will not be evaluated.
+# Therefore, list tax rates from specific to general
+#
+# If no city, state, or country is set, then the tax rate will be used if evaluated
+#
+# [
+#   {
+#     shippingRate:  number (cents or base unit)
 #     city:     null or string (name of city where tax is charged)
 #     state:    null or string (2 digit Postal code of US state or name of non-US state where tax is charged)
 #     country:  null or string (2 digit ISO country code eg. 'us' where tax is charged)
@@ -122,6 +137,7 @@ class Checkout
   analytics: null
   referralProgram: null
   taxRates: null
+  shippingRates: null
 
   reset: true
   waits: 0
@@ -191,6 +207,7 @@ class Checkout
 
     @referralProgram    = opts.referralProgram
     @taxRates           = opts.taxRates || []
+    @shippingRates      = opts.shippingRates || []
 
     @model =
       user:             @user
@@ -202,6 +219,7 @@ class Checkout
       analytics:        @analytics
       referralProgram:  @referralProgram
       taxRates:         @taxRates
+      shippingRates:    @shippingRates
       scripts:
         basic: @script
 

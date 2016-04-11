@@ -37,13 +37,33 @@ class Shipping extends Screen
 
     riot.update()
 
+  updateShippingRate: ()->
+    @model.order.shippingRate = 0
+
+    for shippingRate in @shippingRates
+      if shippingRate.city? && @model.order.shippingAddress.city? && shippingRate.city.toLowerCase() != @model.order.shippingAddress.city.toLowerCase()
+        continue
+
+      if shippingRate.state? && @model.order.shippingAddress.state? && shippingRate.state.toLowerCase() != @model.order.shippingAddress.state.toLowerCase()
+        continue
+
+      if shippingRate.country? && @model.order.shippingAddress.country? && shippingRate.country.toLowerCase() != @model.order.shippingAddress.country.toLowerCase()
+        continue
+
+      @model.order.shippingRate = shippingRate.shippingRate
+      break
+
+    riot.update()
+
   events:
     "#{Events.Input.Set}": ()->
       @updateTaxRate()
+      @updateShippingRate()
 
   js: (opts)->
     super
-    @taxRates = @model.taxRates ? []
+    @taxRates       = @model.taxRates ? []
+    @shippingRates  = @model.shippingRates ? []
 
   show: ()->
     analytics.track 'Viewed Checkout Step',

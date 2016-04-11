@@ -30,7 +30,7 @@
         <script>
           (function(){
             checkout = new Crowdstart.Checkout(
-              'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJiaXQiOjQ1MDM2MTcwNzU2NzUxNzYsImp0aSI6IlFyX3dLVldRRzZNIiwic3ViIjoiRXFUR294cDV1MyJ9.V_KXPzWAWfBEdxLIBDpAl1C5jker74FAaNzZpTM1rsTftRGmrt_vClEw0APu0REfuzqvTJYJefHIIo70vbT7UQ'
+              'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJiaXQiOjQ1MDM2MTcwNzU2NzUxNzIsImp0aSI6Imw3bDRMcUszTWFNIiwic3ViIjoiRXFUR294cDV1MyJ9.Xeg07zuDt6NjyuGl8rl2XRGph-bwulZhyYwBXthGjTpxCIh3Sj8XkBsthliOvifKCiUoi46lQWTahiUan0xZNw'
             , {
               config: {
                 callToActions:  ['pre-order', 'confirm'],
@@ -67,6 +67,15 @@
                   country: 'us',
                 },
               ],
+              shippingRates: [
+                {
+                  shippingRate: 2000,
+                  country: 'us'
+                },
+                {
+                  shippingRate: 4000
+                },
+              ],
               referralProgram: {
                 name: "Such Referral",
                 triggers: [0],
@@ -77,7 +86,7 @@
                 }]
               }
             })
-            checkout.setItem('84cRXBYs9jX7w', 1)
+            checkout.setItem('dZc6BopOFA5Xvd', 1)
             checkout.setItem('doge-shirt', 0)
 
             $('.btn').on('click', function(){
