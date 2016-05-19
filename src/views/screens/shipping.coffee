@@ -150,6 +150,10 @@ class Shipping extends Screen
         ).catch (err)->
           console.log "new referralProgram Error: #{err}"
 
+      @model.payment.account.number = ''
+      @model.payment.account.expiry = ''
+      @model.payment.account.cvc = ''
+
       @screenManagerObs.trigger Events.Screen.Next
       @screenManagerObs.trigger Events.Confirm.Unlock
       @screenManagerObs.trigger Events.Checkout.Done
