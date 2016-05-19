@@ -158,6 +158,9 @@ class Shipping extends Screen
       @screenManagerObs.trigger Events.Confirm.Unlock
       @screenManagerObs.trigger Events.Checkout.Done
 
+      # force clear cardjs
+      $('.crowdstart-card-widget input').val('')
+
       riot.update()
     ).catch (err)=>
       console.log "shipping submit Error: #{err}"
