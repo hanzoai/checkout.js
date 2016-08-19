@@ -32,7 +32,6 @@ modal > div{
 }
 .crowdstart-active .crowdstart-checkout{
   -webkit-transform-origin:50% 0;
-      -ms-transform-origin:50% 0;
           transform-origin:50% 0;
 }
 widget{
@@ -41,7 +40,6 @@ widget{
   height:100%;
   display:block;
   -webkit-transform:translate(0, -5000px);
-      -ms-transform:translate(0, -5000px);
           transform:translate(0, -5000px);
   -webkit-transition:all 0.5s ease-in-out;
   transition:all 0.5s ease-in-out;
@@ -50,7 +48,6 @@ widget{
 }
 .crowdstart-active widget{
   -webkit-transform:translate(0, 0);
-      -ms-transform:translate(0, 0);
           transform:translate(0, 0);
 }
 .crowdstart-checkout{
@@ -157,7 +154,6 @@ control{
   top:-3px;
   left:20px;
   -webkit-transform:rotate(45deg);
-      -ms-transform:rotate(45deg);
           transform:rotate(45deg);
 }
 .crowdstart-message{
@@ -245,7 +241,6 @@ control{
   left:0.6em;
   cursor:pointer;
   -webkit-transform:scale(-1, 1);
-      -ms-transform:scale(-1, 1);
           transform:scale(-1, 1);
   -webkit-transition:all 0.4s ease-in-out;
   transition:all 0.4s ease-in-out;
@@ -352,7 +347,6 @@ payment .crowdstart-paypal-widget p{
   z-index:10001;
   height:172px;
   -webkit-transform:scale(0.56) !important;
-      -ms-transform:scale(0.56) !important;
           transform:scale(0.56) !important;
 }
 .icon-lock{
@@ -368,10 +362,8 @@ payment .crowdstart-paypal-widget p{
   left:5em;
   top:0.3em;
   -webkit-transform:scale(0.4);
-  -ms-transform:scale(0.4);
   transform:scale(0.4);
   -webkit-transform-origin:0 0;
-  -ms-transform-origin:0 0;
   transform-origin:0 0;
 }
 .icon-lock .lock-top-1{
@@ -544,7 +536,6 @@ tabs > *{
   width:11px;
   height:4px;
   -webkit-transform:rotate(60deg);
-      -ms-transform:rotate(60deg);
           transform:rotate(60deg);
   position:relative;
   top:8px;
@@ -554,7 +545,6 @@ tabs > *{
   width:22px;
   height:4px;
   -webkit-transform:rotate(130deg);
-      -ms-transform:rotate(130deg);
           transform:rotate(130deg);
   position:relative;
   top:2px;
@@ -1119,7 +1109,6 @@ label{
   position:absolute;
   top:1.75%;
   -webkit-transform:translate(-50%, 0);
-      -ms-transform:translate(-50%, 0);
           transform:translate(-50%, 0);
   width:98%;
   z-index:200;
@@ -1149,7 +1138,6 @@ label{
   position:absolute;
   top:37.25%;
   -webkit-transform:rotateZ(189deg);
-      -ms-transform:rotate(189deg);
           transform:rotateZ(189deg);
   width:0;
   z-index:600;
@@ -1170,7 +1158,6 @@ label{
   top:50%;
   width:2em;
   -webkit-transform:translate(-50%, -50%);
-      -ms-transform:translate(-50%, -50%);
           transform:translate(-50%, -50%);
   z-index:200;
 }
@@ -1192,13 +1179,11 @@ label{
 .crowdstart-card-icons .crowdstart-card-icon .mc hr:nth-of-type(1),
 .crowdstart-card-icons .crowdstart-card-icon .mc hr:nth-of-type(5){
   -webkit-transform:translate(-28%, 0);
-      -ms-transform:translate(-28%, 0);
           transform:translate(-28%, 0);
 }
 .crowdstart-card-icons .crowdstart-card-icon .mc hr:nth-of-type(2),
 .crowdstart-card-icons .crowdstart-card-icon .mc hr:nth-of-type(4){
   -webkit-transform:translate(-10%, 0);
-      -ms-transform:translate(-10%, 0);
           transform:translate(-10%, 0);
 }
 .crowdstart-card-icons .crowdstart-card-icon .mc hr:nth-of-type(4),
@@ -1532,7 +1517,6 @@ label{
 @media only screen and (max-width: 350px){
   .crowdstart-active .crowdstart-checkout{
     -webkit-transform:scale(0.6, 0.6);
-    -ms-transform:scale(0.6, 0.6);
     transform:scale(0.6, 0.6);
   }
   widget{
@@ -1542,7 +1526,6 @@ label{
 @media only screen and (min-width: 350px) and (max-width: 400px){
   .crowdstart-active .crowdstart-checkout{
     -webkit-transform:scale(0.9, 0.9);
-    -ms-transform:scale(0.9, 0.9);
     transform:scale(0.9, 0.9);
   }
 }
@@ -1560,7 +1543,6 @@ label{
     z-index:10001;
     height:200px;
     -webkit-transform:scale(0.475) !important;
-    -ms-transform:scale(0.475) !important;
     transform:scale(0.475) !important;
   }
   .crowdstart-checkout:not(.crowdstart-narrow) .crowdstart-items .crowdstart-sep:first-of-type{
@@ -1658,7 +1640,6 @@ label{
     z-index:10001;
     height:172px;
     -webkit-transform:scale(0.56) !important;
-    -ms-transform:scale(0.56) !important;
     transform:scale(0.56) !important;
   }
   .crowdstart-items label:first-of-type{
