@@ -55,7 +55,7 @@
     "csswring": "^4.0.0",
     "jade": "1.11.0",
     "lost": "^6.6.2",
-    "lost-stylus": "^0.1.2",
+    "lost-stylus": "^0.1.3",
     "mocha": "^2.3.4",
     "node-bourbon": "^4.2.3",
     "node-sass": "3.8.0",
