@@ -51,7 +51,7 @@
     "coffee-script": "^1.10.0",
     "connect": "^3.4.0",
     "css-mqpacker": "^4.0.0",
-    "cssnano": "^3.1.0",
+    "cssnano": "^3.8.1",
     "csswring": "^4.0.0",
     "jade": "1.11.0",
     "lost": "^6.6.2",
