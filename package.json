@@ -71,7 +71,7 @@
     "serve-static": "^1.10.0",
     "shortcake": "1.1.11",
     "stylus": "0.54.5",
-    "typographic": "^2.9.3",
+    "typographic": "^3.0.0",
     "uglify-js": "^2.6.1",
     "webdriverio": "^3.1.0"
   }
