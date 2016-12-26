@@ -61,7 +61,7 @@
     "node-sass": "3.8.0",
     "node-static": "^0.7.6",
     "phantomjs": "^1.9.18",
-    "postcss": "^5.0.12",
+    "postcss": "^5.2.8",
     "postcss-discard-comments": "^2.0.0",
     "poststylus": "^0.2.1",
     "requisite": "1.18.3",
