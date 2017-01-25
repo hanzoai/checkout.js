@@ -1,4 +1,6 @@
 # Checkout.js  [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![NPM version][npm-image]][npm-url]  [![Gitter chat][gitter-image]][gitter-url]
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/hanzo-io/checkout.js.svg)](https://greenkeeper.io/)
 Our checkout widget makes it possible to start taking pre-orders in minutes,
 and is quite customizable.
 
