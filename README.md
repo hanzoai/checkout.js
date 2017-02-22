@@ -22,22 +22,34 @@ Configure the checkout widget however you'd like.
 ```javascript
 <script src="https://cdn.rawgit.com/hanzo-io/checkout.js/v2.1.21/checkout.min.js"></script>
 <script>
-  var {Checkout, Order, Product, User, API} = Hanzo;
+  var {Checkout, User, Order, Product} = Hanzo
+
+  // Create user (pre-populated in form fields)
+  var user = new User({
+    email:     'joe@fan.com',
+    firstName: 'Joe',
+    lastName:  'Fan'
+  })
 
   // Create order
-  var order = new Order('usd',[
-    new Product('84cRXBYs9jX7w', -1),
-    new Product('doge-shirt', 100)
-  ]);
+  var order = new Order({
+    currency: 'usd',
+    items: [
+      new Product({id:   '84cRXBYs9jX7w', quantity: 1}),
+      new Product({slug: 'doge-shirt',    quantity: 1}),
+    ]
+  })
 
-  // Create default user (pre-populated in form fields)
-  var user = new User('joe@fan.com', 'Joe', 'Fan')
+  // Instantiate checkout widget.
+  var checkout = new Checkout('your access token', {
+    social: {
+      facebook:   'suchtees',
+      googlePlus: 'suchtees',
+      twitter:    'suchtees',
+  })
 
-  // Get Hanzo API client
-  var api = new API('your access token');
-
-  // Instantiate widget. This can be called multiple times, overriding order in widget.
-  Checkout('checkout', api, order, user, config);
+  // Open widget. This can be called multiple times, overriding order or user.
+  checkout.open('#checkout', user, order)
 </script>
 ```
 
