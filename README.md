@@ -1,6 +1,6 @@
 # Checkout.js  [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![NPM version][npm-image]][npm-url]  [![Gitter chat][gitter-image]][gitter-url]
-Checkout.js is [Hanzo][hanzo]'s drop-in pre-order widget. It makes it possible for
-businesses to begin taking pre-orders in minutes.
+Checkout.js makes it possible for businesses to being taking pre-orders in
+minutes. It is powered by [Hanzo][hanzo].
 
 ## Preview
 ![Checkout.js Image][checkout-image]
