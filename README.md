@@ -1,6 +1,6 @@
 # Checkout.js  [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![NPM version][npm-image]][npm-url]  [![Gitter chat][gitter-image]][gitter-url]
-Checkout.js makes it possible for businesses to being taking pre-orders in
-minutes. It is powered by [Hanzo][hanzo].
+Checkout.js is an easy to use checkout widget powered by [Hanzo][hanzo]. It makes it possible for businesses to begin taking pre-orders in
+minutes.
 
 ## Preview
 ![Checkout.js Image][checkout-image]
