@@ -58,7 +58,7 @@
     "lost-stylus": "^0.1.2",
     "mocha": "^2.3.4",
     "node-bourbon": "^4.2.3",
-    "node-sass": "3.8.0",
+    "node-sass": "3.11.1",
     "node-static": "^0.7.6",
     "phantomjs": "^1.9.18",
     "postcss": "^5.0.12",
