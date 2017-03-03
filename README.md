@@ -1,4 +1,4 @@
-# Checkout.js  [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![NPM version][npm-image]][npm-url]  [![Gitter chat][gitter-image]][gitter-url]
+# Checkout.js  [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![NPM version][npm-image]][npm-url]  [![Gitter chat][gitter-image]][gitter-url] [![Greenkeeper badge](https://badges.greenkeeper.io/hanzo-io/checkout.js.svg)](https://greenkeeper.io/)
 Checkout.js is an easy to use checkout widget powered by [Hanzo][hanzo]. It makes it possible for businesses to begin taking pre-orders in
 minutes.
 
