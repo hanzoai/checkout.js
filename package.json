@@ -31,7 +31,7 @@
   "dependencies": {
     "bebop": "1.9.4",
     "broken": "^0.1.1",
-    "card": "1.2.0",
+    "card": "2.0.5",
     "crowdcontrol": "^1.1.6",
     "crowdstart.js": "^2.2.7",
     "is-number": "^2.1.0",
