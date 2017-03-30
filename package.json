@@ -1,14 +1,14 @@
 {
   "name": "checkout.js",
   "version": "2.1.21",
-  "description": "Easy to use checkout widget powered by Crowdstart.",
+  "description": "Easy to use checkout widget powered by Hanzo.",
   "main": "lib/",
   "engines": {
     "node": ">=4.0.0"
   },
   "scripts": {
     "test": "cake test",
-    "prepublish": "cake build-min"
+    "prepublish": "cake build:min"
   },
   "keywords": [
     "browser",
@@ -16,16 +16,16 @@
     "checkout",
     "checkout.js",
     "crowdfunding",
-    "crowdstart",
+    "hanzo-io",
     "ecommerce",
     "payments",
     "shopping",
     "store"
   ],
-  "author": "Crowdstart, LLC <hi@crowdstart.com> (http://crowdstart.com)",
+  "author": "Hanzo, Inc <hi@hanzo.io> (http://hanzo.io)",
   "repository": {
     "type": "git",
-    "url": "http://github.com/crowdstart/checkout.js"
+    "url": "http://github.com/hanzo-io/checkout.js"
   },
   "license": "MIT",
   "dependencies": {
@@ -33,7 +33,7 @@
     "broken": "^0.1.1",
     "card": "2.1.1",
     "crowdcontrol": "^2.0.18",
-    "crowdstart.js": "^2.2.7",
+    "hanzo.js": "^2.2.7",
     "is-number": "^3.0.0",
     "is-object": "^1.0.1",
     "raf": "^3.1.0",
