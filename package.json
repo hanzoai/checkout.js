@@ -27,7 +27,7 @@
     "type": "git",
     "url": "http://github.com/hanzo-io/checkout.js"
   },
-  "license": "MIT",
+  "license": "BSD-3-Clause",
   "dependencies": {
     "bebop": "1.11.0",
     "broken": "^0.1.1",

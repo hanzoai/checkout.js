@@ -1,4 +1,14 @@
-# checkout.js  [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![NPM version][npm-image]][npm-url]  [![Gitter chat][gitter-image]][gitter-url] [![Greenkeeper badge](https://badges.greenkeeper.io/hanzo-io/checkout.js.svg)](https://greenkeeper.io/)
+# Checkout.js
+
+[![npm][npm-img]][npm-url]
+[![build][build-img]][build-url]
+[![dependencies][dependencies-img]][dependencies-url]
+[![downloads][downloads-img]][downloads-url]
+[![license][license-img]][license-url]
+[![chat][chat-img]][chat-url]
+
+> Easy to use checkout powered by [Hanzo][hanzo]
+
 Checkout.js is an easy to use checkout widget powered by [Hanzo][hanzo]. It
 makes it possible for businesses to begin taking pre-orders in minutes.
 
@@ -56,18 +66,25 @@ Configure the checkout widget however you'd like.
 ## Examples
 You can find more examples [here][examples].
 
+## License
+[BSD][license-url]
+
 [checkout-image]:  https://cdn.rawgit.com/hanzo-io/checkout.js/v2.1.21/examples/basic/basic_screenshot.png
 [checkout.js]:     https://cdn.rawgit.com/hanzo-io/checkout.js/v2.1.21/checkout.min.js
 [hanzo]:           https://hanzo.io
 [examples]:        https://github.com/hanzo-io/checkout.js/tree/master/examples
 
-[coveralls-image]: https://img.shields.io/coveralls/hanzo-io/checkout.js.svg
-[coveralls-url]:   https://coveralls.io/r/hanzo-io/checkout.js/
-[downloads-image]: https://img.shields.io/npm/dm/checkout.js.svg
-[downloads-url]:   http://badge.fury.io/js/checkout.js
-[gitter-image]:    https://img.shields.io/badge/gitter-join_chat-brightgreen.svg
-[gitter-url]:      https://gitter.im/hanzo-io/chat
-[npm-image]:       https://img.shields.io/npm/v/checkout.js.svg
-[npm-url]:         https://www.npmjs.com/package/checkout.js
-[travis-image]:    https://img.shields.io/travis/hanzo-io/checkout.js.svg
-[travis-url]:      https://travis-ci.org/hanzo-io/checkout.js
+[build-img]:        https://img.shields.io/travis/hanzo-io/hanzo.js.svg
+[build-url]:        https://travis-ci.org/hanzo-io/hanzo.js
+[chat-img]:         https://badges.gitter.im/join-chat.svg
+[chat-url]:         https://gitter.im/hanzo-io/chat
+[coverage-img]:     https://coveralls.io/repos/hanzo-io/hanzo.js/badge.svg?branch=master&service=github
+[coverage-url]:     https://coveralls.io/github/hanzo-io/hanzo.js?branch=master
+[dependencies-img]: https://david-dm.org/hanzo-io/hanzo.js.svg
+[dependencies-url]: https://david-dm.org/hanzo-io/hanzo.js
+[downloads-img]:    https://img.shields.io/npm/dm/hanzo.js.svg
+[downloads-url]:    http://badge.fury.io/js/hanzo.js
+[license-img]:      https://img.shields.io/npm/l/hanzo.js.svg
+[license-url]:      https://github.com/hanzo-io/hanzo.js/blob/master/LICENSE
+[npm-img]:          https://img.shields.io/npm/v/hanzo.js.svg
+[npm-url]:          https://www.npmjs.com/package/hanzo.js
