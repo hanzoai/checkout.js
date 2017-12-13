@@ -30,7 +30,7 @@ Set the `href` of your button to `#checkout`.
 Configure the checkout widget however you'd like.
 
 ```javascript
-<script src="https://cdn.rawgit.com/hanzo-io/checkout.js/v2.1.21/checkout.min.js"></script>
+<script src="https://cdn.rawgit.com/hanzoai/checkout.js/v2.1.21/checkout.min.js"></script>
 <script>
   var {Checkout, User, Order, Product} = Hanzo
 
@@ -69,22 +69,22 @@ You can find more examples [here][examples].
 ## License
 [BSD][license-url]
 
-[checkout-image]:  https://cdn.rawgit.com/hanzo-io/checkout.js/v2.1.21/examples/basic/basic_screenshot.png
-[checkout.js]:     https://cdn.rawgit.com/hanzo-io/checkout.js/v2.1.21/checkout.min.js
-[hanzo]:           https://hanzo.io
-[examples]:        https://github.com/hanzo-io/checkout.js/tree/master/examples
+[checkout-image]:  https://cdn.rawgit.com/hanzoai/checkout.js/v2.1.21/examples/basic/basic_screenshot.png
+[checkout.js]:     https://cdn.rawgit.com/hanzoai/checkout.js/v2.1.21/checkout.min.js
+[hanzo]:           https://hanzo.ai
+[examples]:        https://github.com/hanzoai/checkout.js/tree/master/examples
 
-[build-img]:        https://img.shields.io/travis/hanzo-io/hanzo.js.svg
-[build-url]:        https://travis-ci.org/hanzo-io/hanzo.js
+[build-img]:        https://img.shields.io/travis/hanzoai/hanzo.js.svg
+[build-url]:        https://travis-ci.org/hanzoai/hanzo.js
 [chat-img]:         https://badges.gitter.im/join-chat.svg
-[chat-url]:         https://gitter.im/hanzo-io/chat
-[coverage-img]:     https://coveralls.io/repos/hanzo-io/hanzo.js/badge.svg?branch=master&service=github
-[coverage-url]:     https://coveralls.io/github/hanzo-io/hanzo.js?branch=master
-[dependencies-img]: https://david-dm.org/hanzo-io/hanzo.js.svg
-[dependencies-url]: https://david-dm.org/hanzo-io/hanzo.js
+[chat-url]:         https://gitter.im/hanzoai/chat
+[coverage-img]:     https://coveralls.io/repos/hanzoai/hanzo.js/badge.svg?branch=master&service=github
+[coverage-url]:     https://coveralls.io/github/hanzoai/hanzo.js?branch=master
+[dependencies-img]: https://david-dm.org/hanzoai/hanzo.js.svg
+[dependencies-url]: https://david-dm.org/hanzoai/hanzo.js
 [downloads-img]:    https://img.shields.io/npm/dm/hanzo.js.svg
 [downloads-url]:    http://badge.fury.io/js/hanzo.js
 [license-img]:      https://img.shields.io/npm/l/hanzo.js.svg
-[license-url]:      https://github.com/hanzo-io/hanzo.js/blob/master/LICENSE
+[license-url]:      https://github.com/hanzoai/hanzo.js/blob/master/LICENSE
 [npm-img]:          https://img.shields.io/npm/v/hanzo.js.svg
 [npm-url]:          https://www.npmjs.com/package/hanzo.js

@@ -16,16 +16,17 @@
     "checkout",
     "checkout.js",
     "crowdfunding",
-    "hanzo-io",
+    "hanzo",
+    "hanzoai",
     "ecommerce",
     "payments",
     "shopping",
     "store"
   ],
-  "author": "Hanzo, Inc <hi@hanzo.io> (http://hanzo.io)",
+  "author": "Hanzo, Inc <hi@hanzo.ai> (http://hanzo.ai)",
   "repository": {
     "type": "git",
-    "url": "http://github.com/hanzo-io/checkout.js"
+    "url": "http://github.com/hanzoai/checkout.js"
   },
   "license": "BSD-3-Clause",
   "dependencies": {
